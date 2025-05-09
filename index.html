@@ -1,66 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bernardo Cordeiro Motta</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bernardo Motta — Portfólio</title>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <div class="lang-toggle">
-    <button onclick="setLanguage('pt')">🇧🇷</button>
-    <button onclick="setLanguage('en')">🇺🇸</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-content">
+        <img src="assets/img/profile.jpg" alt="Foto de perfil" class="profile-img" style="margin: auto;" />
+        <h1>Bernardo Motta</h1>
+        <p data-pt="Automação, DevOps e soluções em tecnologia" data-en="Versatile, logical and naturally curious."></p>
+        <ul class="contact-list">
+      <li><i class="uil uil-envelope"></i> bernardocordeiromotta@gmail.com</li>
+      <li><i class="uil uil-phone"></i> (31) 98422-9488</li>
+      <li><i class="uil uil-github"></i> github.com/BAttomic</li>
+      <li><i class="uil uil-linkedin"></i> br.linkedin.com/in/bernardo-cordeiro-motta-277010298</li>
+      <li><i class="uil uil-discord"></i> B_Attomic</li>
+    </ul>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-pt" onclick="setLanguage('pt')" style="display: none;">🇧🇷 PT-BR</button>
+        <button id="btn-en" onclick="setLanguage('en')">🇺🇸 EN</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section data-aos="fade-up">
+        <h2 data-pt="Sobre mim" data-en="About Me"></h2>
+        <p data-pt="Sou movido pela lógica e pela curiosidade. Ao longo dos anos, me envolvi com automações, servidores, DevOps, soluções inteligentes, APIs e fluxos integrados — sempre na pegada do 'deixa que eu resolvo'. Já tive experiências com diversas linguagens e ferramentas, mas meu foco sempre foi a clareza na resolução de problemas."
+           data-en="I'm driven by logic and curiosity. Over the years, I've worked with automation, servers, DevOps, smart solutions, APIs, and integrated flows — always in a 'let me solve it' mindset. I’ve explored many tools and technologies, but what matters most to me is clarity in problem-solving."></p>
+      </section>
+
+      <section data-aos="fade-up">
+        <h2 data-pt="Experiência Profissional" data-en="Professional Experience"></h2>
+        <div class="experience">
+          <h3 data-pt="PromovAds (BH/MG) — Mar/25 até o momento" data-en="PromovAds (BH/MG) — Mar/25 to present"></h3>
+          <p data-pt="Trabalho com automações, DevOps e soluções em geral. Na prática, acabo atuando em quase tudo na parte técnica da empresa."
+             data-en="I work with automations, DevOps, and overall tech solutions. In practice, I handle almost every technical aspect of the company."></p>
+        </div>
+        <div class="experience">
+          <h3 data-pt="OrangeStore (Viçosa/MG) — Ago/24 a Jan/25" data-en="OrangeStore (Viçosa/MG) — Aug/24 to Jan/25"></h3>
+          <p data-pt="Atuei como técnico em reparo de produtos Apple. A experiência me trouxe muito conhecimento técnico e prático, especialmente por conta dos cursos que realizei durante o período."
+             data-en="I worked as an Apple device repair technician. The experience provided me strong technical and practical knowledge, especially due to the courses I took during that time."></p>
+        </div>
+        <div class="experience">
+          <h3 data-pt="Freelancer (Remoto) — 2018 a 2023" data-en="Freelancer (Remote) — 2018 to 2023"></h3>
+          <p data-pt="Desenvolvimento de servidores de Minecraft personalizados, bots para Discord, automações, integrações com APIs e soluções sob demanda para pequenas empresas."
+             data-en="Custom Minecraft server development, Discord bots, automation scripts, API integrations, and tailored solutions for small businesses."></p>
+        </div>
+      </section>
+
+      <section data-aos="fade-up">
+        <h2 data-pt="Formação Acadêmica" data-en="Education"></h2>
+        <ul>
+          <li>
+            <strong data-pt="Análise e Desenvolvimento de Sistemas – UniViçosa" data-en="Systems Analysis & Development – UniViçosa"></strong><br />
+            <span data-pt="2024 – 2026" data-en="2024 – 2026"></span>
+          </li>
+          <li>
+            <strong data-pt="Bacharelado em Matemática – UFV" data-en="Bachelor in Mathematics – UFV"></strong><br />
+            <span data-pt="2020 – 2023 (incompleto)" data-en="2020 – 2023 (incomplete)"></span>
+          </li>
+        </ul>
+      </section>
+
+      <section data-aos="fade-up">
+        <h2 data-pt="Projetos" data-en="Projects"></h2>
+
+        <div class="project-card">
+          <img src="assets/img/project1.jpg" alt="Projeto 1" />
+          <div class="project-info">
+            <h3 data-pt="Assistente com OpenAI" data-en="OpenAI Assistant"></h3>
+            <p data-pt="Sistema de atendimento automatizado com LLMs, Supabase, N8N, VPS e Cloudflare."
+               data-en="Automated support system using LLMs, Supabase, N8N, VPS and Cloudflare."></p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/img/project2.jpg" alt="Projeto 2" />
+          <div class="project-info">
+            <h3 data-pt="Servidor Minecraft Personalizado" data-en="Custom Minecraft Server"></h3>
+            <p data-pt="Servidor com plugins e integração web, criado sob medida para comunidades."
+               data-en="Plugin-rich server with web integrations, tailored for community use."></p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/img/project3.jpg" alt="Projeto 3" />
+          <div class="project-info">
+            <h3 data-pt="Bot para Discord com API" data-en="Discord Bot with API"></h3>
+            <p data-pt="Bot customizado com comandos avançados, autenticação e integração com APIs externas."
+               data-en="Custom bot with advanced commands, authentication and external API integration."></p>
+          </div>
+        </div>
+
+      </section>
+    </main>
   </div>
 
-  <div class="container">
-    <img src="assets/img/profile.jpg" alt="Foto de perfil" class="profile-pic">
-    <h1 data-pt="Bernardo Cordeiro Motta" data-en="Bernardo Cordeiro Motta"></h1>
-    <h2 data-pt="Especialista em automações, soluções e DevOps" data-en="Automation, Solutions and DevOps Specialist"></h2>
-    <blockquote data-pt="Educar é impregnar de sentido o que fazemos a cada instante." 
-                data-en="To educate is to imbue with meaning what we do at every moment.">Paulo Freire</blockquote>
-
-    <section>
-      <h3 data-pt="Habilidades Técnicas" data-en="Technical Skills"></h3>
-      <ul>
-        <li>Python, Java, JavaScript, HTML, CSS, C++, SQL (MySQL, PostgreSQL, Supabase)</li>
-        <li>AWS, Cloudflare, Google Cloud, VPS, DevOps</li>
-        <li>Unity, Blockbench (2.5D Modeling), Minecraft Server Dev</li>
-        <li>OpenAI Fine-Tuning, N8N, Evolution</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3 data-pt="Experiência Profissional" data-en="Professional Experience"></h3>
-      <p><b>PromovAds (BH/MG)</b> — Mar/25 - atual<br>
-      Automação, DevOps, soluções técnicas diversas</p>
-      <p><b>OrangeStore (Viçosa/MG)</b> — Ago/24 - Jan/25<br>
-      Técnico em reparo de produtos Apple</p>
-    </section>
-
-    <section>
-      <h3 data-pt="Formação Acadêmica" data-en="Education"></h3>
-      <p>UFV — Matemática (incompleto, 2020–2023)</p>
-      <p>UniViçosa — Análise e Desenvolvimento de Sistemas (2024–2026)</p>
-    </section>
-
-    <section>
-      <h3 data-pt="Projetos" data-en="Projects"></h3>
-      <p><b>Assistentes Inteligentes com OpenAI:</b> Fine-tuning de modelos para atendimento automatizado, integrando com Cloudflare, Supabase, VPS e N8N.</p>
-    </section>
-
-    <section>
-      <h3 data-pt="Contato" data-en="Contact"></h3>
-      <ul>
-        <li>Email: bernardo@email.com</li>
-        <li>GitHub: github.com/seuperfil</li>
-        <li>LinkedIn: linkedin.com/in/seuperfil</li>
-        <li>Discord: bernardo#1234</li>
-        <li>Telefone: (31) 99999-9999</li>
-      </ul>
-    </section>
-  </div>
-
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
   <script src="assets/js/lang.js"></script>
 </body>
 </html>

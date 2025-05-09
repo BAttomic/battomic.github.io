@@ -1,33 +1,89 @@
-
 body {
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  color: #333;
-  padding: 20px;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fa;
+  color: #1d1d1d;
 }
-.container {
-  max-width: 800px;
+.layout {
+  display: flex;
+  max-width: 1200px;
   margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
 }
-.profile-pic {
-  width: 150px;
+.sidebar {
+  width: 300px;
+  background: #ffffff;
+  padding: 30px 20px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
   border-radius: 50%;
+  border: 3px solid #0073e6;
+  margin-bottom: 15px;
 }
-h1, h2, h3 {
-  margin-top: 10px;
-}
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-.lang-toggle {
-  text-align: right;
+.sidebar h1 {
+  font-size: 1.5rem;
   margin-bottom: 10px;
 }
+.sidebar p {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #666;
+}
+.contact-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+.contact-list li {
+  margin: 6px 0;
+}
+.lang-toggle {
+  margin-top: 20px;
+}
 .lang-toggle button {
-  font-size: 18px;
-  margin-left: 5px;
+  padding: 6px 10px;
+  border: none;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin: 2px;
+  cursor: pointer;
+}
+.content {
+  flex: 1;
+  padding: 40px;
+}
+.content h2 {
+  font-size: 1.5rem;
+  color: #0073e6;
+  margin-top: 0;
+}
+.content section {
+  margin-bottom: 50px;
+}
+.content p, .content li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.project-card {
+  display: flex;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-top: 20px;
+}
+.project-card img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+.project-info {
+  padding: 20px;
 }
