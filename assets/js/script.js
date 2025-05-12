@@ -4,7 +4,7 @@ let currentLang = 'pt';
 const translations = {
   pt: {
     role: "Automação, DevOps e Soluções em Tecnologia",
-    about: `Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade comprovada de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Formação em Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.`,
+    about: `Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Formação em Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.`,
     hardSkills: [
       "DevOps (CI/CD, VPS, Docker, N8N)",
       "Integração e automação com APIs REST/JSON",
@@ -68,7 +68,7 @@ const translations = {
   },
   en: {
     role: "Automation, DevOps & Tech Solutions",
-    about: `Passionate about logic, automation, and scalable solutions. Solid expertise in system integration, DevOps, VPS architecture, and CI/CD deployments. Proven ability to adapt tools to real project needs with agility, clarity, and a problem-solving mindset. Academic background in Mathematics (UFV) provided a strong foundation in logic, analytical thinking, and rigor, enhancing my technical proficiency in development and infrastructure.`,
+    about: `Passionate about logic, automation, and scalable solutions. Solid expertise in system integration, DevOps, VPS architecture, and CI/CD deployments. Ability to adapt tools to real project needs with agility, clarity, and a problem-solving mindset. Academic background in Mathematics (UFV) provided a strong foundation in logic, analytical thinking, and rigor, enhancing my technical proficiency in development and infrastructure.`,
     hardSkills: [
       "DevOps (CI/CD, VPS, Docker, N8N)",
       "API automation and integration (REST/JSON)",
