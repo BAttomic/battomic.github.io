@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Currículo - Bernardo Cordeiro Motta</title>
+  <meta name="description" content="Currículo de Bernardo Cordeiro Motta — Especialista em DevOps, automações, APIs e soluções escaláveis.">
+  <meta property="og:title" content="Currículo de Bernardo Cordeiro Motta" />
+  <meta property="og:description" content="Portfólio e trajetória profissional em tecnologia e automações.">
+  <meta property="og:image" content="assets/img/profile.jpg" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="assets/js/script.js" defer></script>
 </head>
@@ -11,7 +15,7 @@
   <aside class="sidebar">
     <img src="assets/img/profile.jpg" alt="Foto de Bernardo Motta" />
     <h1>Bernardo Motta</h1>
-    <h2>Automação, DevOps e Soluções em Tecnologia</h2>
+    <h2 id="role">Automação, DevOps e Soluções em Tecnologia</h2>
     <div class="contact-info">
       <p><a href="mailto:bernardocordeiromotta@gmail.com">📧 bernardocordeiromotta@gmail.com</a></p>
       <p>📱 (31) 98422-9488</p>
@@ -19,20 +23,20 @@
       <p><a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank">🔗 LinkedIn</a></p>
       <p>🎮 Discord: @B_Attomic</p>
     </div>
+    <button id="toggle-lang">🌐 English</button>
   </aside>
 
   <main class="content">
     <section>
-      <h3>Sobre mim</h3>
-      <p>
-        Sou apaixonado por lógica e resolução de problemas. Ao longo da minha trajetória, me especializei em criar soluções eficientes por meio de automações, DevOps, integração de sistemas e arquiteturas escaláveis. 
-        Tenho facilidade em adaptar ferramentas às necessidades reais dos projetos, atuando com agilidade, clareza e espírito solucionador.
+      <h3 data-i18n="about-title">Sobre mim</h3>
+      <p id="about-text">
+        Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade comprovada de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Formação em Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.
       </p>
     </section>
 
     <section>
-      <h3>Hard Skills</h3>
-      <ul>
+      <h3 data-i18n="skills-hard-title">Hard Skills</h3>
+      <ul id="skills-hard">
         <li>DevOps (CI/CD, VPS, Docker, N8N)</li>
         <li>Integração e automação com APIs REST/JSON</li>
         <li>Desenvolvimento com Java, Python e JavaScript</li>
@@ -42,8 +46,8 @@
     </section>
 
     <section>
-      <h3>Soft Skills</h3>
-      <ul>
+      <h3 data-i18n="skills-soft-title">Soft Skills</h3>
+      <ul id="skills-soft">
         <li>Raciocínio analítico e tomada de decisão</li>
         <li>Comunicação objetiva e técnica</li>
         <li>Autonomia, proatividade e curiosidade contínua</li>
@@ -52,55 +56,23 @@
     </section>
 
     <section>
-      <h3>Experiência Profissional</h3>
-      <ul>
-        <li>
-          <strong>PromovAds (BH/MG)</strong> — Mar/2025 até o momento<br />
-          Atuo como responsável técnico por automações internas, pipelines de integração contínua, deploys e arquiteturas VPS. Contribuo diretamente para a eficiência operacional da empresa através da criação de soluções sob medida.
-        </li>
-        <li>
-          <strong>OrangeStore (Viçosa/MG)</strong> — Ago/2024 a Jan/2025<br />
-          Especialista técnico no reparo de produtos Apple. A experiência expandiu minha visão técnica sobre hardware e fortaleceu minha disciplina com processos, prazos e certificações.
-        </li>
-        <li>
-          <strong>Freelancer (Remoto)</strong> — 2018 a 2023<br />
-          Atuei em diversos projetos personalizados, como servidores de Minecraft, bots para Discord e integrações com APIs de terceiros para pequenas empresas. Desenvolvi autonomia, versatilidade e adaptação a diferentes contextos.
-        </li>
+      <h3 data-i18n="experience-title">Experiência Profissional</h3>
+      <ul id="experience">
+        <!-- Populado via JS -->
       </ul>
     </section>
 
     <section>
-      <h3>Formação Acadêmica</h3>
-      <ul>
-        <li><strong>UniViçosa</strong> — Análise e Desenvolvimento de Sistemas (2024 – 2026)</li>
-        <li><strong>Universidade Federal de Viçosa</strong> — Bacharelado em Matemática (2020 – 2023, incompleto)</li>
+      <h3 data-i18n="education-title">Formação Acadêmica</h3>
+      <ul id="education">
+        <!-- Populado via JS -->
       </ul>
     </section>
 
     <section>
-      <h3>Projetos em Destaque</h3>
-      <div class="projects">
-        <article class="project-card">
-          <img src="assets/img/project1.jpg" alt="Imagem do projeto Assistente com OpenAI" />
-          <h4>Assistente com OpenAI</h4>
-          <p>
-            Sistema inteligente de atendimento automatizado utilizando modelos da OpenAI (LLMs), com orquestração via N8N, armazenamento em Supabase e deploy seguro em VPS protegido com Cloudflare.
-          </p>
-        </article>
-        <article class="project-card">
-          <img src="assets/img/project2.jpg" alt="Imagem do projeto Minecraft" />
-          <h4>Rede de Servidores Minecraft</h4>
-          <p>
-            Estrutura modular com servidores independentes (Proxy, Lobby, Modos de jogo) configurados em Java, hospedados em VPS Linux com bancos em MySQL. Inclui painéis web de administração e automações de deploy e autenticação.
-          </p>
-        </article>
-        <article class="project-card">
-          <img src="assets/img/project3.jpg" alt="Imagem do projeto Discord Bot" />
-          <h4>Bot para Discord com API</h4>
-          <p>
-            Bot avançado com comandos inteligentes, integração via API REST com ferramentas externas, sistema de autenticação, menus interativos e persistência de dados. Usado por comunidades para moderação e utilidades.
-          </p>
-        </article>
+      <h3 data-i18n="projects-title">Projetos em Destaque</h3>
+      <div class="projects" id="projects">
+        <!-- Populado via JS -->
       </div>
     </section>
   </main>

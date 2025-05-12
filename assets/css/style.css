@@ -16,12 +16,12 @@
 }
 
 body {
+  display: flex;
+  flex-direction: row;
   font-family: var(--font-main);
   background-color: var(--bg-dark);
   color: var(--text-main);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
 }
 
 a {
@@ -33,50 +33,49 @@ a:hover {
   color: var(--accent-hover);
 }
 
-/* --- TOPO (antes sidebar) --- */
 .sidebar {
+  width: 280px;
   background-color: var(--bg-sidebar);
-  padding: 20px 10px;
-  border-bottom: 1px solid #333;
+  padding: 25px;
+  border-right: 1px solid #333;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .sidebar img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 20px;
   border: 2px solid var(--accent);
-  margin-bottom: 10px;
 }
 
 .sidebar h1 {
-  font-size: 20px;
-  text-align: center;
+  font-size: 22px;
   margin-bottom: 5px;
+  text-align: center;
 }
 
 .sidebar h2 {
   font-size: 14px;
+  font-weight: normal;
   color: var(--text-muted);
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.contact-info p {
   font-size: 13px;
-  gap: 4px;
+  margin-bottom: 8px;
+  text-align: center;
 }
 
-/* --- CONTEÚDO --- */
 .content {
-  padding: 25px;
   flex: 1;
+  padding: 40px;
+  overflow-y: auto;
 }
 
 section {
@@ -106,10 +105,9 @@ section p {
   line-height: 1.6;
 }
 
-/* --- PROJETOS --- */
 .projects {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -117,6 +115,7 @@ section p {
   background-color: var(--bg-card);
   padding: 15px;
   border-radius: 10px;
+  flex: 1 1 calc(33% - 20px);
   box-shadow: 0 0 8px rgba(0,0,0,0.4);
   transition: transform 0.2s, box-shadow 0.3s;
 }
@@ -140,34 +139,42 @@ section p {
   color: var(--accent);
 }
 
-/* --- DESKTOP ONLY --- */
-@media (min-width: 900px) {
+/* 🔽 RESPONSIVIDADE 🔽 */
+
+@media (max-width: 900px) {
   body {
-    flex-direction: row;
+    flex-direction: column;
+    height: auto;
   }
 
   .sidebar {
-    width: 280px;
-    height: 100vh;
-    border-bottom: none;
-    border-right: 1px solid #333;
-    position: sticky;
-    top: 0;
-    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+
+  .sidebar img {
+    margin: 10px;
+  }
+
+  .sidebar h1, .sidebar h2, .contact-info {
+    width: 100%;
+    text-align: center;
   }
 
   .content {
-    padding: 40px;
-    overflow-y: auto;
-    height: 100vh;
+    padding: 20px;
   }
 
   .projects {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .project-card {
-    flex: 1 1 calc(33% - 20px);
+    flex: 1 1 100%;
   }
 }
