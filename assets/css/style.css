@@ -17,6 +17,7 @@
 
 body {
   display: flex;
+  flex-direction: row;
   font-family: var(--font-main);
   background-color: var(--bg-dark);
   color: var(--text-main);
@@ -136,4 +137,44 @@ section p {
   margin-bottom: 5px;
   font-size: 16px;
   color: var(--accent);
+}
+
+/* 🔽 RESPONSIVIDADE 🔽 */
+
+@media (max-width: 900px) {
+  body {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+
+  .sidebar img {
+    margin: 10px;
+  }
+
+  .sidebar h1, .sidebar h2, .contact-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .projects {
+    flex-direction: column;
+  }
+
+  .project-card {
+    flex: 1 1 100%;
+  }
 }
