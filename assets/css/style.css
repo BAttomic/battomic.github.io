@@ -21,9 +21,12 @@ body {
   min-height: 100vh;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+  flex-direction: row;
 }
 
-/* Sidebar */
+/* --------------------------- */
+/* SIDEBAR (CARD-FIXO)         */
+/* --------------------------- */
 .card-fixo {
   position: fixed;
   top: 0;
@@ -82,7 +85,9 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* Conteúdo principal */
+/* --------------------------- */
+/* CONTEÚDO PRINCIPAL          */
+/* --------------------------- */
 .conteudo-principal {
   margin-left: 300px;
   padding: 2rem;
@@ -93,6 +98,9 @@ body {
   gap: 3rem;
 }
 
+/* --------------------------- */
+/* SOBRE MIM                   */
+/* --------------------------- */
 .sobre {
   width: 100%;
   max-width: 800px;
@@ -118,12 +126,15 @@ body {
   max-width: 700px;
 }
 
-.projetos, .skills {
+/* --------------------------- */
+/* PROJETOS & EXPERIÊNCIAS    */
+/* --------------------------- */
+.projetos {
   width: 100%;
   max-width: 1000px;
 }
 
-.projetos h2, .skills h2 {
+.projetos h2 {
   font-size: 1.8rem;
   margin: 0 auto 1rem;
   text-align: center;
@@ -178,12 +189,15 @@ body {
   color: #d8b4fe;
 }
 
-.skill-block ul li {
-  margin-bottom: 0.5rem;
-  line-height: 1.4
+/* --------------------------- */
+/* HARD & SOFT SKILLS          */
+/* --------------------------- */
+.skills {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
 }
 
-/* Skills container */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -191,7 +205,41 @@ body {
   justify-content: center;
 }
 
-/* Partículas */
+.skills h2 {
+  text-align: center;
+  width: 100%;
+}
+
+.skill-block {
+  background: rgba(150, 150, 150, 0.15);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  flex: 1 1 300px;
+}
+
+.skill-block h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #d8b4fe;
+  text-align: center;
+}
+
+.skill-block ul {
+  list-style: disc inside;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-block ul li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4
+}
+
+/* --------------------------- */
+/* PARTICULAS & SCROLLBARS     */
+/* --------------------------- */
 .particulas {
   position: fixed;
   top: 0;
@@ -207,7 +255,6 @@ body {
     #0f0f0f00;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -226,7 +273,9 @@ body {
   scrollbar-color: #8e44ad #1e1e1e;
 }
 
-/* Animação */
+/* --------------------------- */
+/* ANIMAÇÃO                    */
+/* --------------------------- */
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0) translateX(0);
@@ -236,7 +285,9 @@ body {
   }
 }
 
-/* Botão idioma */
+/* --------------------------- */
+/* BOTÃO DE TROCA DE IDIOMA    */
+/* --------------------------- */
 .lang-toggle {
   position: fixed;
   top: 20px;
@@ -252,34 +303,41 @@ body {
   cursor: pointer;
 }
 
-/* Design by Jeezus */
+/* --------------------------- */
+/* FOOTER - DESIGN BY JEEZUS   */
+/* --------------------------- */
 .jeezus .texto {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  opacity: 0.6;
-  margin-top: 3rem;
+  gap: 0.4rem;
+  opacity: 0.4;
+  margin-top: 2rem;
 }
 
 .jeezus .logo {
-  height: 16px;
+  height: 12px;
   width: auto;
 }
 
-/* Tablet */
+/* --------------------------- */
+/* RESPONSIVO TABLET           */
+/* --------------------------- */
 @media only screen and (max-width: 1024px) {
   .card-fixo {
     width: 250px;
   }
+
   .conteudo-principal {
     margin-left: 250px;
     width: calc(100% - 250px);
   }
 }
 
-/* Mobile */
+/* --------------------------- */
+/* RESPONSIVO MOBILE           */
+/* --------------------------- */
 @media only screen and (max-width: 600px) {
   body {
     flex-direction: column;
@@ -289,9 +347,13 @@ body {
     position: relative;
     width: 100%;
     height: auto;
+    top: auto;
     bottom: auto;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     box-shadow: none;
     margin-bottom: 1rem;
+    z-index: 0;
   }
 
   .conteudo-principal {
