@@ -310,3 +310,97 @@ body {
   color: white;
   cursor: pointer;
 }
+
+/* ======= Responsive: tablets e mobiles ======= */
+@media screen and (max-width: 1024px) {
+  /* Sidebar vira topo */
+  .card-fixo {
+    position: relative;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    box-shadow: none;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* Imagem e texto centralizados com menos padding */
+  .card-fixo img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.75rem;
+  }
+  .card-fixo h1 {
+    font-size: 1.2rem;
+  }
+  .card-fixo .subtitulo {
+    font-size: 0.8rem;
+  }
+  /* Conteúdo principal passa para 100% */
+  .conteudo-principal {
+    margin-left: 0;
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Ajustes gerais de tipografia */
+  .sobre-h2 {
+    font-size: 2rem;
+  }
+  .caixa-roxa {
+    padding: 1rem;
+  }
+  /* Cards de projetos e experiências viram bloco único */
+  .cards {
+    flex-direction: column;
+    gap: 1rem;
+    overflow-x: hidden;
+  }
+  .card {
+    flex: none;
+    width: 100%;
+  }
+  .card img {
+    height: auto;
+  }
+  /* Skills em coluna */
+  .skills-container,
+  .cards {
+    display: flex;
+    flex-direction: column;
+  }
+  .skill-block {
+    flex: none;
+    width: 100%;
+  }
+  /* Botão de idioma menor e reposicionado */
+  .lang-toggle {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+/* Para celulares bem pequenos */
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  .cards,
+  .skills-container {
+    gap: 0.75rem;
+  }
+  .card-content,
+  .skill-block {
+    padding: 0.75rem;
+  }
+  .jeezus .logo {
+    width: 80px;
+  }
+}
