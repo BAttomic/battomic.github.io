@@ -1,86 +1,265 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Currículo - Bernardo Cordeiro Motta</title>
-  <meta name="description" content="Currículo de Bernardo Cordeiro Motta — Especialista em DevOps, automações, APIs e soluções escaláveis.">
-  <meta property="og:title" content="Currículo de Bernardo Cordeiro Motta" />
-  <meta property="og:description" content="Portfólio e trajetória profissional em tecnologia e automações.">
-  <meta property="og:image" content="assets/img/profile.jpg" />
+  <title>Bernardo Cordeiro Motta</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script src="assets/js/script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <aside class="sidebar">
-    <img src="assets/img/profile.jpg" alt="Foto de Bernardo Motta" />
-    <h1>Bernardo Motta</h1>
-    <h2 id="role">Automação, DevOps e Soluções em Tecnologia</h2>
-    <div class="contact-info">
-      <p><a href="mailto:bernardocordeiromotta@gmail.com">📧 bernardocordeiromotta@gmail.com</a></p>
-      <p>📱 (31) 98422-9488</p>
-      <p><a href="https://github.com/BAttomic" target="_blank">💻 github.com/BAttomic</a></p>
-      <p><a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank">🔗 LinkedIn</a></p>
-      <p>🎮 Discord: @B_Attomic</p>
-    </div>
-    <button id="toggle-lang">🌐 English</button>
-  </aside>
 
-  <main class="content">
-    <!-- 1. Sobre Mim -->
-    <section>
-      <h3 data-i18n="about-title">Sobre mim</h3>
-      <p id="about-text">
+<body>
+  <!-- Botão de troca de idioma -->
+  <button
+    class="lang-toggle"
+    id="langToggle"
+    aria-label="Trocar idioma"
+    data-en-aria="Switch language"
+  >🇺🇸</button>
+
+  <div class="particulas"></div>
+  <div class="card-fixo">
+    <img src="assets/img/Perfil.png" alt="Foto de Bernardo Motta" />
+    <h1 data-en="Bernardo Cordeiro Motta">Bernardo Cordeiro Motta</h1>
+    <p
+      class="subtitulo"
+      data-en="Automation, DevOps and Technology Solutions"
+    >
+      Automação, DevOps e Soluções em Tecnologia
+    </p>
+
+    <ul>
+      <li>
+        <a
+          href="mailto:bernardocordeiromotta@gmail.com"
+          data-en="📧 bernardocordeiromotta@gmail.com"
+        >📧 bernardocordeiromotta@gmail.com</a>
+      </li>
+      <li data-en="📱 +55 31 98422-9488">📱 (31) 98422-9488</li>
+      <li>
+        <a
+          href="https://github.com/BAttomic"
+          target="_blank"
+          data-en="💻 github.com/BAttomic"
+        >💻 github.com/BAttomic</a>
+      </li>
+      <li>
+        <a
+          href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298"
+          target="_blank"
+          data-en="🔗 LinkedIn"
+        >🔗 LinkedIn</a>
+      </li>
+      <li data-en="🎮 Discord: @B_Attomic">🎮 Discord: @B_Attomic</li>
+    </ul>
+
+    <div class="formacao">
+      <strong data-en="Academic Background:">Formação Acadêmica</strong><br><br>
+      <span data-en="UniViçosa — Systems Analysis and Development">
+        UniViçosa — Análise e Desenvolvimento de Sistemas
+      </span><br>
+      <em data-en="2024 – 2026">2024 – 2026</em><br><br>
+      <span
+        data-en="Federal University of Viçosa — Bachelor’s in Mathematics"
+      >
+        Universidade Federal de Viçosa — Bacharelado em Matemática
+      </span><br>
+      <em data-en="2020 – 2023 (incomplete)">2020 – 2023 (incompleto)</em>
+    </div>
+  </div>
+
+  <main class="conteudo-principal">
+    <!-- Sobre mim -->
+    <section class="sobre">
+      <h2 class="sobre-h2" data-en="About Me">Sobre mim</h2>
+      <p
+        class="caixa-roxa"
+        data-en="Passionate about logic, automation, and scalable solutions. I have practical expertise in systems integration, DevOps, VPS architectures, and continuous deployments. I excel at adapting tools to the needs of each project with agility, clarity, and a problem-solving mindset. My Mathematics degree from UFV provided a solid foundation in logic, analytical thinking, and rigor, enhancing my technical efficiency in development and infrastructure."
+      >
         Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Formação em Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.
       </p>
     </section>
 
-    <!-- 2. Formação Acadêmica -->
-    <section>
-      <h3 data-i18n="education-title">Formação Acadêmica</h3>
-      <ul id="education">
-        <!-- Populado via JS -->
-      </ul>
+    <!-- Meus Projetos -->
+    <section class="projetos">
+      <h2 data-en="My Projects">Meus Projetos</h2>
+      <div class="cards">
+
+        <div class="card">
+          <img src="assets/img/openai.webp" alt="Assistente com OpenAI" />
+          <div class="card-content">
+            <h3 data-en="Assistant with OpenAI">Assistente com OpenAI</h3>
+            <p
+              data-en="Intelligent automated customer-service system using OpenAI models (LLMs), orchestrated with N8N, stored in Supabase, and securely deployed on a VPS protected by Cloudflare."
+            >
+              Sistema inteligente de atendimento automatizado utilizando modelos da OpenAI (LLMs), com orquestração via N8N, armazenamento em Supabase e deploy seguro em VPS protegido com Cloudflare.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="assets/img/minecraft.webp" alt="Rede de Servidores Minecraft" />
+          <div class="card-content">
+            <h3 data-en="Minecraft Server Network">Rede de Servidores Minecraft</h3>
+            <p
+              data-en="A modular architecture with independent servers (Proxy, Lobby, and game modes) configured in Java, hosted on Linux VPS instances with MySQL databases. Includes web-admin dashboards and automation for deployment and authentication."
+            >
+              Estrutura modular com servidores independentes (Proxy, Lobby, Modos de jogo) configurados em Java, hospedados em VPS Linux com bancos em MySQL. Inclui painéis web de administração e automações de deploy e autenticação.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="assets/img/images.webp" alt="Bot para Discord com API" />
+          <div class="card-content">
+            <h3 data-en="Discord Bot with API">Bot para Discord com API</h3>
+            <p
+              data-en="Advanced bot with intelligent commands, REST API integration with external tools, authentication system, interactive menus, and data persistence. Used by communities for moderation and utilities."
+            >
+              Bot avançado com comandos inteligentes, integração via API REST com ferramentas externas, sistema de autenticação, menus interativos e persistência de dados. Usado por comunidades para moderação e utilidades.
+            </p>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- 3. Hard Skills -->
-    <section>
-      <h3 data-i18n="skills-hard-title">Hard Skills</h3>
-      <ul id="skills-hard">
-        <li>DevOps (CI/CD, VPS, Docker, N8N)</li>
-        <li>Integração e automação com APIs REST/JSON</li>
-        <li>Desenvolvimento com Java, Python e JavaScript</li>
-        <li>Banco de dados: MySQL, PostgreSQL, Supabase</li>
-        <li>Infraestrutura escalável e serviços em nuvem</li>
-      </ul>
+    <!-- Experiência Profissional -->
+    <section class="projetos">
+      <h2 data-en="Professional Experience">Experiência Profissional</h2>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-content">
+            <h3 data-en="PromovAds (BH/MG) — Mar/2025 – Present">
+              PromovAds (BH/MG) — Mar/2025 até o momento
+            </h3>
+            <ul>
+              <li data-en="Responsible for internal automations and VPS infrastructure">
+                Responsável por automações internas e infraestrutura VPS
+              </li>
+              <li data-en="Built CI/CD pipelines">Criação de pipelines de CI/CD</li>
+              <li data-en="Developed a customer-service agent using an OpenAI model">
+                Criação de um Agente de Atendimento utilizando modelo da OpenAI
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h3 data-en="OrangeStore (Viçosa/MG) — Aug/2024 to Jan/2025">
+              OrangeStore (Viçosa/MG) — Ago/2024 a Jan/2025
+            </h3>
+            <ul>
+              <li data-en="Micro-soldering">Microsoldagem</li>
+              <li data-en="Flex cable, microchip, and hardware transplantation">
+                Transplate de flex, microchips e hardwares
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h3 data-en="Freelancer (Remote) — 2018 to 2023">
+              Freelancer (Remoto) — 2018 a 2023
+            </h3>
+            <ul>
+              <li data-en="Minecraft server development">Desenvolvimento de servidores Minecraft</li>
+              <li data-en="API integrations and automations">Integração de APIs e automações</li>
+              <li data-en="Discord bots">Bots para Discord</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- 4. Soft Skills -->
-    <section>
-      <h3 data-i18n="skills-soft-title">Soft Skills</h3>
-      <ul id="skills-soft">
-        <li>Raciocínio analítico e tomada de decisão</li>
-        <li>Comunicação objetiva e técnica</li>
-        <li>Autonomia, proatividade e curiosidade contínua</li>
-        <li>Foco em resultados e visão de produto</li>
-      </ul>
+    <!-- Hard & Soft Skills -->
+    <section class="skills">
+      <h2 data-en="Skills">Habilidades</h2>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-content">
+            <h3 data-en="Hard Skills">Hard Skills</h3>
+            <ul>
+              <li data-en="DevOps (CI/CD, VPS, Docker, N8N)">DevOps (CI/CD, VPS, Docker, N8N)</li>
+              <li data-en="REST/JSON API integration and automation">
+                Integração e automação com APIs REST/JSON
+              </li>
+              <li data-en="Development with Java, Python, and JavaScript">
+                Desenvolvimento com Java, Python e JavaScript
+              </li>
+              <li data-en="Databases: MySQL, PostgreSQL, Supabase">
+                Banco de dados: MySQL, PostgreSQL, Supabase
+              </li>
+              <li data-en="Scalable infrastructure and cloud services">
+                Infraestrutura escalável e serviços em nuvem
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h3 data-en="Soft Skills">Soft Skills</h3>
+            <ul>
+              <li data-en="Analytical thinking and decision-making">
+                Raciocínio analítico e tomada de decisão
+              </li>
+              <li data-en="Clear, technical communication">
+                Comunicação objetiva e técnica
+              </li>
+              <li data-en="Autonomy, proactivity, and continuous curiosity">
+                Autonomia, proatividade e curiosidade contínua
+              </li>
+              <li data-en="Result-oriented focus and product vision">
+                Foco em resultados e visão de produto
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- 5. Experiência Profissional -->
-    <section>
-      <h3 data-i18n="experience-title">Experiência Profissional</h3>
-      <ul id="experience">
-        <!-- Populado via JS -->
-      </ul>
-    </section>
-
-    <!-- 6. Projetos em Destaque -->
-    <section>
-      <h3 data-i18n="projects-title">Projetos em Destaque</h3>
-      <div class="projects" id="projects">
-        <!-- Populado via JS -->
+    <!-- Designed by: separar texto e imagem em elementos distintos -->
+    <section class="jeezus">
+      <div class="texto">
+        <span data-en="Design by">Design by</span>
+        <img class="logo" src="assets/img/Jeezus_Solo_Branco.svg" alt="Jeezus">
       </div>
     </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById('langToggle');
+    let isEnglish = false;
+
+    toggleBtn.addEventListener('click', () => {
+      isEnglish = !isEnglish;
+      // Muda a bandeira
+      toggleBtn.textContent = isEnglish ? '🇧🇷' : '🇺🇸';
+      // Atualiza aria-label se disponível
+      const enAria = toggleBtn.getAttribute('data-en-aria');
+      if (enAria) toggleBtn.setAttribute('aria-label', isEnglish ? enAria : 'Trocar idioma');
+
+      // Troca todo texto marcado (mas não a imagem)
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const original = el.getAttribute('data-pt') || el.textContent;
+        const en = el.getAttribute('data-en');
+        if (isEnglish && en) {
+          el.setAttribute('data-pt', original);
+          el.textContent = en;
+        } else if (!isEnglish && el.hasAttribute('data-pt')) {
+          el.textContent = el.getAttribute('data-pt');
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
