@@ -311,23 +311,35 @@ body {
   cursor: pointer;
 }
 
-/* ============================= */
-/*   Mobile: sidebar vira topo   */
-/* ============================= */
-@media screen and (max-width: 768px) {
+/* --------- TABLET (≤1024px) --------- */
+@media only screen and (max-width: 1024px) {
   .card-fixo {
-    position: relative;    /* não mais fixa na lateral */
-    top: auto;
-    left: auto;
+    width: 250px;
+  }
+  .conteudo-principal {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+}
+
+/* --------- MOBILE (≤600px) --------- */
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+
+  .card-fixo {
+    position: relative;
+    width: 100%;
+    height: auto;
     bottom: auto;
-    width: 100%;           /* ocupa toda a largura */
-    box-shadow: none;      /* remove sombra lateral */
-    background: linear-gradient(180deg, #5e2ca5, #100f11);
-    padding: 2rem 1.5rem;
+    box-shadow: none;
+    margin-bottom: 1rem;
   }
 
   .conteudo-principal {
-    margin-left: 0;        /* não mais deslocado pela sidebar */
+    margin: 0;
     width: 100%;
+    padding: 1rem;
   }
 }
