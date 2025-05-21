@@ -4,7 +4,10 @@ a {
   color: inherit;
 }
 
-/* garantir altura total para porcentagens e safe-area em iOS */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
 }
@@ -16,14 +19,11 @@ body {
   color: #ffffff;
   display: flex;
   min-height: 100vh;
-  /* safe areas iOS */
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* --------------------------- */
-/* SIDEBAR (CARD-FIXO)         */
-/* --------------------------- */
+/* Sidebar */
 .card-fixo {
   position: fixed;
   top: 0;
@@ -80,14 +80,9 @@ body {
   font-size: 0.85rem;
   margin-top: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  filter: none;
-  cursor: default;
-  transition: none;
 }
 
-/* --------------------------- */
-/* CONTEÚDO PRINCIPAL          */
-/* --------------------------- */
+/* Conteúdo principal */
 .conteudo-principal {
   margin-left: 300px;
   padding: 2rem;
@@ -98,9 +93,6 @@ body {
   gap: 3rem;
 }
 
-/* --------------------------- */
-/* SOBRE MIM                   */
-/* --------------------------- */
 .sobre {
   width: 100%;
   max-width: 800px;
@@ -126,15 +118,12 @@ body {
   max-width: 700px;
 }
 
-/* --------------------------- */
-/* PROJETOS & EXPERIÊNCIAS    */
-/* --------------------------- */
-.projetos {
+.projetos, .skills {
   width: 100%;
   max-width: 1000px;
 }
 
-.projetos h2 {
+.projetos h2, .skills h2 {
   font-size: 1.8rem;
   margin: 0 auto 1rem;
   text-align: center;
@@ -189,15 +178,12 @@ body {
   color: #d8b4fe;
 }
 
-/* --------------------------- */
-/* HARD & SOFT SKILLS          */
-/* --------------------------- */
-.skills {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto 3rem;
+.skill-block ul li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4
 }
 
+/* Skills container */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -205,47 +191,12 @@ body {
   justify-content: center;
 }
 
-.skills h2 {
-  text-align: center;
-  width: 100%;
-}
-
-.skill-block {
-  background: rgba(150, 150, 150, 0.15);
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  flex: 1 1 300px;
-}
-
-.skill-block h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  color: #d8b4fe;
-  text-align: center;
-}
-
-.skill-block ul {
-  list-style: disc inside;
-  padding: 0;
-  margin: 0;
-}
-
-.skill-block ul li {
-  margin-bottom: 0.5rem;
-  line-height: 1.4
-}
-
-/* --------------------------- */
-/* PARTICULAS & SCROLLBARS     */
-/* --------------------------- */
+/* Partículas */
 .particulas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  /* garante preencher toda a viewport */
   height: 100vh;
   z-index: 1;
   opacity: 0.5;
@@ -256,6 +207,7 @@ body {
     #0f0f0f00;
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -274,9 +226,7 @@ body {
   scrollbar-color: #8e44ad #1e1e1e;
 }
 
-/* --------------------------- */
-/* ANIMAÇÃO                    */
-/* --------------------------- */
+/* Animação */
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0) translateX(0);
@@ -286,9 +236,7 @@ body {
   }
 }
 
-/* --------------------------- */
-/* BOTÃO DE TROCA DE IDIOMA    */
-/* --------------------------- */
+/* Botão idioma */
 .lang-toggle {
   position: fixed;
   top: 20px;
@@ -304,7 +252,23 @@ body {
   cursor: pointer;
 }
 
-/* --------- TABLET (≤1024px) --------- */
+/* Design by Jeezus */
+.jeezus .texto {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0.6;
+  margin-top: 3rem;
+}
+
+.jeezus .logo {
+  height: 16px;
+  width: auto;
+}
+
+/* Tablet */
 @media only screen and (max-width: 1024px) {
   .card-fixo {
     width: 250px;
@@ -315,7 +279,7 @@ body {
   }
 }
 
-/* --------- MOBILE (≤600px) --------- */
+/* Mobile */
 @media only screen and (max-width: 600px) {
   body {
     flex-direction: column;
@@ -334,5 +298,18 @@ body {
     margin: 0;
     width: 100%;
     padding: 1rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 90vw;
+  }
+
+  .skills {
+    padding: 0 1rem;
+  }
+
+  .skill-block {
+    width: 100%;
   }
 }
