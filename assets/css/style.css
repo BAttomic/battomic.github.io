@@ -4,7 +4,11 @@ a {
   color: inherit;
 }
 
-/* Layout principal: sidebar fixa + conteúdo centralizado */
+/* garantir altura total para porcentagens e safe-area em iOS */
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -12,6 +16,9 @@ body {
   color: #ffffff;
   display: flex;
   min-height: 100vh;
+  /* safe areas iOS */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* --------------------------- */
@@ -227,22 +234,7 @@ body {
 
 .skill-block ul li {
   margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-/* --------------------------- */
-/* DESIGN BY                   */
-/* --------------------------- */
-.jeezus {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.logo {
-  width: 100px;
-  height: auto;
-  transform: none;
-  position: static;
+  line-height: 1.4
 }
 
 /* --------------------------- */
@@ -253,7 +245,8 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  /* garante preencher toda a viewport */
+  height: 100vh;
   z-index: 1;
   opacity: 0.5;
   pointer-events: none;
@@ -294,7 +287,7 @@ body {
 }
 
 /* --------------------------- */
-/* BOTÃO DE TROCA DE IDIOMA     */
+/* BOTÃO DE TROCA DE IDIOMA    */
 /* --------------------------- */
 .lang-toggle {
   position: fixed;
