@@ -7,6 +7,22 @@
   <title>Bernardo Cordeiro Motta</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS extra para expandir/colapsar o menu -->
+  <style>
+    /* Quando a sidebar estiver “expanded”, mostra tudo */
+    .card-fixo.expanded {
+      height: auto;
+      overflow: auto;
+    }
+    .card-fixo.expanded img,
+    .card-fixo.expanded h1,
+    .card-fixo.expanded .subtitulo,
+    .card-fixo.expanded ul,
+    .card-fixo.expanded .formacao {
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,6 +36,9 @@
 
   <div class="particulas"></div>
   <div class="card-fixo">
+    <!-- botão hamburger para mobile -->
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+
     <img src="assets/img/Perfil.png" alt="Foto de Bernardo Motta" />
     <h1 data-en="Bernardo Cordeiro Motta">Bernardo Cordeiro Motta</h1>
     <p
@@ -75,9 +94,9 @@
       <h2 class="sobre-h2" data-en="About Me">Sobre mim</h2>
       <p
         class="caixa-roxa"
-        data-en="Passionate about logic, automation, and scalable solutions. Hands-on expertise in systems integration, DevOps, VPS architectures, and continuous deployments. Able to tailor tools to each project’s needs with agility, clarity, and a problem-solving mindset. My time studying Mathematics (UFV) provided a solid foundation in logic, analytical thinking, and rigor, enhancing my technical efficiency in both development and infrastructure."
+        data-en="Passionate about logic, automation, and scalable solutions. I have practical expertise in systems integration, DevOps, VPS architectures, and continuous deployments. I excel at adapting tools to the needs of each project with agility, clarity, and a problem-solving mindset. My Mathematics degree from UFV provided a solid foundation in logic, analytical thinking, and rigor, enhancing my technical efficiency in development and infrastructure."
       >
-        Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Meu periódo cursando Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.
+        Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Formação em Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.
       </p>
     </section>
 
@@ -235,19 +254,21 @@
     </section>
   </main>
 
+  <!-- JavaScript de toggling do menu -->
   <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar    = document.querySelector('.card-fixo');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('expanded');
+    });
+
     const toggleBtn = document.getElementById('langToggle');
     let isEnglish = false;
-
     toggleBtn.addEventListener('click', () => {
       isEnglish = !isEnglish;
-      // Muda a bandeira
       toggleBtn.textContent = isEnglish ? '🇧🇷' : '🇺🇸';
-      // Atualiza aria-label se disponível
       const enAria = toggleBtn.getAttribute('data-en-aria');
       if (enAria) toggleBtn.setAttribute('aria-label', isEnglish ? enAria : 'Trocar idioma');
-
-      // Troca todo texto marcado (mas não a imagem)
       document.querySelectorAll('[data-en]').forEach(el => {
         const original = el.getAttribute('data-pt') || el.textContent;
         const en = el.getAttribute('data-en');
