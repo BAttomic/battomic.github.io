@@ -336,29 +336,28 @@ body {
 }
 
 /* --------------------------- */
-/* RESPONSIVO MOBILE           */
+/* RESPONSIVO MOBILE FINAL     */
 /* --------------------------- */
 @media only screen and (max-width: 600px) {
   body {
-    flex-direction: column;
+    display: block;
   }
 
   .card-fixo {
-    position: relative;
+    position: static;
     width: 100%;
     height: auto;
-    top: auto;
-    bottom: auto;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding: 2rem 1.5rem;
     box-shadow: none;
-    margin-bottom: 1rem;
-    z-index: 0;
+    background: linear-gradient(180deg, #5e2ca5, #100f11);
+    margin-bottom: 2rem;
+    overflow: visible;
+    display: block;
   }
 
   .conteudo-principal {
-    margin: 0;
     width: 100%;
+    margin: 0;
     padding: 1rem;
   }
 
