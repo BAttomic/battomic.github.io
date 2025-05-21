@@ -6,21 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bernardo Cordeiro Motta</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- CSS extra para expandir/colapsar o menu -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS para mobile: transforma sidebar em topo -->
   <style>
-    /* Quando a sidebar estiver “expanded”, mostra tudo */
-    .card-fixo.expanded {
-      height: auto;
-      overflow: auto;
-    }
-    .card-fixo.expanded img,
-    .card-fixo.expanded h1,
-    .card-fixo.expanded .subtitulo,
-    .card-fixo.expanded ul,
-    .card-fixo.expanded .formacao {
-      display: block;
+    @media screen and (max-width: 768px) {
+      .card-fixo {
+        position: relative;
+        top: auto;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        box-shadow: none;
+        background: linear-gradient(180deg, #5e2ca5, #100f11);
+        padding: 2rem 1.5rem;
+      }
+      .conteudo-principal {
+        margin-left: 0;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -35,10 +42,9 @@
   >🇺🇸</button>
 
   <div class="particulas"></div>
-  <div class="card-fixo">
-    <!-- botão hamburger para mobile -->
-    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
 
+  <!-- BARRA LATERAL (vira topo em mobile) -->
+  <div class="card-fixo">
     <img src="assets/img/Perfil.png" alt="Foto de Bernardo Motta" />
     <h1 data-en="Bernardo Cordeiro Motta">Bernardo Cordeiro Motta</h1>
     <p
@@ -74,16 +80,14 @@
     </ul>
 
     <div class="formacao">
-      <strong data-en="Academic Background:">Formação Acadêmica</strong><br><br>
+      <strong data-en="Academic Background:">Formação Acadêmica</strong><br /><br />
       <span data-en="UniViçosa — Systems Analysis and Development">
         UniViçosa — Análise e Desenvolvimento de Sistemas
-      </span><br>
-      <em data-en="2024 – 2026">2024 – 2026</em><br><br>
-      <span
-        data-en="Federal University of Viçosa — Bachelor’s in Mathematics"
-      >
+      </span><br />
+      <em data-en="2024 – 2026">2024 – 2026</em><br /><br />
+      <span data-en="Federal University of Viçosa — Bachelor’s in Mathematics">
         Universidade Federal de Viçosa — Bacharelado em Matemática
-      </span><br>
+      </span><br />
       <em data-en="2020 – 2023 (incomplete)">2020 – 2023 (incompleto)</em>
     </div>
   </div>
@@ -104,7 +108,6 @@
     <section class="projetos">
       <h2 data-en="My Projects">Meus Projetos</h2>
       <div class="cards">
-
         <div class="card">
           <img src="assets/img/openai.webp" alt="Assistente com OpenAI" />
           <div class="card-content">
@@ -140,7 +143,6 @@
             </p>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -148,7 +150,6 @@
     <section class="projetos">
       <h2 data-en="Professional Experience">Experiência Profissional</h2>
       <div class="cards">
-
         <div class="card">
           <div class="card-content">
             <h3 data-en="PromovAds (BH/MG) — Mar/2025 – Present">
@@ -192,7 +193,6 @@
             </ul>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -200,7 +200,6 @@
     <section class="skills">
       <h2 data-en="Skills">Habilidades</h2>
       <div class="cards">
-
         <div class="card">
           <div class="card-content">
             <h3 data-en="Hard Skills">Hard Skills</h3>
@@ -221,7 +220,6 @@
             </ul>
           </div>
         </div>
-
         <div class="card">
           <div class="card-content">
             <h3 data-en="Soft Skills">Soft Skills</h3>
@@ -241,35 +239,36 @@
             </ul>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- Designed by: separar texto e imagem em elementos distintos -->
+    <!-- Designed by -->
     <section class="jeezus">
       <div class="texto">
         <span data-en="Design by">Design by</span>
-        <img class="logo" src="assets/img/Jeezus_Solo_Branco.svg" alt="Jeezus">
+        <img
+          class="logo"
+          src="assets/img/Jeezus_Solo_Branco.svg"
+          alt="Jeezus"
+        />
       </div>
     </section>
   </main>
 
-  <!-- JavaScript de toggling do menu -->
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar    = document.querySelector('.card-fixo');
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('expanded');
-    });
-
+    // Toggle de idioma
     const toggleBtn = document.getElementById('langToggle');
     let isEnglish = false;
     toggleBtn.addEventListener('click', () => {
       isEnglish = !isEnglish;
       toggleBtn.textContent = isEnglish ? '🇧🇷' : '🇺🇸';
       const enAria = toggleBtn.getAttribute('data-en-aria');
-      if (enAria) toggleBtn.setAttribute('aria-label', isEnglish ? enAria : 'Trocar idioma');
-      document.querySelectorAll('[data-en]').forEach(el => {
+      if (enAria)
+        toggleBtn.setAttribute(
+          'aria-label',
+          isEnglish ? enAria : 'Trocar idioma'
+        );
+      document.querySelectorAll('[data-en]').forEach((el) => {
         const original = el.getAttribute('data-pt') || el.textContent;
         const en = el.getAttribute('data-en');
         if (isEnglish && en) {
