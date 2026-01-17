@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lykos Province - Bernardo Motta</title>
+    <meta name="description" content="Rede de servidores Minecraft com arquitetura modular, painéis de administração e comunidade com mais de 1000 membros.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">bernardo.dev</a>
+                <a href="../work.html" class="nav-link active">work.done</a>
+                <a href="../blog.html" class="nav-link">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Open to new work</span>
+                </div>
+                <div class="location-time">
+                    <span>Viçosa, MG</span>
+                    <span class="dot"></span>
+                    <span>My time: <span id="current-time">00:00</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
+            
+            <a href="../work.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; margin-bottom: 30px; font-size: 14px;">
+                <i class="fas fa-arrow-left"></i> Voltar aos projetos
+            </a>
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-meta">
+                        <span class="project-date">2017 - 2023</span>
+                        <span class="project-client">Projeto Pessoal</span>
+                    </div>
+                    <h1>Lykos Province</h1>
+                    <p class="project-subtitle">Rede de servidores Minecraft com arquitetura modular, plugins customizados e comunidade ativa.</p>
+                </header>
+
+                <div class="project-hero-image">
+                    <div class="project-placeholder large">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Rede de Servidores Minecraft</span>
+                    </div>
+                </div>
+
+                <div class="project-content">
+                    <section class="content-section">
+                        <h2>Sobre o Projeto</h2>
+                        <p>Lykos Province foi uma rede de servidores Minecraft que gerenciei por 6 anos, construindo desde a infraestrutura técnica até a comunidade de jogadores. O projeto envolveu desenvolvimento de plugins customizados em Java, administração de servidores Linux e gestão de uma comunidade com mais de 1000 membros ativos no Discord.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Arquitetura da Rede</h2>
+                        <ul class="feature-list">
+                            <li><strong>BungeeCord/Velocity:</strong> Proxy para gerenciamento de múltiplos servidores e balanceamento de carga.</li>
+                            <li><strong>Servidores Modulares:</strong> Lobby, Survival, PvP, minigames - cada um com configurações independentes.</li>
+                            <li><strong>Plugins Customizados:</strong> Desenvolvimento em Java usando Spigot/Paper API para funcionalidades exclusivas.</li>
+                            <li><strong>Sistema de Autenticação:</strong> Login seguro com integração ao banco de dados MySQL.</li>
+                            <li><strong>Painéis Web:</strong> Interface administrativa para gerenciamento de jogadores e estatísticas.</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Destaques Técnicos</h2>
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fab fa-java"></i> Backend Java</h4>
+                                <p>Plugins desenvolvidos com Spigot, Bukkit e Paper API para máxima performance e compatibilidade.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-database"></i> Persistência</h4>
+                                <p>MySQL para dados de jogadores, economia, permissões e estatísticas do servidor.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-server"></i> Infraestrutura</h4>
+                                <p>VPS Linux com scripts de automação para deploy, backup e monitoramento.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fab fa-discord"></i> Comunidade</h4>
+                                <p>Servidor Discord integrado com bots para verificação, suporte e eventos.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack Tecnológico</h2>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spigot API</span>
+                            <span class="tech-tag">Bukkit</span>
+                            <span class="tech-tag">Paper</span>
+                            <span class="tech-tag">Velocity</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Linux</span>
+                            <span class="tech-tag">VPS</span>
+                            <span class="tech-tag">Shell Scripts</span>
+                            <span class="tech-tag">Discord API</span>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Números do Projeto</h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-number">6</span>
+                                <span class="result-label">Anos de Operação</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">1000+</span>
+                                <span class="result-label">Membros no Discord</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">15+</span>
+                                <span class="result-label">Plugins Customizados</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Aprendizados</h2>
+                        <p>Este projeto foi fundamental para minha formação como desenvolvedor. Aprendi a gerenciar infraestrutura de servidores, desenvolver em Java de forma profissional, trabalhar com bancos de dados relacionais, e principalmente, a importância de construir e manter uma comunidade engajada.</p>
+                    </section>
+                </div>
+            </article>
+
+            <nav class="project-navigation">
+                <a href="agente-ia.html" class="nav-prev">
+                    <span>Projeto Anterior</span>
+                    <strong><i class="fas fa-arrow-left"></i> Agente IA</strong>
+                </a>
+                <a href="bot-discord.html" class="nav-next">
+                    <span>Próximo Projeto</span>
+                    <strong>Bot Discord <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

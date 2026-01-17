@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Discord com API - Bernardo Motta</title>
+    <meta name="description" content="Bot avançado para Discord com integração de APIs REST, sistema de autenticação e menus interativos.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">bernardo.dev</a>
+                <a href="../work.html" class="nav-link active">work.done</a>
+                <a href="../blog.html" class="nav-link">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Open to new work</span>
+                </div>
+                <div class="location-time">
+                    <span>Viçosa, MG</span>
+                    <span class="dot"></span>
+                    <span>My time: <span id="current-time">00:00</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
+            
+            <a href="../work.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; margin-bottom: 30px; font-size: 14px;">
+                <i class="fas fa-arrow-left"></i> Voltar aos projetos
+            </a>
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-meta">
+                        <span class="project-date">2018 - 2023</span>
+                        <span class="project-client">Freelance / Lykos Province</span>
+                    </div>
+                    <h1>Bot Discord com API</h1>
+                    <p class="project-subtitle">Bot avançado com comandos inteligentes, integração via API REST, autenticação e menus interativos.</p>
+                </header>
+
+                <div class="project-hero-image">
+                    <div class="project-placeholder large">
+                        <i class="fab fa-discord"></i>
+                        <span>Discord.js + REST APIs</span>
+                    </div>
+                </div>
+
+                <div class="project-content">
+                    <section class="content-section">
+                        <h2>Visão Geral</h2>
+                        <p>Desenvolvimento de bots para Discord utilizando JavaScript e Node.js, com foco em integração de APIs externas, sistemas de autenticação e interfaces interativas. Os bots foram utilizados principalmente para gerenciar a comunidade da Lykos Province e em projetos freelance.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Funcionalidades Implementadas</h2>
+                        <ul class="feature-list">
+                            <li><strong>Sistema de Comandos:</strong> Comandos slash (/) e prefixados com sistema de permissões por cargo.</li>
+                            <li><strong>Integração com APIs:</strong> Conexão com APIs REST externas para buscar dados em tempo real.</li>
+                            <li><strong>Autenticação:</strong> Sistema de verificação de usuários com integração ao banco de dados MySQL.</li>
+                            <li><strong>Menus Interativos:</strong> Botões, select menus e modais para melhor experiência do usuário.</li>
+                            <li><strong>Sistema de Tickets:</strong> Abertura e gerenciamento de tickets de suporte.</li>
+                            <li><strong>Logs e Moderação:</strong> Sistema completo de logs de ações e ferramentas de moderação.</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Arquitetura</h2>
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fab fa-node-js"></i> Runtime</h4>
+                                <p>Node.js como ambiente de execução, com Discord.js para interação com a API do Discord.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-plug"></i> APIs REST</h4>
+                                <p>Integração com múltiplas APIs externas usando Axios para requisições HTTP.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-database"></i> Persistência</h4>
+                                <p>MySQL para armazenamento de dados de usuários, configurações e logs.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-cogs"></i> Deploy</h4>
+                                <p>Hospedagem em VPS Linux com PM2 para gerenciamento de processos.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Exemplo de Código</h2>
+                        <pre class="code-block"><code>// Comando de verificação com integração MySQL
+client.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  
+  if (interaction.commandName === 'verificar') {
+    const user = await db.query(
+      'SELECT * FROM users WHERE discord_id = ?',
+      [interaction.user.id]
+    );
+    
+    if (user) {
+      await interaction.member.roles.add(VERIFIED_ROLE);
+      await interaction.reply({ 
+        content: 'Verificação concluída!',
+        ephemeral: true 
+      });
+    }
+  }
+});</code></pre>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack Tecnológico</h2>
+                        <div class="tech-tags">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Discord.js</span>
+                            <span class="tech-tag">REST APIs</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Axios</span>
+                            <span class="tech-tag">PM2</span>
+                            <span class="tech-tag">Linux</span>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Impacto</h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-number">5</span>
+                                <span class="result-label">Anos de Desenvolvimento</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">50+</span>
+                                <span class="result-label">Comandos Implementados</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">1000+</span>
+                                <span class="result-label">Usuários Atendidos</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <nav class="project-navigation">
+                <a href="lykos-province.html" class="nav-prev">
+                    <span>Projeto Anterior</span>
+                    <strong><i class="fas fa-arrow-left"></i> Lykos Province</strong>
+                </a>
+                <a href="infraestrutura-devops.html" class="nav-next">
+                    <span>Próximo Projeto</span>
+                    <strong>Infraestrutura DevOps <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

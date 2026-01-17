@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automação Inteligente com N8n e IA - Bernardo Motta</title>
+    <meta name="description" content="Como construir sistemas de automação inteligente usando N8n, OpenAI e integrações multicanal para transformar processos manuais.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">bernardo.dev</a>
+                <a href="../work.html" class="nav-link">work.done</a>
+                <a href="../blog.html" class="nav-link active">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Open to new work</span>
+                </div>
+                <div class="location-time">
+                    <span>Viçosa, MG</span>
+                    <span class="dot"></span>
+                    <span>My time: <span id="current-time">00:00</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+            
+            <a href="../blog.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; margin-bottom: 30px; font-size: 14px;">
+                <i class="fas fa-arrow-left"></i> Voltar ao blog
+            </a>
+
+            <article class="blog-post">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <span class="post-date">Janeiro 2025</span>
+                        <span class="post-category">Automação</span>
+                        <span class="post-read-time">8 min de leitura</span>
+                    </div>
+                    <h1>Automação Inteligente com N8n e IA</h1>
+                    <p class="post-subtitle">Como construir sistemas que transformam processos manuais em fluxos automatizados e eficientes usando ferramentas modernas.</p>
+                </header>
+
+                <div class="post-content">
+                    <h2>O que é Automação Inteligente?</h2>
+                    <p>Automação inteligente vai além de simplesmente executar tarefas repetitivas. É a combinação de automação tradicional com inteligência artificial, permitindo que sistemas tomem decisões contextuais, aprendam com interações e se adaptem a diferentes cenários.</p>
+                    
+                    <p>Diferente de scripts simples que seguem regras fixas, a automação inteligente pode:</p>
+                    <ul>
+                        <li>Interpretar linguagem natural e responder de forma contextualizada</li>
+                        <li>Tomar decisões baseadas em dados históricos</li>
+                        <li>Adaptar fluxos de trabalho dinamicamente</li>
+                        <li>Integrar múltiplos sistemas de forma coesa</li>
+                    </ul>
+
+                    <h2>Por que N8n?</h2>
+                    <p>O N8n é uma ferramenta de automação open-source que se destaca por sua flexibilidade e capacidade de auto-hospedagem. Diferente de alternativas como Zapier ou Make, o N8n oferece:</p>
+                    
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-check-circle"></i> Vantagens do N8n</h4>
+                        <ul>
+                            <li><strong>Self-hosted:</strong> Controle total sobre seus dados e infraestrutura</li>
+                            <li><strong>Open-source:</strong> Sem custos por execução, apenas infraestrutura</li>
+                            <li><strong>Customizável:</strong> Possibilidade de criar nodes personalizados</li>
+                            <li><strong>Flexível:</strong> Suporte a código JavaScript/Python inline</li>
+                        </ul>
+                    </div>
+
+                    <h2>Integrando IA no Fluxo</h2>
+                    <p>A verdadeira magia acontece quando combinamos N8n com modelos de linguagem como OpenAI GPT ou Google Gemini. Isso permite criar agentes que:</p>
+
+                    <h3>1. Atendimento ao Cliente</h3>
+                    <p>Um fluxo típico de atendimento automatizado funciona assim:</p>
+                    <ol>
+                        <li>Webhook recebe mensagem do WhatsApp/Telegram</li>
+                        <li>N8n busca histórico de conversa no banco de dados</li>
+                        <li>Contexto é enviado para o modelo de IA com instruções específicas</li>
+                        <li>Resposta é processada e enviada de volta ao usuário</li>
+                        <li>Interação é salva para contexto futuro</li>
+                    </ol>
+
+                    <h3>2. Processamento de Dados</h3>
+                    <p>IA pode ser usada para categorizar, resumir e extrair informações de documentos automaticamente, alimentando sistemas de CRM, ERP ou dashboards.</p>
+
+                    <h3>3. Tomada de Decisão</h3>
+                    <p>Baseado em padrões identificados, o sistema pode rotear leads, priorizar tickets ou acionar alertas sem intervenção humana.</p>
+
+                    <h2>Arquitetura Recomendada</h2>
+                    <p>Para um sistema robusto de automação inteligente, recomendo a seguinte stack:</p>
+
+                    <div class="tech-stack-blog">
+                        <div class="stack-item-blog">
+                            <i class="fas fa-cogs"></i>
+                            <span>N8n</span>
+                            <small>Orquestração</small>
+                        </div>
+                        <div class="stack-item-blog">
+                            <i class="fas fa-brain"></i>
+                            <span>OpenAI/Gemini</span>
+                            <small>Inteligência</small>
+                        </div>
+                        <div class="stack-item-blog">
+                            <i class="fas fa-database"></i>
+                            <span>MongoDB/Supabase</span>
+                            <small>Persistência</small>
+                        </div>
+                        <div class="stack-item-blog">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                            <small>Deploy</small>
+                        </div>
+                    </div>
+
+                    <h2>Exemplo Prático: Agente de Vendas</h2>
+                    <p>Vamos ver um exemplo simplificado de como configurar um agente de vendas no N8n:</p>
+
+                    <pre class="code-block"><code>// Prompt do sistema para o agente
+const systemPrompt = `
+Você é um assistente de vendas da empresa X.
+Seu objetivo é:
+1. Entender as necessidades do cliente
+2. Apresentar produtos relevantes
+3. Responder dúvidas sobre preços e condições
+4. Direcionar para um humano quando necessário
+
+Sempre seja cordial e profissional.
+`;
+
+// No N8n, esse prompt vai no node de OpenAI
+// junto com o histórico da conversa</code></pre>
+
+                    <h2>Boas Práticas</h2>
+                    <ul>
+                        <li><strong>Monitore custos:</strong> APIs de IA podem ser caras em alto volume</li>
+                        <li><strong>Implemente fallbacks:</strong> Sempre tenha um plano B quando a IA falhar</li>
+                        <li><strong>Mantenha contexto:</strong> Conversas sem memória frustram usuários</li>
+                        <li><strong>Teste exaustivamente:</strong> IA pode ter comportamentos inesperados</li>
+                        <li><strong>Documente tudo:</strong> Fluxos complexos precisam de documentação clara</li>
+                    </ul>
+
+                    <h2>Conclusão</h2>
+                    <p>Automação inteligente não é mais futuro, é presente. Com ferramentas como N8n e APIs de IA acessíveis, qualquer desenvolvedor pode criar sistemas sofisticados que antes exigiriam equipes inteiras.</p>
+
+                    <p>O segredo está em começar pequeno, validar hipóteses e escalar gradualmente. Um bot de atendimento simples pode evoluir para um sistema completo de vendas, suporte e operações.</p>
+
+                    <div class="cta-box">
+                        <h4>Quer implementar automação no seu negócio?</h4>
+                        <p>Entre em contato para discutirmos como posso ajudar a transformar seus processos.</p>
+                        <a href="mailto:bernardocordeiromotta@gmail.com" class="btn btn-primary">Fale comigo</a>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

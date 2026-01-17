@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infraestrutura DevOps & CI/CD - Bernardo Motta</title>
+    <meta name="description" content="Implementação de infraestrutura escalável com pipelines CI/CD, containerização Docker e deploy automatizado.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">bernardo.dev</a>
+                <a href="../work.html" class="nav-link active">work.done</a>
+                <a href="../blog.html" class="nav-link">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Open to new work</span>
+                </div>
+                <div class="location-time">
+                    <span>Viçosa, MG</span>
+                    <span class="dot"></span>
+                    <span>My time: <span id="current-time">00:00</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
+            
+            <a href="../work.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; margin-bottom: 30px; font-size: 14px;">
+                <i class="fas fa-arrow-left"></i> Voltar aos projetos
+            </a>
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-meta">
+                        <span class="project-date">2024 - Atual</span>
+                        <span class="project-client">PromovAds / Projetos Pessoais</span>
+                    </div>
+                    <h1>Infraestrutura DevOps & CI/CD</h1>
+                    <p class="project-subtitle">Implementação de infraestrutura escalável com pipelines automatizados, containerização e deploy contínuo.</p>
+                </header>
+
+                <div class="project-hero-image">
+                    <div class="project-placeholder large">
+                        <i class="fas fa-server"></i>
+                        <span>Docker + VPS + CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="project-content">
+                    <section class="content-section">
+                        <h2>Visão Geral</h2>
+                        <p>Projeto contínuo de implementação e manutenção de infraestrutura DevOps para diversos serviços. Inclui configuração de servidores VPS, containerização com Docker, pipelines de CI/CD para deploy automatizado, e integração com serviços de CDN e proteção como Cloudflare.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Componentes da Infraestrutura</h2>
+                        <ul class="feature-list">
+                            <li><strong>VPS Linux:</strong> Servidores Contabo configurados com Ubuntu Server, otimizados para performance.</li>
+                            <li><strong>Docker:</strong> Containerização de aplicações para isolamento e portabilidade.</li>
+                            <li><strong>Docker Compose:</strong> Orquestração de múltiplos containers com configuração declarativa.</li>
+                            <li><strong>Git Workflows:</strong> Fluxos de trabalho com branches, PRs e code review.</li>
+                            <li><strong>CI/CD Pipelines:</strong> Automação de build, teste e deploy a cada push.</li>
+                            <li><strong>Cloudflare:</strong> CDN, SSL, proteção DDoS e DNS management.</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Pipeline de Deploy</h2>
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fas fa-code-branch"></i> 1. Git Push</h4>
+                                <p>Código é enviado para o repositório Git (GitHub), disparando o pipeline.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-vial"></i> 2. Build & Test</h4>
+                                <p>Aplicação é construída e testes automatizados são executados.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fab fa-docker"></i> 3. Docker Build</h4>
+                                <p>Imagem Docker é criada com a nova versão da aplicação.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-rocket"></i> 4. Deploy</h4>
+                                <p>Container é atualizado no servidor VPS automaticamente.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Exemplo: docker-compose.yml</h2>
+                        <pre class="code-block"><code>version: '3.8'
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASS}
+    volumes:
+      - n8n_data:/home/node/.n8n
+      
+  mongodb:
+    image: mongo:6
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+      
+volumes:
+  n8n_data:
+  mongo_data:</code></pre>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack Tecnológico</h2>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Docker Compose</span>
+                            <span class="tech-tag">Linux</span>
+                            <span class="tech-tag">Ubuntu Server</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">Cloudflare</span>
+                            <span class="tech-tag">Contabo VPS</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">Shell Script</span>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Benefícios Alcançados</h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-number">99.9%</span>
+                                <span class="result-label">Uptime</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">-70%</span>
+                                <span class="result-label">Tempo de Deploy</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">0</span>
+                                <span class="result-label">Deploy Manual</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Serviços Gerenciados</h2>
+                        <p>Atualmente a infraestrutura suporta diversos serviços incluindo: N8N (automações), MongoDB, PostgreSQL, aplicações Node.js, sites estáticos, e APIs REST. Tudo gerenciado de forma centralizada com monitoramento e alertas.</p>
+                    </section>
+                </div>
+            </article>
+
+            <nav class="project-navigation">
+                <a href="bot-discord.html" class="nav-prev">
+                    <span>Projeto Anterior</span>
+                    <strong><i class="fas fa-arrow-left"></i> Bot Discord</strong>
+                </a>
+                <a href="agente-ia.html" class="nav-next">
+                    <span>Ver Primeiro Projeto</span>
+                    <strong>Agente IA <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

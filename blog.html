@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Bernardo Motta</title>
+    <meta name="description" content="Blog sobre automação, DevOps e integração de sistemas por Bernardo Motta.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .blog-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-4px);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-card) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-image i {
+            font-size: 64px;
+            color: var(--accent);
+            opacity: 0.5;
+        }
+        
+        .blog-content {
+            padding: 24px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .blog-meta span {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .blog-excerpt {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            margin-top: 16px;
+        }
+        
+        .read-more:hover {
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">bernardo.dev</a>
+                <a href="work.html" class="nav-link">work.done</a>
+                <a href="blog.html" class="nav-link active">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Open to new work</span>
+                </div>
+                <div class="location-time">
+                    <span>Viçosa, MG</span>
+                    <span class="dot"></span>
+                    <span>My time: <span id="current-time">00:00</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1000px; margin: 0 auto;">
+            <section class="hero-section" style="grid-template-columns: 1fr;">
+                <div class="hero-content">
+                    <h1 class="hero-title" style="font-size: 56px;">
+                        Blog<br>
+                        <span class="highlight">&amp; Insights</span>
+                    </h1>
+                    <p class="hero-description">
+                        Compartilhando conhecimento sobre automação, DevOps e integração de sistemas.
+                    </p>
+                </div>
+            </section>
+
+            <section class="work-section">
+                <div style="display: grid; gap: 32px;">
+                    <!-- Blog Post 1 -->
+                    <a href="blog/automacao-inteligente.html" class="blog-card">
+                        <div class="blog-image">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> Janeiro 2025</span>
+                                <span><i class="fas fa-clock"></i> 8 min de leitura</span>
+                            </div>
+                            <h2 class="blog-title">Automação Inteligente com N8n e IA</h2>
+                            <p class="blog-excerpt">
+                                Como criar fluxos de automação poderosos utilizando N8n integrado com modelos de IA como OpenAI e Google Gemini. Neste artigo, exploro os fundamentos da orquestração de workflows, melhores práticas para integração com WhatsApp, e como estruturar um agente de atendimento inteligente do zero.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="tag">N8n</span>
+                                <span class="tag">OpenAI</span>
+                                <span class="tag">Automação</span>
+                                <span class="tag">WhatsApp</span>
+                                <span class="tag">IA</span>
+                            </div>
+                            <span class="read-more">
+                                Ler artigo completo <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Coming Soon -->
+                <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
+                    <i class="fas fa-pencil-alt" style="font-size: 48px; opacity: 0.3; margin-bottom: 16px;"></i>
+                    <p style="font-family: var(--font-mono); font-size: 14px;">Mais artigos em breve...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,188 +1,427 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Bernardo Cordeiro Motta</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernardo Motta - Desenvolvedor Back-end & DevOps</title>
+    <meta name="description" content="Desenvolvedor especializado em automações inteligentes, DevOps e integração de sistemas. Criando soluções escaláveis para empresas e startups.">
+    <meta name="author" content="Bernardo Cordeiro Motta">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bernardo Motta - Desenvolvedor Back-end & DevOps">
+    <meta property="og:description" content="Desenvolvedor especializado em automações inteligentes e integração de sistemas.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-  <button class="lang-toggle" id="langToggle" aria-label="Trocar idioma" data-en-aria="Switch language">🇺🇸</button>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">bernardo.dev</a>
+                <a href="work.html" class="nav-link">work.done</a>
+                <a href="blog.html" class="nav-link">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Open to new work</span>
+                </div>
+                <div class="location-time">
+                    <span>Viçosa, MG</span>
+                    <span class="separator">•</span>
+                    <span>My time: <span id="current-time">00:00 PM</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <div class="particulas"></div>
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <img src="assets/img/profile.jpg" alt="Bernardo Motta" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="avatar-fallback">BM</div>
+                </div>
+                <h2 class="profile-name">Bernardo Motta</h2>
+                <p class="profile-role">Back-end & DevOps</p>
+            </div>
 
-  <div class="card-fixo">
-    <img src="assets/img/Perfil.png" alt="Foto de Bernardo Motta" />
-    <h1 data-en="Bernardo Cordeiro Motta">Bernardo Cordeiro Motta</h1>
-    <p class="subtitulo" data-en="Automation, DevOps and Technology Solutions">
-      Automação, DevOps e Soluções em Tecnologia
-    </p>
+            <p class="profile-bio">
+                Desenvolvedor especializado em automações inteligentes e integração de sistemas.
+            </p>
 
-    <ul>
-      <li><a href="mailto:bernardocordeiromotta@gmail.com" data-en="📧 bernardocordeiromotta@gmail.com">📧 bernardocordeiromotta@gmail.com</a></li>
-      <li data-en="📱 +55 31 98422-9488">📱 (31) 98422-9488</li>
-      <li><a href="https://github.com/BAttomic" target="_blank" data-en="💻 github.com/BAttomic">💻 github.com/BAttomic</a></li>
-      <li><a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank" data-en="🔗 LinkedIn">🔗 LinkedIn</a></li>
-      <li data-en="🎮 Discord: @B_Attomic">🎮 Discord: @B_Attomic</li>
-    </ul>
+            <div class="info-section">
+                <div class="info-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>7+ anos de experiência</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Viçosa, MG</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-language"></i>
+                    <span>Português, Inglês</span>
+                </div>
+            </div>
 
-    <div class="formacao">
-      <strong data-en="Academic Background:">Formação Acadêmica</strong><br><br>
-      <span data-en="UniViçosa — Systems Analysis and Development">UniViçosa — Análise e Desenvolvimento de Sistemas</span><br>
-      <em data-en="2024 – 2026">2024 – 2026</em><br><br>
-      <span data-en="Federal University of Viçosa — Bachelor’s in Mathematics">Universidade Federal de Viçosa — Bacharelado em Matemática</span><br>
-      <em data-en="2020 – 2023 (incomplete)">2020 – 2023 (incompleto)</em>
+            <div class="contact-section">
+                <a href="mailto:bernardocordeiromotta@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>bernardocordeiromotta@gmail.com</span>
+                </a>
+                <a href="tel:+5531933008486" class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+55 31 93300-8486</span>
+                </a>
+            </div>
+
+            <div class="social-section">
+                <a href="https://github.com/BAttomic" target="_blank" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://discord.com/users/B_Attomic" target="_blank" class="social-link" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://wa.me/5531933008486" target="_blank" class="social-link" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+
+            <div class="cta-section">
+                <a href="https://wa.me/5531933008486?text=Gostaria%20de%20agendar%20uma%20call!" target="_blank" class="btn btn-outline">Schedule a call</a>
+                <a href="mailto:bernardocordeiromotta@gmail.com?subject=Proposta de Projeto" class="btn btn-primary">Work with me</a>
+            </div>
+        </aside>
+
+        <div class="line-numbers">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+            <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+            <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+            <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+            <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+            <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+            <span>31</span><span>32</span><span>33</span><span>34</span><span>35</span>
+            <span>36</span><span>37</span><span>38</span><span>39</span><span>40</span>
+            <span>41</span><span>42</span><span>43</span><span>44</span><span>45</span>
+            <span>46</span><span>47</span><span>48</span><span>49</span><span>50</span>
+            <span>51</span><span>52</span><span>53</span><span>54</span><span>55</span>
+            <span>56</span><span>57</span><span>58</span><span>59</span><span>60</span>
+            <span>61</span><span>62</span><span>63</span><span>64</span><span>65</span>
+            <span>66</span><span>67</span><span>68</span><span>69</span><span>70</span>
+            <span>71</span><span>72</span><span>73</span><span>74</span><span>75</span>
+            <span>76</span><span>77</span><span>78</span><span>79</span><span>80</span>
+            <span>81</span><span>82</span><span>83</span><span>84</span><span>85</span>
+            <span>86</span><span>87</span><span>88</span><span>89</span><span>90</span>
+			<span>91</span><span>92</span><span>93</span><span>94</span><span>95</span>
+			<span>96</span><span>97</span><span>98</span><span>99</span><span>100</span>
+			<span>101</span><span>102</span><span>103</span><span>104</span><span>105</span>
+			<span>106</span><span>107</span><span>108</span><span>109</span><span>110</span>
+			<span>111</span><span>112</span><span>113</span><span>114</span><span>115</span>
+			<span>116</span><span>117</span><span>118</span><span>119</span><span>120</span>
+			<span>121</span><span>122</span><span>123</span><span>124</span><span>125</span>
+			<span>126</span><span>127</span><span>128</span><span>129</span><span>130</span>
+			<span>131</span><span>132</span><span>133</span><span>134</span><span>135</span>
+			<span>136</span><span>137</span>
+        </div>
+
+        <main class="main-content">
+            <section class="hero-section" id="hero">
+                <h1 class="hero-title">
+                    Creative Digital<br>
+                    <span class="highlight">Developer</span>
+                </h1>
+                <p class="hero-description">
+                    As a user-centric developer, I create highly functional digital experiences that transform ideas into meaningful interactions.
+                </p>
+            </section>
+
+            <section class="work-section" id="work">
+                <div class="projects-grid">
+                    <a href="work/agente-ia.html" class="project-card">
+                        <div class="project-header">
+                            <h3>Agente de Atendimento com IA</h3>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/project-ia.jpg" alt="Agente IA" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                            <div class="project-placeholder">
+                                <i class="fas fa-robot"></i>
+                                <span>IA + N8n + WhatsApp</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="work/lykos-province.html" class="project-card">
+                        <div class="project-header">
+                            <h3>Lykos Province</h3>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/project-lykos.jpg" alt="Lykos Province" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                            <div class="project-placeholder">
+                                <i class="fas fa-gamepad"></i>
+                                <span>Rede Minecraft</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="work/bot-discord.html" class="project-card">
+                        <div class="project-header">
+                            <h3>Bot Discord com API</h3>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/project-discord.jpg" alt="Bot Discord" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                            <div class="project-placeholder">
+                                <i class="fab fa-discord"></i>
+                                <span>Discord.js + REST API</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="work/infraestrutura-devops.html" class="project-card">
+                        <div class="project-header">
+                            <h3>Infraestrutura DevOps</h3>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/project-devops.jpg" alt="DevOps" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                            <div class="project-placeholder">
+                                <i class="fas fa-server"></i>
+                                <span>CI/CD + Docker</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="projects-counter">
+                    Delivered <strong>4 projects</strong>, tackled <strong>10+ challenges</strong>
+                </div>
+            </section>
+
+            <section class="about-section" id="about">
+                <h2 class="section-title">About me</h2>
+                <div class="about-content">
+                    <p>Sou Bernardo Cordeiro Motta, desenvolvedor com 7+ anos de experiência focado em <strong>automação</strong>, <strong>back-end</strong> e <strong>DevOps</strong>. Comecei minha jornada em 2017 criando servidores de Minecraft e bots para Discord, o que me deu uma base sólida em Java e JavaScript.</p>
+                    <p>Hoje trabalho principalmente com automações inteligentes usando N8n, integração de APIs, e infraestrutura em nuvem. Minha paixão é transformar processos manuais em fluxos automatizados e eficientes.</p>
+                </div>
+            </section>
+
+            <section class="whatido-section" id="whatido">
+                <h2 class="section-title">What I do</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Automação Inteligente</h3>
+                        <p>Criação de fluxos automatizados com N8n, integração de APIs e agentes de IA para atendimento.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-server"></i></div>
+                        <h3>DevOps & Infra</h3>
+                        <p>Configuração de VPS, Docker, CI/CD pipelines e deploy automatizado.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3>Back-end</h3>
+                        <p>APIs REST, integração de sistemas, bancos de dados e arquitetura de microsserviços.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-plug"></i></div>
+                        <h3>Integrações</h3>
+                        <p>WhatsApp, Instagram, Google APIs, Discord e outras plataformas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stack-section" id="stack">
+                <h2 class="section-title">Tech stack</h2>
+                
+                <div class="unified-stack-grid">
+                    <div class="stack-card">
+                        <span class="stack-name">JavaScript</span>
+                        <i class="devicon-javascript-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Python</span>
+                        <i class="devicon-python-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Java</span>
+                        <i class="devicon-java-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Node.js</span>
+                        <i class="devicon-nodejs-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Django</span>
+                        <i class="devicon-django-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">MySQL</span>
+                        <i class="devicon-mysql-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">PostgreSQL</span>
+                        <i class="devicon-postgresql-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">MongoDB</span>
+                        <i class="devicon-mongodb-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Supabase</span>
+                        <i class="devicon-supabase-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Docker</span>
+                        <i class="devicon-docker-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Linux</span>
+                        <i class="devicon-linux-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Git</span>
+                        <i class="devicon-git-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">CI/CD</span>
+                        <i class="fas fa-sync-alt stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">N8n</span>
+                        <i class="fas fa-project-diagram stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">OpenAI</span>
+                        <i class="fas fa-brain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Gemini</span>
+                        <i class="fas fa-gem stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">AWS</span>
+                        <i class="devicon-amazonwebservices-plain-wordmark stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Cloudflare</span>
+                        <i class="devicon-cloudflare-plain stack-icon"></i>
+                    </div>
+                    <div class="stack-card">
+                        <span class="stack-name">Contabo</span>
+                        <i class="fas fa-cloud stack-icon"></i>
+                    </div>
+                </div>
+            </section>
+
+            <section class="experience-section" id="experience">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>Freelancer</h4>
+                                <span class="timeline-date">2018 - Presente</span>
+                            </div>
+                            <p class="timeline-role">Desenvolvedor Full Stack & DevOps</p>
+                            <p class="timeline-description">Automações inteligentes, infraestrutura VPS, pipelines CI/CD, servidores Minecraft, integração de APIs e bots para Discord.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>PromovAds</h4>
+                                <span class="timeline-date">Mar/2024 - Set/2024</span>
+                            </div>
+                            <p class="timeline-role">Desenvolvedor Autônomo (PJ)</p>
+                            <p class="timeline-description">Automações internas, infraestrutura VPS, pipelines CI/CD e Agente de Atendimento com IA.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h4>OrangeStore</h4>
+                                <span class="timeline-date">Ago/2024 - Jan/2025</span>
+                            </div>
+                            <p class="timeline-role">Técnico</p>
+                            <p class="timeline-description">Microsoldagem, transplante de microchips, flex e hardwares.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="education-section" id="education">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <h4>Análise e Desenvolvimento de Sistemas</h4>
+                        <p class="education-school">UniViçosa</p>
+                        <span class="education-date">2024 - Atual</span>
+                    </div>
+                    <div class="education-card">
+                        <h4>Bacharelado em Matemática</h4>
+                        <p class="education-school">UFV - Universidade Federal de Viçosa</p>
+                        <span class="education-date">2020 - 2023 (Incompleto)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-section-main" id="contact">
+                <h2 class="section-title">Contact me</h2>
+                <div class="contact-grid">
+                    <a href="mailto:bernardocordeiromotta@gmail.com" class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <span>bernardocordeiromotta@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/5531933008486?text=Gostaria%20de%20agendar%20uma%20call!" class="contact-card" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp (preferido)</span>
+                    </a>
+                    <a href="https://github.com/BAttomic" class="contact-card" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span>@BAttomic</span>
+                    </a>
+                    <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" class="contact-card" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        <span>/bernardo-cordeiro-motta</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <aside class="right-sidebar">
+            <nav class="page-index">
+                <h4>Index</h4>
+                <a href="#work" class="index-link active">Work</a>
+                <a href="#about" class="index-link">About me</a>
+                <a href="#whatido" class="index-link">What I do</a>
+                <a href="#stack" class="index-link">Tech stack</a>
+                <a href="#experience" class="index-link">Experience</a>
+                <a href="blog.html" class="index-link">Blog</a>
+                <a href="#contact" class="index-link">Contact me</a>
+            </nav>
+        </aside>
     </div>
-  </div>
 
-  <main class="conteudo-principal">
-    <!-- Sobre mim -->
-    <section class="sobre">
-      <h2 class="sobre-h2" data-en="About Me">Sobre mim</h2>
-      <p class="caixa-roxa" data-en="Passionate about logic, automation, and scalable solutions. I have practical expertise in systems integration, DevOps, VPS architectures, and continuous deployments. I excel at adapting tools to the needs of each project with agility, clarity, and a problem-solving mindset. My Mathematics degree from UFV provided a solid foundation in logic, analytical thinking, and rigor, enhancing my technical efficiency in development and infrastructure.">
-        Apaixonado por lógica, automações e soluções escaláveis. Especialização prática em integração de sistemas, DevOps, arquiteturas VPS e deploys contínuos. Capacidade de adaptar ferramentas às necessidades de cada projeto com agilidade, clareza e mentalidade solucionadora. Formação em Matemática (UFV) trouxe base sólida em lógica, pensamento analítico e rigor, impulsionando minha eficiência técnica em desenvolvimento e infraestrutura.
-      </p>
-    </section>
-
-    <!-- Meus Projetos -->
-    <section class="projetos">
-      <h2 data-en="My Projects">Meus Projetos</h2>
-      <div class="cards">
-        <div class="card">
-          <img src="assets/img/OpenAI.png" alt="Assistente com OpenAI" />
-          <div class="card-content">
-            <h3 data-en="Assistant with OpenAI">Assistente com OpenAI</h3>
-            <p data-en="Intelligent automated customer-service system using OpenAI models (LLMs), orchestrated with N8N, stored in Supabase, and securely deployed on a VPS protected by Cloudflare.">
-              Sistema inteligente de atendimento automatizado utilizando modelos da OpenAI (LLMs), com orquestração via N8N, armazenamento em Supabase e deploy seguro em VPS protegido com Cloudflare.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="assets/img/Minecraft.png" alt="Rede de Servidores Minecraft" />
-          <div class="card-content">
-            <h3 data-en="Minecraft Server Network">Rede de Servidores Minecraft</h3>
-            <p data-en="A modular architecture with independent servers (Proxy, Lobby, and game modes) configured in Java, hosted on Linux VPS instances with MySQL databases. Includes web-admin dashboards and automation for deployment and authentication.">
-              Estrutura modular com servidores independentes (Proxy, Lobby, Modos de jogo) configurados em Java, hospedados em VPS Linux com bancos em MySQL. Inclui painéis web de administração e automações de deploy e autenticação.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="assets/img/Discord.png" alt="Bot para Discord com API" />
-          <div class="card-content">
-            <h3 data-en="Discord Bot with API">Bot para Discord com API</h3>
-            <p data-en="Advanced bot with intelligent commands, REST API integration with external tools, authentication system, interactive menus, and data persistence. Used by communities for moderation and utilities.">
-              Bot avançado com comandos inteligentes, integração via API REST com ferramentas externas, sistema de autenticação, menus interativos e persistência de dados. Usado por comunidades para moderação e utilidades.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experiência Profissional -->
-    <section class="projetos">
-      <h2 data-en="Professional Experience">Experiência Profissional</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="card-content">
-            <h3 data-en="PromovAds (BH/MG) — Mar/2025 – Present">PromovAds (BH/MG) — Mar/2025 até o momento</h3>
-            <ul>
-              <li data-en="Responsible for internal automations and VPS infrastructure">Responsável por automações internas e infraestrutura VPS</li>
-              <li data-en="Built CI/CD pipelines">Criação de pipelines de CI/CD</li>
-              <li data-en="Developed a customer-service agent using an OpenAI model">Criação de um Agente de Atendimento utilizando modelo da OpenAI</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h3 data-en="OrangeStore (Viçosa/MG) — Aug/2024 to Jan/2025">OrangeStore (Viçosa/MG) — Ago/2024 a Jan/2025</h3>
-            <ul>
-              <li data-en="Micro-soldering">Microsoldagem</li>
-              <li data-en="Flex cable, microchips, and hardware transplantation">Transplante de microchips, flex e hardwares</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h3 data-en="Freelancer (Remote) — 2018 to 2023">Freelancer (Remoto) — 2018 a 2023</h3>
-            <ul>
-              <li data-en="Minecraft server development">Desenvolvimento de servidores Minecraft</li>
-              <li data-en="API integrations and automations">Integração de APIs e automações</li>
-              <li data-en="Discord bots">Bots para Discord</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hard & Soft Skills -->
-    <section class="skills">
-      <h2 data-en="Skills">Habilidades</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="card-content">
-            <h3 data-en="Hard Skills">Hard Skills</h3>
-            <ul>
-              <li data-en="DevOps (CI/CD, VPS, Docker, N8N)">DevOps (CI/CD, VPS, Docker, N8N)</li>
-              <li data-en="REST/JSON API integration and automation">Integração e automação com APIs REST/JSON</li>
-              <li data-en="Development with Java, Python, and JavaScript">Desenvolvimento com Java, Python e JavaScript</li>
-              <li data-en="Databases: MySQL, PostgreSQL, Supabase">Banco de dados: MySQL, PostgreSQL, Supabase</li>
-              <li data-en="Scalable infrastructure and cloud services">Infraestrutura escalável e serviços em nuvem</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h3 data-en="Soft Skills">Soft Skills</h3>
-            <ul>
-              <li data-en="Analytical thinking and decision-making">Raciocínio analítico e tomada de decisão</li>
-              <li data-en="Clear, technical communication">Comunicação objetiva e técnica</li>
-              <li data-en="Autonomy, proactivity, and continuous curiosity">Autonomia, proatividade e curiosidade contínua</li>
-              <li data-en="Result-oriented focus and product vision">Foco em resultados e visão de produto</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rodapé Jeezus -->
-    <section class="jeezus">
-      <div class="texto">
-        <span data-en="Design by">Design by</span>
-        <img class="logo" src="assets/img/Jeezus_Solo_Branco.svg" alt="Jeezus">
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const toggleBtn = document.getElementById('langToggle');
-    let isEnglish = false;
-
-    toggleBtn.addEventListener('click', () => {
-      isEnglish = !isEnglish;
-      toggleBtn.textContent = isEnglish ? '🇧🇷' : '🇺🇸';
-      const enAria = toggleBtn.getAttribute('data-en-aria');
-      if (enAria) toggleBtn.setAttribute('aria-label', isEnglish ? enAria : 'Trocar idioma');
-
-      document.querySelectorAll('[data-en]').forEach(el => {
-        const original = el.getAttribute('data-pt') || el.textContent;
-        const en = el.getAttribute('data-en');
-        if (isEnglish && en) {
-          el.setAttribute('data-pt', original);
-          el.textContent = en;
-        } else if (!isEnglish && el.hasAttribute('data-pt')) {
-          el.textContent = el.getAttribute('data-pt');
-        }
-      });
-    });
-  </script>
+    <script src="assets/js/main.js"></script>
 </body>
-
 </html>
