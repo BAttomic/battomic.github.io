@@ -33,13 +33,13 @@
 	<header class="header">
 		<div class="header-content">
 			<div class="header-left">
-				<span class="welcome-text">Welcome to my world!</span>
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
 			</div>
 			
 			<nav class="nav-menu">
-				<a href="../index.html" class="nav-link">bernardo.dev</a>
-				<a href="../work.html" class="nav-link active">work.done</a>
-				<a href="../blog.html" class="nav-link">blog.share</a>
+				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+				<a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
 			</nav>
 			
 			<div class="header-right">
@@ -52,18 +52,16 @@
 				</div>
 				
 				<div class="location-time">
-					<span>Viçosa, MG</span>
+					<span data-i18n="location">Viçosa, MG</span>
 					<span class="separator">•</span>
 					<span>
-						<span lang="pt">Meu horário:</span>
-						<span lang="en">My time:</span>
+						<span data-i18n="time_label">Meu horário:</span>
 						<span id="current-time">00:00</span>
 					</span>
 				</div>
 			</div>
 		</div>
 	</header>
-
 
     <div class="main-layout" style="grid-template-columns: 1fr;">
         <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
@@ -75,13 +73,9 @@
                             <i class="fas fa-robot"></i>
                         </div>
                         <div class="project-header-content">
-                            <h1>
-                                <span lang="pt">Agentes Inteligentes Sob Medida</span>
-                                <span lang="en">Custom Intelligent Agents</span>
-                            </h1>
-                            <p class="project-subtitle">
-                                <span lang="pt">Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.</span>
-                                <span lang="en">Custom development of agents for consultative sales, support and management, integrated exactly to the processes and tools your company already uses. Specialization in clinics and healthcare SMEs.</span>
+                            <h1 data-i18n="ia_title">Agentes Inteligentes Sob Medida</h1>
+                            <p class="project-subtitle" data-i18n="ia_subtitle">
+                                Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.
                             </p>
                         </div>
                     </div>
@@ -332,26 +326,17 @@
 
             <nav class="project-navigation three-column-nav">
                 <div class="nav-item nav-prev" style="opacity: 0.3; pointer-events: none;">
-                    <span>
-                        <span lang="pt">Projeto Anterior</span>
-                        <span lang="en">Previous Project</span>
-                    </span>
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
                     <strong>—</strong>
                 </div>
                 
                 <a href="../work.html" class="nav-item nav-center">
                     <i class="fas fa-th-large"></i>
-                    <span>
-                        <span lang="pt">Voltar aos Projetos</span>
-                        <span lang="en">Back to Projects</span>
-                    </span>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
                 </a>
                 
                 <a href="lykos-province.html" class="nav-item nav-next">
-                    <span>
-                        <span lang="pt">Próximo Projeto</span>
-                        <span lang="en">Next Project</span>
-                    </span>
+                    <span data-i18n="nav_next">Próximo Projeto</span>
                     <strong>Lykos Province <i class="fas fa-arrow-right"></i></strong>
                 </a>
             </nav>
@@ -361,10 +346,6 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>
-                <span lang="pt">&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</span>
-                <span lang="en">&copy; 2025 Bernardo Cordeiro Motta. All rights reserved.</span>
-            </p>
             <div class="footer-links">
                 <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>

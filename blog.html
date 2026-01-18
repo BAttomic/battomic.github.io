@@ -94,13 +94,13 @@
 	<header class="header">
 		<div class="header-content">
 			<div class="header-left">
-				<span class="welcome-text">Welcome to my world!</span>
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
 			</div>
 			
 			<nav class="nav-menu">
-				<a href="index.html" class="nav-link">bernardo.dev</a>
-				<a href="work.html" class="nav-link">work.done</a>
-				<a href="blog.html" class="nav-link active">blog.share</a>
+				<a href="index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="work.html" class="nav-link" data-i18n="nav_work">work.done</a>
+				<a href="blog.html" class="nav-link active" data-i18n="nav_blog">blog.share</a>
 			</nav>
 			
 			<div class="header-right">
@@ -113,11 +113,10 @@
 				</div>
 				
 				<div class="location-time">
-					<span>Viçosa, MG</span>
+					<span data-i18n="location">Viçosa, MG</span>
 					<span class="separator">•</span>
 					<span>
-						<span lang="pt">Meu horário:</span>
-						<span lang="en">My time:</span>
+						<span data-i18n="time_label">Meu horário:</span>
 						<span id="current-time">00:00</span>
 					</span>
 				</div>
@@ -130,10 +129,10 @@
             <section class="hero-section" style="grid-template-columns: 1fr;">
                 <div class="hero-content">
                     <h1 class="hero-title" style="font-size: 56px;">
-                        Blog<br>
-                        <span class="highlight">&amp; Insights</span>
+                        <span data-i18n="blog_title">Blog</span><br>
+                        <span class="highlight" data-i18n="blog_highlight">&amp; Insights</span>
                     </h1>
-                    <p class="hero-description">
+                    <p class="hero-description" data-i18n="blog_desc">
                         Compartilhando conhecimento sobre automação, DevOps e integração de sistemas.
                     </p>
                 </div>
@@ -172,7 +171,7 @@
                 <!-- Coming Soon -->
                 <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
                     <i class="fas fa-pencil-alt" style="font-size: 48px; opacity: 0.3; margin-bottom: 16px;"></i>
-                    <p style="font-family: var(--font-mono); font-size: 14px;">Mais artigos em breve...</p>
+                    <p style="font-family: var(--font-mono); font-size: 14px;" data-i18n="blog_coming">Mais artigos em breve...</p>
                 </div>
             </section>
         </main>
@@ -180,7 +179,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <p data-i18n="footer_rights">&copy; 2025 Bernardo Cordeiro Motta. .</p>
             <div class="footer-links">
                 <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>

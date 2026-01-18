@@ -16,13 +16,13 @@
 	<header class="header">
 		<div class="header-content">
 			<div class="header-left">
-				<span class="welcome-text">Welcome to my world!</span>
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
 			</div>
 			
 			<nav class="nav-menu">
-				<a href="../index.html" class="nav-link">bernardo.dev</a>
-				<a href="../work.html" class="nav-link active">work.done</a>
-				<a href="../blog.html" class="nav-link">blog.share</a>
+				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+				<a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
 			</nav>
 			
 			<div class="header-right">
@@ -35,18 +35,16 @@
 				</div>
 				
 				<div class="location-time">
-					<span>Viçosa, MG</span>
+					<span data-i18n="location">Viçosa, MG</span>
 					<span class="separator">•</span>
 					<span>
-						<span lang="pt">Meu horário:</span>
-						<span lang="en">My time:</span>
+						<span data-i18n="time_label">Meu horário:</span>
 						<span id="current-time">00:00</span>
 					</span>
 				</div>
 			</div>
 		</div>
 	</header>
-
 
     <div class="main-layout" style="grid-template-columns: 1fr;">
         <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
@@ -56,8 +54,8 @@
                     <div class="project-header-with-logo">
                         <img src="../assets/img/brasao_2794x3234.png" alt="Brasão Lykos Province" class="project-logo">
                         <div class="project-header-content">
-                            <h1 class="lykos-title-main">Lykos Province</h1>
-                            <p class="project-subtitle">
+                            <h1 class="lykos-title-main" data-i18n="lykos_title">Lykos Province</h1>
+                            <p class="project-subtitle" data-i18n="lykos_subtitle">
                                 Uma comunidade gaming que passou por diversas fases e jogos, tendo seu maior destaque no Minecraft com uma rede completa de servidores, economia própria e mais de 1000 membros ativos.
                             </p>
                         </div>
@@ -66,25 +64,41 @@
 
                 <div class="project-content">
                     <section class="content-section">
-                        <h2>A História</h2>
-                        <p>Fundada em <strong>05/08/2017</strong> por mim, Lykos Province começou como uma comunidade que passou por diversas fases e jogos, sendo o maior destaque para o <strong>Minecraft</strong>. Ao longo de anos teve diversos servidores até ser descontinuado no fim de <strong>2023</strong> por motivos de tempo e foco em novos projetos profissionais.</p>
+                        <h2>
+                            <span lang="pt">A História</span>
+                            <span lang="en">The Story</span>
+                        </h2>
+                        <p lang="pt">Fundada em <strong>05/08/2017</strong> por mim, Lykos Province começou como uma comunidade que passou por diversas fases e jogos, sendo o maior destaque para o <strong>Minecraft</strong>. Ao longo de anos teve diversos servidores até ser descontinuado no fim de <strong>2023</strong> por motivos de tempo e foco em novos projetos profissionais.</p>
+                        <p lang="en">Founded on <strong>08/05/2017</strong> by me, Lykos Province started as a community that went through several phases and games, with the greatest highlight being <strong>Minecraft</strong>. Over the years it had several servers until it was discontinued at the end of <strong>2023</strong> due to time constraints and focus on new professional projects.</p>
                         
-                        <p>O ecossistema completo incluía não apenas os servidores de jogo, mas também um <strong>website integrado</strong> para gestão de contas e loja virtual, além de um <strong>bot customizado no Discord</strong> que informava diversos dados dos servidores em tempo real, como status online, número de jogadores conectados, estatísticas detalhadas e eventos da comunidade.</p>
+                        <p lang="pt">O ecossistema completo incluía não apenas os servidores de jogo, mas também um <strong>website integrado</strong> para gestão de contas e loja virtual, além de um <strong>bot customizado no Discord</strong> que informava diversos dados dos servidores em tempo real, como status online, número de jogadores conectados, estatísticas detalhadas e eventos da comunidade.</p>
+                        <p lang="en">The complete ecosystem included not only the game servers, but also an <strong>integrated website</strong> for account management and online store, plus a <strong>custom Discord bot</strong> that reported various server data in real time, such as online status, number of connected players, detailed statistics and community events.</p>
                     </section>
 
                     <section class="content-section">
-                        <h2>Arquitetura da Rede</h2>
-                        <p>A rede era composta por uma arquitetura modular e escalável, contendo <strong>8 servidores jogáveis</strong>, <strong>1 lobby central</strong> e um <strong>proxy para autenticação</strong> e roteamento de tráfego. Toda a infraestrutura rodava em <strong>VPS próprias</strong>, gerenciadas através do painel <strong>Pterodactyl</strong>.</p>
+                        <h2>
+                            <span lang="pt">Arquitetura da Rede</span>
+                            <span lang="en">Network Architecture</span>
+                        </h2>
+                        <p lang="pt">A rede era composta por uma arquitetura modular e escalável, contendo <strong>8 servidores jogáveis</strong>, <strong>1 lobby central</strong> e um <strong>proxy para autenticação</strong> e roteamento de tráfego. Toda a infraestrutura rodava em <strong>VPS próprias</strong>, gerenciadas através do painel <strong>Pterodactyl</strong>.</p>
+                        <p lang="en">The network consisted of a modular and scalable architecture, containing <strong>8 playable servers</strong>, <strong>1 central lobby</strong> and a <strong>proxy for authentication</strong> and traffic routing. All infrastructure ran on <strong>dedicated VPS</strong>, managed through the <strong>Pterodactyl</strong> panel.</p>
 
                         <div class="architecture-diagram">
-                            <div class="diagram-title">Arquitetura da Rede</div>
+                            <div class="diagram-title">
+                                <span lang="pt">Arquitetura da Rede</span>
+                                <span lang="en">Network Architecture</span>
+                            </div>
                             
                             <div class="diagram-flow">
                                 <div class="diagram-level">
                                     <div class="diagram-node proxy">
                                         <div class="node-icon"><i class="fas fa-network-wired"></i></div>
                                         <div class="node-title">PROXY SERVER</div>
-                                        <div class="node-desc">BungeeCord/Velocity<br>Autenticação & Roteamento</div>
+                                        <div class="node-desc">
+                                            BungeeCord/Velocity<br>
+                                            <span lang="pt">Autenticação & Roteamento</span>
+                                            <span lang="en">Authentication & Routing</span>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -93,8 +107,14 @@
                                 <div class="diagram-level">
                                     <div class="diagram-node lobby">
                                         <div class="node-icon"><i class="fas fa-door-open"></i></div>
-                                        <div class="node-title">LOBBY CENTRAL</div>
-                                        <div class="node-desc">Hub de Navegação<br>Sistema de Menus</div>
+                                        <div class="node-title">
+                                            <span lang="pt">LOBBY CENTRAL</span>
+                                            <span lang="en">CENTRAL LOBBY</span>
+                                        </div>
+                                        <div class="node-desc">
+                                            <span lang="pt">Hub de Navegação<br>Sistema de Menus</span>
+                                            <span lang="en">Navigation Hub<br>Menu System</span>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -148,88 +168,219 @@
                                 <div class="diagram-level databases-level">
                                     <div class="diagram-node database">
                                         <div class="node-icon"><i class="fas fa-database"></i></div>
-                                        <div class="node-title">DATABASE GLOBAL</div>
-                                        <div class="node-desc">Contas, Ranks, Economia</div>
+                                        <div class="node-title">
+                                            <span lang="pt">DATABASE GLOBAL</span>
+                                            <span lang="en">GLOBAL DATABASE</span>
+                                        </div>
+                                        <div class="node-desc">
+                                            <span lang="pt">Contas, Ranks, Economia</span>
+                                            <span lang="en">Accounts, Ranks, Economy</span>
+                                        </div>
                                     </div>
                                     <div class="diagram-node database">
                                         <div class="node-icon"><i class="fas fa-hdd"></i></div>
-                                        <div class="node-title">DATABASES LOCAIS</div>
-                                        <div class="node-desc">Dados específicos por servidor</div>
+                                        <div class="node-title">
+                                            <span lang="pt">DATABASES LOCAIS</span>
+                                            <span lang="en">LOCAL DATABASES</span>
+                                        </div>
+                                        <div class="node-desc">
+                                            <span lang="pt">Dados específicos por servidor</span>
+                                            <span lang="en">Server-specific data</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <ul class="feature-list">
-                            <li><strong>Proxy Server:</strong> Responsável pela autenticação de jogadores e roteamento inteligente de tráfego entre todos os servidores da rede.</li>
-                            <li><strong>Lobby Central:</strong> Hub principal - ponto de entrada centralizado e sistema de navegação para todos os servidores disponíveis.</li>
-                            <li><strong>8 Servidores Jogáveis:</strong> Cada um com suas especialidades e modos de jogo exclusivos (MMORPG, Skyblock, Rankup, Creative, MineZ, Minigames, Survival, Hardcore), operando de forma independente com nomes inspirados em missões espaciais.</li>
-                            <li><strong>Database Global:</strong> Sistema centralizado para gerenciamento de contas, ranks globais, economia compartilhada e autenticação.</li>
-                            <li><strong>Databases Locais:</strong> Bancos específicos para cada servidor, garantindo performance otimizada e isolamento de dados.</li>
+                            <li>
+                                <strong>Proxy Server:</strong> 
+                                <span lang="pt">Responsável pela autenticação de jogadores e roteamento inteligente de tráfego entre todos os servidores da rede.</span>
+                                <span lang="en">Responsible for player authentication and intelligent traffic routing between all network servers.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Lobby Central:</span>
+                                    <span lang="en">Central Lobby:</span>
+                                </strong> 
+                                <span lang="pt">Hub principal - ponto de entrada centralizado e sistema de navegação para todos os servidores disponíveis.</span>
+                                <span lang="en">Main hub - centralized entry point and navigation system for all available servers.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">8 Servidores Jogáveis:</span>
+                                    <span lang="en">8 Playable Servers:</span>
+                                </strong> 
+                                <span lang="pt">Cada um com suas especialidades e modos de jogo exclusivos (MMORPG, Skyblock, Rankup, Creative, MineZ, Minigames, Survival, Hardcore), operando de forma independente com nomes inspirados em missões espaciais.</span>
+                                <span lang="en">Each with its specialties and exclusive game modes (MMORPG, Skyblock, Rankup, Creative, MineZ, Minigames, Survival, Hardcore), operating independently with names inspired by space missions.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Database Global:</span>
+                                    <span lang="en">Global Database:</span>
+                                </strong> 
+                                <span lang="pt">Sistema centralizado para gerenciamento de contas, ranks globais, economia compartilhada e autenticação.</span>
+                                <span lang="en">Centralized system for account management, global ranks, shared economy and authentication.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Databases Locais:</span>
+                                    <span lang="en">Local Databases:</span>
+                                </strong> 
+                                <span lang="pt">Bancos específicos para cada servidor, garantindo performance otimizada e isolamento de dados.</span>
+                                <span lang="en">Specific databases for each server, ensuring optimized performance and data isolation.</span>
+                            </li>
                         </ul>
                     </section>
 
                     <section class="content-section">
-                        <h2>Evolução Tecnológica</h2>
-                        <p>Durante os <strong>6 anos de operação</strong>, a rede passou por constantes atualizações tecnológicas para melhorar performance, segurança e experiência dos jogadores:</p>
+                        <h2>
+                            <span lang="pt">Evolução Tecnológica</span>
+                            <span lang="en">Technological Evolution</span>
+                        </h2>
+                        <p lang="pt">Durante os <strong>6 anos de operação</strong>, a rede passou por constantes atualizações tecnológicas para melhorar performance, segurança e experiência dos jogadores:</p>
+                        <p lang="en">During <strong>6 years of operation</strong>, the network underwent constant technological updates to improve performance, security and player experience:</p>
                         
                         <div class="tech-architecture">
                             <div class="arch-item">
                                 <h4><i class="fas fa-network-wired"></i> Proxy Evolution</h4>
-                                <p>Usamos <strong>BungeeCord</strong> por um tempo e depois migramos para <strong>Velocity</strong>, obtendo melhor performance e recursos avançados.</p>
+                                <p lang="pt">Usamos <strong>BungeeCord</strong> por um tempo e depois migramos para <strong>Velocity</strong>, obtendo melhor performance e recursos avançados.</p>
+                                <p lang="en">We used <strong>BungeeCord</strong> for a while and then migrated to <strong>Velocity</strong>, achieving better performance and advanced features.</p>
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fas fa-server"></i> Server Core</h4>
-                                <p>Evolução: <strong>Bukkit</strong> → <strong>Paper</strong> → <strong>Folia</strong>, implementando multithreading e otimizações de TPS.</p>
+                                <p lang="pt">Evolução: <strong>Bukkit</strong> → <strong>Paper</strong> → <strong>Folia</strong>, implementando multithreading e otimizações de TPS.</p>
+                                <p lang="en">Evolution: <strong>Bukkit</strong> → <strong>Paper</strong> → <strong>Folia</strong>, implementing multithreading and TPS optimizations.</p>
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fas fa-puzzle-piece"></i> Plugin Development</h4>
-                                <p>Edição de <strong>inúmeros plugins open-source</strong> para uso exclusivo, além de desenvolvimento proprietário em Java.</p>
+                                <p lang="pt">Edição de <strong>inúmeros plugins open-source</strong> para uso exclusivo, além de desenvolvimento proprietário em Java.</p>
+                                <p lang="en">Editing of <strong>numerous open-source plugins</strong> for exclusive use, plus proprietary development in Java.</p>
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fas fa-database"></i> Data Management</h4>
-                                <p>Uso de <strong>MariaDB</strong> e <strong>MySQL</strong>, com configurações em <strong>JSON</strong> e <strong>YML</strong> via <strong>Pterodactyl</strong>.</p>
+                                <p lang="pt">Uso de <strong>MariaDB</strong> e <strong>MySQL</strong>, com configurações em <strong>JSON</strong> e <strong>YML</strong> via <strong>Pterodactyl</strong>.</p>
+                                <p lang="en">Use of <strong>MariaDB</strong> and <strong>MySQL</strong>, with configurations in <strong>JSON</strong> and <strong>YML</strong> via <strong>Pterodactyl</strong>.</p>
                             </div>
                         </div>
                     </section>
 
                     <section class="content-section">
-                        <h2>Modelo de Negócio</h2>
-                        <p>A monetização da rede era baseada na <strong>venda de créditos</strong> através de uma loja virtual integrada ao website, que disponibilizava aos jogadores diversos benefícios e melhorias para sua experiência de jogo:</p>
+                        <h2>
+                            <span lang="pt">Modelo de Negócio</span>
+                            <span lang="en">Business Model</span>
+                        </h2>
+                        <p lang="pt">A monetização da rede era baseada na <strong>venda de créditos</strong> através de uma loja virtual integrada ao website, que disponibilizava aos jogadores diversos benefícios e melhorias para sua experiência de jogo:</p>
+                        <p lang="en">The network's monetization was based on <strong>selling credits</strong> through an online store integrated with the website, which provided players with various benefits and improvements to their gaming experience:</p>
                         
                         <ul class="feature-list">
-                            <li><strong>Ranks Globais:</strong> Benefícios e permissões que funcionavam em toda a rede de servidores.</li>
-                            <li><strong>Ranks Locais:</strong> Vantagens específicas para servidores individuais, focados em modos de jogo específicos.</li>
-                            <li><strong>Cosméticos Globais:</strong> Partículas customizadas, tags personalizadas e efeitos especiais.</li>
-                            <li><strong>Pets/Montarias Utilitárias:</strong> Companheiros virtuais com funcionalidades práticas e habilidades especiais.</li>
-                            <li><strong>Perks:</strong> Comandos exclusivos, kits personalizados e facilidades de qualidade de vida.</li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Ranks Globais:</span>
+                                    <span lang="en">Global Ranks:</span>
+                                </strong> 
+                                <span lang="pt">Benefícios e permissões que funcionavam em toda a rede de servidores.</span>
+                                <span lang="en">Benefits and permissions that worked across the entire server network.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Ranks Locais:</span>
+                                    <span lang="en">Local Ranks:</span>
+                                </strong> 
+                                <span lang="pt">Vantagens específicas para servidores individuais, focados em modos de jogo específicos.</span>
+                                <span lang="en">Specific advantages for individual servers, focused on specific game modes.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Cosméticos Globais:</span>
+                                    <span lang="en">Global Cosmetics:</span>
+                                </strong> 
+                                <span lang="pt">Partículas customizadas, tags personalizadas e efeitos especiais.</span>
+                                <span lang="en">Custom particles, personalized tags and special effects.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Pets/Montarias Utilitárias:</span>
+                                    <span lang="en">Utility Pets/Mounts:</span>
+                                </strong> 
+                                <span lang="pt">Companheiros virtuais com funcionalidades práticas e habilidades especiais.</span>
+                                <span lang="en">Virtual companions with practical functionalities and special abilities.</span>
+                            </li>
+                            <li>
+                                <strong>Perks:</strong> 
+                                <span lang="pt">Comandos exclusivos, kits personalizados e facilidades de qualidade de vida.</span>
+                                <span lang="en">Exclusive commands, custom kits and quality of life features.</span>
+                            </li>
                         </ul>
                     </section>
 
                     <section class="content-section">
-                        <h2>Comunidade Discord & Integrações</h2>
-                        <p>O servidor Discord era o coração da comunidade, com mais de <strong>1000 membros ativos</strong>. Desenvolvemos um <strong>bot customizado</strong> que mantinha todos informados sobre o status da rede em tempo real, além de um <strong>website completo</strong> para gestão de contas e compras:</p>
+                        <h2>
+                            <span lang="pt">Comunidade Discord & Integrações</span>
+                            <span lang="en">Discord Community & Integrations</span>
+                        </h2>
+                        <p lang="pt">O servidor Discord era o coração da comunidade, com mais de <strong>1000 membros ativos</strong>. Desenvolvemos um <strong>bot customizado</strong> que mantinha todos informados sobre o status da rede em tempo real, além de um <strong>website completo</strong> para gestão de contas e compras:</p>
+                        <p lang="en">The Discord server was the heart of the community, with over <strong>1000 active members</strong>. We developed a <strong>custom bot</strong> that kept everyone informed about the network status in real time, plus a <strong>complete website</strong> for account management and purchases:</p>
                         
                         <ul class="feature-list">
-                            <li><strong>Status em Tempo Real:</strong> Monitoramento de todos os servidores, exibindo jogadores online, TPS e performance.</li>
-                            <li><strong>Sistema de Verificação:</strong> Integração automática entre conta do jogo e Discord para acesso a canais exclusivos.</li>
-                            <li><strong>Notificações Automáticas:</strong> Alertas sobre manutenções, atualizações e eventos especiais.</li>
-                            <li><strong>Website Integrado:</strong> Portal completo para gestão de contas, loja virtual e estatísticas detalhadas.</li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Status em Tempo Real:</span>
+                                    <span lang="en">Real-Time Status:</span>
+                                </strong> 
+                                <span lang="pt">Monitoramento de todos os servidores, exibindo jogadores online, TPS e performance.</span>
+                                <span lang="en">Monitoring of all servers, displaying online players, TPS and performance.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Sistema de Verificação:</span>
+                                    <span lang="en">Verification System:</span>
+                                </strong> 
+                                <span lang="pt">Integração automática entre conta do jogo e Discord para acesso a canais exclusivos.</span>
+                                <span lang="en">Automatic integration between game account and Discord for access to exclusive channels.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Notificações Automáticas:</span>
+                                    <span lang="en">Automatic Notifications:</span>
+                                </strong> 
+                                <span lang="pt">Alertas sobre manutenções, atualizações e eventos especiais.</span>
+                                <span lang="en">Alerts about maintenance, updates and special events.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Website Integrado:</span>
+                                    <span lang="en">Integrated Website:</span>
+                                </strong> 
+                                <span lang="pt">Portal completo para gestão de contas, loja virtual e estatísticas detalhadas.</span>
+                                <span lang="en">Complete portal for account management, online store and detailed statistics.</span>
+                            </li>
                         </ul>
 
                         <div class="discord-cta">
                             <div class="discord-text">
-                                <h4>Acesse a Comunidade</h4>
-                                <p>O legado da Lykos Province ainda vive na comunidade Discord.</p>
+                                <h4>
+                                    <span lang="pt">Acesse a Comunidade</span>
+                                    <span lang="en">Access the Community</span>
+                                </h4>
+                                <p>
+                                    <span lang="pt">O legado da Lykos Province ainda vive na comunidade Discord.</span>
+                                    <span lang="en">The legacy of Lykos Province still lives on in the Discord community.</span>
+                                </p>
                             </div>
                             <a href="https://discord.gg/9tT5qMfMM6" target="_blank" class="discord-btn">
-                                <i class="fab fa-discord"></i> Entrar no Discord
+                                <i class="fab fa-discord"></i> 
+                                <span lang="pt">Entrar no Discord</span>
+                                <span lang="en">Join Discord</span>
                             </a>
                         </div>
                     </section>
 
                     <section class="content-section">
-                        <h2>Stack Tecnológico Completo</h2>
+                        <h2>
+                            <span lang="pt">Stack Tecnológico Completo</span>
+                            <span lang="en">Complete Technology Stack</span>
+                        </h2>
                         <div class="tech-tags">
                             <span class="tech-tag">Java</span>
                             <span class="tech-tag">Bukkit/Paper/Folia</span>
@@ -245,46 +396,70 @@
                     </section>
 
                     <section class="content-section">
-                        <h2>Números do Projeto</h2>
+                        <h2>
+                            <span lang="pt">Números do Projeto</span>
+                            <span lang="en">Project Numbers</span>
+                        </h2>
                         <div class="results-grid">
                             <div class="result-item">
                                 <span class="result-number">6</span>
-                                <span class="result-label">Anos de Operação</span>
+                                <span class="result-label">
+                                    <span lang="pt">Anos de Operação</span>
+                                    <span lang="en">Years of Operation</span>
+                                </span>
                             </div>
                             <div class="result-item">
                                 <span class="result-number">1000+</span>
-                                <span class="result-label">Membros Discord</span>
+                                <span class="result-label">
+                                    <span lang="pt">Membros Discord</span>
+                                    <span lang="en">Discord Members</span>
+                                </span>
                             </div>
                             <div class="result-item">
                                 <span class="result-number">8</span>
-                                <span class="result-label">Servidores Simultâneos</span>
+                                <span class="result-label">
+                                    <span lang="pt">Servidores Simultâneos</span>
+                                    <span lang="en">Simultaneous Servers</span>
+                                </span>
                             </div>
                         </div>
                     </section>
 
                     <section class="content-section">
-                        <h2>Aprendizados e Legado</h2>
-                        <p>Lykos Province foi muito mais do que um projeto técnico - foi uma verdadeira escola de gestão, desenvolvimento e empreendedorismo digital. O projeto me ensinou a gerenciar infraestrutura complexa em produção 24/7, desenvolver soluções escaláveis em Java, trabalhar com bancos de dados relacionais em escala real, implementar sistemas de monetização sustentáveis e, principalmente, construir e manter uma <strong>comunidade engajada e leal</strong> por anos consecutivos.</p>
+                        <h2>
+                            <span lang="pt">Aprendizados e Legado</span>
+                            <span lang="en">Learnings and Legacy</span>
+                        </h2>
+                        <p lang="pt">Lykos Province foi muito mais do que um projeto técnico - foi uma verdadeira escola de gestão, desenvolvimento e empreendedorismo digital. O projeto me ensinou a gerenciar infraestrutura complexa em produção 24/7, desenvolver soluções escaláveis em Java, trabalhar com bancos de dados relacionais em escala real, implementar sistemas de monetização sustentáveis e, principalmente, construir e manter uma <strong>comunidade engajada e leal</strong> por anos consecutivos.</p>
+                        <p lang="en">Lykos Province was much more than a technical project - it was a true school of management, development and digital entrepreneurship. The project taught me to manage complex infrastructure in 24/7 production, develop scalable solutions in Java, work with relational databases at real scale, implement sustainable monetization systems and, mainly, build and maintain an <strong>engaged and loyal community</strong> for consecutive years.</p>
                         
-                        <p>A experiência de liderar uma operação técnica e comercial por 6 anos me deu uma visão única sobre gestão de produtos digitais, satisfação do usuário, resolução de conflitos, trabalho em equipe e sustentabilidade de projetos de longo prazo. Cada desafio superado, cada atualização implementada e cada feedback dos jogadores contribuíram para minha formação como desenvolvedor profissional.</p>
+                        <p lang="pt">A experiência de liderar uma operação técnica e comercial por 6 anos me deu uma visão única sobre gestão de produtos digitais, satisfação do usuário, resolução de conflitos, trabalho em equipe e sustentabilidade de projetos de longo prazo. Cada desafio superado, cada atualização implementada e cada feedback dos jogadores contribuíram para minha formação como desenvolvedor profissional.</p>
+                        <p lang="en">The experience of leading a technical and commercial operation for 6 years gave me a unique insight into digital product management, user satisfaction, conflict resolution, teamwork and long-term project sustainability. Every challenge overcome, every update implemented and every player feedback contributed to my formation as a professional developer.</p>
                         
-                        <p>Embora o projeto tenha sido descontinuado em 2023, o legado da Lykos Province continua vivo na comunidade que construímos e nas amizades formadas ao longo dessa jornada incrível.</p>
+                        <p lang="pt">Embora o projeto tenha sido descontinuado em 2023, o legado da Lykos Province continua vivo na comunidade que construímos e nas amizades formadas ao longo dessa jornada incrível.</p>
+                        <p lang="en">Although the project was discontinued in 2023, the legacy of Lykos Province lives on in the community we built and the friendships formed throughout this incredible journey.</p>
                     </section>
                 </div>
             </article>
 
             <nav class="project-navigation three-column-nav">
                 <a href="agente-ia.html" class="nav-item nav-prev">
-                    <span>Projeto Anterior</span>
-                    <strong><i class="fas fa-arrow-left"></i> Agente IA</strong>
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
+                    <strong><i class="fas fa-arrow-left"></i> 
+                        <span lang="pt">Agente IA</span>
+                        <span lang="en">AI Agent</span>
+                    </strong>
                 </a>
                 
                 <a href="../work.html" class="nav-item nav-center">
                     <i class="fas fa-th-large"></i>
-                    <span>Voltar aos Projetos</span>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
                 </a>
                 
-                <div class="nav-item nav-next" style="visibility: hidden;"></div>
+                <div class="nav-item nav-next" style="opacity: 0.3; pointer-events: none;">
+                    <span data-i18n="nav_next">Próximo Projeto</span>
+                    <strong>—</strong>
+                </div>
             </nav>
 
         </main>
@@ -292,7 +467,6 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p data-i18n="footer_rights">&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
             <div class="footer-links">
                 <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
