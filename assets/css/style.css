@@ -693,7 +693,6 @@ img {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    cursor: pointer;
 }
 
 .stack-card:hover {
