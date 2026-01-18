@@ -3,16 +3,53 @@
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Update current time (Brazil timezone)
+    
+    // ==========================================
+    // SISTEMA DE IDIOMAS
+    // ==========================================
+    
+    const langToggle = document.getElementById('lang-toggle');
+    const body = document.body;
+    
+    // Verifica idioma salvo ou usa português como padrão
+    const savedLang = localStorage.getItem('site-language') || 'pt';
+    
+    // Função para aplicar idioma
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            body.classList.add('lang-en');
+            if (langToggle) langToggle.textContent = 'PT';
+        } else {
+            body.classList.remove('lang-en');
+            if (langToggle) langToggle.textContent = 'EN';
+        }
+        localStorage.setItem('site-language', lang);
+    }
+    
+    // Aplicar idioma inicial
+    setLanguage(savedLang);
+    
+    // Event listener para toggle
+    if (langToggle) {
+        langToggle.addEventListener('click', function() {
+            const currentLang = body.classList.contains('lang-en') ? 'pt' : 'en';
+            setLanguage(currentLang);
+        });
+    }
+    
+    // ==========================================
+    // ATUALIZAÇÃO DE HORÁRIO
+    // ==========================================
+    
     function updateTime() {
         const now = new Date();
         const options = {
             timeZone: 'America/Sao_Paulo',
             hour: '2-digit',
             minute: '2-digit',
-            hour12: true
+            hour12: false
         };
-        const timeString = now.toLocaleTimeString('en-US', options);
+        const timeString = now.toLocaleTimeString('pt-BR', options);
         const timeElement = document.getElementById('current-time');
         if (timeElement) {
             timeElement.textContent = timeString;
@@ -22,7 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTime();
     setInterval(updateTime, 1000);
 
-    // Smooth scroll for anchor links
+    // ==========================================
+    // SMOOTH SCROLL
+    // ==========================================
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -36,7 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Active navigation link based on scroll position
+    // ==========================================
+    // ACTIVE NAVIGATION
+    // ==========================================
+    
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.index-link');
 
@@ -61,7 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveNav);
 
-    // Project card hover animation
+    // ==========================================
+    // PROJECT CARD HOVER
+    // ==========================================
+    
     const projectCards = document.querySelectorAll('.project-card');
     
     projectCards.forEach(card => {
@@ -72,26 +118,21 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
         });
+
+        // Se a imagem der erro, mostra placeholder
+        const img = card.querySelector('.project-image img');
+        const imageContainer = card.querySelector('.project-image');
+        if (img && imageContainer) {
+            img.addEventListener('error', () => {
+                imageContainer.classList.add('no-image');
+            });
+        }
     });
 
-    // View toggle functionality
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    const projectsGrid = document.querySelector('.projects-grid');
-
-    toggleBtns.forEach((btn, index) => {
-        btn.addEventListener('click', function() {
-            toggleBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            if (index === 0) {
-                projectsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            } else {
-                projectsGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-            }
-        });
-    });
-
-    // Typing effect for hero title (optional)
+    // ==========================================
+    // HERO TITLE ANIMATION
+    // ==========================================
+    
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         heroTitle.style.opacity = '0';
@@ -104,13 +145,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 200);
     }
 
-    // Animate elements on scroll
+    // ==========================================
+    // ANIMATE ON SCROLL
+    // ==========================================
+    
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.project-card, .timeline-item, .education-card, .stack-category');
+        const elements = document.querySelectorAll(
+            '.project-card, .timeline-item, .education-card'
+        );
         
+        const windowHeight = window.innerHeight;
+
         elements.forEach(el => {
             const rect = el.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight - 100;
+            const isVisible = rect.top < windowHeight - 100;
             
             if (isVisible && !el.classList.contains('animated')) {
                 el.classList.add('animated');
@@ -133,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        .project-card, .timeline-item, .education-card, .stack-category {
+        .project-card, .timeline-item, .education-card {
             opacity: 0;
         }
         
@@ -146,5 +194,5 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Run on load
 
-    console.log('Portfolio loaded successfully! 🚀');
+    console.log('✅ Portfolio carregado com sucesso!');
 });

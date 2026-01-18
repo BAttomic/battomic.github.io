@@ -13,31 +13,40 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <!-- HEADER UNIFICADO -->
-    <header class="header">
-        <div class="header-content">
-            <div class="header-left">
-                <span class="welcome-text" data-i18n="welcome">Bem-vindo ao meu mundo!</span>
-            </div>
-            <nav class="nav-menu">
-                <a href="../index.html" class="nav-link">bernardo.dev</a>
-                <a href="../work.html" class="nav-link active">work.done</a>
-                <a href="../blog.html" class="nav-link">blog.share</a>
-            </nav>
-            <div class="header-right">
-                <button id="lang-switch" class="lang-switch">EN</button>
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span data-i18n="status">Aberto a projetos</span>
-                </div>
-                <div class="location-time">
-                    <span>Viçosa, MG</span>
-                    <span class="separator">•</span>
-                    <span><span data-i18n="time_label">Meu horário:</span> <span id="current-time">00:00 PM</span></span>
-                </div>
-            </div>
-        </div>
-    </header>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text">Welcome to my world!</span>
+			</div>
+			
+			<nav class="nav-menu">
+				<a href="../index.html" class="nav-link">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active">work.done</a>
+				<a href="../blog.html" class="nav-link">blog.share</a>
+			</nav>
+			
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+				
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+				
+				<div class="location-time">
+					<span>Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span lang="pt">Meu horário:</span>
+						<span lang="en">My time:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
 
     <div class="main-layout" style="grid-template-columns: 1fr;">
         <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">

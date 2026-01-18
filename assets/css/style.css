@@ -19,7 +19,7 @@
     --border-light: #3a3a3a;
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'Geist Mono', 'SF Mono', monospace;
+    --font-mono: 'IBM Plex Mono', 'Geist Mono', 'SF Mono', monospace;
     
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -47,11 +47,14 @@ body {
     font-size: 14px;
 }
 
-/* Sistema de idiomas */
+/* ==========================================
+   SISTEMA DE IDIOMAS
+   ========================================== */
+
 [lang="en"] { display: none; }
-body.lang-en [lang="pt"] { display: none; }
-body.lang-en [lang="en"] { display: block; }
-body.lang-en [lang="en"].inline { display: inline; }
+body.lang-en [lang="pt"] { display: none !important; }
+body.lang-en [lang="en"] { display: inline !important; }
+body.lang-en .content-section [lang="en"] { display: block !important; }
 
 a {
     color: inherit;
@@ -63,32 +66,43 @@ img {
     height: auto;
 }
 
-/* Header padronizado */
+/* ==========================================
+   HEADER CORRIGIDO - EXTREMIDADES FIXAS
+   ========================================== */
+
 .header {
     background-color: var(--bg-primary);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
+    height: 50px;
+    width: 100%;
 }
 
 .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* MANTÉM EXTREMIDADES */
     padding: 0 20px;
-    height: 50px;
+    height: 100%;
+    width: 100%; /* LARGURA TOTAL - SEM LIMITAÇÃO */
 }
 
 .header-left .welcome-text {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-muted);
+    white-space: nowrap;
 }
 
+/* MENU CENTRALIZADO PERFEITAMENTE */
 .nav-menu {
     display: flex;
     gap: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-link {
@@ -97,15 +111,16 @@ img {
     color: var(--text-muted);
     padding: 6px 12px;
     transition: var(--transition);
+    position: relative;
 }
 
 .nav-link:hover {
     color: var(--text-primary);
 }
 
+/* DESTAQUE AMARELO RESTAURADO */
 .nav-link.active {
     color: var(--text-primary);
-    position: relative;
 }
 
 .nav-link.active::before {
@@ -116,7 +131,7 @@ img {
     transform: translateY(-50%);
     width: 2px;
     height: 12px;
-    background-color: var(--accent);
+    background-color: var(--accent); /* BARRINHA AMARELA */
 }
 
 .header-right {
@@ -125,17 +140,20 @@ img {
     gap: 16px;
 }
 
-/* Botão de idioma */
+/* BOTÃO DE IDIOMA */
 .lang-btn {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text-muted);
     font-family: var(--font-mono);
     font-size: 10px;
+    font-weight: 500;
     padding: 4px 8px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: var(--transition);
+    min-width: 32px;
+    text-align: center;
 }
 
 .lang-btn:hover {
@@ -153,6 +171,7 @@ img {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--success);
+    white-space: nowrap;
 }
 
 .status-dot {
@@ -172,20 +191,27 @@ img {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-muted);
+    white-space: nowrap;
 }
 
 .separator {
     margin: 0 6px;
 }
 
-/* Layout principal */
+/* ==========================================
+   LAYOUT PRINCIPAL
+   ========================================== */
+
 .main-layout {
     display: grid;
     grid-template-columns: 240px 50px 1fr 140px;
     min-height: calc(100vh - 50px);
 }
 
-/* Sidebar com ícones alinhados */
+/* ==========================================
+   SIDEBAR ESQUERDA
+   ========================================== */
+
 .sidebar {
     background-color: var(--bg-primary);
     border-right: 1px solid var(--border);
@@ -263,7 +289,6 @@ img {
     color: var(--text-secondary);
 }
 
-/* Correção de alinhamento dos ícones */
 .info-item i,
 .contact-item i {
     width: 16px;
@@ -361,7 +386,10 @@ img {
     background-color: var(--accent);
 }
 
-/* Line numbers */
+/* ==========================================
+   LINE NUMBERS
+   ========================================== */
+
 .line-numbers {
     background-color: var(--bg-secondary);
     border-right: 1px solid var(--border);
@@ -381,7 +409,10 @@ img {
     white-space: nowrap;
 }
 
-/* Conteúdo principal */
+/* ==========================================
+   CONTEÚDO PRINCIPAL
+   ========================================== */
+
 .main-content {
     padding: 20px 30px;
     background-color: var(--bg-secondary);
@@ -413,7 +444,10 @@ img {
     line-height: 1.6;
 }
 
-/* Projetos */
+/* ==========================================
+   PROJETOS
+   ========================================== */
+
 .work-section {
     margin-bottom: 0;
 }
@@ -491,6 +525,10 @@ img {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-card) 100%);
 }
 
+.project-image.no-image .project-placeholder {
+    display: flex;
+}
+
 .project-placeholder i {
     font-size: 36px;
     opacity: 0.3;
@@ -501,7 +539,6 @@ img {
     font-size: 10px;
 }
 
-/* Espaçamento melhorado para work.html */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -558,7 +595,10 @@ img {
     color: var(--text-secondary);
 }
 
-/* Seções */
+/* ==========================================
+   SEÇÕES
+   ========================================== */
+
 .about-section,
 .whatido-section,
 .stack-section,
@@ -672,7 +712,10 @@ img {
     transform: scale(1.1);
 }
 
-/* Timeline */
+/* ==========================================
+   TIMELINE
+   ========================================== */
+
 .timeline {
     position: relative;
     padding-left: 20px;
@@ -807,7 +850,10 @@ img {
     color: var(--text-secondary);
 }
 
-/* Right sidebar */
+/* ==========================================
+   RIGHT SIDEBAR
+   ========================================== */
+
 .right-sidebar {
     background-color: var(--bg-primary);
     border-left: 1px solid var(--border);
@@ -846,7 +892,10 @@ img {
     border-bottom: none;
 }
 
-/* Footer */
+/* ==========================================
+   FOOTER
+   ========================================== */
+
 .footer {
     display: block;
     background-color: var(--bg-primary);
@@ -858,6 +907,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .footer-content p {
@@ -880,7 +930,10 @@ img {
     color: var(--accent);
 }
 
-/* Estilos específicos para páginas de projeto */
+/* ==========================================
+   PÁGINAS DE PROJETO
+   ========================================== */
+
 .project-header-with-logo {
     display: flex;
     align-items: flex-start;
@@ -1042,7 +1095,10 @@ img {
     color: var(--text-muted);
 }
 
-/* Navegação de projetos */
+/* ==========================================
+   NAVEGAÇÃO DE PROJETOS
+   ========================================== */
+
 .project-navigation {
     display: flex;
     justify-content: space-between;
@@ -1125,7 +1181,10 @@ img {
     white-space: nowrap;
 }
 
-/* Diagramas */
+/* ==========================================
+   DIAGRAMAS
+   ========================================== */
+
 .architecture-diagram {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -1281,7 +1340,109 @@ img {
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* Responsividade */
+/* ==========================================
+   BLOG
+   ========================================== */
+
+.blog-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.blog-card:hover {
+    border-color: var(--border-light);
+    transform: translateY(-4px);
+}
+
+.blog-image {
+    height: 200px;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-card) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-image i {
+    font-size: 64px;
+    color: var(--accent);
+    opacity: 0.5;
+}
+
+.blog-content {
+    padding: 24px;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.blog-meta span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.blog-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.blog-excerpt {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 16px;
+}
+
+.read-more:hover {
+    gap: 12px;
+}
+
+/* ==========================================
+   LOGO PLACEHOLDER PARA AGENTE IA
+   ========================================== */
+
+.ai-logo-placeholder {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-primary) 100%);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--accent);
+    flex-shrink: 0;
+    animation: float-original 4s ease-in-out infinite;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
 @media (max-width: 1100px) {
     .main-layout {
         grid-template-columns: 240px 1fr;
@@ -1308,6 +1469,24 @@ img {
         grid-template-columns: 1fr;
     }
     
+    .header-content {
+        padding: 0 16px;
+    }
+    
+    .nav-menu {
+        position: static;
+        transform: none;
+        gap: 0;
+    }
+    
+    .nav-link {
+        padding: 6px 8px;
+    }
+    
+    .header-left {
+        display: none;
+    }
+    
     .sidebar {
         position: relative;
         top: 0;
@@ -1331,17 +1510,12 @@ img {
         margin: 0 auto;
     }
     
-    .info-section {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-    }
-    
+    .info-section,
     .contact-section {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 12px;
     }
     
     .cta-section {
@@ -1412,16 +1586,15 @@ img {
         height: auto;
         padding: 10px 14px;
         gap: 8px;
-    }
-    
-    .header-left {
-        display: none;
+        justify-content: center;
     }
     
     .nav-menu {
         order: 1;
         width: 100%;
         justify-content: center;
+        position: static;
+        transform: none;
     }
     
     .header-right {
@@ -1444,7 +1617,8 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .project-logo {
+    .project-logo,
+    .ai-logo-placeholder {
         width: 70px;
         height: 70px;
     }

@@ -21,29 +21,39 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="header-left">
-                <span class="welcome-text">Welcome to my world!</span>
-            </div>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-link active">bernardo.dev</a>
-                <a href="work.html" class="nav-link">work.done</a>
-                <a href="blog.html" class="nav-link">blog.share</a>
-            </nav>
-            <div class="header-right">
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span>Open to new work</span>
-                </div>
-                <div class="location-time">
-                    <span>Viçosa, MG</span>
-                    <span class="separator">•</span>
-                    <span>My time: <span id="current-time">00:00 PM</span></span>
-                </div>
-            </div>
-        </div>
-    </header>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text">Welcome to my world!</span>
+			</div>
+			
+			<nav class="nav-menu">
+				<a href="index.html" class="nav-link">bernardo.dev</a>
+				<a href="work.html" class="nav-link">work.done</a>
+				<a href="blog.html" class="nav-link">blog.share</a>
+			</nav>
+			
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+				
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+				
+				<div class="location-time">
+					<span>Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span lang="pt">Meu horário:</span>
+						<span lang="en">My time:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
 
     <div class="main-layout">
         <aside class="sidebar">
