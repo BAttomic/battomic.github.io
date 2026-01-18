@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos - Bernardo Motta</title>
-    <meta name="description" content="Projetos desenvolvidos por Bernardo Motta - Automação, DevOps e Integração de Sistemas.">
+    <meta name="description" content="Projetos desenvolvidos por Bernardo Motta - Automação e Comunidades.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
@@ -25,14 +24,20 @@
                 <a href="blog.html" class="nav-link">blog.share</a>
             </nav>
             <div class="header-right">
+                <button id="lang-toggle" class="lang-btn">EN</button>
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    <span>Open to new work</span>
+                    <span lang="pt">Disponível</span>
+                    <span lang="en">Open to work</span>
                 </div>
                 <div class="location-time">
                     <span>Viçosa, MG</span>
-                    <span class="dot"></span>
-                    <span>My time: <span id="current-time">00:00</span></span>
+                    <span class="separator">•</span>
+                    <span>
+                        <span lang="pt">Meu horário:</span>
+                        <span lang="en">My time:</span>
+                        <span id="current-time">00:00</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -43,11 +48,16 @@
             <section class="hero-section" style="grid-template-columns: 1fr;">
                 <div class="hero-content">
                     <h1 class="hero-title" style="font-size: 56px;">
-                        Meus<br>
-                        <span class="highlight">Projetos</span>
+                        <span lang="pt">Meus</span>
+                        <span lang="en">My</span><br>
+                        <span class="highlight">
+                            <span lang="pt">Projetos</span>
+                            <span lang="en">Projects</span>
+                        </span>
                     </h1>
                     <p class="hero-description">
-                        Uma coleção dos principais projetos que desenvolvi ao longo dos anos, desde automações inteligentes até infraestrutura de servidores.
+                        <span lang="pt">Uma coleção dos principais projetos que desenvolvi ao longo dos anos, desde automações inteligentes até infraestrutura de servidores.</span>
+                        <span lang="en">A collection of the main projects I've developed over the years, from intelligent automations to server infrastructure.</span>
                     </p>
                 </div>
             </section>
@@ -57,10 +67,14 @@
                     <!-- Project 1: Agente IA -->
                     <a href="work/agente-ia.html" class="project-card">
                         <div class="project-header">
-                            <h3>Agente de Atendimento com IA</h3>
-                            <i class="fas fa-arrow-right"></i>
+                            <h3>
+                                <span lang="pt">Agente de Atendimento com IA</span>
+                                <span lang="en">AI Customer Service Agent</span>
+                            </h3>
+                            <i class="fas fa-arrow-right project-arrow"></i>
                         </div>
                         <div class="project-image">
+                            <img src="assets/img/mascote_1696x2333.png" alt="Agente IA" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
                             <div class="project-placeholder">
                                 <i class="fas fa-robot"></i>
                                 <span>N8n + OpenAI + WhatsApp</span>
@@ -73,13 +87,15 @@
                             <span class="tag">Supabase</span>
                             <span class="tag">WhatsApp</span>
                         </div>
-                        <div style="padding: 0 20px 20px;">
-                            <p style="font-size: 13px; color: var(--text-secondary);">
-                                Sistema inteligente de atendimento automatizado com LLMs, orquestração via N8N, agendamento automático e prospecção.
+                        <div class="project-description">
+                            <p>
+                                <span lang="pt">Sistema inteligente de atendimento automatizado com LLMs, orquestração via N8N, agendamento automático e prospecção.</span>
+                                <span lang="en">Intelligent automated customer service system with LLMs, N8N orchestration, automatic scheduling and prospecting.</span>
                             </p>
-                            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; font-family: var(--font-mono);">
-                                2024 - Atual (PromovAds)
-                            </p>
+                        </div>
+                        <div class="project-meta">
+                            <span lang="pt">2024 - Atual (PromovAds)</span>
+                            <span lang="en">2024 - Current (PromovAds)</span>
                         </div>
                     </a>
 
@@ -87,12 +103,16 @@
                     <a href="work/lykos-province.html" class="project-card">
                         <div class="project-header">
                             <h3>Lykos Province</h3>
-                            <i class="fas fa-arrow-right"></i>
+                            <i class="fas fa-arrow-right project-arrow"></i>
                         </div>
                         <div class="project-image">
+                            <img src="assets/img/banner_945x190.png" alt="Lykos Province" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
                             <div class="project-placeholder">
                                 <i class="fas fa-gamepad"></i>
-                                <span>Rede de Servidores Minecraft</span>
+                                <span>
+                                    <span lang="pt">Rede de Servidores Minecraft</span>
+                                    <span lang="en">Minecraft Server Network</span>
+                                </span>
                             </div>
                         </div>
                         <div class="project-tags">
@@ -102,71 +122,14 @@
                             <span class="tag">VPS</span>
                             <span class="tag">Linux</span>
                         </div>
-                        <div style="padding: 0 20px 20px;">
-                            <p style="font-size: 13px; color: var(--text-secondary);">
-                                Estrutura modular com servidores independentes, painéis web de administração e comunidade com +1000 membros no Discord.
-                            </p>
-                            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; font-family: var(--font-mono);">
-                                2017 - 2023
+                        <div class="project-description">
+                            <p>
+                                <span lang="pt">Estrutura modular com servidores independentes, painéis web de administração e comunidade com +1000 membros no Discord.</span>
+                                <span lang="en">Modular structure with independent servers, web administration panels and community with +1000 members on Discord.</span>
                             </p>
                         </div>
-                    </a>
-
-                    <!-- Project 3: Bot Discord -->
-                    <a href="work/bot-discord.html" class="project-card">
-                        <div class="project-header">
-                            <h3>Bot Discord com API</h3>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="project-image">
-                            <div class="project-placeholder">
-                                <i class="fab fa-discord"></i>
-                                <span>Discord.js + REST APIs</span>
-                            </div>
-                        </div>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Discord.js</span>
-                            <span class="tag">REST API</span>
-                            <span class="tag">MySQL</span>
-                        </div>
-                        <div style="padding: 0 20px 20px;">
-                            <p style="font-size: 13px; color: var(--text-secondary);">
-                                Bot avançado com comandos inteligentes, integração via API REST, sistema de autenticação e menus interativos.
-                            </p>
-                            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; font-family: var(--font-mono);">
-                                2018 - 2023
-                            </p>
-                        </div>
-                    </a>
-
-                    <!-- Project 4: DevOps -->
-                    <a href="work/infraestrutura-devops.html" class="project-card">
-                        <div class="project-header">
-                            <h3>Infraestrutura DevOps & CI/CD</h3>
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                        <div class="project-image">
-                            <div class="project-placeholder">
-                                <i class="fas fa-server"></i>
-                                <span>Docker + VPS + Git</span>
-                            </div>
-                        </div>
-                        <div class="project-tags">
-                            <span class="tag">Docker</span>
-                            <span class="tag">Linux</span>
-                            <span class="tag">Git</span>
-                            <span class="tag">Cloudflare</span>
-                            <span class="tag">Contabo</span>
-                        </div>
-                        <div style="padding: 0 20px 20px;">
-                            <p style="font-size: 13px; color: var(--text-secondary);">
-                                Implementação de infraestrutura escalável com pipelines CI/CD, containerização e deploy automatizado.
-                            </p>
-                            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; font-family: var(--font-mono);">
-                                2024 - Atual
-                            </p>
+                        <div class="project-meta">
+                            2017 - 2023
                         </div>
                     </a>
                 </div>
@@ -176,7 +139,10 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <p>
+                <span lang="pt">&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</span>
+                <span lang="en">&copy; 2025 Bernardo Cordeiro Motta. All rights reserved.</span>
+            </p>
             <div class="footer-links">
                 <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>

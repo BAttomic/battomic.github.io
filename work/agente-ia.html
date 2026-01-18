@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentes Inteligentes Sob Medida - Bernardo Motta</title>
-    <meta name="description" content="Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.">
+    <meta name="description" content="Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        .ai-logo-placeholder {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-primary) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--accent);
+            flex-shrink: 0;
+            animation: float-original 4s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -24,14 +41,20 @@
                 <a href="../blog.html" class="nav-link">blog.share</a>
             </nav>
             <div class="header-right">
+                <button id="lang-toggle" class="lang-btn">EN</button>
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    <span>Open to new work</span>
+                    <span lang="pt">Disponível</span>
+                    <span lang="en">Open to work</span>
                 </div>
                 <div class="location-time">
                     <span>Viçosa, MG</span>
-                    <span class="dot"></span>
-                    <span>My time: <span id="current-time">00:00</span></span>
+                    <span class="separator">•</span>
+                    <span>
+                        <span lang="pt">Meu horário:</span>
+                        <span lang="en">My time:</span>
+                        <span id="current-time">00:00</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -39,150 +62,219 @@
 
     <div class="main-layout" style="grid-template-columns: 1fr;">
         <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
-            
-            <a href="../work.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; margin-bottom: 30px; font-size: 14px;">
-                <i class="fas fa-arrow-left"></i> Voltar aos projetos
-            </a>
 
             <article class="project-detail">
                 <header class="project-detail-header">
-                    <div class="project-meta">
-                        <span class="project-date">2024 - Atual</span>
-                        <span class="project-client">PMEs • Área da Saúde</span>
+                    <div class="project-header-with-logo">
+                        <div class="ai-logo-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-header-content">
+                            <h1>
+                                <span lang="pt">Agentes Inteligentes Sob Medida</span>
+                                <span lang="en">Custom Intelligent Agents</span>
+                            </h1>
+                            <p class="project-subtitle">
+                                <span lang="pt">Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.</span>
+                                <span lang="en">Custom development of agents for consultative sales, support and management, integrated exactly to the processes and tools your company already uses. Specialization in clinics and healthcare SMEs.</span>
+                            </p>
+                        </div>
                     </div>
-                    <h1>Agentes Inteligentes Sob Medida</h1>
-                    <p class="project-subtitle">
-                        Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. 
-                        Especialização em clínicas e PMEs da área da saúde.
-                    </p>
                 </header>
-
-                <div class="project-hero-image">
-                    <div class="project-placeholder large">
-                        <i class="fas fa-robot"></i>
-                        <span>Agentes de Vendas, Suporte & Gestão</span>
-                    </div>
-                </div>
 
                 <div class="project-content">
                     <section class="content-section">
-                        <h2>Visão Geral</h2>
-                        <p>
-                            Desenvolvo <strong>agentes inteligentes 100% personalizados</strong> para PMEs que precisam de automação que realmente se encaixe na sua operação. 
-                            Não são soluções genéricas — cada agente é construído do zero para atender exatamente aos seus processos, integrações e regras de negócio.
-                        </p>
-                        <p>
-                            Com especialização no <strong>setor de saúde</strong>, onde a combinação de atendimento humanizado, gestão complexa de agenda e integração com sistemas clínicos 
-                            exige soluções que vão muito além de chatbots convencionais.
-                        </p>
+                        <h2>
+                            <span lang="pt">Visão Geral</span>
+                            <span lang="en">Overview</span>
+                        </h2>
+                        <p lang="pt">Desenvolvo <strong>agentes inteligentes 100% personalizados</strong> para PMEs que precisam de automação que realmente se encaixe na sua operação. Não são soluções genéricas — cada agente é construído do zero para atender exatamente aos seus processos, integrações e regras de negócio.</p>
+                        <p lang="en">I develop <strong>100% custom intelligent agents</strong> for SMEs that need automation that truly fits their operation. These are not generic solutions — each agent is built from scratch to meet exactly your processes, integrations and business rules.</p>
+                        
+                        <p lang="pt">Com especialização no <strong>setor de saúde</strong>, onde a combinação de atendimento humanizado, gestão complexa de agenda e integração com sistemas clínicos exige soluções que vão muito além de chatbots convencionais.</p>
+                        <p lang="en">With specialization in the <strong>healthcare sector</strong>, where the combination of humanized care, complex schedule management and integration with clinical systems requires solutions that go far beyond conventional chatbots.</p>
                     </section>
 
                     <section class="content-section">
-                        <h2>Capacidades dos Agentes</h2>
+                        <h2>
+                            <span lang="pt">Capacidades dos Agentes</span>
+                            <span lang="en">Agent Capabilities</span>
+                        </h2>
                         <ul class="feature-list">
                             <li>
-                                <strong>Venda Consultiva Automatizada:</strong> 
-                                Conduz conversas de descoberta, identifica necessidades e apresenta soluções de forma natural, sempre respeitando o tom da sua marca.
+                                <strong>
+                                    <span lang="pt">Venda Consultiva Automatizada:</span>
+                                    <span lang="en">Automated Consultative Sales:</span>
+                                </strong> 
+                                <span lang="pt">Conduz conversas de descoberta, identifica necessidades e apresenta soluções de forma natural, sempre respeitando o tom da sua marca.</span>
+                                <span lang="en">Conducts discovery conversations, identifies needs and presents solutions naturally, always respecting your brand's tone.</span>
                             </li>
                             <li>
-                                <strong>Gestão Completa de Agenda:</strong> 
-                                Agenda, consulta, reagenda e cancela consultas automaticamente, com sistema de confirmação inteligente para reduzir faltas.
+                                <strong>
+                                    <span lang="pt">Gestão Completa de Agenda:</span>
+                                    <span lang="en">Complete Schedule Management:</span>
+                                </strong> 
+                                <span lang="pt">Agenda, consulta, reagenda e cancela consultas automaticamente, com sistema de confirmação inteligente para reduzir faltas.</span>
+                                <span lang="en">Schedules, checks, reschedules and cancels appointments automatically, with intelligent confirmation system to reduce no-shows.</span>
                             </li>
                             <li>
-                                <strong>Suporte Inteligente:</strong> 
-                                Responde dúvidas frequentes, orienta sobre procedimentos e transfere para atendimento humano quando necessário, mantendo todo o contexto.
+                                <strong>
+                                    <span lang="pt">Suporte Inteligente:</span>
+                                    <span lang="en">Intelligent Support:</span>
+                                </strong> 
+                                <span lang="pt">Responde dúvidas frequentes, orienta sobre procedimentos e transfere para atendimento humano quando necessário, mantendo todo o contexto.</span>
+                                <span lang="en">Answers frequently asked questions, guides on procedures and transfers to human service when necessary, maintaining all context.</span>
                             </li>
                             <li>
-                                <strong>Prospecção Estratégica:</strong> 
-                                Utiliza dados do Google Maps para identificar e qualificar potenciais clientes em regiões específicas.
+                                <strong>
+                                    <span lang="pt">Prospecção Estratégica:</span>
+                                    <span lang="en">Strategic Prospecting:</span>
+                                </strong> 
+                                <span lang="pt">Utiliza dados do Google Maps para identificar e qualificar potenciais clientes em regiões específicas.</span>
+                                <span lang="en">Uses Google Maps data to identify and qualify potential clients in specific regions.</span>
                             </li>
                             <li>
-                                <strong>Follow-up Automatizado:</strong> 
-                                Executa sequências de acompanhamento personalizadas baseadas no comportamento e estágio de cada lead.
+                                <strong>
+                                    <span lang="pt">Follow-up Automatizado:</span>
+                                    <span lang="en">Automated Follow-up:</span>
+                                </strong> 
+                                <span lang="pt">Executa sequências de acompanhamento personalizadas baseadas no comportamento e estágio de cada lead.</span>
+                                <span lang="en">Executes personalized follow-up sequences based on each lead's behavior and stage.</span>
                             </li>
                             <li>
-                                <strong>Acesso a Dados em Tempo Real:</strong> 
-                                Consulta e atualiza informações em seus sistemas internos para fornecer respostas sempre precisas e atualizadas.
+                                <strong>
+                                    <span lang="pt">Acesso a Dados em Tempo Real:</span>
+                                    <span lang="en">Real-Time Data Access:</span>
+                                </strong> 
+                                <span lang="pt">Consulta e atualiza informações em seus sistemas internos para fornecer respostas sempre precisas e atualizadas.</span>
+                                <span lang="en">Queries and updates information in your internal systems to provide always accurate and up-to-date responses.</span>
                             </li>
                         </ul>
                     </section>
 
                     <section class="content-section">
-                        <h2>Integrações Estratégicas</h2>
+                        <h2>
+                            <span lang="pt">Integrações Estratégicas</span>
+                            <span lang="en">Strategic Integrations</span>
+                        </h2>
                         <div class="tech-architecture">
                             <div class="arch-item">
-                                <h4><i class="fab fa-google"></i> Ecossistema Google</h4>
-                                <p>
-                                    Integração com Google Sheets, Google Ads, Gmail, Google Maps, Drive, Google Agenda e Google Meet, 
-                                    conectando seu agente ao centro da operação diária.
-                                </p>
+                                <h4><i class="fab fa-google"></i> 
+                                    <span lang="pt">Ecossistema Google</span>
+                                    <span lang="en">Google Ecosystem</span>
+                                </h4>
+                                <p lang="pt">Integração com Google Sheets, Google Ads, Gmail, Google Maps, Drive, Google Agenda e Google Meet, conectando seu agente ao centro da operação diária.</p>
+                                <p lang="en">Integration with Google Sheets, Google Ads, Gmail, Google Maps, Drive, Google Calendar and Google Meet, connecting your agent to the center of daily operations.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fab fa-meta"></i> Universo Meta</h4>
-                                <p>
-                                    Atendimento unificado no Instagram e WhatsApp, sincronizado com campanhas do Meta Ads para aproveitar ao máximo cada lead que entra no funil.
-                                </p>
+                                <h4><i class="fab fa-meta"></i> 
+                                    <span lang="pt">Universo Meta</span>
+                                    <span lang="en">Meta Universe</span>
+                                </h4>
+                                <p lang="pt">Atendimento unificado no Instagram e WhatsApp, sincronizado com campanhas do Meta Ads para aproveitar ao máximo cada lead que entra no funil.</p>
+                                <p lang="en">Unified service on Instagram and WhatsApp, synchronized with Meta Ads campaigns to make the most of every lead entering the funnel.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fas fa-clinic-medical"></i> Sistemas de Saúde</h4>
-                                <p>
-                                    Experiência com Clinicorp e outras plataformas especializadas, garantindo fluxo de dados estável entre agente, agenda e prontuário.
-                                </p>
+                                <h4><i class="fas fa-clinic-medical"></i> 
+                                    <span lang="pt">Sistemas de Saúde</span>
+                                    <span lang="en">Healthcare Systems</span>
+                                </h4>
+                                <p lang="pt">Experiência com Clinicorp e outras plataformas especializadas, garantindo fluxo de dados estável entre agente, agenda e prontuário.</p>
+                                <p lang="en">Experience with Clinicorp and other specialized platforms, ensuring stable data flow between agent, schedule and medical records.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fas fa-chart-line"></i> Inteligência de Dados</h4>
-                                <p>
-                                    Coleta métricas importantes durante a conversação — tanto do usuário quanto do próprio agente e das ferramentas usadas — 
-                                    gerando insumos para decisões mais estratégicas.
-                                </p>
+                                <h4><i class="fas fa-chart-line"></i> 
+                                    <span lang="pt">Inteligência de Dados</span>
+                                    <span lang="en">Data Intelligence</span>
+                                </h4>
+                                <p lang="pt">Coleta métricas importantes durante a conversação — tanto do usuário quanto do próprio agente e das ferramentas usadas — gerando insumos para decisões mais estratégicas.</p>
+                                <p lang="en">Collects important metrics during conversation — from both user and agent and tools used — generating inputs for more strategic decisions.</p>
                             </div>
                         </div>
                     </section>
 
                     <section class="content-section">
-                        <h2>Personalização Total</h2>
-                        <p>Cada agente é desenvolvido especificamente para sua operação, considerando:</p>
+                        <h2>
+                            <span lang="pt">Personalização Total</span>
+                            <span lang="en">Total Personalization</span>
+                        </h2>
+                        <p lang="pt">Cada agente é desenvolvido especificamente para sua operação, considerando:</p>
+                        <p lang="en">Each agent is developed specifically for your operation, considering:</p>
+                        
                         <ul class="feature-list">
                             <li>
-                                <strong>Seus Processos:</strong> 
-                                Mapeio como sua equipe trabalha hoje e desenho automações que se encaixam naturalmente no fluxo existente, sem atrito com o dia a dia.
+                                <strong>
+                                    <span lang="pt">Seus Processos:</span>
+                                    <span lang="en">Your Processes:</span>
+                                </strong> 
+                                <span lang="pt">Mapeio como sua equipe trabalha hoje e desenho automações que se encaixam naturalmente no fluxo existente, sem atrito com o dia a dia.</span>
+                                <span lang="en">I map how your team works today and design automations that fit naturally into the existing flow, without friction with daily operations.</span>
                             </li>
                             <li>
-                                <strong>Suas Ferramentas:</strong> 
-                                Integro o agente com os sistemas que você já usa, evitando migrações desnecessárias ou reestruturações complexas.
+                                <strong>
+                                    <span lang="pt">Suas Ferramentas:</span>
+                                    <span lang="en">Your Tools:</span>
+                                </strong> 
+                                <span lang="pt">Integro o agente com os sistemas que você já usa, evitando migrações desnecessárias ou reestruturações complexas.</span>
+                                <span lang="en">I integrate the agent with the systems you already use, avoiding unnecessary migrations or complex restructuring.</span>
                             </li>
                             <li>
-                                <strong>Seu Tom de Voz:</strong> 
-                                O agente se comunica exatamente como sua marca, mantendo consistência em todos os pontos de contato com o paciente ou cliente.
+                                <strong>
+                                    <span lang="pt">Seu Tom de Voz:</span>
+                                    <span lang="en">Your Voice Tone:</span>
+                                </strong> 
+                                <span lang="pt">O agente se comunica exatamente como sua marca, mantendo consistência em todos os pontos de contato com o paciente ou cliente.</span>
+                                <span lang="en">The agent communicates exactly like your brand, maintaining consistency at all touchpoints with the patient or client.</span>
                             </li>
                             <li>
-                                <strong>Suas Regras Específicas:</strong> 
-                                Implemento lógicas particulares do seu setor e operação, garantindo que o agente tome decisões alinhadas ao que faz sentido para o seu negócio.
+                                <strong>
+                                    <span lang="pt">Suas Regras Específicas:</span>
+                                    <span lang="en">Your Specific Rules:</span>
+                                </strong> 
+                                <span lang="pt">Implemento lógicas particulares do seu setor e operação, garantindo que o agente tome decisões alinhadas ao que faz sentido para o seu negócio.</span>
+                                <span lang="en">I implement specific logic for your sector and operation, ensuring the agent makes decisions aligned with what makes sense for your business.</span>
                             </li>
                         </ul>
                     </section>
 
                     <section class="content-section">
-                        <h2>Modelo de Trabalho Completo</h2>
-                        <p>Trabalho em um formato que acompanha toda a jornada da automação:</p>
+                        <h2>
+                            <span lang="pt">Modelo de Trabalho Completo</span>
+                            <span lang="en">Complete Work Model</span>
+                        </h2>
+                        <p lang="pt">Trabalho em um formato que acompanha toda a jornada da automação:</p>
+                        <p lang="en">I work in a format that follows the entire automation journey:</p>
+                        
                         <ul class="feature-list">
                             <li>
-                                <strong>Desenvolvimento Customizado:</strong> 
-                                Fase de diagnóstico, desenho do fluxo, implementação do agente e testes com sua equipe.
+                                <strong>
+                                    <span lang="pt">Desenvolvimento Customizado:</span>
+                                    <span lang="en">Custom Development:</span>
+                                </strong> 
+                                <span lang="pt">Fase de diagnóstico, desenho do fluxo, implementação do agente e testes com sua equipe.</span>
+                                <span lang="en">Diagnosis phase, flow design, agent implementation and testing with your team.</span>
                             </li>
                             <li>
-                                <strong>Hospedagem & Manutenção:</strong> 
-                                Infraestrutura, monitoramento, ajustes técnicos e atualizações contínuas ficam sob minha responsabilidade.
+                                <strong>
+                                    <span lang="pt">Hospedagem & Manutenção:</span>
+                                    <span lang="en">Hosting & Maintenance:</span>
+                                </strong> 
+                                <span lang="pt">Infraestrutura, monitoramento, ajustes técnicos e atualizações contínuas ficam sob minha responsabilidade.</span>
+                                <span lang="en">Infrastructure, monitoring, technical adjustments and continuous updates are under my responsibility.</span>
                             </li>
                             <li>
-                                <strong>Consultoria Contínua:</strong> 
-                                Acompanhamento para interpretar métricas, ajustar rotas de atendimento e explorar novas integrações conforme o negócio cresce.
+                                <strong>
+                                    <span lang="pt">Consultoria Contínua:</span>
+                                    <span lang="en">Continuous Consulting:</span>
+                                </strong> 
+                                <span lang="pt">Acompanhamento para interpretar métricas, ajustar rotas de atendimento e explorar novas integrações conforme o negócio cresce.</span>
+                                <span lang="en">Follow-up to interpret metrics, adjust service routes and explore new integrations as the business grows.</span>
                             </li>
                         </ul>
                     </section>
 
                     <section class="content-section">
-                        <h2>Stack Tecnológico</h2>
+                        <h2>Stack</h2>
                         <div class="tech-tags">
                             <span class="tech-tag">OpenAI GPT</span>
                             <span class="tech-tag">Google Gemini</span>
@@ -202,28 +294,59 @@
                     </section>
 
                     <section class="content-section">
-                        <h2>Diferenciais para PMEs</h2>
+                        <h2>
+                            <span lang="pt">Diferenciais para PMEs</span>
+                            <span lang="en">Differentials for SMEs</span>
+                        </h2>
                         <div class="results-grid">
                             <div class="result-item">
                                 <span class="result-number">100%</span>
-                                <span class="result-label">Personalizado à Operação</span>
+                                <span class="result-label">
+                                    <span lang="pt">Personalizado à Operação</span>
+                                    <span lang="en">Customized to Operation</span>
+                                </span>
                             </div>
                             <div class="result-item">
                                 <span class="result-number">24/7</span>
-                                <span class="result-label">Atendimento Contínuo</span>
+                                <span class="result-label">
+                                    <span lang="pt">Atendimento Contínuo</span>
+                                    <span lang="en">Continuous Service</span>
+                                </span>
                             </div>
                             <div class="result-item">
                                 <span class="result-number">Full</span>
-                                <span class="result-label">Desenvolvimento + Infra + Consultoria</span>
+                                <span class="result-label">
+                                    <span lang="pt">Desenvolvimento + Infra + Consultoria</span>
+                                    <span lang="en">Development + Infra + Consulting</span>
+                                </span>
                             </div>
                         </div>
                     </section>
                 </div>
             </article>
 
-            <nav class="project-navigation">
-                <a href="lykos-province.html" class="nav-next">
-                    <span>Próximo Projeto</span>
+            <nav class="project-navigation three-column-nav">
+                <div class="nav-item nav-prev" style="opacity: 0.3; pointer-events: none;">
+                    <span>
+                        <span lang="pt">Projeto Anterior</span>
+                        <span lang="en">Previous Project</span>
+                    </span>
+                    <strong>—</strong>
+                </div>
+                
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span>
+                        <span lang="pt">Voltar aos Projetos</span>
+                        <span lang="en">Back to Projects</span>
+                    </span>
+                </a>
+                
+                <a href="lykos-province.html" class="nav-item nav-next">
+                    <span>
+                        <span lang="pt">Próximo Projeto</span>
+                        <span lang="en">Next Project</span>
+                    </span>
                     <strong>Lykos Province <i class="fas fa-arrow-right"></i></strong>
                 </a>
             </nav>
@@ -233,7 +356,10 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <p>
+                <span lang="pt">&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</span>
+                <span lang="en">&copy; 2025 Bernardo Cordeiro Motta. All rights reserved.</span>
+            </p>
             <div class="footer-links">
                 <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>

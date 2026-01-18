@@ -8,15 +8,16 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+    <!-- HEADER UNIFICADO -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <span class="welcome-text">Welcome to my world!</span>
+                <span class="welcome-text" data-i18n="welcome">Bem-vindo ao meu mundo!</span>
             </div>
             <nav class="nav-menu">
                 <a href="../index.html" class="nav-link">bernardo.dev</a>
@@ -24,14 +25,15 @@
                 <a href="../blog.html" class="nav-link">blog.share</a>
             </nav>
             <div class="header-right">
+                <button id="lang-switch" class="lang-switch">EN</button>
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    <span>Open to new work</span>
+                    <span data-i18n="status">Aberto a projetos</span>
                 </div>
                 <div class="location-time">
                     <span>Viçosa, MG</span>
-                    <span class="dot"></span>
-                    <span>My time: <span id="current-time">00:00</span></span>
+                    <span class="separator">•</span>
+                    <span><span data-i18n="time_label">Meu horário:</span> <span id="current-time">00:00 PM</span></span>
                 </div>
             </div>
         </div>
@@ -39,80 +41,201 @@
 
     <div class="main-layout" style="grid-template-columns: 1fr;">
         <main class="main-content" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
-            
-            <a href="../work.html" class="back-link" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; margin-bottom: 30px; font-size: 14px;">
-                <i class="fas fa-arrow-left"></i> Voltar aos projetos
-            </a>
 
             <article class="project-detail">
                 <header class="project-detail-header">
-                    <div class="project-meta">
-                        <span class="project-date">2017 - 2023</span>
-                        <span class="project-client">Projeto Pessoal</span>
+                    <div class="project-header-with-logo">
+                        <img src="../assets/img/brasao_2794x3234.png" alt="Brasão Lykos Province" class="project-logo">
+                        <div class="project-header-content">
+                            <h1 class="lykos-title-main">Lykos Province</h1>
+                            <p class="project-subtitle">
+                                Uma comunidade gaming que passou por diversas fases e jogos, tendo seu maior destaque no Minecraft com uma rede completa de servidores, economia própria e mais de 1000 membros ativos.
+                            </p>
+                        </div>
                     </div>
-                    <h1>Lykos Province</h1>
-                    <p class="project-subtitle">Rede de servidores Minecraft com arquitetura modular, plugins customizados e comunidade ativa.</p>
                 </header>
-
-                <div class="project-hero-image">
-                    <div class="project-placeholder large">
-                        <i class="fas fa-gamepad"></i>
-                        <span>Rede de Servidores Minecraft</span>
-                    </div>
-                </div>
 
                 <div class="project-content">
                     <section class="content-section">
-                        <h2>Sobre o Projeto</h2>
-                        <p>Lykos Province foi uma rede de servidores Minecraft que gerenciei por 6 anos, construindo desde a infraestrutura técnica até a comunidade de jogadores. O projeto envolveu desenvolvimento de plugins customizados em Java, administração de servidores Linux e gestão de uma comunidade com mais de 1000 membros ativos no Discord.</p>
+                        <h2>A História</h2>
+                        <p>Fundada em <strong>05/08/2017</strong> por mim, Lykos Province começou como uma comunidade que passou por diversas fases e jogos, sendo o maior destaque para o <strong>Minecraft</strong>. Ao longo de anos teve diversos servidores até ser descontinuado no fim de <strong>2023</strong> por motivos de tempo e foco em novos projetos profissionais.</p>
+                        
+                        <p>O ecossistema completo incluía não apenas os servidores de jogo, mas também um <strong>website integrado</strong> para gestão de contas e loja virtual, além de um <strong>bot customizado no Discord</strong> que informava diversos dados dos servidores em tempo real, como status online, número de jogadores conectados, estatísticas detalhadas e eventos da comunidade.</p>
                     </section>
 
                     <section class="content-section">
                         <h2>Arquitetura da Rede</h2>
+                        <p>A rede era composta por uma arquitetura modular e escalável, contendo <strong>8 servidores jogáveis</strong>, <strong>1 lobby central</strong> e um <strong>proxy para autenticação</strong> e roteamento de tráfego. Toda a infraestrutura rodava em <strong>VPS próprias</strong>, gerenciadas através do painel <strong>Pterodactyl</strong>.</p>
+
+                        <div class="architecture-diagram">
+                            <div class="diagram-title">Arquitetura Completa da Rede</div>
+                            
+                            <div class="diagram-flow">
+                                <div class="diagram-level">
+                                    <div class="diagram-node proxy">
+                                        <div class="node-icon"><i class="fas fa-network-wired"></i></div>
+                                        <div class="node-title">PROXY SERVER</div>
+                                        <div class="node-desc">BungeeCord/Velocity<br>Autenticação & Roteamento</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="connection-line"></div>
+                                
+                                <div class="diagram-level">
+                                    <div class="diagram-node lobby">
+                                        <div class="node-icon"><i class="fas fa-door-open"></i></div>
+                                        <div class="node-title">LOBBY CENTRAL</div>
+                                        <div class="node-desc">Hub de Navegação<br>Sistema de Menus</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="connection-line"></div>
+                                
+                                <div class="diagram-level servers-level">
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-dragon"></i></div>
+                                        <div class="node-title">Kepler</div>
+                                        <div class="node-desc">MMORPG</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-cloud"></i></div>
+                                        <div class="node-title">Voyager</div>
+                                        <div class="node-desc">Skyblock</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-chart-line"></i></div>
+                                        <div class="node-title">Sputnik</div>
+                                        <div class="node-desc">Rankup</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-cube"></i></div>
+                                        <div class="node-title">James</div>
+                                        <div class="node-desc">Creative</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-skull-crossbones"></i></div>
+                                        <div class="node-title">Hubble</div>
+                                        <div class="node-desc">MineZ</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-trophy"></i></div>
+                                        <div class="node-title">Cassini</div>
+                                        <div class="node-desc">Minigames</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-tree"></i></div>
+                                        <div class="node-title">Apollo</div>
+                                        <div class="node-desc">Survival</div>
+                                    </div>
+                                    <div class="diagram-node server">
+                                        <div class="node-icon"><i class="fas fa-fire"></i></div>
+                                        <div class="node-title">Artemis</div>
+                                        <div class="node-desc">Hardcore</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="connection-line"></div>
+                                
+                                <div class="diagram-level databases-level">
+                                    <div class="diagram-node database">
+                                        <div class="node-icon"><i class="fas fa-database"></i></div>
+                                        <div class="node-title">DATABASE GLOBAL</div>
+                                        <div class="node-desc">Contas, Ranks, Economia</div>
+                                    </div>
+                                    <div class="diagram-node database">
+                                        <div class="node-icon"><i class="fas fa-hdd"></i></div>
+                                        <div class="node-title">DATABASES LOCAIS</div>
+                                        <div class="node-desc">Dados específicos por servidor</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="diagram-caption">
+                                Arquitetura: 1 Proxy + 1 Lobby + 8 Servidores (Kepler, Voyager, Sputnik, James, Hubble, Cassini, Apollo, Artemis) + Bancos de dados distribuídos
+                            </div>
+                        </div>
+                        
                         <ul class="feature-list">
-                            <li><strong>BungeeCord/Velocity:</strong> Proxy para gerenciamento de múltiplos servidores e balanceamento de carga.</li>
-                            <li><strong>Servidores Modulares:</strong> Lobby, Survival, PvP, minigames - cada um com configurações independentes.</li>
-                            <li><strong>Plugins Customizados:</strong> Desenvolvimento em Java usando Spigot/Paper API para funcionalidades exclusivas.</li>
-                            <li><strong>Sistema de Autenticação:</strong> Login seguro com integração ao banco de dados MySQL.</li>
-                            <li><strong>Painéis Web:</strong> Interface administrativa para gerenciamento de jogadores e estatísticas.</li>
+                            <li><strong>Proxy Server:</strong> Responsável pela autenticação de jogadores e roteamento inteligente de tráfego entre todos os servidores da rede.</li>
+                            <li><strong>Lobby Central:</strong> Hub principal - ponto de entrada centralizado e sistema de navegação para todos os servidores disponíveis.</li>
+                            <li><strong>8 Servidores Jogáveis:</strong> Cada um com suas especialidades e modos de jogo exclusivos (MMORPG, Skyblock, Rankup, Creative, MineZ, Minigames, Survival, Hardcore), operando de forma independente com nomes inspirados em missões espaciais.</li>
+                            <li><strong>Database Global:</strong> Sistema centralizado para gerenciamento de contas, ranks globais, economia compartilhada e autenticação.</li>
+                            <li><strong>Databases Locais:</strong> Bancos específicos para cada servidor, garantindo performance otimizada e isolamento de dados.</li>
                         </ul>
                     </section>
 
                     <section class="content-section">
-                        <h2>Destaques Técnicos</h2>
+                        <h2>Evolução Tecnológica</h2>
+                        <p>Durante os <strong>6 anos de operação</strong>, a rede passou por constantes atualizações tecnológicas para melhorar performance, segurança e experiência dos jogadores:</p>
+                        
                         <div class="tech-architecture">
                             <div class="arch-item">
-                                <h4><i class="fab fa-java"></i> Backend Java</h4>
-                                <p>Plugins desenvolvidos com Spigot, Bukkit e Paper API para máxima performance e compatibilidade.</p>
+                                <h4><i class="fas fa-network-wired"></i> Proxy Evolution</h4>
+                                <p>Usamos <strong>BungeeCord</strong> por um tempo e depois migramos para <strong>Velocity</strong>, obtendo melhor performance e recursos avançados.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fas fa-database"></i> Persistência</h4>
-                                <p>MySQL para dados de jogadores, economia, permissões e estatísticas do servidor.</p>
+                                <h4><i class="fas fa-server"></i> Server Core</h4>
+                                <p>Evolução: <strong>Bukkit</strong> → <strong>Paper</strong> → <strong>Folia</strong>, implementando multithreading e otimizações de TPS.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fas fa-server"></i> Infraestrutura</h4>
-                                <p>VPS Linux com scripts de automação para deploy, backup e monitoramento.</p>
+                                <h4><i class="fas fa-puzzle-piece"></i> Plugin Development</h4>
+                                <p>Edição de <strong>inúmeros plugins open-source</strong> para uso exclusivo, além de desenvolvimento proprietário em Java.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fab fa-discord"></i> Comunidade</h4>
-                                <p>Servidor Discord integrado com bots para verificação, suporte e eventos.</p>
+                                <h4><i class="fas fa-database"></i> Data Management</h4>
+                                <p>Uso de <strong>MariaDB</strong> e <strong>MySQL</strong>, com configurações em <strong>JSON</strong> e <strong>YML</strong> via <strong>Pterodactyl</strong>.</p>
                             </div>
                         </div>
                     </section>
 
                     <section class="content-section">
-                        <h2>Stack Tecnológico</h2>
+                        <h2>Modelo de Negócio</h2>
+                        <p>A monetização da rede era baseada na <strong>venda de créditos</strong> através de uma loja virtual integrada ao website, que disponibilizava aos jogadores diversos benefícios e melhorias para sua experiência de jogo:</p>
+                        
+                        <ul class="feature-list">
+                            <li><strong>Ranks Globais:</strong> Benefícios e permissões que funcionavam em toda a rede de servidores.</li>
+                            <li><strong>Ranks Locais:</strong> Vantagens específicas para servidores individuais, focados em modos de jogo específicos.</li>
+                            <li><strong>Cosméticos Globais:</strong> Partículas customizadas, tags personalizadas e efeitos especiais.</li>
+                            <li><strong>Pets/Montarias Utilitárias:</strong> Companheiros virtuais com funcionalidades práticas e habilidades especiais.</li>
+                            <li><strong>Perks:</strong> Comandos exclusivos, kits personalizados e facilidades de qualidade de vida.</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Comunidade Discord & Integrações</h2>
+                        <p>O servidor Discord era o coração da comunidade, com mais de <strong>1000 membros ativos</strong>. Desenvolvemos um <strong>bot customizado</strong> que mantinha todos informados sobre o status da rede em tempo real, além de um <strong>website completo</strong> para gestão de contas e compras:</p>
+                        
+                        <ul class="feature-list">
+                            <li><strong>Status em Tempo Real:</strong> Monitoramento de todos os servidores, exibindo jogadores online, TPS e performance.</li>
+                            <li><strong>Sistema de Verificação:</strong> Integração automática entre conta do jogo e Discord para acesso a canais exclusivos.</li>
+                            <li><strong>Notificações Automáticas:</strong> Alertas sobre manutenções, atualizações e eventos especiais.</li>
+                            <li><strong>Website Integrado:</strong> Portal completo para gestão de contas, loja virtual e estatísticas detalhadas.</li>
+                        </ul>
+
+                        <div class="discord-cta">
+                            <div class="discord-text">
+                                <h4>Acesse a Comunidade</h4>
+                                <p>O legado da Lykos Province ainda vive na comunidade Discord.</p>
+                            </div>
+                            <a href="https://discord.gg/9tT5qMfMM6" target="_blank" class="discord-btn">
+                                <i class="fab fa-discord"></i> Entrar no Discord
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack Tecnológico Completo</h2>
                         <div class="tech-tags">
                             <span class="tech-tag">Java</span>
-                            <span class="tech-tag">Spigot API</span>
-                            <span class="tech-tag">Bukkit</span>
-                            <span class="tech-tag">Paper</span>
-                            <span class="tech-tag">Velocity</span>
+                            <span class="tech-tag">Bukkit/Paper/Folia</span>
+                            <span class="tech-tag">BungeeCord/Velocity</span>
+                            <span class="tech-tag">MariaDB</span>
                             <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Linux</span>
-                            <span class="tech-tag">VPS</span>
-                            <span class="tech-tag">Shell Scripts</span>
-                            <span class="tech-tag">Discord API</span>
+                            <span class="tech-tag">JSON/YML</span>
+                            <span class="tech-tag">Linux VPS</span>
+                            <span class="tech-tag">Pterodactyl</span>
+                            <span class="tech-tag">Discord Bot</span>
+                            <span class="tech-tag">Website Integration</span>
                         </div>
                     </section>
 
@@ -125,31 +248,38 @@
                             </div>
                             <div class="result-item">
                                 <span class="result-number">1000+</span>
-                                <span class="result-label">Membros no Discord</span>
+                                <span class="result-label">Membros Discord</span>
                             </div>
                             <div class="result-item">
-                                <span class="result-number">15+</span>
-                                <span class="result-label">Plugins Customizados</span>
+                                <span class="result-number">8</span>
+                                <span class="result-label">Servidores Simultâneos</span>
                             </div>
                         </div>
                     </section>
 
                     <section class="content-section">
-                        <h2>Aprendizados</h2>
-                        <p>Este projeto foi fundamental para minha formação como desenvolvedor. Aprendi a gerenciar infraestrutura de servidores, desenvolver em Java de forma profissional, trabalhar com bancos de dados relacionais, e principalmente, a importância de construir e manter uma comunidade engajada.</p>
+                        <h2>Aprendizados e Legado</h2>
+                        <p>Lykos Province foi muito mais do que um projeto técnico - foi uma verdadeira escola de gestão, desenvolvimento e empreendedorismo digital. O projeto me ensinou a gerenciar infraestrutura complexa em produção 24/7, desenvolver soluções escaláveis em Java, trabalhar com bancos de dados relacionais em escala real, implementar sistemas de monetização sustentáveis e, principalmente, construir e manter uma <strong>comunidade engajada e leal</strong> por anos consecutivos.</p>
+                        
+                        <p>A experiência de liderar uma operação técnica e comercial por 6 anos me deu uma visão única sobre gestão de produtos digitais, satisfação do usuário, resolução de conflitos, trabalho em equipe e sustentabilidade de projetos de longo prazo. Cada desafio superado, cada atualização implementada e cada feedback dos jogadores contribuíram para minha formação como desenvolvedor profissional.</p>
+                        
+                        <p>Embora o projeto tenha sido descontinuado em 2023, o legado da Lykos Province continua vivo na comunidade que construímos e nas amizades formadas ao longo dessa jornada incrível.</p>
                     </section>
                 </div>
             </article>
 
-            <nav class="project-navigation">
-                <a href="agente-ia.html" class="nav-prev">
+            <nav class="project-navigation three-column-nav">
+                <a href="agente-ia.html" class="nav-item nav-prev">
                     <span>Projeto Anterior</span>
                     <strong><i class="fas fa-arrow-left"></i> Agente IA</strong>
                 </a>
-                <a href="bot-discord.html" class="nav-next">
-                    <span>Próximo Projeto</span>
-                    <strong>Bot Discord <i class="fas fa-arrow-right"></i></strong>
+                
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span>Voltar aos Projetos</span>
                 </a>
+                
+                <div class="nav-item nav-next" style="visibility: hidden;"></div>
             </nav>
 
         </main>
@@ -157,7 +287,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
+            <p data-i18n="footer_rights">&copy; 2025 Bernardo Cordeiro Motta. Todos os direitos reservados.</p>
             <div class="footer-links">
                 <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
