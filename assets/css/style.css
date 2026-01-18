@@ -701,16 +701,43 @@ img {
     font-weight: 500;
 }
 
-.stack-icon {
-    font-size: 32px;
+/* Regra padrão: Ícones outline ficam brancos */
+.stack-icon[src$=".svg"] {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: var(--transition);
+    filter: brightness(0) invert(1); /* Funciona para Python, AWS, etc. */
+}
+
+/* Exceção: Ícones sólidos problemáticos */
+.stack-icon[alt="JavaScript"],
+.stack-icon[alt="Git"], 
+.stack-icon[alt="Contabo"],
+.stack-icon[alt="PostgreSQL"] {
+    /* Em vez de inverter, usa grayscale + brilho para manter detalhes */
+    filter: grayscale(100%) brightness(180%) contrast(120%);
+}
+
+/* Font Awesome (CI/CD) */
+.stack-icon.fas {
+    font-size: 40px;
     color: var(--text-primary);
     transition: var(--transition);
 }
 
-.stack-card:hover .stack-icon {
-    color: var(--accent);
+/* Hover: Remove todos os filtros = cores originais */
+.stack-card:hover .stack-icon[src$=".svg"] {
+    filter: none;
     transform: scale(1.1);
 }
+
+.stack-card:hover .stack-icon.fas {
+    color: var(--accent);
+    transform: scale(1.1);
+}transform: scale(1.1);
+}
+
 
 /* ==========================================
    TIMELINE
