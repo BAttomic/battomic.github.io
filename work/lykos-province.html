@@ -11,6 +11,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Estilo otimizado para a imagem do Modelo de Negócio */
+        .business-showcase {
+            margin: 24px 0 28px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: var(--bg-card);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .business-showcase:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            border-color: var(--border-light);
+        }
+
+        .business-showcase img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .business-showcase:hover img {
+            transform: scale(1.02);
+        }
+
+        .business-caption {
+            padding: 14px 18px;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Responsividade */
+        @media (max-width: 800px) {
+            .business-showcase img {
+                max-height: 350px;
+            }
+            
+            .business-caption {
+                font-size: 10px;
+                padding: 12px 14px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .business-showcase img {
+                max-height: 280px;
+            }
+            
+            .business-showcase {
+                margin: 20px 0 24px;
+            }
+        }
+    </style>
 </head>
 <body>
 	<header class="header">
@@ -265,54 +329,75 @@
                         </div>
                     </section>
 
-                    <section class="content-section">
-                        <h2>
-                            <span lang="pt">Modelo de Negócio</span>
-                            <span lang="en">Business Model</span>
-                        </h2>
-                        <p lang="pt">A monetização da rede era baseada na <strong>venda de créditos</strong> através de uma loja virtual integrada ao website, que disponibilizava aos jogadores diversos benefícios e melhorias para sua experiência de jogo:</p>
-                        <p lang="en">The network's monetization was based on <strong>selling credits</strong> through an online store integrated with the website, which provided players with various benefits and improvements to their gaming experience:</p>
-                        
-                        <ul class="feature-list">
-                            <li>
-                                <strong>
-                                    <span lang="pt">Ranks Globais:</span>
-                                    <span lang="en">Global Ranks:</span>
-                                </strong> 
-                                <span lang="pt">Benefícios e permissões que funcionavam em toda a rede de servidores.</span>
-                                <span lang="en">Benefits and permissions that worked across the entire server network.</span>
-                            </li>
-                            <li>
-                                <strong>
-                                    <span lang="pt">Ranks Locais:</span>
-                                    <span lang="en">Local Ranks:</span>
-                                </strong> 
-                                <span lang="pt">Vantagens específicas para servidores individuais, focados em modos de jogo específicos.</span>
-                                <span lang="en">Specific advantages for individual servers, focused on specific game modes.</span>
-                            </li>
-                            <li>
-                                <strong>
-                                    <span lang="pt">Cosméticos Globais:</span>
-                                    <span lang="en">Global Cosmetics:</span>
-                                </strong> 
-                                <span lang="pt">Partículas customizadas, tags personalizadas e efeitos especiais.</span>
-                                <span lang="en">Custom particles, personalized tags and special effects.</span>
-                            </li>
-                            <li>
-                                <strong>
-                                    <span lang="pt">Pets/Montarias Utilitárias:</span>
-                                    <span lang="en">Utility Pets/Mounts:</span>
-                                </strong> 
-                                <span lang="pt">Companheiros virtuais com funcionalidades práticas e habilidades especiais.</span>
-                                <span lang="en">Virtual companions with practical functionalities and special abilities.</span>
-                            </li>
-                            <li>
-                                <strong>Perks:</strong> 
-                                <span lang="pt">Comandos exclusivos, kits personalizados e facilidades de qualidade de vida.</span>
-                                <span lang="en">Exclusive commands, custom kits and quality of life features.</span>
-                            </li>
-                        </ul>
-                    </section>
+					<section class="content-section">
+						<h2>
+							<span lang="pt">Modelo de Negócio</span>
+							<span lang="en">Business Model</span>
+						</h2>
+						<p lang="pt">A monetização da rede era baseada na <strong>venda de créditos</strong> através de uma loja virtual integrada ao website, que disponibilizava aos jogadores diversos benefícios e melhorias para sua experiência de jogo:</p>
+						<p lang="en">The network's monetization was based on <strong>selling credits</strong> through an online store integrated with the website, which provided players with various benefits and improvements to their gaming experience:</p>
+						
+						<!-- IMAGEM SHOWCASE DOS COSMÉTICOS EM AÇÃO -->
+						<div class="business-showcase">
+							<img 
+								src="../assets/img/cosmetics.png" 
+								alt="Personagem Developer com cosméticos premium - dragão pet, partículas de fogo e efeitos especiais"
+								loading="lazy"
+							>
+							<div class="business-caption">
+								<span lang="pt">Exemplo de cosméticos premium em ação: partículas customizadas, pets especiais e efeitos visuais exclusivos</span>
+								<span lang="en">Premium cosmetics in action: custom particles, special pets and exclusive visual effects</span>
+							</div>
+						</div>
+						
+						<ul class="feature-list">
+							<li>
+								<strong>
+									<span lang="pt">Ranks Globais:</span>
+									<span lang="en">Global Ranks:</span>
+								</strong> 
+								<span lang="pt">Benefícios e permissões que funcionavam em toda a rede de servidores.</span>
+								<span lang="en">Benefits and permissions that worked across the entire server network.</span>
+							</li>
+							<li>
+								<strong>
+									<span lang="pt">Ranks Locais:</span>
+									<span lang="en">Local Ranks:</span>
+								</strong> 
+								<span lang="pt">Vantagens específicas para servidores individuais, focados em modos de jogo específicos.</span>
+								<span lang="en">Specific advantages for individual servers, focused on specific game modes.</span>
+							</li>
+							<li>
+								<strong>
+									<span lang="pt">Cosméticos de Player:</span>
+									<span lang="en">Player Cosmetics:</span>
+								</strong> 
+								<span lang="pt">Partículas customizadas, tags personalizadas e efeitos especiais visíveis em todos os servidores, como as partículas de fogo demonstradas acima.</span>
+								<span lang="en">Custom particles, personalized tags and special effects visible across all servers, like the fire particles demonstrated above.</span>
+							</li>
+							<li>
+								<strong>
+									<span lang="pt">Cosméticos de Itens:</span>
+									<span lang="en">Item Cosmetics:</span>
+								</strong> 
+								<span lang="pt">Aparências de Armaduras, Ferramentas e Acessórios, que não afetavam o item, mudavam somente aparencia</span>
+								<span lang="en">Armor, Tools and Accessories appearances, that didn't affect item stats, only changed the visual appearance.</span>
+							</li>
+							<li>
+								<strong>
+									<span lang="pt">Pets/Montarias Utilitárias:</span>
+									<span lang="en">Utility Pets/Mounts:</span>
+								</strong> 
+								<span lang="pt">Companheiros virtuais com funcionalidades práticas e habilidades especiais, como a fênix visível na screenshot acima.</span>
+								<span lang="en">Virtual companions with practical functionalities and special abilities, like the fenix visible in the screenshot above.</span>
+							</li>
+							<li>
+								<strong>Perks:</strong> 
+								<span lang="pt">Comandos exclusivos, kits personalizados e facilidades de qualidade de vida.</span>
+								<span lang="en">Exclusive commands, custom kits and quality of life features.</span>
+							</li>
+						</ul>
+					</section>
 
                     <section class="content-section">
                         <h2>
@@ -356,24 +441,6 @@
                                 <span lang="en">Complete portal for account management, online store and detailed statistics.</span>
                             </li>
                         </ul>
-
-                        <div class="discord-cta">
-                            <div class="discord-text">
-                                <h4>
-                                    <span lang="pt">Acesse a Comunidade</span>
-                                    <span lang="en">Access the Community</span>
-                                </h4>
-                                <p>
-                                    <span lang="pt">O legado da Lykos Province ainda vive na comunidade Discord.</span>
-                                    <span lang="en">The legacy of Lykos Province still lives on in the Discord community.</span>
-                                </p>
-                            </div>
-                            <a href="https://discord.gg/9tT5qMfMM6" target="_blank" class="discord-btn">
-                                <i class="fab fa-discord"></i> 
-                                <span lang="pt">Entrar no Discord</span>
-                                <span lang="en">Join Discord</span>
-                            </a>
-                        </div>
                     </section>
 
                     <section class="content-section">
@@ -382,14 +449,15 @@
                             <span lang="en">Complete Technology Stack</span>
                         </h2>
                         <div class="tech-tags">
+                            <span class="tech-tag">VPS Linux</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Pterodactyl</span>
                             <span class="tech-tag">Java</span>
+                            <span class="tech-tag">JSON/YML</span>
                             <span class="tech-tag">Bukkit/Paper/Folia</span>
                             <span class="tech-tag">BungeeCord/Velocity</span>
                             <span class="tech-tag">MariaDB</span>
                             <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">JSON/YML</span>
-                            <span class="tech-tag">Linux VPS</span>
-                            <span class="tech-tag">Pterodactyl</span>
                             <span class="tech-tag">Discord Bot</span>
                             <span class="tech-tag">Website Integration</span>
                         </div>
@@ -438,7 +506,26 @@
                         
                         <p lang="pt">Embora o projeto tenha sido descontinuado em 2023, o legado da Lykos Province continua vivo na comunidade que construímos e nas amizades formadas ao longo dessa jornada incrível.</p>
                         <p lang="en">Although the project was discontinued in 2023, the legacy of Lykos Province lives on in the community we built and the friendships formed throughout this incredible journey.</p>
-                    </section>
+                    
+					    <div class="discord-cta">
+                            <div class="discord-text">
+                                <h4>
+                                    <span lang="pt">Acesse a Comunidade</span>
+                                    <span lang="en">Access the Community</span>
+                                </h4>
+                                <p>
+                                    <span lang="pt">O legado da Lykos Province ainda vive na comunidade Discord.</span>
+                                    <span lang="en">The legacy of Lykos Province still lives on in the Discord community.</span>
+                                </p>
+                            </div>
+                            <a href="https://discord.gg/9tT5qMfMM6" target="_blank" class="discord-btn">
+                                <i class="fab fa-discord"></i> 
+                                <span lang="pt">Entrar no Discord</span>
+                                <span lang="en">Join Discord</span>
+                            </a>
+                        </div>
+					
+					</section>
                 </div>
             </article>
 

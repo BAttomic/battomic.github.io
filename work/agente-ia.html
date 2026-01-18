@@ -27,6 +27,79 @@
             flex-shrink: 0;
             animation: float-original 4s ease-in-out infinite;
         }
+
+        /* Banner estilo Discord para WhatsApp */
+        .whatsapp-banner {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 12px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 60px;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whatsapp-banner-content {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .whatsapp-banner-content h3 {
+            color: #ffffff;
+            margin: 0 0 8px 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .whatsapp-banner-content p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .whatsapp-banner-btn {
+            background-color: #ffffff;
+            color: #128C7E;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-banner-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            background-color: #f8f9fa;
+            color: #128C7E;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 24px;
+            }
+
+            .whatsapp-banner-content {
+                padding-right: 0;
+            }
+            
+            .whatsapp-banner-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -87,66 +160,105 @@
                             <span lang="pt">Visão Geral</span>
                             <span lang="en">Overview</span>
                         </h2>
-                        <p lang="pt">Desenvolvo <strong>agentes inteligentes 100% personalizados</strong> para PMEs que precisam de automação que realmente se encaixe na sua operação. Não são soluções genéricas — cada agente é construído do zero para atender exatamente aos seus processos, integrações e regras de negócio.</p>
-                        <p lang="en">I develop <strong>100% custom intelligent agents</strong> for SMEs that need automation that truly fits their operation. These are not generic solutions — each agent is built from scratch to meet exactly your processes, integrations and business rules.</p>
+                        <p lang="pt">Desenvolvo <strong>agentes inteligentes 100% personalizados</strong> para PMEs que precisam de automação que realmente se encaixe na sua operação. Cada agente combina orquestração de fluxos no N8n, modelos de linguagem da OpenAI e Google Gemini, integrações com APIs e banco de dados para entregar decisões em tempo real, não apenas respostas de chatbot.</p>
+                        <p lang="en">I develop <strong>100% custom intelligent agents</strong> for SMEs that need automation that truly fits their operation. Each agent combines orchestration flows in N8n, OpenAI and Google Gemini language models, API integrations and database layers to deliver real-time decisions, not just chatbot replies.</p>
                         
-                        <p lang="pt">Com especialização no <strong>setor de saúde</strong>, onde a combinação de atendimento humanizado, gestão complexa de agenda e integração com sistemas clínicos exige soluções que vão muito além de chatbots convencionais.</p>
-                        <p lang="en">With specialization in the <strong>healthcare sector</strong>, where the combination of humanized care, complex schedule management and integration with clinical systems requires solutions that go far beyond conventional chatbots.</p>
+                        <p lang="pt">Com especialização no <strong>setor de saúde</strong>, onde a combinação de atendimento humanizado, gestão complexa de agenda e integração com sistemas clínicos exige soluções que vão muito além de chatbots convencionais, os agentes atuam como uma camada de inteligência entre seus canais (WhatsApp, Instagram, site) e os sistemas internos da empresa.</p>
+                        <p lang="en">With specialization in the <strong>healthcare sector</strong>, where the combination of humanized care, complex schedule management and integration with clinical systems requires solutions far beyond conventional chatbots, the agents act as an intelligence layer between your channels (WhatsApp, Instagram, website) and your internal systems.</p>
                     </section>
 
                     <section class="content-section">
                         <h2>
-                            <span lang="pt">Capacidades dos Agentes</span>
-                            <span lang="en">Agent Capabilities</span>
+                            <span lang="pt">Três Modelos Desenvolvidos e Validados</span>
+                            <span lang="en">Three Developed and Validated Models</span>
                         </h2>
+                        <p lang="pt">Já desenvolvi e validei arquiteturas específicas para três pilares fundamentais de operação empresarial. Cada modelo é uma solução completa, testada e pronta para ser adaptada às necessidades específicas do seu negócio:</p>
+                        <p lang="en">I have already developed and validated specific architectures for three fundamental pillars of business operation. Each model is a complete, tested solution ready to be adapted to your business's specific needs:</p>
+                        
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fas fa-handshake"></i> 
+                                    <span lang="pt">Agente de Venda Consultiva</span>
+                                    <span lang="en">Consultative Sales Agent</span>
+                                </h4>
+                                <p lang="pt"><strong>Focado em conversão.</strong> Qualifica leads através de conversas de descoberta, identifica necessidades reais, trata objeções de forma consultiva e conduz naturalmente ao agendamento. Inclui sistema completo de follow-up automatizado em 5 etapas (5min, 1h, 1 dia, 3 dias, 7 dias) e capacidades de prospecção via Google Maps com disparos controlados.</p>
+                                <p lang="en"><strong>Focused on conversion.</strong> Qualifies leads through discovery conversations, identifies real needs, handles objections consultatively and naturally leads to scheduling. Includes complete automated follow-up system in 5 stages (5min, 1h, 1 day, 3 days, 7 days) and prospecting capabilities via Google Maps with controlled broadcasts.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-headset"></i> 
+                                    <span lang="pt">Agente de Suporte</span>
+                                    <span lang="en">Support Agent</span>
+                                </h4>
+                                <p lang="pt"><strong>Focado em retenção e eficiência.</strong> Atende dúvidas 24/7 com base de conhecimento personalizada, resolve problemas técnicos de primeiro nível, realiza triagem inteligente e executa escalada para humanos mantendo todo o contexto conversacional. Integra-se aos sistemas internos para consultas em tempo real.</p>
+                                <p lang="en"><strong>Focused on retention and efficiency.</strong> Handles FAQs 24/7 with personalized knowledge base, resolves first-level technical issues, performs intelligent triage and escalates to humans maintaining full conversational context. Integrates with internal systems for real-time queries.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-tasks"></i> 
+                                    <span lang="pt">Agente de Gestão</span>
+                                    <span lang="en">Management Agent</span>
+                                </h4>
+                                <p lang="pt"><strong>Focado em operação e redução de faltas.</strong> Gerencia completamente a agenda com confirmações automáticas, sistema de lembretes inteligentes (24h e 1h antes), reagendamentos facilitados e check pós-consulta. Gera listas de prospecção qualificadas e orquestra campanhas de reativação de pacientes inativos.</p>
+                                <p lang="en"><strong>Focused on operations and no-show reduction.</strong> Completely manages the schedule with automatic confirmations, smart reminder system (24h and 1h before), facilitated rescheduling and post-consultation checks. Generates qualified prospecting lists and orchestrates inactive patient reactivation campaigns.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Capacidades Técnicas Compartilhadas</span>
+                            <span lang="en">Shared Technical Capabilities</span>
+                        </h2>
+                        <p lang="pt">Todos os três modelos incluem as seguintes capacidades avançadas como base técnica:</p>
+                        <p lang="en">All three models include the following advanced capabilities as technical foundation:</p>
+                        
                         <ul class="feature-list">
                             <li>
                                 <strong>
-                                    <span lang="pt">Venda Consultiva Automatizada:</span>
-                                    <span lang="en">Automated Consultative Sales:</span>
+                                    <span lang="pt">Comunicação Multimodal Completa:</span>
+                                    <span lang="en">Complete Multimodal Communication:</span>
                                 </strong> 
-                                <span lang="pt">Conduz conversas de descoberta, identifica necessidades e apresenta soluções de forma natural, sempre respeitando o tom da sua marca.</span>
-                                <span lang="en">Conducts discovery conversations, identifies needs and presents solutions naturally, always respecting your brand's tone.</span>
+                                <span lang="pt">Processa mensagens de <strong>texto, áudios de voz e imagens</strong>; transcreve áudios automaticamente, interpreta imagens quando necessário e responde tanto em texto quanto em <strong>áudio gerado por IA</strong>, criando uma experiência de atendimento completamente natural e humanizada.</span>
+                                <span lang="en">Processes <strong>text, voice notes and images</strong>; automatically transcribes audio, interprets images when needed and responds both in text and in <strong>AI-generated audio</strong>, creating a completely natural and humanized service experience.</span>
                             </li>
                             <li>
                                 <strong>
-                                    <span lang="pt">Gestão Completa de Agenda:</span>
-                                    <span lang="en">Complete Schedule Management:</span>
+                                    <span lang="pt">Ferramentas Internas Especializadas:</span>
+                                    <span lang="en">Specialized Internal Tools:</span>
                                 </strong> 
-                                <span lang="pt">Agenda, consulta, reagenda e cancela consultas automaticamente, com sistema de confirmação inteligente para reduzir faltas.</span>
-                                <span lang="en">Schedules, checks, reschedules and cancels appointments automatically, with intelligent confirmation system to reduce no-shows.</span>
+                                <span lang="pt">Sistema completo de <strong>follow-ups automáticos</strong> em múltiplas etapas, <strong>checks de agendamento</strong> (24h e 1h antes), <strong>geração de listas de prospecção</strong> via Google Maps, <strong>disparos personalizados controlados</strong> e escalada inteligente para atendimento humano quando necessário.</span>
+                                <span lang="en">Complete system of <strong>automatic follow-ups</strong> in multiple stages, <strong>appointment checks</strong> (24h and 1h before), <strong>prospecting list generation</strong> via Google Maps, <strong>controlled personalized broadcasts</strong> and intelligent escalation to human service when needed.</span>
                             </li>
                             <li>
                                 <strong>
-                                    <span lang="pt">Suporte Inteligente:</span>
-                                    <span lang="en">Intelligent Support:</span>
+                                    <span lang="pt">IA Híbrida com Fallback:</span>
+                                    <span lang="en">Hybrid AI with Fallback:</span>
                                 </strong> 
-                                <span lang="pt">Responde dúvidas frequentes, orienta sobre procedimentos e transfere para atendimento humano quando necessário, mantendo todo o contexto.</span>
-                                <span lang="en">Answers frequently asked questions, guides on procedures and transfers to human service when necessary, maintaining all context.</span>
+                                <span lang="pt">Utiliza modelos de linguagem da OpenAI e Google Gemini em arquitetura de fallback automático, garantindo alta disponibilidade e otimização de custos, com processamento unificado de múltiplos formatos de entrada.</span>
+                                <span lang="en">Uses OpenAI and Google Gemini language models in automatic fallback architecture, ensuring high availability and cost optimization, with unified processing of multiple input formats.</span>
                             </li>
                             <li>
                                 <strong>
-                                    <span lang="pt">Prospecção Estratégica:</span>
-                                    <span lang="en">Strategic Prospecting:</span>
+                                    <span lang="pt">Personalização via Prompts:</span>
+                                    <span lang="en">Prompt-Based Personalization:</span>
                                 </strong> 
-                                <span lang="pt">Utiliza dados do Google Maps para identificar e qualificar potenciais clientes em regiões específicas.</span>
-                                <span lang="en">Uses Google Maps data to identify and qualify potential clients in specific regions.</span>
+                                <span lang="pt">Cada agente é configurado com <strong>prompts personalizados</strong> que definem personalidade, tom de voz, nível de formalidade, regras conversacionais e limites de atuação específicos para o seu negócio e setor.</span>
+                                <span lang="en">Each agent is configured with <strong>personalized prompts</strong> that define personality, tone of voice, formality level, conversational rules and specific action limits for your business and sector.</span>
                             </li>
                             <li>
                                 <strong>
-                                    <span lang="pt">Follow-up Automatizado:</span>
-                                    <span lang="en">Automated Follow-up:</span>
+                                    <span lang="pt">Analytics Avançadas via Power BI:</span>
+                                    <span lang="en">Advanced Analytics via Power BI:</span>
                                 </strong> 
-                                <span lang="pt">Executa sequências de acompanhamento personalizadas baseadas no comportamento e estágio de cada lead.</span>
-                                <span lang="en">Executes personalized follow-up sequences based on each lead's behavior and stage.</span>
+                                <span lang="pt">Coleta métricas detalhadas de cada interação (tempo de resposta, tipos de mídia, uso de ferramentas internas, jornada até conversão) e apresenta via <strong>dashboards interativos no Power BI</strong> para análise gerencial e otimização contínua.</span>
+                                <span lang="en">Collects detailed metrics from each interaction (response time, media types, internal tool usage, conversion journey) and presents via <strong>interactive Power BI dashboards</strong> for management analysis and continuous optimization.</span>
                             </li>
                             <li>
                                 <strong>
-                                    <span lang="pt">Acesso a Dados em Tempo Real:</span>
-                                    <span lang="en">Real-Time Data Access:</span>
+                                    <span lang="pt">Memória Contextual Persistente:</span>
+                                    <span lang="en">Persistent Contextual Memory:</span>
                                 </strong> 
-                                <span lang="pt">Consulta e atualiza informações em seus sistemas internos para fornecer respostas sempre precisas e atualizadas.</span>
-                                <span lang="en">Queries and updates information in your internal systems to provide always accurate and up-to-date responses.</span>
+                                <span lang="pt">Mantém histórico completo de conversas com janela deslizante de contexto, permitindo retomar diálogos após dias ou semanas sem perda de informação relevante, criando continuidade natural no relacionamento.</span>
+                                <span lang="en">Maintains complete conversation history with sliding context window, allowing to resume dialogues after days or weeks without losing relevant information, creating natural relationship continuity.</span>
                             </li>
                         </ul>
                     </section>
@@ -162,32 +274,32 @@
                                     <span lang="pt">Ecossistema Google</span>
                                     <span lang="en">Google Ecosystem</span>
                                 </h4>
-                                <p lang="pt">Integração com Google Sheets, Google Ads, Gmail, Google Maps, Drive, Google Agenda e Google Meet, conectando seu agente ao centro da operação diária.</p>
-                                <p lang="en">Integration with Google Sheets, Google Ads, Gmail, Google Maps, Drive, Google Calendar and Google Meet, connecting your agent to the center of daily operations.</p>
+                                <p lang="pt">Integração com Google Calendar (agendamentos automáticos), Google Meet (reuniões geradas), Gmail (notificações), Google Sheets (dados), Google Maps (prospecção geográfica), Drive (documentos) e Google Ads (rastreamento de campanhas).</p>
+                                <p lang="en">Integration with Google Calendar (automatic scheduling), Google Meet (generated meetings), Gmail (notifications), Google Sheets (data), Google Maps (geographic prospecting), Drive (documents) and Google Ads (campaign tracking).</p>
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fab fa-meta"></i> 
                                     <span lang="pt">Universo Meta</span>
                                     <span lang="en">Meta Universe</span>
                                 </h4>
-                                <p lang="pt">Atendimento unificado no Instagram e WhatsApp, sincronizado com campanhas do Meta Ads para aproveitar ao máximo cada lead que entra no funil.</p>
-                                <p lang="en">Unified service on Instagram and WhatsApp, synchronized with Meta Ads campaigns to make the most of every lead entering the funnel.</p>
+                                <p lang="pt">Atendimento unificado no Instagram e WhatsApp Business, sincronizado com Meta Ads para rastreamento completo do funil desde o primeiro clique até o agendamento confirmado e acompanhamento pós-venda.</p>
+                                <p lang="en">Unified service on Instagram and WhatsApp Business, synchronized with Meta Ads for complete funnel tracking from first click to confirmed appointment and post-sale follow-up.</p>
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fas fa-clinic-medical"></i> 
                                     <span lang="pt">Sistemas de Saúde</span>
                                     <span lang="en">Healthcare Systems</span>
                                 </h4>
-                                <p lang="pt">Experiência com Clinicorp e outras plataformas especializadas, garantindo fluxo de dados estável entre agente, agenda e prontuário.</p>
-                                <p lang="en">Experience with Clinicorp and other specialized platforms, ensuring stable data flow between agent, schedule and medical records.</p>
+                                <p lang="pt">Experiência comprovada com Clinicorp e outras plataformas especializadas, garantindo fluxo de dados estável entre agente, agenda online e prontuário eletrônico, respeitando protocolos de segurança do setor.</p>
+                                <p lang="en">Proven experience with Clinicorp and other specialized platforms, ensuring stable data flow between agent, online schedule and electronic medical records, respecting sector security protocols.</p>
                             </div>
                             <div class="arch-item">
-                                <h4><i class="fas fa-chart-line"></i> 
+                                <h4><i class="fas fa-database"></i> 
                                     <span lang="pt">Inteligência de Dados</span>
                                     <span lang="en">Data Intelligence</span>
                                 </h4>
-                                <p lang="pt">Coleta métricas importantes durante a conversação — tanto do usuário quanto do próprio agente e das ferramentas usadas — gerando insumos para decisões mais estratégicas.</p>
-                                <p lang="en">Collects important metrics during conversation — from both user and agent and tools used — generating inputs for more strategic decisions.</p>
+                                <p lang="pt">Cada interação alimenta camadas de <strong>métricas técnicas e de negócio</strong>: tempo médio de resposta, tipos de mídia, uso de ferramentas (follow-ups, checks, prospecção, disparos), jornada até agendamento. Dados consolidados em <strong>dashboards Power BI</strong> para decisões estratégicas.</p>
+                                <p lang="en">Every interaction feeds layers of <strong>technical and business metrics</strong>: average response time, media types, tool usage (follow-ups, checks, prospecting, broadcasts), journey to booking. Data consolidated in <strong>Power BI dashboards</strong> for strategic decisions.</p>
                             </div>
                         </div>
                     </section>
@@ -197,8 +309,8 @@
                             <span lang="pt">Personalização Total</span>
                             <span lang="en">Total Personalization</span>
                         </h2>
-                        <p lang="pt">Cada agente é desenvolvido especificamente para sua operação, considerando:</p>
-                        <p lang="en">Each agent is developed specifically for your operation, considering:</p>
+                        <p lang="pt">Cada modelo é adaptado especificamente para sua operação, considerando:</p>
+                        <p lang="en">Each model is adapted specifically for your operation, considering:</p>
                         
                         <ul class="feature-list">
                             <li>
@@ -206,7 +318,7 @@
                                     <span lang="pt">Seus Processos:</span>
                                     <span lang="en">Your Processes:</span>
                                 </strong> 
-                                <span lang="pt">Mapeio como sua equipe trabalha hoje e desenho automações que se encaixam naturalmente no fluxo existente, sem atrito com o dia a dia.</span>
+                                <span lang="pt">Mapeio como sua equipe trabalha hoje e desenho automações que se encaixam naturalmente no fluxo existente, sem atrito com o dia a dia operacional.</span>
                                 <span lang="en">I map how your team works today and design automations that fit naturally into the existing flow, without friction with daily operations.</span>
                             </li>
                             <li>
@@ -214,24 +326,24 @@
                                     <span lang="pt">Suas Ferramentas:</span>
                                     <span lang="en">Your Tools:</span>
                                 </strong> 
-                                <span lang="pt">Integro o agente com os sistemas que você já usa, evitando migrações desnecessárias ou reestruturações complexas.</span>
-                                <span lang="en">I integrate the agent with the systems you already use, avoiding unnecessary migrations or complex restructuring.</span>
+                                <span lang="pt">Integro o agente com os sistemas que você já usa, evitando migrações desnecessárias ou reestruturações complexas da sua infraestrutura atual.</span>
+                                <span lang="en">I integrate the agent with the systems you already use, avoiding unnecessary migrations or complex restructuring of your current infrastructure.</span>
                             </li>
                             <li>
                                 <strong>
                                     <span lang="pt">Seu Tom de Voz:</span>
                                     <span lang="en">Your Voice Tone:</span>
                                 </strong> 
-                                <span lang="pt">O agente se comunica exatamente como sua marca, mantendo consistência em todos os pontos de contato com o paciente ou cliente.</span>
-                                <span lang="en">The agent communicates exactly like your brand, maintaining consistency at all touchpoints with the patient or client.</span>
+                                <span lang="pt">O agente se comunica exatamente como sua marca através de <strong>prompts personalizados</strong> que definem personalidade, estilo de linguagem, nível de formalidade e regras conversacionais específicas do seu setor.</span>
+                                <span lang="en">The agent communicates exactly like your brand through <strong>personalized prompts</strong> that define personality, language style, formality level and specific conversational rules for your sector.</span>
                             </li>
                             <li>
                                 <strong>
-                                    <span lang="pt">Suas Regras Específicas:</span>
-                                    <span lang="en">Your Specific Rules:</span>
+                                    <span lang="pt">Suas Regras de Negócio:</span>
+                                    <span lang="en">Your Business Rules:</span>
                                 </strong> 
-                                <span lang="pt">Implemento lógicas particulares do seu setor e operação, garantindo que o agente tome decisões alinhadas ao que faz sentido para o seu negócio.</span>
-                                <span lang="en">I implement specific logic for your sector and operation, ensuring the agent makes decisions aligned with what makes sense for your business.</span>
+                                <span lang="pt">Implemento lógicas particulares do seu setor e operação, definindo quando o agente deve usar cada ferramenta interna (follow-up, check, prospecção), quando transferir para humanos e como lidar com exceções.</span>
+                                <span lang="en">I implement specific logic for your sector and operation, defining when the agent should use each internal tool (follow-up, check, prospecting), when to transfer to humans and how to handle exceptions.</span>
                             </li>
                         </ul>
                     </section>
@@ -250,77 +362,65 @@
                                     <span lang="pt">Desenvolvimento Customizado:</span>
                                     <span lang="en">Custom Development:</span>
                                 </strong> 
-                                <span lang="pt">Fase de diagnóstico, desenho do fluxo, implementação do agente e testes com sua equipe.</span>
-                                <span lang="en">Diagnosis phase, flow design, agent implementation and testing with your team.</span>
+                                <span lang="pt">Fase de diagnóstico, mapeamento de processos, desenho do fluxo conversacional, configuração de prompts personalizados, implementação do modelo escolhido e testes com sua equipe.</span>
+                                <span lang="en">Diagnosis phase, process mapping, conversational flow design, personalized prompt configuration, chosen model implementation and testing with your team.</span>
                             </li>
                             <li>
                                 <strong>
                                     <span lang="pt">Hospedagem & Manutenção:</span>
                                     <span lang="en">Hosting & Maintenance:</span>
                                 </strong> 
-                                <span lang="pt">Infraestrutura, monitoramento, ajustes técnicos e atualizações contínuas ficam sob minha responsabilidade.</span>
-                                <span lang="en">Infrastructure, monitoring, technical adjustments and continuous updates are under my responsibility.</span>
+                                <span lang="pt">Infraestrutura em VPS Linux com Docker, monitoramento contínuo, ajustes técnicos e atualizações ficam sob minha responsabilidade, garantindo disponibilidade 24/7.</span>
+                                <span lang="en">Infrastructure on Linux VPS with Docker, continuous monitoring, technical adjustments and updates are under my responsibility, ensuring 24/7 availability.</span>
                             </li>
                             <li>
                                 <strong>
                                     <span lang="pt">Consultoria Contínua:</span>
                                     <span lang="en">Continuous Consulting:</span>
                                 </strong> 
-                                <span lang="pt">Acompanhamento para interpretar métricas, ajustar rotas de atendimento e explorar novas integrações conforme o negócio cresce.</span>
-                                <span lang="en">Follow-up to interpret metrics, adjust service routes and explore new integrations as the business grows.</span>
+                                <span lang="pt">Acompanhamento para interpretar métricas via Power BI, otimizar prompts, ajustar ferramentas internas e explorar novas integrações conforme o negócio cresce.</span>
+                                <span lang="en">Follow-up to interpret metrics via Power BI, optimize prompts, adjust internal tools and explore new integrations as the business grows.</span>
                             </li>
                         </ul>
                     </section>
 
                     <section class="content-section">
                         <h2>Stack</h2>
+                        <p lang="pt">O ecossistema combina orquestração visual no N8n, modelos de linguagem da OpenAI e Google Gemini, banco de dados dedicado para memória de longo prazo e integrações profundas com canais de atendimento e ferramentas de gestão.</p>
+                        <p lang="en">The ecosystem combines visual orchestration in N8n, OpenAI and Google Gemini language models, a dedicated database for long-term memory and deep integrations with support channels and management tools.</p>
+                        
                         <div class="tech-tags">
-                            <span class="tech-tag">OpenAI GPT</span>
-                            <span class="tech-tag">Google Gemini</span>
-                            <span class="tech-tag">N8n</span>
-                            <span class="tech-tag">WhatsApp Business</span>
-                            <span class="tech-tag">Instagram API</span>
-                            <span class="tech-tag">Google Workspace</span>
-                            <span class="tech-tag">Google Ads API</span>
-                            <span class="tech-tag">Google Maps API</span>
-                            <span class="tech-tag">Meta Business</span>
-                            <span class="tech-tag">Clinicorp</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Supabase</span>
-                            <span class="tech-tag">Docker</span>
                             <span class="tech-tag">VPS Linux</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">N8N</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">Gemini</span>
+                            <span class="tech-tag">Google APIs</span>
+                            <span class="tech-tag">Meta APIs</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Power BI</span>
                         </div>
                     </section>
 
-                    <section class="content-section">
-                        <h2>
-                            <span lang="pt">Diferenciais para PMEs</span>
-                            <span lang="en">Differentials for SMEs</span>
-                        </h2>
-                        <div class="results-grid">
-                            <div class="result-item">
-                                <span class="result-number">100%</span>
-                                <span class="result-label">
-                                    <span lang="pt">Personalizado à Operação</span>
-                                    <span lang="en">Customized to Operation</span>
-                                </span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">24/7</span>
-                                <span class="result-label">
-                                    <span lang="pt">Atendimento Contínuo</span>
-                                    <span lang="en">Continuous Service</span>
-                                </span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-number">Full</span>
-                                <span class="result-label">
-                                    <span lang="pt">Desenvolvimento + Infra + Consultoria</span>
-                                    <span lang="en">Development + Infra + Consulting</span>
-                                </span>
-                            </div>
+                    <!-- BANNER WHATSAPP ESTILO DISCORD -->
+                    <div class="whatsapp-banner">
+                        <div class="whatsapp-banner-content">
+                            <h3>
+                                <span lang="pt">Converse com meus Agentes de IA</span>
+                                <span lang="en">Talk to my AI Agents</span>
+                            </h3>
+                            <p>
+                                <span lang="pt">Experimente na prática como funciona um agente inteligente real.</span>
+                                <span lang="en">Experience in practice how a real intelligent agent works.</span>
+                            </p>
                         </div>
-                    </section>
+                        <a href="https://wa.me/5531933008486?text=Olá!%20Vim%20do%20seu%20portfólio%20e%20gostaria%20de%20falar%20sobre%20os%20agentes." class="whatsapp-banner-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span lang="pt">Falar no WhatsApp</span>
+                            <span lang="en">Talk on WhatsApp</span>
+                        </a>
+                    </div>
+
                 </div>
             </article>
 
