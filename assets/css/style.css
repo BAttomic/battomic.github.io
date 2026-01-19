@@ -1616,6 +1616,18 @@ img {
     }
 }
 
+@media (max-width: 768px) {
+    .header-right .status-badge,
+    .header-right .location-time {
+        display: none !important;
+    }
+    
+    .header-right {
+        gap: 0;
+    }
+}
+
+
 @media (max-width: 550px) {
     .header-content {
         flex-wrap: wrap;
