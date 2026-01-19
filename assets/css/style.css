@@ -1207,6 +1207,7 @@ img {
 }
 
 .three-column-nav .nav-center {
+    display: flex;
     justify-self: center;
     flex-direction: row;
     align-items: center;
@@ -1214,8 +1215,27 @@ img {
     padding: 12px 20px;
     font-family: var(--font-mono);
     font-size: 11px;
+    line-height: 1;
     color: var(--text-secondary);
     white-space: nowrap;
+}
+
+.three-column-nav .nav-center span {
+    display: inline;
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1;
+    color: inherit;
+}
+
+.three-column-nav .nav-center i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 11px;
+}
+
 }
 
 /* ==========================================
