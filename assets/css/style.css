@@ -1681,19 +1681,21 @@ img {
     }
     
     .project-navigation.three-column-nav {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 8px;
+        align-items: center;
     }
     
     .three-column-nav .nav-prev,
     .three-column-nav .nav-next {
-        justify-self: stretch;
+        padding: 12px 14px;
     }
     
     .three-column-nav .nav-center {
-        order: -1;
-        justify-self: stretch;
-        justify-content: center;
+        order: 0;
+        justify-self: center;
+        padding: 12px 16px;
+        font-size: 10px;
     }
 }
 
