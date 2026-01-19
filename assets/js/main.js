@@ -80,7 +80,7 @@ const translations = {
         ia_subtitle: "Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.",
         lykos_title: "Lykos Province",
         lykos_subtitle: "Uma comunidade gaming que passou por diversas fases e jogos, tendo seu maior destaque no Minecraft com uma rede completa de servidores, economia própria e mais de 1000 membros ativos.",
-        cta_cv: "Download CV",
+        cta_cv: "Baixar currículo",
         view_all_works: "Ver todos os projetos"
     },
     
@@ -163,7 +163,7 @@ const translations = {
         ia_subtitle: "Custom development of agents for consultative sales, support and management, integrated exactly to the processes and tools your company already uses. Specialization in clinics and healthcare SMEs.",
         lykos_title: "Lykos Province", 
         lykos_subtitle: "A gaming community that went through several phases and games, having its highlight in Minecraft with a complete server network, own economy and over 1000 active members.",
-        cta_cv: "Download CV", 
+        cta_cv: "Download resume", 
         view_all_works: "View all works"
     }
 };
@@ -174,26 +174,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedLang = localStorage.getItem('site-language') || 'pt';
     
     // Sistema de idiomas integrado com horário
-    function setLanguage(lang) {
-        if (lang === 'en') {
-            body.classList.add('lang-en');
-            if (langToggle) langToggle.textContent = 'PT';
-        } else {
-            body.classList.remove('lang-en');
-            if (langToggle) langToggle.textContent = 'EN';
-        }
-        
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            const translation = translations[lang][key];
-            if (translation) {
-                el.innerHTML = translation;
-            }
-        });
-        
-        localStorage.setItem('site-language', lang);
-        updateTime(); // Atualiza formato do horário imediatamente
-    }
+	function setLanguage(lang) {
+		if (lang === 'en') {
+			body.classList.add('lang-en');
+			if (langToggle) langToggle.textContent = 'PT';
+		} else {
+			body.classList.remove('lang-en');
+			if (langToggle) langToggle.textContent = 'EN';
+		}
+		
+		const cvButton = document.getElementById('cv-download-btn');
+		if (cvButton) {
+			if (lang === 'en') {
+				cvButton.href = 'assets/cv/Bernardo_C_Motta_Resume.pdf';
+				cvButton.setAttribute('download', 'Bernardo_C_Motta_Resume.pdf');
+			} else {
+				cvButton.href = 'assets/cv/Bernardo_C_Motta_Curriculo.pdf';
+				cvButton.setAttribute('download', 'Bernardo_C_Motta_Curriculo.pdf');
+			}
+		}
+		
+		document.querySelectorAll('[data-i18n]').forEach(el => {
+			const key = el.getAttribute('data-i18n');
+			const translation = translations[lang][key];
+			if (translation) {
+				el.innerHTML = translation;
+			}
+		});
+		
+		localStorage.setItem('site-language', lang);
+		updateTime();
+	}
     
     // Horário com formato baseado no idioma
     function updateTime() {
