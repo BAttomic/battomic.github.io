@@ -79,7 +79,9 @@ const translations = {
         ia_title: "Agentes Inteligentes Sob Medida",
         ia_subtitle: "Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.",
         lykos_title: "Lykos Province",
-        lykos_subtitle: "Uma comunidade gaming que passou por diversas fases e jogos, tendo seu maior destaque no Minecraft com uma rede completa de servidores, economia própria e mais de 1000 membros ativos."
+        lykos_subtitle: "Uma comunidade gaming que passou por diversas fases e jogos, tendo seu maior destaque no Minecraft com uma rede completa de servidores, economia própria e mais de 1000 membros ativos.",
+        cta_cv: "Download CV",
+        view_all_works: "Ver todos os projetos"
     },
     
     en: {
@@ -160,7 +162,9 @@ const translations = {
         ia_title: "Custom Intelligent Agents",
         ia_subtitle: "Custom development of agents for consultative sales, support and management, integrated exactly to the processes and tools your company already uses. Specialization in clinics and healthcare SMEs.",
         lykos_title: "Lykos Province", 
-        lykos_subtitle: "A gaming community that went through several phases and games, having its highlight in Minecraft with a complete server network, own economy and over 1000 active members."
+        lykos_subtitle: "A gaming community that went through several phases and games, having its highlight in Minecraft with a complete server network, own economy and over 1000 active members.",
+        cta_cv: "Download CV", 
+        view_all_works: "View all works"
     }
 };
 
