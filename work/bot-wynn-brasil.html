@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Wynn Brasil - Bernardo Motta</title>
+    <meta name="description" content="Bot de Discord para gestão da guilda brasileira de WynnCraft: pontos, temporadas, guerras, fila de Tomes e jobs automáticos, em Node.js + MongoDB.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* Banner estilo Discord */
+        .discord-banner {
+            background: linear-gradient(135deg, #5865F2 0%, #404EED 100%);
+            border-radius: 12px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 60px;
+            box-shadow: 0 8px 32px rgba(88, 101, 242, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .discord-banner-content { flex: 1; padding-right: 20px; }
+        .discord-banner-content h3 { color: #fff; margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 700; }
+        .discord-banner-content p { color: rgba(255,255,255,0.9); margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .discord-banner-btn {
+            background-color: #fff;
+            color: #404EED;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .discord-banner-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .discord-banner-btns { display: flex; gap: 10px; flex-shrink: 0; }
+        .discord-banner-btn.ghost {
+            background: transparent; color: #fff;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        .discord-banner-btn.ghost:hover { background: rgba(255,255,255,0.12); }
+
+        /* Showcase das skins oficiais (assets baixáveis via /uniforme) */
+        .skins { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-top: 20px; }
+        .skin-card {
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            background: var(--bg-card); padding: 20px; text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .skin-card:hover { transform: translateY(-4px); border-color: var(--border-light); }
+        .skin-frame {
+            border-radius: 12px; padding: 20px;
+            display: flex; align-items: center; justify-content: center;
+            background:
+                linear-gradient(45deg, #12161e 25%, transparent 25%) 0 0/22px 22px,
+                linear-gradient(-45deg, #12161e 25%, transparent 25%) 0 0/22px 22px,
+                linear-gradient(45deg, transparent 75%, #12161e 75%) 0 0/22px 22px,
+                linear-gradient(-45deg, transparent 75%, #12161e 75%) 0 0/22px 22px,
+                #191e28;
+        }
+        .skin-frame img { image-rendering: pixelated; height: 132px; width: auto; }
+        .skin-card h4 { margin: 14px 0 3px; font-size: 15px; }
+        .skin-card p { margin: 0; font-size: 12px; color: var(--text-muted); }
+        .skin-cmd {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 22px;
+            padding: 10px 18px; border-radius: 999px;
+            border: 1px solid var(--border-light); background: var(--bg-card);
+            font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary);
+        }
+        .skin-cmd code { color: var(--accent); }
+
+        .cmd-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.92rem; }
+        .cmd-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .cmd-table td:first-child { font-family: var(--font-mono); color: var(--accent); white-space: nowrap; width: 1%; }
+        .cmd-table tr:last-child td { border-bottom: none; }
+
+        @media (max-width: 768px) {
+            .discord-banner { flex-direction: column; text-align: center; gap: 20px; padding: 24px; }
+            .discord-banner-content { padding-right: 0; }
+            .discord-banner-btn { width: 100%; justify-content: center; }
+            .cmd-table td:first-child { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
+			</div>
+
+			<nav class="nav-menu">
+				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+				<a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
+			</nav>
+
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+
+				<div class="location-time">
+					<span data-i18n="location">Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span data-i18n="time_label">Meu horário:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1040px; margin: 0 auto; padding: 48px 24px;">
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-header-with-logo">
+                        <img src="../assets/img/wynn-brasil.jpg" alt="Logo Wynn Brasil" class="project-logo">
+                        <div class="project-header-content">
+                            <h1>Bot Wynn Brasil</h1>
+                            <p class="project-subtitle">
+                                <span lang="pt">Bot de Discord que administra a guilda brasileira de WynnCraft de ponta a ponta: pontos de contribuição, temporadas, guerras, fila de Tomes e sincronização automática de cargos — com apenas duas dependências.</span>
+                                <span lang="en">A Discord bot that runs the Brazilian WynnCraft guild end to end: contribution points, seasons, wars, Tome queue and automatic role sync — with just two dependencies.</span>
+                            </p>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="project-content">
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Visão Geral</span>
+                            <span lang="en">Overview</span>
+                        </h2>
+                        <p lang="pt">A <strong>Wynn Brasil</strong> é a comunidade brasileira do MMORPG <strong>WynnCraft</strong> (dentro do Minecraft). O bot é a espinha dorsal da guilda no Discord: vincula contas do jogo aos membros, mede a contribuição de cada um, organiza guerras e temporadas e mantém os cargos sempre em dia — reduzindo drasticamente o trabalho manual da staff.</p>
+                        <p lang="en">The <strong>Wynn Brasil</strong> community is the Brazilian hub for the MMORPG <strong>WynnCraft</strong> (inside Minecraft). The bot is the guild's backbone on Discord: it links game accounts to members, measures each one's contribution, organizes wars and seasons and keeps roles up to date — drastically reducing the staff's manual work.</p>
+                        <p lang="pt">Um princípio de projeto guiou tudo: <strong>apenas duas dependências</strong> — <code>discord.js</code> e o driver oficial do <code>mongodb</code>. HTTP, agendamento e leitura de <code>.env</code> usam recursos nativos do Node.</p>
+                        <p lang="en">One design principle guided everything: <strong>only two dependencies</strong> — <code>discord.js</code> and the official <code>mongodb</code> driver. HTTP, scheduling and <code>.env</code> reading rely on native Node features.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Comandos</span>
+                            <span lang="en">Commands</span>
+                        </h2>
+                        <table class="cmd-table">
+                            <tr><td>/link · /unlink</td><td><span lang="pt">Vincula (ou remove) a conta do jogo e concede o cargo de comunidade.</span><span lang="en">Links (or removes) the game account and grants the community role.</span></td></tr>
+                            <tr><td>/apply</td><td><span lang="pt">Candidatura à guilda com votação de 24h e cooldown de reaplicação.</span><span lang="en">Guild application with 24h voting and reapplication cooldown.</span></td></tr>
+                            <tr><td>/season</td><td><span lang="pt">Gerencia temporadas (start, end, current, list).</span><span lang="en">Manages seasons (start, end, current, list).</span></td></tr>
+                            <tr><td>/points · /leaderboard</td><td><span lang="pt">Sistema de pontos de contribuição unificado e placar.</span><span lang="en">Unified contribution-points system and leaderboard.</span></td></tr>
+                            <tr><td>/war</td><td><span lang="pt">Acompanhamento e apoio às guerras de território.</span><span lang="en">Territory-war tracking and support.</span></td></tr>
+                            <tr><td>/tome</td><td><span lang="pt">Fila de Tomes com prioridade por pontos (join, leave, queue, grant).</span><span lang="en">Tome queue prioritized by points (join, leave, queue, grant).</span></td></tr>
+                            <tr><td>/membros</td><td><span lang="pt">Lista membros por cargo e sinaliza inatividade expulsável.</span><span lang="en">Lists members by rank and flags kickable inactivity.</span></td></tr>
+                            <tr><td>/registro · /verificar</td><td><span lang="pt">Fluxo de registro do membro e verificação da conta do jogo.</span><span lang="en">Member registration flow and game-account verification.</span></td></tr>
+                            <tr><td>/profile · /missao</td><td><span lang="pt">Perfil do membro (pontos, rank, vínculo) e missões da guilda.</span><span lang="en">Member profile (points, rank, link) and guild missions.</span></td></tr>
+                            <tr><td>/uniforme</td><td><span lang="pt">Disponibiliza para download o uniforme e a capa oficiais da Wynn Brasil.</span><span lang="en">Provides the official Wynn Brasil uniform and cape for download.</span></td></tr>
+                            <tr><td>/ban · /forcelink</td><td><span lang="pt">(Staff) Moderação e vínculo manual de contas.</span><span lang="en">(Staff) Moderation and manual account linking.</span></td></tr>
+                            <tr><td>/calc · /loan · /config</td><td><span lang="pt">Conversor de esmeraldas, livro-razão de empréstimos e configuração de canais/cargos.</span><span lang="en">Emerald converter, loan ledger and channel/role configuration.</span></td></tr>
+                        </table>
+                        <p style="margin-top:14px; font-size:13px; color:var(--text-muted);">
+                            <span lang="pt">São <strong>19 slash commands</strong> no total, registrados por-guilda (aparecem na hora, sem espera de propagação global).</span>
+                            <span lang="en"><strong>19 slash commands</strong> in total, registered per-guild (they show up instantly, no global propagation wait).</span>
+                        </p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Skins Oficiais da Guilda</span>
+                            <span lang="en">Official Guild Skins</span>
+                        </h2>
+                        <p lang="pt">Uma feature que a comunidade adora: o comando <code>/uniforme</code> entrega o <strong>uniforme</strong> (skin) e a <strong>capa</strong> oficiais da Wynn Brasil direto no Discord, prontos para baixar e vestir no jogo. Os arquivos ficam versionados junto do bot.</p>
+                        <p lang="en">A feature the community loves: the <code>/uniforme</code> command delivers the official Wynn Brasil <strong>uniform</strong> (skin) and <strong>cape</strong> straight in Discord, ready to download and wear in-game. The files are versioned alongside the bot.</p>
+
+                        <div class="skins">
+                            <div class="skin-card">
+                                <div class="skin-frame"><img src="../assets/img/wynn-uniforme.png" alt="Uniforme (skin) da Wynn Brasil"></div>
+                                <h4><span lang="pt">Uniforme</span><span lang="en">Uniform</span></h4>
+                                <p><span lang="pt">Skin oficial · 64×64</span><span lang="en">Official skin · 64×64</span></p>
+                            </div>
+                            <div class="skin-card">
+                                <div class="skin-frame"><img src="../assets/img/wynn-capa.png" alt="Capa da Wynn Brasil"></div>
+                                <h4><span lang="pt">Capa</span><span lang="en">Cape</span></h4>
+                                <p><span lang="pt">Bandeira do Brasil · 128×64</span><span lang="en">Brazil flag · 128×64</span></p>
+                            </div>
+                        </div>
+
+                        <div class="skin-cmd">
+                            <i class="fas fa-download" style="color:var(--accent)"></i>
+                            <span lang="pt">Baixe em segundos:</span><span lang="en">Grab it in seconds:</span>
+                            <code>/uniforme peca:tudo</code>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Automações em Background</span>
+                            <span lang="en">Background Automations</span>
+                        </h2>
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fas fa-satellite-dish"></i>
+                                    <span lang="pt">Monitoramento em tempo real</span>
+                                    <span lang="en">Real-time monitoring</span>
+                                </h4>
+                                <p lang="pt">Poller de ~60s que atualiza um painel ao vivo, registra logs de atividade, acompanha território e recursos e dispara <strong>auto-ping de guerra</strong>.</p>
+                                <p lang="en">A ~60s poller that updates a live panel, records activity logs, tracks territory and resources and fires <strong>war auto-pings</strong>.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-user-shield"></i>
+                                    <span lang="pt">Sync de cargos</span>
+                                    <span lang="en">Role sync</span>
+                                </h4>
+                                <p lang="pt">Concede automaticamente os cargos de "Membro da Guilda" e "Top Contribuidor" e reconcilia entradas e saídas da guilda.</p>
+                                <p lang="en">Automatically grants "Guild Member" and "Top Contributor" roles and reconciles guild joins and leaves.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-camera"></i>
+                                    <span lang="pt">Snapshot diário</span>
+                                    <span lang="en">Daily snapshot</span>
+                                </h4>
+                                <p lang="pt">Fotografa progresso, placar de guerras e pontos (all-time e por temporada) para histórico e rankings confiáveis.</p>
+                                <p lang="en">Captures progress, war scoreboard and points (all-time and per season) for reliable history and rankings.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-clipboard-check"></i>
+                                    <span lang="pt">Candidaturas & auditoria</span>
+                                    <span lang="en">Applications & audit</span>
+                                </h4>
+                                <p lang="pt">Fecha candidaturas no prazo, envia lembretes de empréstimos e registra auditoria e erros do bot em canais próprios.</p>
+                                <p lang="en">Closes applications on time, sends loan reminders and logs audit trails and bot errors to dedicated channels.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Inatividade Justa pela Contribuição</span>
+                            <span lang="en">Fair Inactivity by Contribution</span>
+                        </h2>
+                        <p lang="pt">Um detalhe que gosto: a expulsão por inatividade não é um número fixo. Cada membro é medido contra o <strong>próprio limite</strong> — um limite base <strong>mais um "perdão" proporcional aos pontos de contribuição</strong>. Quem mais ajuda a guilda ganha mais margem, e o comando <code>/membros</code> mostra exatamente quem já pode ser expulso e quem está protegido pela contribuição.</p>
+                        <p lang="en">A detail I like: inactivity kicks aren't a fixed number. Each member is measured against their <strong>own threshold</strong> — a base limit <strong>plus a "forgiveness" proportional to contribution points</strong>. Those who help the guild most get more slack, and the <code>/membros</code> command shows exactly who is already kickable and who is protected by contribution.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Números do Projeto</span>
+                            <span lang="en">Project Numbers</span>
+                        </h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-number">19</span>
+                                <span class="result-label"><span lang="pt">Slash commands</span><span lang="en">Slash commands</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">2</span>
+                                <span class="result-label"><span lang="pt">Dependências</span><span lang="en">Dependencies</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">~60s</span>
+                                <span class="result-label"><span lang="pt">Poller ao vivo</span><span lang="en">Live poller</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">24/7</span>
+                                <span class="result-label"><span lang="pt">No ar em VPS</span><span lang="en">Live on VPS</span></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack & Deploy</h2>
+                        <p lang="pt">Node moderno (ESM), MongoDB para persistência e deploy conteinerizado em VPS própria via Docker Compose, com endpoint de health check.</p>
+                        <p lang="en">Modern Node (ESM), MongoDB for persistence and containerized deployment on a dedicated VPS via Docker Compose, with a health-check endpoint.</p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Node.js (ESM)</span>
+                            <span class="tech-tag">discord.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Slash Commands</span>
+                            <span class="tech-tag">Wynncraft API</span>
+                            <span class="tech-tag">Docker / Compose</span>
+                            <span class="tech-tag">VPS Linux</span>
+                        </div>
+                    </section>
+
+                    <div class="discord-banner">
+                        <div class="discord-banner-content">
+                            <h3>
+                                <span lang="pt">Comunidade Wynn Brasil</span>
+                                <span lang="en">Wynn Brasil Community</span>
+                            </h3>
+                            <p>
+                                <span lang="pt">O bot roda todos os dias na comunidade brasileira de WynnCraft.</span>
+                                <span lang="en">The bot runs every day in the Brazilian WynnCraft community.</span>
+                            </p>
+                        </div>
+                        <div class="discord-banner-btns">
+                            <a href="https://discord.gg/nNQdrtbWG4" class="discord-banner-btn" target="_blank">
+                                <i class="fab fa-discord"></i>
+                                <span lang="pt">Entrar no Discord</span>
+                                <span lang="en">Join Discord</span>
+                            </a>
+                            <a href="https://github.com/BAttomic/Bot_Wynncraft" class="discord-banner-btn ghost" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span lang="pt">Repositório</span>
+                                <span lang="en">Repository</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <nav class="project-navigation three-column-nav">
+                <a href="ticketflow.html" class="nav-item nav-prev">
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
+                    <strong><i class="fas fa-arrow-left"></i> TicketFlow</strong>
+                </a>
+
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
+                </a>
+
+                <a href="lykos-province.html" class="nav-item nav-next">
+                    <span data-i18n="nav_next">Próximo Projeto</span>
+                    <strong>Lykos Province <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer_rights">&copy; 2026 Bernardo Cordeiro Motta.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

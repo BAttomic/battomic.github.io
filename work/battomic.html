@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAttomic — Plataforma SaaS - Bernardo Motta</title>
+    <meta name="description" content="Plataforma SaaS multi-tenant que une CRM, automações com agentes de IA e billing numa única aplicação. A evolução dos meus agentes de IA em produto.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .ai-logo-placeholder {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-primary) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Banner estilo Discord para WhatsApp */
+        .whatsapp-banner {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 12px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 60px;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whatsapp-banner-content { flex: 1; padding-right: 20px; }
+        .whatsapp-banner-content h3 { color: #ffffff; margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 700; }
+        .whatsapp-banner-content p { color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95rem; line-height: 1.5; }
+
+        .whatsapp-banner-btn {
+            background-color: #ffffff;
+            color: #128C7E;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .whatsapp-banner-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); background-color: #f8f9fa; color: #128C7E; }
+
+        @media (max-width: 768px) {
+            .whatsapp-banner { flex-direction: column; text-align: center; gap: 20px; padding: 24px; }
+            .whatsapp-banner-content { padding-right: 0; }
+            .whatsapp-banner-btn { width: 100%; justify-content: center; }
+        }
+
+        /* Showcase de print (imagem + legenda) */
+        .shot {
+            margin: 22px 0 6px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: var(--bg-card);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .shot:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,0.28); border-color: var(--border-light); }
+        .shot img { width: 100%; height: auto; display: block; }
+        .shot-cap {
+            padding: 12px 16px;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 20px; }
+        .gallery .shot { margin: 0; display: flex; flex-direction: column; }
+        .gallery .shot-cap { margin-top: auto; }
+
+        /* Faixa de planos (resumo de pricing) */
+        .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 18px; }
+        .plan {
+            border: 1px solid var(--border); border-radius: var(--radius-md);
+            background: var(--bg-card); padding: 16px;
+        }
+        .plan.pop { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+        .plan .plan-name { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+        .plan .plan-price { font-size: 22px; font-weight: 800; margin: 6px 0 2px; }
+        .plan .plan-price small { font-size: 12px; font-weight: 500; color: var(--text-muted); }
+        .plan .plan-note { font-size: 12px; color: var(--text-secondary); }
+
+        /* KPIs de performance */
+        .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-top: 18px; }
+        .kpi { text-align: center; padding: 18px 10px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); }
+        .kpi b { display: block; font-size: 28px; font-weight: 800; color: var(--accent); line-height: 1; }
+        .kpi span { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+
+        .brand-note {
+            margin: 14px 0 0; padding: 10px 14px;
+            border-left: 3px solid var(--accent); border-radius: 8px;
+            background: var(--bg-card); font-size: 13px; color: var(--text-secondary);
+        }
+
+        @media (max-width: 480px) {
+            .kpis { grid-template-columns: repeat(2, 1fr); }
+            .ai-logo-placeholder { width: 88px; height: 88px; font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
+			</div>
+
+			<nav class="nav-menu">
+				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+				<a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
+			</nav>
+
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+
+				<div class="location-time">
+					<span data-i18n="location">Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span data-i18n="time_label">Meu horário:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1040px; margin: 0 auto; padding: 48px 24px;">
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-header-with-logo">
+                        <div class="ai-logo-placeholder">B</div>
+                        <div class="project-header-content">
+                            <h1>
+                                <span lang="pt">BAttomic — Plataforma SaaS</span>
+                                <span lang="en">BAttomic — SaaS Platform</span>
+                            </h1>
+                            <p class="project-subtitle">
+                                <span lang="pt">A evolução natural dos meus agentes de IA em um produto: uma plataforma SaaS multi-tenant que reúne CRM, automações com agentes e billing numa única aplicação — cada cliente sobre seu próprio banco de dados isolado.</span>
+                                <span lang="en">The natural evolution of my AI agents into a product: a multi-tenant SaaS platform bringing together CRM, agent automations and billing in a single application — each client on its own isolated database.</span>
+                            </p>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="project-content">
+                    <div class="shot">
+                        <img src="../assets/img/battomic-cover.png" alt="Landing page da plataforma BAttomic">
+                        <div class="shot-cap">
+                            <span lang="pt">Landing page da plataforma — CRM, automações com agentes de IA e billing num só produto.</span>
+                            <span lang="en">Platform landing page — CRM, AI-agent automations and billing in a single product.</span>
+                        </div>
+                    </div>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">De Serviço a Produto</span>
+                            <span lang="en">From Service to Product</span>
+                        </h2>
+                        <p lang="pt">Depois de desenvolver e validar <strong>agentes de IA sob medida</strong> para diversas empresas — principalmente clínicas e PMEs da área da saúde — o próximo passo natural foi <strong>transformar essa experiência em produto</strong>. Nasceu o <strong>BAttomic</strong>: em vez de montar cada automação do zero para cada cliente, a plataforma entrega CRM, agentes de IA e cobrança de forma padronizada, escalável e self-service.</p>
+                        <p lang="en">After building and validating <strong>custom AI agents</strong> for several companies — mainly clinics and healthcare SMEs — the natural next step was to <strong>turn that experience into a product</strong>. That's how <strong>BAttomic</strong> was born: instead of assembling each automation from scratch per client, the platform delivers CRM, AI agents and billing in a standardized, scalable, self-service way.</p>
+                        <p lang="pt">O produto está sendo lançado sob o <strong>domínio que já uso hoje</strong>, dando o primeiro passo para monetizar a plataforma com a marca <strong>BAttomic</strong>.</p>
+                        <p lang="en">The product is launching under the <strong>domain I already use today</strong>, taking the first step to monetize the platform under the <strong>BAttomic</strong> brand.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Três Pilares numa Só Aplicação</span>
+                            <span lang="en">Three Pillars in a Single App</span>
+                        </h2>
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fas fa-users"></i>
+                                    <span lang="pt">CRM</span>
+                                    <span lang="en">CRM</span>
+                                </h4>
+                                <p lang="pt">Gestão de contatos, leads e status de negociação por cliente, com pipeline configurável. Base de dados que alimenta e é alimentada pelos agentes de IA.</p>
+                                <p lang="en">Contact, lead and deal-status management per client, with a configurable pipeline. A database that feeds and is fed by the AI agents.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-robot"></i>
+                                    <span lang="pt">Automações com Agentes de IA</span>
+                                    <span lang="en">AI Agent Automations</span>
+                                </h4>
+                                <p lang="pt">Runtime de agentes com <strong>adapters por provedor</strong> (Anthropic, OpenAI, Google Gemini, DeepSeek), fluxos, campanhas e prospecção rodando como jobs em background.</p>
+                                <p lang="en">Agent runtime with <strong>per-provider adapters</strong> (Anthropic, OpenAI, Google Gemini, DeepSeek), flows, campaigns and prospecting running as background jobs.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-file-invoice-dollar"></i>
+                                    <span lang="pt">Billing & Cobrança</span>
+                                    <span lang="en">Billing & Payments</span>
+                                </h4>
+                                <p lang="pt">Licenças, faturas e propostas integradas ao <strong>Mercado Pago</strong>, com páginas públicas de proposta e checkout. Monetização embutida na própria plataforma.</p>
+                                <p lang="en">Licenses, invoices and proposals integrated with <strong>Mercado Pago</strong>, with public proposal and checkout pages. Monetization built into the platform itself.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Por Dentro do Produto</span>
+                            <span lang="en">Inside the Product</span>
+                        </h2>
+                        <p lang="pt">Não é um protótipo: são telas reais da plataforma em funcionamento. Do funil de vendas aos agentes de IA, cada módulo foi desenhado para uma operação de PME rodar o dia inteiro ali dentro.</p>
+                        <p lang="en">Not a prototype: these are real screens of the working platform. From the sales funnel to the AI agents, every module was built for an SMB to run its whole day inside it.</p>
+
+                        <div class="shot">
+                            <img src="../assets/img/battomic-kanban.png" alt="Funil de vendas em Kanban" loading="lazy">
+                            <div class="shot-cap">
+                                <span lang="pt">CRM · Funil Kanban — leads por etapa (Novo → Contatado → Agendado → Cliente), busca e filtros por vendedor.</span>
+                                <span lang="en">CRM · Kanban funnel — leads by stage (New → Contacted → Scheduled → Client), search and per-seller filters.</span>
+                            </div>
+                        </div>
+
+                        <div class="gallery">
+                            <div class="shot">
+                                <img src="../assets/img/battomic-agents.png" alt="Editor de agentes de IA" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Agentes de IA — configuração por provedor (áudio, imagem, documentos), modelo e raciocínio.</span><span lang="en">AI Agents — per-provider setup (audio, image, documents), model and reasoning.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/battomic-chat.png" alt="Chat com IA" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Chat — atendimento com IA, com controle de custo por conversa.</span><span lang="en">Chat — AI-powered support, with per-conversation cost control.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/battomic-campaigns.png" alt="Campanhas" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Campanhas — disparos segmentados e acompanhamento de resultados.</span><span lang="en">Campaigns — segmented broadcasts and results tracking.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/battomic-prospecting.png" alt="Prospecção" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Prospecção — geração de listas qualificadas para alimentar o funil.</span><span lang="en">Prospecting — qualified list generation to feed the funnel.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/battomic-integrations.png" alt="Integrações" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Integrações — WhatsApp (Evolution), Google, Meta e Telegram.</span><span lang="en">Integrations — WhatsApp (Evolution), Google, Meta and Telegram.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/battomic-billing.png" alt="Billing e cobrança" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Billing — licenças, faturas e cobrança via Mercado Pago.</span><span lang="en">Billing — licenses, invoices and payments via Mercado Pago.</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Performance & Primeiros Clientes</span>
+                            <span lang="en">Performance & First Clients</span>
+                        </h2>
+                        <p lang="pt">A landing já nasceu rápida e medida: pontuações altas em Lighthouse, PageSpeed e GTmetrix, com tempo de bloqueio mínimo. E não é só teoria — a plataforma já apoia operações reais.</p>
+                        <p lang="en">The landing shipped fast and measured: high Lighthouse, PageSpeed and GTmetrix scores, with minimal blocking time. And it's not just theory — the platform already backs real operations.</p>
+
+                        <div class="kpis">
+                            <div class="kpi"><b>93</b><span>Lighthouse</span></div>
+                            <div class="kpi"><b>94</b><span>PageSpeed</span></div>
+                            <div class="kpi"><b>99%</b><span>GTmetrix</span></div>
+                            <div class="kpi"><b>1ms</b><span><span lang="pt">Blocking</span><span lang="en">Blocking</span></span></div>
+                        </div>
+
+                        <p lang="pt" style="margin-top:16px;">E não é só teoria: a plataforma já aparece com <strong>parceiros reais</strong> — <strong>OrangeStore</strong>, <strong>ClipCut</strong> e <strong>Synk Creative</strong> —, operações que ajudei a estruturar.</p>
+                        <p lang="en" style="margin-top:16px;">And it's not just theory: the platform already lists <strong>real partners</strong> — <strong>OrangeStore</strong>, <strong>ClipCut</strong> and <strong>Synk Creative</strong> — operations I helped set up.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Planos & Monetização</span>
+                            <span lang="en">Plans & Monetization</span>
+                        </h2>
+                        <p lang="pt">A cobrança é parte do produto, não um anexo. Quatro faixas cobrem do autônomo à operação que precisa de agentes de IA sob medida — tudo com self-service via Mercado Pago.</p>
+                        <p lang="en">Billing is part of the product, not a bolt-on. Four tiers cover everyone from solo operators to teams needing custom AI agents — all self-service via Mercado Pago.</p>
+
+                        <div class="plans">
+                            <div class="plan">
+                                <div class="plan-name">Starter</div>
+                                <div class="plan-price">R$97<small>/mês</small></div>
+                                <div class="plan-note"><span lang="pt">2 usuários · 5k contatos · 2 agentes</span><span lang="en">2 users · 5k contacts · 2 agents</span></div>
+                            </div>
+                            <div class="plan pop">
+                                <div class="plan-name">Pro · <span lang="pt">popular</span><span lang="en">popular</span></div>
+                                <div class="plan-price">R$247<small>/mês</small></div>
+                                <div class="plan-note"><span lang="pt">5 usuários · 20k contatos · 5 agentes</span><span lang="en">5 users · 20k contacts · 5 agents</span></div>
+                            </div>
+                            <div class="plan">
+                                <div class="plan-name">Business</div>
+                                <div class="plan-price">R$497<small>/mês</small></div>
+                                <div class="plan-note"><span lang="pt">10 usuários · 50k contatos · 10 agentes</span><span lang="en">10 users · 50k contacts · 10 agents</span></div>
+                            </div>
+                            <div class="plan">
+                                <div class="plan-name"><span lang="pt">Automações & IA</span><span lang="en">Automations & AI</span></div>
+                                <div class="plan-price"><span lang="pt">Sob consulta</span><span lang="en">Custom</span></div>
+                                <div class="plan-note"><span lang="pt">Agentes e fluxos sob medida</span><span lang="en">Custom agents and flows</span></div>
+                            </div>
+                        </div>
+
+                        <p lang="pt" style="font-size:13px; color:var(--text-muted); margin-top:14px;">Comece grátis, escale conforme cresce, cancele quando quiser. Cobrança self-service via Mercado Pago.</p>
+                        <p lang="en" style="font-size:13px; color:var(--text-muted); margin-top:14px;">Start free, scale as you grow, cancel anytime. Self-service billing via Mercado Pago.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Arquitetura Multi-Tenant</span>
+                            <span lang="en">Multi-Tenant Architecture</span>
+                        </h2>
+                        <p lang="pt">O coração técnico do BAttomic é a <strong>isolação por cliente</strong>: um banco de controle global (control plane) para clientes, usuários, licenças e faturas, e um <strong>banco dedicado por tenant</strong> para os dados operacionais (contatos, agentes, fluxos, campanhas). Toda rota que toca dados de cliente passa por uma resolução em runtime — coleções de tenant nunca são consultadas na conexão global.</p>
+                        <p lang="en">The technical heart of BAttomic is <strong>per-client isolation</strong>: a global control-plane database for clients, users, licenses and invoices, and a <strong>dedicated database per tenant</strong> for operational data (contacts, agents, flows, campaigns). Every route touching client data goes through a runtime resolution — tenant collections are never queried on the global connection.</p>
+
+                        <ul class="feature-list">
+                            <li>
+                                <strong>
+                                    <span lang="pt">Banco por cliente:</span>
+                                    <span lang="en">Database per client:</span>
+                                </strong>
+                                <span lang="pt">Modelos globais e schemas de tenant separados, resolvidos dinamicamente por ID de cliente para garantir isolamento total de dados.</span>
+                                <span lang="en">Global models and tenant schemas kept separate, resolved dynamically by client ID to guarantee full data isolation.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Permissões granulares:</span>
+                                    <span lang="en">Granular permissions:</span>
+                                </strong>
+                                <span lang="pt">Catálogo de permissões, role templates e guards de rota (<code>withPermission()</code> / <code>withSuperAdmin()</code>) protegendo cada endpoint e cada tela.</span>
+                                <span lang="en">Permission catalog, role templates and route guards (<code>withPermission()</code> / <code>withSuperAdmin()</code>) protecting every endpoint and screen.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">API REST extensa:</span>
+                                    <span lang="en">Extensive REST API:</span>
+                                </strong>
+                                <span lang="pt">Mais de 150 rotas de API, além de cron jobs e webhooks, organizadas por domínio (admin, CRM, automações, conta).</span>
+                                <span lang="en">Over 150 API routes, plus cron jobs and webhooks, organized by domain (admin, CRM, automations, account).</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Integrações nativas:</span>
+                                    <span lang="en">Native integrations:</span>
+                                </strong>
+                                <span lang="pt">WhatsApp (via Evolution API), Google, Meta e Telegram, conectando os agentes aos canais reais dos clientes.</span>
+                                <span lang="en">WhatsApp (via Evolution API), Google, Meta and Telegram, connecting the agents to clients' real channels.</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Acesso & Conversão</span>
+                            <span lang="en">Access & Conversion</span>
+                        </h2>
+                        <p lang="pt">Autenticação por sessão (NextAuth) com verificação de e-mail e ativação por token, permissões granulares por papel e uma jornada de conversão pensada — teste grátis, sem cartão, com acesso completo por uma semana.</p>
+                        <p lang="en">Session auth (NextAuth) with email verification and token activation, granular role-based permissions and a deliberate conversion journey — free trial, no card, full access for a week.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack</h2>
+                        <p lang="pt">Aplicação única em Next.js com App Router, tipada de ponta a ponta e com estilo utilitário, sobre MongoDB e autenticação de sessão.</p>
+                        <p lang="en">A single Next.js App Router application, typed end to end and utility-styled, on top of MongoDB and session authentication.</p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Next.js 16</span>
+                            <span class="tech-tag">React 19</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">MongoDB / Mongoose 9</span>
+                            <span class="tech-tag">NextAuth 4</span>
+                            <span class="tech-tag">Tailwind CSS 4</span>
+                            <span class="tech-tag">Mercado Pago</span>
+                            <span class="tech-tag">Evolution API</span>
+                            <span class="tech-tag">Anthropic / OpenAI / Gemini / DeepSeek</span>
+                        </div>
+                    </section>
+
+                    <!-- BANNER WHATSAPP ESTILO DISCORD -->
+                    <div class="whatsapp-banner">
+						<div class="whatsapp-banner-content">
+							<h3>
+								<span lang="pt">Quer o BAttomic na sua empresa?</span>
+								<span lang="en">Want BAttomic in your company?</span>
+							</h3>
+							<p>
+								<span lang="pt">CRM, agentes de IA e cobrança numa só plataforma. Fale comigo para uma demonstração e as primeiras condições de lançamento.</span>
+								<span lang="en">CRM, AI agents and billing in one platform. Reach out for a demo and early launch conditions.</span>
+							</p>
+						</div>
+                        <a href="https://wa.me/5531933008486?text=Olá!%20Vim%20do%20seu%20portfólio%20e%20gostaria%20de%20conhecer%20o%20BAttomic." class="whatsapp-banner-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span lang="pt">Falar no WhatsApp</span>
+                            <span lang="en">Talk on WhatsApp</span>
+                        </a>
+                    </div>
+
+                </div>
+            </article>
+
+            <nav class="project-navigation three-column-nav">
+                <a class="nav-item nav-prev" style="opacity: 0.3; pointer-events: none;">
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
+                    <strong>—</strong>
+                </a>
+
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
+                </a>
+
+                <a href="relatorios-sao-romao.html" class="nav-item nav-next">
+                    <span data-i18n="nav_next">Próximo Projeto</span>
+                    <strong>
+                        <span lang="pt">Relatórios São Romão</span>
+                        <span lang="en">São Romão Reports</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer_rights">&copy; 2026 Bernardo Cordeiro Motta.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

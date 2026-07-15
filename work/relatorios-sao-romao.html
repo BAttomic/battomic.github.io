@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios de Produção — São Romão - Bernardo Motta</title>
+    <meta name="description" content="Aplicação 100% offline para a Indústria de Forjados São Romão: lê relatórios de produção em PDF, mapeia produtos por supervisor e gera análises.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .sr-logo {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 16px 20px;
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
+        }
+        .sr-logo img { height: 66px; width: auto; display: block; }
+        @media (max-width: 620px) { .sr-logo img { height: 54px; } }
+        .offline-note {
+            margin-top: 12px;
+            padding: 10px 16px;
+            border: 1px dashed var(--border-light);
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Showcase de imagem (screenshot com moldura + legenda) */
+        .shot {
+            margin: 22px 0 6px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: var(--bg-card);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        }
+        .shot img { width: 100%; height: auto; display: block; }
+        .shot-cap {
+            padding: 12px 16px;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Comparativo Antes → Depois */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 18px;
+            margin: 24px 0 8px;
+        }
+        .ba-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+        .ba-card img { width: 100%; height: 230px; object-fit: cover; object-position: top; display: block; }
+        .ba-card.after img { object-position: center; }
+        .ba-tag {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 14px; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .ba-tag.bad { color: #f87171; }
+        .ba-tag.good { color: #34d399; }
+        .ba-arrow { font-size: 26px; color: var(--accent); font-weight: 800; }
+
+        /* Lista de "dores" do documento cru */
+        .pain-list { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+        .pain-list li {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 12px 16px; border-radius: 10px;
+            border-left: 4px solid #f87171; background: var(--bg-card);
+            font-size: 15px; line-height: 1.5;
+        }
+        .pain-list li i { color: #f87171; margin-top: 3px; }
+
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 20px; }
+        .gallery .shot { margin: 0; display: flex; flex-direction: column; }
+        .gallery .shot img { flex-shrink: 0; }
+        .gallery .shot-cap { margin-top: auto; } /* legenda sempre na base → cards alinhados */
+
+        /* Banner de destaque: 100% offline */
+        .offline-hero {
+            display: flex; align-items: center; gap: 18px;
+            margin: 4px 0 30px;
+            padding: 18px 22px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(52,211,153,0.35);
+            background: linear-gradient(135deg, rgba(52,211,153,0.12), transparent 70%);
+        }
+        .offline-hero .oh-ico {
+            width: 52px; height: 52px; flex-shrink: 0;
+            display: grid; place-items: center;
+            border-radius: 14px;
+            background: rgba(52,211,153,0.15);
+            color: #34d399; font-size: 24px;
+        }
+        .offline-hero h3 { margin: 0 0 3px; font-size: 17px; color: #34d399; }
+        .offline-hero p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+        @media (max-width: 620px) { .offline-hero { flex-direction: column; text-align: center; } }
+
+        /* Mock do documento cru (papel impresso) para o "Antes" */
+        .raw-doc {
+            height: 230px; overflow: hidden; position: relative;
+            background: #f5f5f3; color: #141414;
+            padding: 14px 16px 0;
+            font-family: var(--font-mono); font-size: 9px; line-height: 1.65;
+            -webkit-mask-image: linear-gradient(#000 68%, transparent);
+                    mask-image: linear-gradient(#000 68%, transparent);
+        }
+        .raw-doc .rd-title { text-align: center; font-weight: 600; letter-spacing: .02em; }
+        .raw-doc .rd-sub { text-align: center; color: #555; margin-bottom: 8px; }
+        .raw-doc .rd-row { display: flex; gap: 6px; color: #222; white-space: nowrap; }
+        .raw-doc .rd-row.head { font-weight: 700; border-bottom: 1px solid #bbb; margin-bottom: 3px; padding-bottom: 2px; }
+        .raw-doc .rd-row .c1 { width: 34px; }
+        .raw-doc .rd-row .c2 { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+        .raw-doc .rd-row .c3 { width: 34px; text-align: right; }
+
+        @media (max-width: 760px) {
+            .ba-grid { grid-template-columns: 1fr; }
+            .ba-arrow { transform: rotate(90deg); justify-self: center; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
+			</div>
+
+			<nav class="nav-menu">
+				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+				<a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
+			</nav>
+
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+
+				<div class="location-time">
+					<span data-i18n="location">Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span data-i18n="time_label">Meu horário:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1040px; margin: 0 auto; padding: 48px 24px;">
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-header-with-logo">
+                        <div class="sr-logo">
+                            <img src="../assets/img/sr-logo.png" alt="Ferramentas São Romão">
+                        </div>
+                        <div class="project-header-content">
+                            <h1>
+                                <span lang="pt">Relatórios de Produção — São Romão</span>
+                                <span lang="en">Production Reports — São Romão</span>
+                            </h1>
+                            <p class="project-subtitle">
+                                <span lang="pt">Solução real, 100% offline, para a Indústria de Forjados São Romão: transforma relatórios de produção em PDF em análises por supervisor, produto e período — com um modo apresentação.</span>
+                                <span lang="en">A real, 100% offline solution for Indústria de Forjados São Romão: turns production reports in PDF into analytics by supervisor, product and period — with a presentation mode.</span>
+                            </p>
+                            <div class="offline-note">
+                                <span lang="pt">Portfólio com <strong>dados fictícios</strong> — nenhum número real de produção da empresa é exposto.</span>
+                                <span lang="en">Portfolio uses a <strong>fictitious dataset</strong> — no real production figures from the company are exposed.</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="project-content">
+                    <div class="offline-hero">
+                        <div class="oh-ico"><i class="fas fa-wifi"></i></div>
+                        <div>
+                            <h3><span lang="pt">Roda 100% offline</span><span lang="en">Runs 100% offline</span></h3>
+                            <p>
+                                <span lang="pt">Tudo num servidor Node local, dentro da fábrica: <strong>sem internet, sem nuvem, sem SaaS e sem banco de dados</strong>. Os dados nunca saem da máquina — a única fonte é uma pasta de PDFs no disco.</span>
+                                <span lang="en">Everything on a local Node server, inside the factory: <strong>no internet, no cloud, no SaaS and no database</strong>. Data never leaves the machine — the single source is a folder of PDFs on disk.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">O Problema — o documento de entrada</span>
+                            <span lang="en">The Problem — the input document</span>
+                        </h2>
+                        <p lang="pt">A <strong>Indústria de Forjados São Romão</strong> (Dom Silvério/MG), fabricante de ferramentas forjadas, gerava seus relatórios de produção em <strong>PDF</strong> (modelo "Mapa de Produção por Data"). O que chegava ao gestor todo mês era um <strong>despejo monocromático de texto</strong>: três colunas secas — código, produto, produção — repetidas por <strong>132 itens ao longo de 4 páginas</strong>. Sem um total sequer, sem gráfico, sem análise. Um documento feito para imprimir, não para entender.</p>
+                        <p lang="en">The <strong>Indústria de Forjados São Romão</strong> (Dom Silvério/MG), a forged-tools manufacturer, produced its production reports as <strong>PDFs</strong> ("Production Map by Date" template). What reached the manager every month was a <strong>monochrome text dump</strong>: three dry columns — code, product, output — repeated across <strong>132 items over 4 pages</strong>. Not a single total, no chart, no analysis. A document made to print, not to understand.</p>
+
+                        <p lang="pt">Para <strong>apresentar</strong> ou <strong>entender</strong> qualquer coisa a partir disso, o gestor tinha que:</p>
+                        <p lang="en">To <strong>present</strong> or <strong>understand</strong> anything from it, the manager had to:</p>
+
+                        <ul class="pain-list">
+                            <li><i class="fas fa-calculator"></i>
+                                <span lang="pt">Somar e cruzar tudo <strong>na mão</strong> (ou digitar no Excel) — lento e sujeito a erro a cada fechamento.</span>
+                                <span lang="en">Sum and cross-reference everything <strong>by hand</strong> (or retype into Excel) — slow and error-prone every month.</span>
+                            </li>
+                            <li><i class="fas fa-user-slash"></i>
+                                <span lang="pt">Descobrir <strong>quem produziu o quê</strong>: o PDF não tem supervisor nenhum, só códigos de produto.</span>
+                                <span lang="en">Figure out <strong>who produced what</strong>: the PDF has no supervisor at all, only product codes.</span>
+                            </li>
+                            <li><i class="fas fa-chart-line"></i>
+                                <span lang="pt">Comparar meses e enxergar <strong>tendência</strong> abrindo vários PDFs lado a lado, manualmente.</span>
+                                <span lang="en">Compare months and spot <strong>trends</strong> by opening several PDFs side by side, manually.</span>
+                            </li>
+                            <li><i class="fas fa-wifi"></i>
+                                <span lang="pt">E fazer tudo isso <strong>sem internet</strong>: a fábrica opera offline, então nada de nuvem ou SaaS.</span>
+                                <span lang="en">And do all of it <strong>with no internet</strong>: the factory runs offline, so no cloud or SaaS.</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">A Solução</span>
+                            <span lang="en">The Solution</span>
+                        </h2>
+                        <p lang="pt">Um app que usa uma <strong>pasta de PDFs como fonte de dados</strong>: ao abrir, o servidor lê a pasta, faz o parsing de cada PDF (Node + pdf.js) e entrega tudo pronto para a interface. Sem banco de dados, sem nuvem — só arquivos locais.</p>
+                        <p lang="en">An app that uses a <strong>folder of PDFs as its data source</strong>: on launch, the server reads the folder, parses each PDF (Node + pdf.js) and serves everything ready to the interface. No database, no cloud — just local files.</p>
+
+                        <ul class="feature-list">
+                            <li>
+                                <strong>
+                                    <span lang="pt">Leitura sem margem de erro:</span>
+                                    <span lang="en">Error-free reading:</span>
+                                </strong>
+                                <span lang="pt">Cada PDF passa por conferências automáticas, incluindo um <strong>checksum do total</strong> (a soma dos produtos precisa bater com o "total produzido no período" impresso no rodapé) — prova matemática de que o parsing está correto.</span>
+                                <span lang="en">Each PDF goes through automatic checks, including a <strong>total checksum</strong> (the sum of products must match the "total produced in the period" printed in the footer) — mathematical proof that parsing is correct.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Mapa produto → supervisor:</span>
+                                    <span lang="en">Product → supervisor map:</span>
+                                </strong>
+                                <span lang="pt">Cada produto é associado a um supervisor, com a configuração salva em arquivo no disco (não em localStorage) — não se perde ao trocar de navegador.</span>
+                                <span lang="en">Each product is tied to a supervisor, with the configuration saved to a file on disk (not localStorage) — it survives switching browsers.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Análises consolidadas:</span>
+                                    <span lang="en">Consolidated analytics:</span>
+                                </strong>
+                                <span lang="pt">Relatórios por supervisor, por produto e consolidado de vários meses, a partir dos PDFs presentes na pasta.</span>
+                                <span lang="en">Reports by supervisor, by product and consolidated across several months, from the PDFs present in the folder.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Modo apresentação:</span>
+                                    <span lang="en">Presentation mode:</span>
+                                </strong>
+                                <span lang="pt">Uma visão pensada para o gerente apresentar os números em reunião, direto do app.</span>
+                                <span lang="en">A view designed for the manager to present the numbers in meetings, straight from the app.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Gestão de arquivos:</span>
+                                    <span lang="en">File management:</span>
+                                </strong>
+                                <span lang="pt">Enviar, baixar e remover PDFs pela própria interface — mas a pasta continua sendo a única "verdade".</span>
+                                <span lang="en">Upload, download and remove PDFs from the interface itself — yet the folder remains the single source of truth.</span>
+                            </li>
+                        </ul>
+
+                        <div class="shot">
+                            <img src="../assets/img/sr-app.png" alt="Interface do app de relatórios" loading="lazy">
+                            <div class="shot-cap">
+                                <span lang="pt">A interface do app: seletor de período, exportação em PDF/CSV e destaques automáticos — tudo rodando local.</span>
+                                <span lang="en">The app interface: period selector, PDF/CSV export and automatic highlights — all running locally.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Antes → Depois</span>
+                            <span lang="en">Before → After</span>
+                        </h2>
+                        <p lang="pt">O mesmo dado, dois mundos. À esquerda, o PDF cru que chegava ao gestor; à direita, a mesma informação virando uma apresentação executiva pronta para a reunião.</p>
+                        <p lang="en">Same data, two worlds. On the left, the raw PDF the manager received; on the right, the same information turned into a boardroom-ready executive presentation.</p>
+
+                        <div class="ba-grid">
+                            <div class="ba-card before">
+                                <div class="ba-tag bad"><i class="fas fa-file-lines"></i>
+                                    <span lang="pt">Antes · PDF cru</span><span lang="en">Before · raw PDF</span>
+                                </div>
+                                <div class="raw-doc" aria-label="Documento PDF cru: lista corrida de código, produto e produção">
+                                    <div class="rd-title">MAPA DE PRODUÇÃO POR DATA</div>
+                                    <div class="rd-sub">De: 01/05/2026 - Até: 31/05/2026</div>
+                                    <div class="rd-row head"><span class="c1">COD</span><span class="c2">PRODUTO</span><span class="c3">PROD</span></div>
+                                    <div class="rd-row"><span class="c1">5100</span><span class="c2">FLANGE SOBREPOSTA 1/2"</span><span class="c3">3493</span></div>
+                                    <div class="rd-row"><span class="c1">5101</span><span class="c2">FLANGE SOBREPOSTA 3/4"</span><span class="c3">3102</span></div>
+                                    <div class="rd-row"><span class="c1">5102</span><span class="c2">FLANGE SOBREPOSTA 1"</span><span class="c3">4171</span></div>
+                                    <div class="rd-row"><span class="c1">5103</span><span class="c2">FLANGE ROSCADA 1/2"</span><span class="c3">2431</span></div>
+                                    <div class="rd-row"><span class="c1">5104</span><span class="c2">FLANGE ROSCADA 1"</span><span class="c3">2736</span></div>
+                                    <div class="rd-row"><span class="c1">5105</span><span class="c2">FLANGE CEGA 2"</span><span class="c3">1676</span></div>
+                                    <div class="rd-row"><span class="c1">5106</span><span class="c2">FLANGE CEGA 3"</span><span class="c3">1250</span></div>
+                                    <div class="rd-row"><span class="c1">5107</span><span class="c2">FLANGE DE PESCOCO 2"</span><span class="c3">2076</span></div>
+                                    <div class="rd-row"><span class="c1">5108</span><span class="c2">FLANGE DE PESCOCO 4"</span><span class="c3">1440</span></div>
+                                    <div class="rd-row"><span class="c1">5200</span><span class="c2">EIXO ARVORE 20MM</span><span class="c3">4437</span></div>
+                                    <div class="rd-row"><span class="c1">5205</span><span class="c2">PINO GUIA 8MM</span><span class="c3">6360</span></div>
+                                    <div class="rd-row"><span class="c1">5207</span><span class="c2">PINO ELASTICO 6MM</span><span class="c3">7698</span></div>
+                                    <div class="rd-row"><span class="c1">…</span><span class="c2">+ 132 itens · 4 páginas</span><span class="c3">…</span></div>
+                                </div>
+                            </div>
+                            <div class="ba-arrow">→</div>
+                            <div class="ba-card after">
+                                <div class="ba-tag good"><i class="fas fa-chart-column"></i>
+                                    <span lang="pt">Depois · apresentação</span><span lang="en">After · presentation</span>
+                                </div>
+                                <img src="../assets/img/sr-capa.png" alt="Depois: apresentação executiva">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Modo Apresentação</span>
+                            <span lang="en">Presentation Mode</span>
+                        </h2>
+                        <p lang="pt">Um deck executivo em tela cheia, gerado automaticamente a partir dos PDFs. Média móvel, tendência, projeção, diagnóstico analítico e participação por supervisor — tudo pronto para projetar na reunião.</p>
+                        <p lang="en">A full-screen executive deck, generated automatically from the PDFs. Moving average, trend, forecast, analytical diagnosis and per-supervisor share — all ready to project in the meeting.</p>
+
+                        <div class="shot">
+                            <img src="../assets/img/sr-evolucao.png" alt="Slide de evolução: barras, média móvel, tendência e projeção">
+                            <div class="shot-cap">
+                                <span lang="pt">Evolução e tendência — barras de produção, média móvel, linha de tendência, banda de controle e projeção do próximo período.</span>
+                                <span lang="en">Evolution and trend — production bars, moving average, trend line, control band and next-period forecast.</span>
+                            </div>
+                        </div>
+
+                        <div class="gallery">
+                            <div class="shot">
+                                <img src="../assets/img/sr-familia.png" alt="Slide de análise por família" loading="lazy">
+                                <div class="shot-cap">
+                                    <span lang="pt">Análise por família — 79 famílias agrupadas dos SKUs, com evolução e variações.</span>
+                                    <span lang="en">Family analysis — 79 families grouped from SKUs, with evolution and variations.</span>
+                                </div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/sr-supervisores.png" alt="Slide de supervisores" loading="lazy">
+                                <div class="shot-cap">
+                                    <span lang="pt">Supervisores — participação e evolução mês a mês, dado que o PDF nem tinha.</span>
+                                    <span lang="en">Supervisors — share and month-by-month evolution, data the PDF didn't have.</span>
+                                </div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/sr-ranking.png" alt="Slide de ranking de produtos" loading="lazy">
+                                <div class="shot-cap">
+                                    <span lang="pt">Ranking de produtos — os que mais pesam na produção, com curva de Pareto.</span>
+                                    <span lang="en">Product ranking — those that weigh most on output, with a Pareto curve.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Destaques</span>
+                            <span lang="en">Highlights</span>
+                        </h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-number">100%</span>
+                                <span class="result-label">
+                                    <span lang="pt">Offline (sem internet)</span>
+                                    <span lang="en">Offline (no internet)</span>
+                                </span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">0</span>
+                                <span class="result-label">
+                                    <span lang="pt">Bancos de dados</span>
+                                    <span lang="en">Databases</span>
+                                </span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-number">132</span>
+                                <span class="result-label">
+                                    <span lang="pt">Produtos por relatório</span>
+                                    <span lang="en">Products per report</span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack</h2>
+                        <p lang="pt">Next.js rodando como servidor Node local, com o parsing de PDF acontecendo no servidor (fora do bundle do webpack) para garantir precisão e performance.</p>
+                        <p lang="en">Next.js running as a local Node server, with PDF parsing happening on the server (outside the webpack bundle) to ensure accuracy and performance.</p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Next.js 14</span>
+                            <span class="tech-tag">React 18</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">pdfjs-dist</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Offline / Local</span>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <nav class="project-navigation three-column-nav">
+                <a href="battomic.html" class="nav-item nav-prev">
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
+                    <strong><i class="fas fa-arrow-left"></i> BAttomic</strong>
+                </a>
+
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
+                </a>
+
+                <a href="ticketflow.html" class="nav-item nav-next">
+                    <span data-i18n="nav_next">Próximo Projeto</span>
+                    <strong>TicketFlow <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer_rights">&copy; 2026 Bernardo Cordeiro Motta.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

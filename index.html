@@ -67,8 +67,8 @@
             </div>
 
             <p class="profile-bio" data-i18n="bio">
-                Especialista em automação empresarial e infraestrutura escalável. 
-                Transformo fluxos complexos em soluções eficientes usando N8n, APIs e DevOps.
+                Especialista em automação empresarial, produtos SaaS e infraestrutura escalável.
+                Transformo fluxos complexos em soluções eficientes com agentes de IA, APIs e DevOps.
             </p>
 
             <div class="info-section">
@@ -164,8 +164,8 @@
 			<span>146</span><span>147</span><span>148</span><span>149</span><span>150</span>
         </div>
 
-        <main class="main-content">
-			<section class="hero-section" id="hero">
+        <main class="main-content" id="home-main">
+			<section class="hero-section" id="hero" style="order:0">
 				<h1 class="hero-title">
 					<span data-i18n="hero_title_1">Desenvolvedor Backend &</span><br>
 					<span class="highlight" data-i18n="hero_title_2">Especialista em Automação</span>
@@ -177,18 +177,41 @@
 				</p>
 			</section>
 
-            <section class="work-section" id="work">
+            <section class="work-section" id="work" style="order:2">
                 <div class="projects-grid">
-                    <a href="work/agente-ia.html" class="project-card">
+                    <a href="work/battomic.html" class="project-card">
                         <div class="project-header">
                             <h3>
-                                <span lang="pt">Agente de Atendimento com IA</span>
-                                <span lang="en">AI Customer Service Agent</span>
+                                <span lang="pt">BAttomic — Plataforma SaaS</span>
+                                <span lang="en">BAttomic — SaaS Platform</span>
                             </h3>
                             <span class="project-arrow">→</span>
                         </div>
                         <div class="project-image">
-                            <img src="assets/img/project-ia.png" alt="Agente IA" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                            <img src="assets/img/battomic-cover.png" alt="BAttomic" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                        </div>
+                    </a>
+
+                    <a href="work/relatorios-sao-romao.html" class="project-card">
+                        <div class="project-header">
+                            <h3>
+                                <span lang="pt">Relatórios de Produção — São Romão</span>
+                                <span lang="en">Production Reports — São Romão</span>
+                            </h3>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/relatorios-sao-romao.png" alt="Relatórios São Romão" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                        </div>
+                    </a>
+
+                    <a href="work/ticketflow.html" class="project-card">
+                        <div class="project-header">
+                            <h3>TicketFlow</h3>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/ticketflow-home.png" alt="TicketFlow" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
                         </div>
                     </a>
 
@@ -215,14 +238,50 @@
 				</div>
             </section>
 
-			<section class="about-section" id="about">
+			<section class="work-section" id="blog-preview" style="order:7">
+				<h2 class="section-title"><span lang="pt">Do blog</span><span lang="en">From the blog</span></h2>
+				<div class="projects-grid">
+					<a href="blog/univicosa.html" class="blog-card">
+						<div class="blog-image edu has-img"><img src="assets/img/ticketflow-home.png" alt="TicketFlow — TCC da graduação"></div>
+						<div class="blog-content">
+							<div class="blog-meta">
+								<span><i class="fas fa-calendar"></i> 2024 – 2026</span>
+								<span><i class="fas fa-graduation-cap"></i> <span lang="pt">Formação</span><span lang="en">Education</span></span>
+							</div>
+							<h3 class="blog-title"><span lang="pt">UniViçosa — da teoria ao que já rodava em produção</span><span lang="en">UniViçosa — from theory to what was already in production</span></h3>
+							<p class="blog-excerpt"><span lang="pt">Formado em ADS: como a graduação conversou com 7+ anos de prática — e o que mudou na forma como eu construo sistemas.</span><span lang="en">Graduated in Systems Analysis: how the degree met 7+ years of practice — and what changed in how I build.</span></p>
+							<span class="read-more"><span lang="pt">Ler artigo</span><span lang="en">Read article</span> <i class="fas fa-arrow-right"></i></span>
+						</div>
+					</a>
+					<a href="blog/orangestore.html" class="blog-card">
+						<div class="blog-image orange"><i class="fas fa-microchip"></i></div>
+						<div class="blog-content">
+							<div class="blog-meta">
+								<span><i class="fas fa-calendar"></i> Ago/2024 – Jan/2025</span>
+								<span><i class="fas fa-microchip"></i> Hardware</span>
+							</div>
+							<h3 class="blog-title"><span lang="pt">OrangeStore — precisão no nível do hardware</span><span lang="en">OrangeStore — precision at the hardware level</span></h3>
+							<p class="blog-excerpt"><span lang="pt">Microsoldagem e reparo de eletrônicos: o que consertar placas no nível do micrômetro me ensinou sobre resolver problemas.</span><span lang="en">Microsoldering and electronics repair: what fixing boards at the micrometer level taught me about problem-solving.</span></p>
+							<span class="read-more"><span lang="pt">Ler artigo</span><span lang="en">Read article</span> <i class="fas fa-arrow-right"></i></span>
+						</div>
+					</a>
+				</div>
+				<div class="view-all-container">
+					<a href="blog.html" class="btn-view-all">
+						<span lang="pt">Ver o blog</span><span lang="en">Visit the blog</span>
+						<i class="fas fa-arrow-right"></i>
+					</a>
+				</div>
+			</section>
+
+			<section class="about-section" id="about" style="order:1">
 				<h2 class="section-title" data-i18n="section_about">Sobre mim</h2>
 				<div class="about-content">
 					<p data-i18n="about_p1">
 						Sou Bernardo Cordeiro Motta, desenvolvedor backend com mais de <strong>7 anos</strong> de experiência transformando
-						complexidade em automação. Hoje estou graduando em <strong>Analise e Desenvolvimento de Sistemas</strong> pela <strong>UniViçosa</strong>,
+						complexidade em automação. Sou <strong>formado em Análise e Desenvolvimento de Sistemas</strong> pela <strong>UniViçosa</strong>,
 						além de minha base acadêmica em <strong>Bacharelado em Matemática</strong> pela <strong>UFV</strong>, que juntas, me deram fundamentos sólidos em lógica
-						e pensamento analítico, que aplico diariamente para resolver problemas técnicos complexos. 
+						e pensamento analítico, que aplico diariamente para resolver problemas técnicos complexos.
 					</p>
 					<p data-i18n="about_p2">
 						Minha jornada prática começou em 2017 desenvolvendo sistemas para redes de Minecraft 
@@ -239,13 +298,13 @@
 				</div>
 			</section>
 
-            <section class="education-section" id="education">
+            <section class="education-section" id="education" style="order:6">
                 <h2 class="section-title" data-i18n="section_education">Educação</h2>
                 <div class="education-grid">
                     <div class="education-card">
                         <h4 data-i18n="edu_college_title">Análise e Desenvolvimento de Sistemas</h4>
                         <p class="education-school" data-i18n="edu_college_school">UniViçosa</p>
-                        <span class="education-date" data-i18n="edu_college_date">2024 - Atual</span>
+                        <span class="education-date" data-i18n="edu_college_date">2024 - 2026 · Formado</span>
                     </div>
                     <div class="education-card">
                         <h4 data-i18n="edu_university_title">Bacharelado em Matemática</h4>
@@ -255,7 +314,7 @@
                 </div>
             </section>
 
-			<section class="whatido-section" id="whatido">
+			<section class="whatido-section" id="whatido" style="order:3">
 				<h2 class="section-title" data-i18n="section_whatido">O que eu faço</h2>
 				<div class="services-grid">
 					<div class="service-card">
@@ -297,7 +356,7 @@
 				</div>
 			</section>
 
-            <section class="stack-section" id="stack">
+            <section class="stack-section" id="stack" style="order:5">
                 <h2 class="section-title" data-i18n="section_stack">Tech stack</h2>
                 
 				<div class="unified-stack-grid">
@@ -306,7 +365,11 @@
 						<span class="stack-name">JavaScript</span>
 						<img src="assets/svg/javascript.svg" alt="JavaScript" class="stack-icon">
 					</div>
-					<div class="stack-card">
+											<div class="stack-card">
+							<span class="stack-name">TypeScript</span>
+							<img src="assets/svg/typescript.svg" alt="TypeScript" class="stack-icon">
+						</div>
+<div class="stack-card">
 						<span class="stack-name">Python</span>
 						<img src="assets/svg/python.svg" alt="Python" class="stack-icon">
 					</div>
@@ -323,7 +386,19 @@
 						<img src="assets/svg/django.svg" alt="Django" class="stack-icon">
 					</div>
 
-					<!-- Bancos de Dados -->
+											<div class="stack-card">
+							<span class="stack-name">React</span>
+							<img src="assets/svg/react.svg" alt="React" class="stack-icon">
+						</div>
+						<div class="stack-card">
+							<span class="stack-name">Next.js</span>
+							<img src="assets/svg/nextjs.svg" alt="Next.js" class="stack-icon">
+						</div>
+						<div class="stack-card">
+							<span class="stack-name">Tailwind</span>
+							<img src="assets/svg/tailwind.svg" alt="Tailwind CSS" class="stack-icon">
+						</div>
+<!-- Bancos de Dados -->
 					<div class="stack-card">
 						<span class="stack-name">MySQL</span>
 						<img src="assets/svg/mysql.svg" alt="MySQL" class="stack-icon">
@@ -335,10 +410,6 @@
 					<div class="stack-card">
 						<span class="stack-name">MongoDB</span>
 						<img src="assets/svg/mongodb.svg" alt="MongoDB" class="stack-icon">
-					</div>
-					<div class="stack-card">
-						<span class="stack-name">Supabase</span>
-						<img src="assets/svg/supabase.svg" alt="Supabase" class="stack-icon">
 					</div>
 
 					<!-- DevOps & Tools -->
@@ -389,7 +460,7 @@
 				</div>
             </section>
 
-			<section class="experience-section" id="experience">
+			<section class="experience-section" id="experience" style="order:4">
 				<h2 class="section-title" data-i18n="section_experience">Experiência</h2>
 				<div class="timeline">
 					<div class="timeline-item">
@@ -401,10 +472,11 @@
 							</div>
 							<p class="timeline-role" data-i18n="exp_freelancer_role">Back-end, DevOps & Automação</p>
 							<p class="timeline-description" data-i18n="exp_freelancer_desc">
-								Desenvolvimento de soluções customizadas de automação para empresas e startups. 
-								Especialização em infraestrutura VPS escalável, pipelines CI/CD, integração 
-								de APIs empresariais e sistemas de atendimento automatizado. Experiência 
-								comprovada gerenciando servidores de jogos com milhares de usuários simultâneos.
+								Desenvolvimento de soluções customizadas de automação para empresas e startups.
+								Atualmente construo o <strong>BAttomic</strong>, uma plataforma SaaS multi-tenant
+								(CRM + agentes de IA + billing). Especialização em infraestrutura VPS escalável,
+								pipelines CI/CD, integração de APIs e agentes de IA. Experiência comprovada
+								gerenciando servidores de jogos com milhares de usuários simultâneos.
 							</p>
 						</div>
 					</div>
@@ -441,7 +513,7 @@
 				</div>
 			</section>
 
-            <section class="contact-section-main" id="contact">
+            <section class="contact-section-main" id="contact" style="order:8">
                 <h2 class="section-title" data-i18n="contact_title">Contato</h2>
                 <div class="contact-grid">
                     <a href="mailto:bernardocordeiromotta@gmail.com" class="contact-card">
@@ -467,11 +539,13 @@
         <aside class="right-sidebar">
             <nav class="page-index">
                 <h4 data-i18n="index_title">Índice</h4>
-                <a href="#work" class="index-link active" data-i18n="index_work">Projetos</a>
-                <a href="#about" class="index-link" data-i18n="index_about">Sobre mim</a>
+                <a href="#about" class="index-link active" data-i18n="index_about">Sobre mim</a>
+                <a href="#work" class="index-link" data-i18n="index_work">Projetos</a>
                 <a href="#whatido" class="index-link" data-i18n="index_whatido">O que faço</a>
-                <a href="#stack" class="index-link" data-i18n="index_stack">Tech stack</a>
                 <a href="#experience" class="index-link" data-i18n="index_experience">Experiência</a>
+                <a href="#stack" class="index-link" data-i18n="index_stack">Tech stack</a>
+                <a href="#education" class="index-link"><span lang="pt">Educação</span><span lang="en">Education</span></a>
+                <a href="#blog-preview" class="index-link"><span lang="pt">Blog</span><span lang="en">Blog</span></a>
                 <a href="#contact" class="index-link" data-i18n="index_contact">Contato</a>
             </nav>
         </aside>

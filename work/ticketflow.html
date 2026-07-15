@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicketFlow — Venda de ingressos com QR - Bernardo Motta</title>
+    <meta name="description" content="TicketFlow: plataforma full-stack de venda de ingressos com QR Code dinâmico e check-in offline. TCC em Next.js 16, TypeScript e MongoDB.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .tf-logo {
+            width: 110px; height: 110px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 24px; font-size: 46px; color: #f59e0b;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-primary) 100%);
+            border: 2px solid #f59e0b;
+        }
+        .shot {
+            margin: 22px 0 6px; border-radius: var(--radius-lg); overflow: hidden;
+            border: 1px solid var(--border); background-color: var(--bg-card);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .shot:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,0.28); border-color: var(--border-light); }
+        .shot img { width: 100%; height: auto; display: block; }
+        .shot-cap {
+            padding: 12px 16px; background-color: var(--bg-primary); border-top: 1px solid var(--border);
+            font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-align: center;
+        }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 20px; }
+        .gallery .shot { margin: 0; display: flex; flex-direction: column; }
+        .gallery .shot-cap { margin-top: auto; }
+        .gallery .portrait img { max-height: 560px; width: auto; margin: 0 auto; }
+        .gallery .portrait { display: flex; flex-direction: column; }
+        .gallery .portrait .shot-cap { margin-top: auto; }
+        .tcc-note {
+            display: flex; align-items: center; gap: 16px; margin: 8px 0 30px;
+            padding: 16px 20px; border-radius: var(--radius-lg);
+            border: 1px solid rgba(245,158,11,0.35);
+            background: linear-gradient(135deg, rgba(245,158,11,0.10), transparent 70%);
+        }
+        .tcc-note i { color: #f59e0b; font-size: 22px; flex-shrink: 0; }
+        .tcc-note p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+                <a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+                <a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
+            </nav>
+            <div class="header-right">
+                <button id="lang-toggle" class="lang-btn">EN</button>
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span lang="pt">Disponível</span>
+                    <span lang="en">Open to work</span>
+                </div>
+                <div class="location-time">
+                    <span data-i18n="location">Viçosa, MG</span>
+                    <span class="separator">•</span>
+                    <span><span data-i18n="time_label">Meu horário:</span> <span id="current-time">00:00</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1040px; margin: 0 auto; padding: 48px 24px;">
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-header-with-logo">
+                        <div class="tf-logo"><i class="fas fa-ticket"></i></div>
+                        <div class="project-header-content">
+                            <h1>TicketFlow</h1>
+                            <p class="project-subtitle">
+                                <span lang="pt">Plataforma full-stack de venda de ingressos: qualquer pessoa cria eventos, vende com <strong>QR Code dinâmico</strong> e faz <strong>check-in — inclusive offline</strong>. Foi o meu Trabalho de Conclusão de Curso.</span>
+                                <span lang="en">Full-stack ticketing platform: anyone creates events, sells with a <strong>dynamic QR Code</strong> and runs <strong>check-in — even offline</strong>. It was my capstone project.</span>
+                            </p>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="project-content">
+                    <div class="tcc-note">
+                        <i class="fas fa-graduation-cap"></i>
+                        <p>
+                            <span lang="pt"><strong>TCC — Análise e Desenvolvimento de Sistemas (UniViçosa).</strong> O software do trabalho de conclusão; a monografia foi escrita em LaTeX/ABNT.</span>
+                            <span lang="en"><strong>Capstone — Systems Analysis and Development (UniViçosa).</strong> The final-project software; the monograph was written in LaTeX/ABNT.</span>
+                        </p>
+                    </div>
+
+                    <div class="shot">
+                        <img src="../assets/img/ticketflow-home.png" alt="Home pública do TicketFlow">
+                        <div class="shot-cap">
+                            <span lang="pt">Home pública — busca de eventos, destaques patrocinados e CTA para organizadores.</span>
+                            <span lang="en">Public home — event search, sponsored highlights and an organizer CTA.</span>
+                        </div>
+                    </div>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Visão Geral</span>
+                            <span lang="en">Overview</span>
+                        </h2>
+                        <p lang="pt">O TicketFlow cobre o ciclo inteiro de um ingresso: o organizador <strong>cria e publica o evento em minutos</strong>, o comprador garante o ingresso com um <strong>QR dinâmico e seguro</strong>, e a portaria faz o <strong>check-in pelo celular</strong> — mesmo sem internet. Criar e vender é gratuito; a plataforma monetiza com uma <strong>taxa de serviço de 5%</strong> e destaque de eventos.</p>
+                        <p lang="en">TicketFlow covers a ticket's whole lifecycle: the organizer <strong>creates and publishes an event in minutes</strong>, the buyer secures the ticket with a <strong>secure dynamic QR</strong>, and the gate does <strong>check-in from a phone</strong> — even offline. Creating and selling is free; the platform monetizes with a <strong>5% service fee</strong> and event highlights.</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Destaques Técnicos</span>
+                            <span lang="en">Technical Highlights</span>
+                        </h2>
+                        <div class="tech-architecture">
+                            <div class="arch-item">
+                                <h4><i class="fas fa-qrcode"></i>
+                                    <span lang="pt">QR dinâmico (HMAC rotativo)</span>
+                                    <span lang="en">Dynamic QR (rotating HMAC)</span>
+                                </h4>
+                                <p lang="pt">Cada ingresso gera um QR assinado com <strong>HMAC rotativo</strong> — impossível de clonar por print, validado no check-in mesmo offline.</p>
+                                <p lang="en">Every ticket generates a QR signed with a <strong>rotating HMAC</strong> — impossible to clone via screenshot, validated at check-in even offline.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-wifi"></i>
+                                    <span lang="pt">Check-in offline</span>
+                                    <span lang="en">Offline check-in</span>
+                                </h4>
+                                <p lang="pt">A portaria valida ingressos <strong>sem depender de rede</strong>, sincronizando quando a conexão volta — essencial em eventos lotados.</p>
+                                <p lang="en">The gate validates tickets <strong>without relying on the network</strong>, syncing when the connection returns — essential at packed events.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-layer-group"></i>
+                                    <span lang="pt">Lotes & fila de espera</span>
+                                    <span lang="en">Batches & waiting list</span>
+                                </h4>
+                                <p lang="pt">Lotes programados e <strong>pré-venda com fila por ordem de chegada</strong> quando o evento esgota.</p>
+                                <p lang="en">Scheduled batches and a <strong>pre-sale waiting list by arrival order</strong> when an event sells out.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-user-shield"></i>
+                                    <span lang="pt">Papéis por evento</span>
+                                    <span lang="en">Per-event roles</span>
+                                </h4>
+                                <p lang="pt">Qualquer usuário vira organizador e adiciona <strong>operadores por evento</strong> (check-in e download de compradores), com admin global.</p>
+                                <p lang="en">Any user becomes an organizer and adds <strong>per-event operators</strong> (check-in and buyer export), with a global admin.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Por Dentro do App</span>
+                            <span lang="en">Inside the App</span>
+                        </h2>
+                        <div class="gallery">
+                            <div class="shot">
+                                <img src="../assets/img/ticketflow-evento.png" alt="Página do evento" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Página do evento — lotes, ingressos e compra.</span><span lang="en">Event page — batches, tickets and checkout.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/ticketflow-vendas.png" alt="Painel de vendas do organizador" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Painel do organizador — vendas em tempo real.</span><span lang="en">Organizer dashboard — real-time sales.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/ticketflow-qr.png" alt="Ingresso com QR dinâmico" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Ingresso digital com QR dinâmico.</span><span lang="en">Digital ticket with dynamic QR.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/ticketflow-checkin.png" alt="Check-in na portaria" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Check-in — leitura do QR na portaria.</span><span lang="en">Check-in — QR scanning at the gate.</span></div>
+                            </div>
+                            <div class="shot">
+                                <img src="../assets/img/ticketflow-prevenda.png" alt="Pré-venda e fila de espera" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Pré-venda — fila de espera por ordem de chegada.</span><span lang="en">Pre-sale — waiting list by arrival order.</span></div>
+                            </div>
+                            <div class="shot portrait">
+                                <img src="../assets/img/ticketflow-mobile.png" alt="Ingresso no celular" loading="lazy">
+                                <div class="shot-cap"><span lang="pt">Mobile — o ingresso no bolso, da compra ao check-in.</span><span lang="en">Mobile — the ticket in your pocket, from purchase to check-in.</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Qualidade & Arquitetura</span>
+                            <span lang="en">Quality & Architecture</span>
+                        </h2>
+                        <p lang="pt">Domínio organizado em <strong>módulos</strong> (events, tickets, orders, identity, audit), com a aplicação chegando por <strong>Server Actions</strong> e <strong>Route Handlers</strong>. Tipagem <strong>strict</strong> de ponta a ponta e cobertura de testes <strong>unitários (Vitest)</strong> e <strong>e2e (Playwright)</strong>, empacotado em <strong>Docker</strong> multi-stage.</p>
+                        <p lang="en">Domain organized into <strong>modules</strong> (events, tickets, orders, identity, audit), reached via <strong>Server Actions</strong> and <strong>Route Handlers</strong>. <strong>Strict</strong> typing end to end and both <strong>unit (Vitest)</strong> and <strong>e2e (Playwright)</strong> test coverage, packaged in a multi-stage <strong>Docker</strong> image.</p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Next.js 16 · Turbopack</span>
+                            <span class="tech-tag">TypeScript (strict)</span>
+                            <span class="tech-tag">MongoDB · Mongoose</span>
+                            <span class="tech-tag">NextAuth v5</span>
+                            <span class="tech-tag">Tailwind · shadcn/ui</span>
+                            <span class="tech-tag">Vitest</span>
+                            <span class="tech-tag">Playwright</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <nav class="project-navigation three-column-nav">
+                <a href="relatorios-sao-romao.html" class="nav-item nav-prev">
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
+                    <strong>
+                        <i class="fas fa-arrow-left"></i>
+                        <span lang="pt">Relatórios São Romão</span>
+                        <span lang="en">São Romão Reports</span>
+                    </strong>
+                </a>
+
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
+                </a>
+
+                <a href="bot-wynn-brasil.html" class="nav-item nav-next">
+                    <span data-i18n="nav_next">Próximo Projeto</span>
+                    <strong>Bot Wynn Brasil <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer_rights">&copy; 2026 Bernardo Cordeiro Motta.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@ const translations = {
         status: "Disponível",
         time_label: "Meu horário:",
         role: "Back-end & DevOps",
-        bio: "Especialista em automação empresarial e infraestrutura escalável. Transformo fluxos complexos em soluções eficientes usando N8n, APIs e DevOps.",
+        bio: "Especialista em automação empresarial, produtos SaaS e infraestrutura escalável. Transformo fluxos complexos em soluções eficientes com agentes de IA, APIs e DevOps.",
         experience: "7+ anos de experiência",
         location: "Viçosa, MG",
         languages: "Português, Inglês",
@@ -25,7 +25,7 @@ const translations = {
         section_experience: "Experiência",
         section_education: "Educação",
         section_contact: "Contato",
-        about_p1: "Sou Bernardo Cordeiro Motta, desenvolvedor backend com mais de 7 anos de experiência transformando complexidade em automação. Minha base acadêmica em <strong>Matemática pela UFV</strong> me deu fundamentos sólidos em lógica e pensamento analítico, que aplico diariamente para resolver problemas técnicos complexos.",
+        about_p1: "Sou Bernardo Cordeiro Motta, desenvolvedor backend com mais de 7 anos de experiência transformando complexidade em automação. Sou <strong>formado em Análise e Desenvolvimento de Sistemas pela UniViçosa</strong> e tenho base acadêmica em <strong>Matemática pela UFV</strong>, o que me deu fundamentos sólidos em lógica e pensamento analítico, que aplico diariamente para resolver problemas técnicos complexos.",
         about_p2: "Minha jornada prática começou em 2017 desenvolvendo sistemas para redes de Minecraft com milhares de usuários registrados, onde aprendi na prática sobre <strong>performance</strong>, <strong>escalabilidade</strong> e <strong>infraestrutura resiliente</strong>. Essa experiência com alto tráfego me ensinou a pensar em arquiteturas robustas desde o início.",
         about_p3: "Hoje, aplico esse conhecimento criando <strong>automações inteligentes</strong>, desenvolvendo <strong>APIs escaláveis</strong> e implementando cultura <strong>DevOps</strong> em empresas e startups. Meu foco é eliminar gargalos operacionais e transformar processos manuais em fluxos automatizados e confiáveis.",
         service_automation_title: "Automação de Processos",
@@ -40,7 +40,7 @@ const translations = {
         exp_freelancer_title: "Desenvolvedor Autônomo",
         exp_freelancer_date: "2018 - Presente", 
         exp_freelancer_role: "Back-end, DevOps & Automação",
-        exp_freelancer_desc: "Desenvolvimento de soluções customizadas de automação para empresas e startups. Especialização em infraestrutura VPS escalável, pipelines CI/CD, integração de APIs empresariais e sistemas de atendimento automatizado. Experiência comprovada gerenciando servidores de jogos com milhares de usuários simultâneos.",
+        exp_freelancer_desc: "Desenvolvimento de soluções customizadas de automação para empresas e startups. Atualmente construo o <strong>BAttomic</strong>, uma plataforma SaaS multi-tenant (CRM + agentes de IA + billing). Especialização em infraestrutura VPS escalável, pipelines CI/CD, integração de APIs e agentes de IA. Experiência comprovada gerenciando servidores de jogos com milhares de usuários simultâneos.",
         exp_promovads_title: "PromovAds",
         exp_promovads_date: "Mar/2025 - Set/2025",
         exp_promovads_role: "Desenvolvedor", 
@@ -51,7 +51,7 @@ const translations = {
         exp_orange_desc: "Microsoldagem e reparo de componentes eletrônicos complexos. Experiência que desenvolveu precisão técnica, capacidade de diagnóstico avançado e resolução de problemas em nível de hardware.",
         edu_college_title: "Análise e Desenvolvimento de Sistemas",
         edu_college_school: "UniViçosa",
-        edu_college_date: "2024 - Atual",
+        edu_college_date: "2024 - 2026 · Formado",
         edu_university_title: "Bacharelado em Matemática", 
         edu_university_school: "UFV - Universidade Federal de Viçosa",
         edu_university_date: "2020 - 2023 (Incompleto)",
@@ -93,7 +93,7 @@ const translations = {
         status: "Open to work",
         time_label: "My time:",
         role: "Back-end & DevOps",
-        bio: "Specialist in business automation and scalable infrastructure. I transform complex flows into efficient solutions using N8n, APIs and DevOps.",
+        bio: "Specialist in business automation, SaaS products and scalable infrastructure. I turn complex flows into efficient solutions with AI agents, APIs and DevOps.",
         experience: "7+ years experience",
         location: "Viçosa, MG",
         languages: "Portuguese, English",
@@ -109,7 +109,7 @@ const translations = {
         section_experience: "Experience", 
         section_education: "Education",
         section_contact: "Contact me",
-        about_p1: "I'm Bernardo Cordeiro Motta, a backend developer with over 7 years of experience transforming complexity into automation. My academic background in <strong>Mathematics from UFV</strong> gave me solid foundations in logic and analytical thinking, which I apply daily to solve complex technical problems.",
+        about_p1: "I'm Bernardo Cordeiro Motta, a backend developer with over 7 years of experience transforming complexity into automation. I hold a <strong>degree in Systems Analysis and Development from UniViçosa</strong> and an academic background in <strong>Mathematics from UFV</strong>, which gave me solid foundations in logic and analytical thinking that I apply daily to solve complex technical problems.",
         about_p2: "My practical journey began in 2017 developing systems for Minecraft networks with thousands of registered users, where I learned hands-on about <strong>performance</strong>, <strong>scalability</strong> and <strong>resilient infrastructure</strong>. This high-traffic experience taught me to think about robust architectures from the start.",
         about_p3: "Today, I apply this knowledge creating <strong>intelligent automations</strong>, developing <strong>scalable APIs</strong> and implementing <strong>DevOps</strong> culture in companies and startups. My focus is eliminating operational bottlenecks and transforming manual processes into automated and reliable workflows.",
         service_automation_title: "Process Automation",
@@ -124,7 +124,7 @@ const translations = {
         exp_freelancer_title: "Freelance Developer",
         exp_freelancer_date: "2018 - Present",
         exp_freelancer_role: "Backend, DevOps & Automation", 
-        exp_freelancer_desc: "Development of custom automation solutions for companies and startups. Specialization in scalable VPS infrastructure, CI/CD pipelines, business API integration and automated customer service systems. Proven experience managing game servers with thousands of simultaneous users.",
+        exp_freelancer_desc: "Development of custom automation solutions for companies and startups. Currently building <strong>BAttomic</strong>, a multi-tenant SaaS platform (CRM + AI agents + billing). Specialization in scalable VPS infrastructure, CI/CD pipelines, API integration and AI agents. Proven experience managing game servers with thousands of simultaneous users.",
         exp_promovads_title: "PromovAds",
         exp_promovads_date: "Mar/2025 - Sep/2025",
         exp_promovads_role: "Developer",
@@ -135,7 +135,7 @@ const translations = {
         exp_orange_desc: "Microsoldering and repair of complex electronic components. Experience that developed technical precision, advanced diagnostic capability and hardware-level problem solving.",
         edu_college_title: "Systems Analysis and Development",
         edu_college_school: "UniViçosa",
-        edu_college_date: "2024 - Current",
+        edu_college_date: "2024 - 2026 · Graduated",
         edu_university_title: "Bachelor of Mathematics",
         edu_university_school: "UFV - Federal University of Viçosa", 
         edu_university_date: "2020 - 2023 (Incomplete)",
@@ -342,4 +342,84 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
+
+    // Numeração de linhas (coluna estilo IDE): gera exatamente o suficiente para
+    // acompanhar a altura do conteúdo — nunca falta nem sobra. Recalcula no resize.
+    function fillLineNumbers() {
+        const ln = document.querySelector('.line-numbers');
+        if (!ln || getComputedStyle(ln).display === 'none') return;
+        const content = document.querySelector('.main-content');
+        // altura de linha REAL (muda entre desktop/mobile) — evita "quebrar" no responsivo
+        const cs = getComputedStyle(ln);
+        const fs = parseFloat(cs.fontSize) || 11;
+        const lineH = parseFloat(cs.lineHeight) || fs * 1.7;
+        // IMPORTANTE: usa scrollHeight (altura do CONTEÚDO), não offsetHeight.
+        // Se usássemos offsetHeight, o grid poderia esticar a coluna quando as
+        // linhas passassem do conteúdo → mediríamos mais alto → geraríamos mais
+        // linhas → loop infinito. scrollHeight é estável. Teto de 3000 por garantia.
+        const alvo = content ? content.scrollHeight : document.documentElement.clientHeight;
+        const count = Math.min(3000, Math.max(40, Math.ceil(alvo / lineH) + 1));
+        if (Math.abs(ln.childElementCount - count) <= 1) return; // já cobre; evita jitter
+        ln.innerHTML = Array.from({ length: count }, (_, i) => `<span>${i + 1}</span>`).join('');
+    }
+    fillLineNumbers();
+    window.addEventListener('load', fillLineNumbers);
+    let lnTimer;
+    window.addEventListener('resize', () => { clearTimeout(lnTimer); lnTimer = setTimeout(fillLineNumbers, 150); });
+
+    // ── Lightbox / carrossel de imagens (work.done e afins) ──
+    (function initLightbox() {
+        const imgs = Array.from(document.querySelectorAll('.shot img, .gallery img, .ba-card img, .business-showcase img'));
+        if (!imgs.length) return;
+        imgs.forEach((im) => im.classList.add('lb-zoomable'));
+
+        const ov = document.createElement('div');
+        ov.className = 'lb-overlay';
+        ov.setAttribute('role', 'dialog');
+        ov.innerHTML =
+            '<div class="lb-count"></div>' +
+            '<button class="lb-close" aria-label="Fechar">✕</button>' +
+            '<button class="lb-btn lb-prev" aria-label="Anterior">‹</button>' +
+            '<button class="lb-btn lb-next" aria-label="Próximo">›</button>' +
+            '<div class="lb-stage"><img class="lb-img" alt=""><div class="lb-cap"></div></div>';
+        document.body.appendChild(ov);
+
+        const lbImg = ov.querySelector('.lb-img');
+        const lbCap = ov.querySelector('.lb-cap');
+        const lbCount = ov.querySelector('.lb-count');
+        let idx = 0;
+
+        // Legenda visível (respeita idioma PT/EN atual)
+        function capOf(im) {
+            const box = im.closest('.shot, .ba-card, .business-showcase');
+            const cap = box && box.querySelector('.shot-cap, .business-caption');
+            if (!cap) return im.alt || '';
+            const en = document.body.classList.contains('lang-en');
+            const span = cap.querySelector(en ? '[lang="en"]' : '[lang="pt"]');
+            return (span ? span.textContent : cap.textContent).trim();
+        }
+        function show(i) {
+            idx = (i + imgs.length) % imgs.length;
+            const im = imgs[idx];
+            lbImg.src = im.currentSrc || im.src;
+            lbCap.textContent = capOf(im);
+            lbCount.textContent = imgs.length > 1 ? (idx + 1) + ' / ' + imgs.length : '';
+        }
+        function open(i) { show(i); ov.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function close() { ov.classList.remove('open'); document.body.style.overflow = ''; }
+        const single = imgs.length < 2;
+        if (single) { ov.querySelector('.lb-prev').style.display = 'none'; ov.querySelector('.lb-next').style.display = 'none'; }
+
+        imgs.forEach((im, i) => im.addEventListener('click', () => open(i)));
+        ov.querySelector('.lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(idx + 1); });
+        ov.querySelector('.lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(idx - 1); });
+        ov.querySelector('.lb-close').addEventListener('click', close);
+        ov.addEventListener('click', (e) => { if (e.target === ov) close(); });
+        document.addEventListener('keydown', (e) => {
+            if (!ov.classList.contains('open')) return;
+            if (e.key === 'Escape') close();
+            else if (e.key === 'ArrowRight' && !single) show(idx + 1);
+            else if (e.key === 'ArrowLeft' && !single) show(idx - 1);
+        });
+    })();
 });
