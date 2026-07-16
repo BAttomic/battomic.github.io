@@ -33,6 +33,18 @@
         .toc { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
         .toc li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
         .toc li i { color: var(--accent); }
+        /* Galeria de prints de projetos (mobile/portrait, lado a lado) */
+        .proj-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 22px 0; }
+        .proj-gallery figure { margin: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); box-shadow: 0 8px 32px rgba(0,0,0,0.18); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column; }
+        .proj-gallery figure:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,0.28); border-color: var(--border-light); }
+        .proj-gallery img { width: 100%; height: auto; display: block; aspect-ratio: 9 / 16; object-fit: cover; object-position: top center; }
+        .proj-gallery figcaption { padding: 10px 14px; background: var(--bg-primary); border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-align: center; margin-top: auto; }
+        /* Caixa de opinião honesta */
+        .candid-box { margin: 24px 0; padding: 20px 22px; border-radius: var(--radius-lg); border: 1px solid var(--border); border-left: 4px solid #f59e0b; background: linear-gradient(135deg, rgba(245,158,11,0.07), transparent 70%); }
+        .candid-box h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font-size: 15px; color: var(--text-primary); }
+        .candid-box h4 i { color: #f59e0b; }
+        .candid-box p { margin: 0 0 10px; }
+        .candid-box p:last-child { margin-bottom: 0; }
     </style>
 </head>
 <body>
@@ -78,26 +90,30 @@
                     </div>
                     <h1><span lang="pt">UniViçosa — da teoria ao que já rodava em produção</span><span lang="en">UniViçosa — from theory to what was already in production</span></h1>
                     <p class="post-subtitle">
-                        <span lang="pt">Formado em Análise e Desenvolvimento de Sistemas. Como a graduação conversou com 7+ anos de prática — e o que mudou na forma como eu construo sistemas.</span>
-                        <span lang="en">Graduated in Systems Analysis and Development. How the degree met 7+ years of practice — and what changed in how I build systems.</span>
+                        <span lang="pt">Formado em Análise e Desenvolvimento de Sistemas. O que a graduação somou aos meus 7+ anos de prática, onde o ensino ficou aquém — e por que o autodidatismo foi o motor de tudo.</span>
+                        <span lang="en">Graduated in Systems Analysis and Development. What the degree added to my 7+ years of practice, where the teaching fell short — and why self-teaching was the engine of it all.</span>
                     </p>
                 </header>
 
                 <div class="post-content">
-                    <p lang="pt">Me formei em <strong>Análise e Desenvolvimento de Sistemas pela UniViçosa (2024–2026)</strong> já carregando <strong>7+ anos</strong> de prática. Isso deu ao curso um sabor diferente: em vez de aprender do zero, foi uma <strong>conversa constante</strong> entre o que eu já fazia em produção e a base formal. Cada disciplina batia com um problema que eu tinha resolvido "no braço" anos antes — e me dava o <em>nome</em> e o <em>porquê</em> daquilo.</p>
-                    <p lang="en">I graduated in <strong>Systems Analysis and Development at UniViçosa (2024–2026)</strong> already carrying <strong>7+ years</strong> of practice. That gave the degree a different flavor: instead of learning from scratch, it was a <strong>constant dialogue</strong> between what I already did in production and the formal foundation. Each subject matched a problem I'd solved "by hand" years before — and gave me the <em>name</em> and the <em>why</em> for it.</p>
+                    <p lang="pt">Me formei em <strong>Análise e Desenvolvimento de Sistemas pela UniViçosa (2024–2026)</strong> já carregando <strong>7+ anos</strong> de prática. Isso deu ao curso um sabor bem particular: em vez de aprender do zero, foi uma <strong>conversa constante</strong> entre o que eu já rodava em produção e a base formal. Cada disciplina batia com um problema que eu já tinha resolvido "no braço" anos antes — e me dava o <em>nome</em> e o <em>porquê</em> daquilo. Mas seria desonesto pintar só o lado bonito: <strong>o ensino ficou aquém do que eu esperava</strong>, e boa parte da profundidade veio de mim, estudando por conta.</p>
+                    <p lang="en">I graduated in <strong>Systems Analysis and Development at UniViçosa (2024–2026)</strong> already carrying <strong>7+ years</strong> of practice. That gave the degree a peculiar flavor: instead of learning from scratch, it was a <strong>constant dialogue</strong> between what I already ran in production and the formal foundation. Each subject matched a problem I'd solved "by hand" years before — and gave me the <em>name</em> and the <em>why</em> for it. But it'd be dishonest to paint only the pretty side: <strong>the teaching fell short of what I'd hoped for</strong>, and much of the depth came from me, studying on my own.</p>
 
-                    <figure class="post-figure">
-                        <img src="../assets/img/ticketflow-home.png" alt="TicketFlow — a home do meu TCC">
-                        <figcaption>
-                            <span lang="pt">TicketFlow — o software do meu TCC: venda de ingressos com QR dinâmico, feito em Next.js + TypeScript.</span>
-                            <span lang="en">TicketFlow — my capstone software: ticket sales with dynamic QR, built in Next.js + TypeScript.</span>
-                        </figcaption>
-                    </figure>
+                    <h2><span lang="pt">A UniViçosa e o curso</span><span lang="en">UniViçosa and the course</span></h2>
+                    <p lang="pt">A <strong>UniViçosa</strong> é uma faculdade particular de <strong>Viçosa, Minas Gerais</strong> — a mesma cidade da UFV, onde cursei Matemática. O <strong>ADS</strong> é um tecnólogo de <strong>dois anos</strong> (quatro períodos, mais o eixo de projetos integradores), com foco prático em desenvolvimento de software. No papel, o currículo é abrangente: dos fundamentos de programação a IA, big data, redes, segurança, mobile e arquitetura. Foi por isso que me matriculei — queria um <strong>diploma formal</strong> que carimbasse anos de estrada e fechasse algumas lacunas de fundamento.</p>
+                    <p lang="en"><strong>UniViçosa</strong> is a private college in <strong>Viçosa, Minas Gerais</strong> — the same town as UFV, where I studied Mathematics. The <strong>ADS</strong> program is a <strong>two-year</strong> technologist degree (four terms plus an integrated-projects track), focused on hands-on software development. On paper the curriculum is broad: from programming fundamentals to AI, big data, networking, security, mobile and architecture. That's why I enrolled — I wanted a <strong>formal degree</strong> to stamp years on the road and close a few foundational gaps.</p>
 
-                    <h2><span lang="pt">Teoria encontrando a prática</span><span lang="en">Theory meeting practice</span></h2>
-                    <p lang="pt">A parte mais valiosa não foi descobrir conceitos novos — foi <strong>formalizar a intuição</strong>. Eu já vinha escalando servidores de jogos e automações; o curso me deu o vocabulário e o rigor.</p>
-                    <p lang="en">The most valuable part wasn't discovering new concepts — it was <strong>formalizing intuition</strong>. I'd already been scaling game servers and automations; the degree gave me the vocabulary and the rigor.</p>
+                    <div class="candid-box">
+                        <h4><i class="fas fa-comment-dots"></i> <span lang="pt">Sendo honesto: o ensino ficou aquém</span><span lang="en">Being honest: the teaching fell short</span></h4>
+                        <p lang="pt">Esperava mais da graduação em si. Boa parte das aulas ficava na superfície, com pouca profundidade técnica e ritmo abaixo do que eu buscava — e a régua de exigência raramente puxava o aluno para cima. Quem me deu <strong>densidade</strong> não foi a sala de aula: foi o <strong>autodidatismo</strong>. Documentação, código aberto, construir coisas de verdade e quebrar a cara nelas — esse foi o meu currículo real.</p>
+                        <p lang="en">I expected more from the degree itself. A lot of the classes stayed on the surface, with little technical depth and a pace below what I was after — and the bar rarely pushed students upward. What gave me <strong>depth</strong> wasn't the classroom: it was <strong>self-teaching</strong>. Documentation, open source, building real things and failing at them — that was my real syllabus.</p>
+                        <p lang="pt">Não é reclamação: é contexto. O diploma tem valor, mas <strong>o motor do aprendizado sempre fui eu</strong>. A faculdade me deu a estrutura e o carimbo; a profundidade, corri atrás.</p>
+                        <p lang="en">This isn't a complaint — it's context. The degree has value, but <strong>the engine of learning was always me</strong>. College gave me the frame and the stamp; the depth, I chased myself.</p>
+                    </div>
+
+                    <h2><span lang="pt">Onde a teoria valeu a pena</span><span lang="en">Where the theory paid off</span></h2>
+                    <p lang="pt">Apesar disso, houve ganho real — sobretudo em <strong>formalizar a intuição</strong>. Eu já vinha escalando servidores de jogos e automações; algumas disciplinas me deram o vocabulário e o rigor para nomear o que a prática já pedia aos gritos.</p>
+                    <p lang="en">Even so, there was real gain — mostly in <strong>formalizing intuition</strong>. I'd already been scaling game servers and automations; a few subjects gave me the vocabulary and rigor to name what practice was already screaming for.</p>
 
                     <div class="highlight-box">
                         <h4><i class="fas fa-check-circle"></i> <span lang="pt">Onde teoria e experiência se encontraram</span><span lang="en">Where theory and experience met</span></h4>
@@ -110,20 +126,39 @@
                     </div>
 
                     <h2><span lang="pt">Projetos que nasceram no curso</span><span lang="en">Projects born in the course</span></h2>
-                    <p lang="pt">Não ficou na teoria. Entre atividades e projetos integradores, saíram aplicações reais:</p>
-                    <p lang="en">It didn't stay theoretical. Across assignments and capstone projects, real applications came out:</p>
+                    <p lang="pt">O que salvou o curso, para mim, foram os <strong>projetos</strong>. Foi construindo — e não assistindo aula — que o conteúdo virou algo concreto. Entre atividades e projetos integradores, saíram aplicações reais:</p>
+                    <p lang="en">What saved the course, for me, were the <strong>projects</strong>. It was by building — not by sitting in class — that the content became something concrete. Across assignments and integrated projects, real applications came out:</p>
 
                     <h3>TicketFlow — <span lang="pt">TCC (Gestão de Projetos)</span><span lang="en">Capstone (Project Management)</span></h3>
                     <p lang="pt">Meu <strong>trabalho de conclusão</strong>: uma aplicação web de <strong>venda de ingressos com QR Code dinâmico</strong>, feita em <strong>Next.js + TypeScript</strong>, com testes automatizados (<strong>Playwright e Vitest</strong>) e empacotamento em <strong>Docker</strong>. A monografia (LaTeX/ABNT) documenta a fundamentação e a arquitetura do sistema. <a href="../work/ticketflow.html">Ver o projeto completo →</a></p>
                     <p lang="en">My <strong>capstone</strong>: a web app for <strong>ticket sales with dynamic QR codes</strong>, built in <strong>Next.js + TypeScript</strong>, with automated tests (<strong>Playwright and Vitest</strong>) and <strong>Docker</strong> packaging. The monograph (LaTeX/ABNT) documents the system's rationale and architecture.</p>
 
+                    <figure class="post-figure">
+                        <img src="../assets/img/ticketflow-home.png" alt="TicketFlow — a home do meu TCC" loading="lazy">
+                        <figcaption>
+                            <span lang="pt">TicketFlow — o software do meu TCC: venda de ingressos com QR dinâmico, em Next.js + TypeScript.</span>
+                            <span lang="en">TicketFlow — my capstone software: ticket sales with dynamic QR, in Next.js + TypeScript.</span>
+                        </figcaption>
+                    </figure>
+
                     <h3>ChessMate &amp; DamaLink — <span lang="pt">Mobile & Games</span><span lang="en">Mobile & Games</span></h3>
-                    <p lang="pt"><strong>ChessMate</strong>: um xadrez mobile em <strong>React Native (Expo)</strong> com <strong>IA própria</strong> (negamax com poda alfa-beta). <strong>DamaLink</strong>: app híbrido juntando conversor de câmbio (AwesomeAPI) e um jogo de damas. Foi onde a lógica de algoritmos virou algo jogável na palma da mão.</p>
-                    <p lang="en"><strong>ChessMate</strong>: a mobile chess game in <strong>React Native (Expo)</strong> with a <strong>custom AI</strong> (negamax with alpha-beta pruning). <strong>DamaLink</strong>: a hybrid app pairing a currency converter (AwesomeAPI) with a checkers game. This is where algorithm logic became something playable in your hand.</p>
+                    <p lang="pt"><strong>ChessMate</strong>: um xadrez mobile em <strong>React Native (Expo)</strong> com <strong>IA própria</strong> (negamax com poda alfa-beta) — dá para jogar contra a máquina, com relógio e captura de peças. <strong>DamaLink</strong>: app híbrido que junta um <strong>conversor de câmbio</strong> ao vivo (AwesomeAPI) com um <strong>jogo de damas contra bot</strong>. Foi onde a lógica de algoritmos virou algo jogável na palma da mão.</p>
+                    <p lang="en"><strong>ChessMate</strong>: a mobile chess game in <strong>React Native (Expo)</strong> with a <strong>custom AI</strong> (negamax with alpha-beta pruning) — you play against the machine, with a clock and captured-piece tracking. <strong>DamaLink</strong>: a hybrid app pairing a live <strong>currency converter</strong> (AwesomeAPI) with a <strong>checkers game against a bot</strong>. This is where algorithm logic became something playable in your hand.</p>
+
+                    <div class="proj-gallery">
+                        <figure>
+                            <img src="../assets/img/chessmate.png" alt="ChessMate — xadrez contra a IA" loading="lazy">
+                            <figcaption><span lang="pt">ChessMate — humano vs. máquina, com IA (negamax + alfa-beta).</span><span lang="en">ChessMate — human vs. machine, with a negamax + alpha-beta AI.</span></figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../assets/img/damalink.png" alt="DamaLink — jogo de damas contra bot" loading="lazy">
+                            <figcaption><span lang="pt">DamaLink — damas contra o bot, além do conversor de câmbio ao vivo.</span><span lang="en">DamaLink — checkers vs. bot, plus a live currency converter.</span></figcaption>
+                        </figure>
+                    </div>
 
                     <h3><span lang="pt">Inteligência Artificial & Big Data</span><span lang="en">Artificial Intelligence & Big Data</span></h3>
-                    <p lang="pt">Práticas de <strong>IA em Python/Jupyter</strong> e uma disciplina inteira de <strong>Gestão de Dados, Big Data e Data Mining</strong> — governança, mineração e a ponte direta com o que hoje faço com agentes de IA na plataforma BAttomic.</p>
-                    <p lang="en">Hands-on <strong>AI in Python/Jupyter</strong> and a full course on <strong>Data Management, Big Data and Data Mining</strong> — governance, mining and the direct bridge to what I now do with AI agents on the BAttomic platform.</p>
+                    <p lang="pt">Práticas de <strong>IA em Python/Jupyter</strong> e uma disciplina de <strong>Gestão de Dados, Big Data e Data Mining</strong> — governança, mineração e a ponte direta com o que hoje faço com agentes de IA na plataforma BAttomic.</p>
+                    <p lang="en">Hands-on <strong>AI in Python/Jupyter</strong> and a course on <strong>Data Management, Big Data and Data Mining</strong> — governance, mining and the direct bridge to what I now do with AI agents on the BAttomic platform.</p>
 
                     <h2><span lang="pt">Um currículo de ponta a ponta</span><span lang="en">An end-to-end curriculum</span></h2>
                     <p lang="pt">Foram <strong>dois anos intensos</strong> cobrindo praticamente todo o espectro de construir software — dos fundamentos ao que raramente aparece junto num só currículo:</p>
@@ -141,8 +176,8 @@
                     </div>
 
                     <h2><span lang="pt">O que mudou em como eu construo</span><span lang="en">What changed in how I build</span></h2>
-                    <p lang="pt">A graduação não me tornou desenvolvedor — eu já era. Mas me tornou um <strong>melhor</strong>: mais rigoroso ao modelar dados, mais consciente ao escolher uma estrutura, mais claro ao comunicar arquitetura. Junto da minha base em <strong>Matemática pela UFV</strong>, fechou um jeito de pensar que aplico todo dia: <strong>lógica, método e a coragem de simplificar</strong>.</p>
-                    <p lang="en">The degree didn't make me a developer — I already was one. But it made me a <strong>better</strong> one: more rigorous when modeling data, more deliberate when choosing a structure, clearer when communicating architecture. Together with my <strong>Mathematics background (UFV)</strong>, it shaped a way of thinking I apply every day: <strong>logic, method and the courage to simplify</strong>.</p>
+                    <p lang="pt">A graduação não me tornou desenvolvedor — eu já era, e o que me manteve evoluindo continuou sendo o <strong>estudo por conta própria</strong>. Mas ela me tornou <strong>melhor</strong> em alguns pontos: mais rigoroso ao modelar dados, mais consciente ao escolher uma estrutura, mais claro ao comunicar arquitetura. Junto da minha base em <strong>Matemática pela UFV</strong>, fechou um jeito de pensar que aplico todo dia: <strong>lógica, método e a coragem de simplificar</strong>.</p>
+                    <p lang="en">The degree didn't make me a developer — I already was one, and what kept me growing was still <strong>self-directed study</strong>. But it did make me <strong>better</strong> in some ways: more rigorous when modeling data, more deliberate when choosing a structure, clearer when communicating architecture. Together with my <strong>Mathematics background (UFV)</strong>, it shaped a way of thinking I apply every day: <strong>logic, method and the courage to simplify</strong>.</p>
 
                     <div class="cta-box">
                         <h4><span lang="pt">Veja o que nasceu dessa mistura</span><span lang="en">See what came out of this mix</span></h4>
