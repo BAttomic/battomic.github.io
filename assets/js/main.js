@@ -66,7 +66,7 @@ const translations = {
         edu_college_date: "2024 - 2026 · Formado",
         edu_university_title: "Bacharelado em Matemática", 
         edu_university_school: "UFV - Universidade Federal de Viçosa",
-        edu_university_date: "2020 - 2023",
+        edu_university_date: "2020 - 2023 · Incompleto",
         contact_title: "Contato",
         contact_whatsapp: "WhatsApp",
         contact_github: "@BAttomic",
@@ -157,7 +157,7 @@ const translations = {
         edu_college_date: "2024 - 2026 · Graduated",
         edu_university_title: "Bachelor of Mathematics",
         edu_university_school: "UFV - Federal University of Viçosa", 
-        edu_university_date: "2020 - 2023",
+        edu_university_date: "2020 - 2023 · Incomplete",
         contact_title: "Contact me",
         contact_whatsapp: "WhatsApp",
         contact_github: "@BAttomic", 
@@ -892,6 +892,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     })();
 
+    // GoatCounter: conta uma página ou um evento, se o script estiver carregado (bloqueadores barram)
+    function gcCount(vars) {
+        const gc = window.goatcounter;
+        if (gc && typeof gc.count === 'function') gc.count(vars);
+    }
+
     // Currículo: o botão abre uma prévia da página inteira, cabendo na tela (sem rolagem), com o
     // "Baixar PDF" logo abaixo dela. Sem JavaScript, o link continua baixando o PDF direto.
     (function () {
@@ -912,7 +918,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function open(e) {
             e.preventDefault();
             const en = document.body.classList.contains('lang-en');
-            img.src = (en ? 'assets/cv/resume-preview.webp' : 'assets/cv/curriculo-preview.webp') + '?v=20261125-6';
+            img.src = (en ? 'assets/cv/resume-preview.webp' : 'assets/cv/curriculo-preview.webp') + '?v=20261125-13';
             img.alt = en ? 'Resume of Bernardo C. Motta' : 'Currículo de Bernardo C. Motta';
             dl.href = btn.getAttribute('href');
             dl.setAttribute('download', btn.getAttribute('download'));
@@ -922,6 +928,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ov.classList.add('open');
             document.body.style.overflow = 'hidden';
             closeBtn.focus({ preventScroll: true });
+            gcCount({ path: '/curriculo', title: 'Currículo (prévia aberta)' });
         }
         function close() {
             ov.classList.remove('open');
@@ -929,6 +936,7 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.focus({ preventScroll: true });
         }
         btn.addEventListener('click', open);
+        dl.addEventListener('click', () => gcCount({ path: '/curriculo.pdf', title: 'Currículo (PDF baixado)' }));
         closeBtn.addEventListener('click', close);
         ov.addEventListener('click', e => { if (e.target === ov || e.target.classList.contains('lb-stage')) close(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('open')) close(); });
@@ -940,7 +948,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Busca depois que a página carregou; se o serviço não responder, nada aparece.
     (function () {
         const GC = 'https://battomic.goatcounter.com/counter/';
-        const norm = p => p.replace(/\/index\.html$/, '/');
+        const norm = p => p.replace(/\?.*$/, '').replace(/\/index\.html$/, '/');
+        const PAGES = ['/', '/work.html', '/work/eficaz.html', '/work/battomic.html', '/work/relatorios-sao-romao.html',
+            '/work/ticketflow.html', '/work/lykos-province.html', '/work/bot-wynn-brasil.html'];
         const cache = {};
         // O cache do GoatCounter guarda a resposta por horas e ignora parâmetros inventados, mas
         // respeita o "start". Uma data de início bem antiga (antes do site existir) conta tudo, e
@@ -962,7 +972,8 @@ document.addEventListener('DOMContentLoaded', function() {
         function run() {
             const side = document.querySelector('.right-sidebar');
             if (side) {
-                get('TOTAL').then(n => {
+                // total = soma das páginas do site (os cliques e o currículo não entram)
+                Promise.all(PAGES.map(get)).then(ns => ns.reduce((a, b) => a + b, 0)).then(n => {
                     if (!n) return;
                     side.appendChild(badge(n, 'index'));
                     const foot = document.querySelector('.footer-content > p');
@@ -981,8 +992,65 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             const head = document.querySelector('.project-header-content');
             if (head) get(norm(location.pathname)).then(n => { if (n) head.appendChild(badge(n, 'case')); });
+            // quantas vezes o PDF do currículo foi baixado, no próprio botão
+            const dlBtn = document.querySelector('.cv-preview-dl');
+            if (dlBtn) get('/curriculo.pdf').then(n => {
+                if (!n) return;
+                const en = document.body.classList.contains('lang-en');
+                const s = document.createElement('span');
+                s.className = 'cv-dl-count';
+                s.title = en ? 'downloads' : 'downloads do PDF';
+                s.textContent = '· ' + n.toLocaleString(en ? 'en-US' : 'pt-BR');
+                dlBtn.appendChild(s);
+            });
         }
         if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 2500 });
         else setTimeout(run, 800);
+    })();
+    // Cliques medidos (eventos do GoatCounter, sem cookies): por onde a pessoa foi para cada lugar.
+    // O nome diz o destino, a página e a região de onde veio, por exemplo
+    // "case eficaz ← home · trajetória" ou "WhatsApp (Agende uma chamada) ← home · lateral".
+    (function () {
+        const pageName = path => {
+            path = path.replace(/\?.*$/, '').replace(/\/index\.html$/, '/');
+            if (path === '/') return 'home';
+            if (path === '/work.html') return 'work.done';
+            const m = path.match(/\/work\/([^/]+)\.html$/);
+            return m ? 'case ' + m[1] : path;
+        };
+        const REGIONS = [['.header', 'menu'], ['.works-carousel', 'carrossel'], ['.journey', 'trajetória'],
+            ['.projects-grid', 'lista'], ['.project-navigation', 'navegação'], ['.sidebar', 'lateral'],
+            ['#contact', 'contato'], ['.footer', 'rodapé'], ['.right-sidebar', 'índice']];
+        const region = el => { for (const [sel, n] of REGIONS) if (el.closest(sel)) return n; return 'página'; };
+        function eventName(el) {
+            if (el.id === 'lang-toggle') return 'idioma → ' + (document.body.classList.contains('lang-en') ? 'PT' : 'EN');
+            const a = el.closest('a');
+            if (!a) return null;
+            const href = a.getAttribute('href') || '';
+            if (!href || href.startsWith('#')) return null;
+            if (a.id === 'cv-download-btn' || a.classList.contains('cv-preview-dl')) return null; // o currículo conta como página
+            // card de lado no carrossel: o clique só traz o card para o centro, não navega
+            if (a.closest('.works-stage') && !a.classList.contains('is-active')) return null;
+            const from = pageName(location.pathname) + ' · ' + region(a);
+            const cta = a.getAttribute('data-i18n');
+            if (cta === 'cta_schedule') return 'WhatsApp (Agende uma chamada) ← ' + from;
+            if (cta === 'cta_quote') return 'e-mail (Fale comigo) ← ' + from;
+            if (href.startsWith('mailto:')) return 'e-mail ← ' + from;
+            if (/wa\.me|whatsapp/i.test(href)) return 'WhatsApp ← ' + from;
+            if (/github\.com/i.test(href)) return 'GitHub ← ' + from;
+            if (/linkedin\.com/i.test(href)) return 'LinkedIn ← ' + from;
+            if (/discord\.gg/i.test(href)) return 'Discord ← ' + from;
+            let url;
+            try { url = new URL(href, location.href); } catch (e) { return null; }
+            if (url.origin !== location.origin) return 'link externo ' + url.hostname + ' ← ' + from;
+            if (/\.(pdf|webp|png|jpe?g|gif)$/i.test(url.pathname)) return null;
+            return pageName(url.pathname) + ' ← ' + from;
+        }
+        document.addEventListener('click', e => {
+            const el = e.target.closest && e.target.closest('a, button');
+            if (!el) return;
+            const n = eventName(el);
+            if (n) gcCount({ path: n, title: n, event: true });
+        }, true);
     })();
 });

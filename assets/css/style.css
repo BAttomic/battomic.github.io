@@ -2356,6 +2356,7 @@ img.lb-zoomable { cursor: zoom-in; }
     background-color: #fff;
 }
 .cv-preview-dl { padding: 11px 22px; font-size: 12px; }
+.cv-dl-count { opacity: 0.65; font-variant-numeric: tabular-nums; }
 .cv-preview .lb-close i { font-size: 16px; }
 
 /* Diagramas: abrem grandes; no celular ficam com 1200 px e arrastam para os lados */

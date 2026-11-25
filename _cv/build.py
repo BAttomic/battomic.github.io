@@ -33,7 +33,7 @@ T = {
         'edu': [
             ('2026 - EM ANDAMENTO', 'FAVENI', 'Licenciatura em Matemática · EAD'),
             ('2024 - 2026', 'UNIVIÇOSA', 'Análise e Desenvolvimento de Sistemas'),
-            ('2020 - 2023', 'UFV - UNIVERSIDADE FEDERAL', 'Bacharelado em Matemática (3 anos cursados)'),
+            ('2020 - 2023', 'UFV - UNIVERSIDADE FEDERAL', 'Bacharelado em Matemática (Incompleto)'),
         ],
         'skills': [
             'Linguagens (TypeScript, JavaScript, Python, Java, SQL, Bash)',
@@ -90,7 +90,7 @@ T = {
         'edu': [
             ('2026 - IN PROGRESS', 'FAVENI', 'Mathematics (Teaching Degree) · Online'),
             ('2024 - 2026', 'UNIVIÇOSA', 'Systems Analysis &amp; Development'),
-            ('2020 - 2023', 'UFV - FEDERAL UNIVERSITY', "Bachelor's in Mathematics (3 years completed)"),
+            ('2020 - 2023', 'UFV - FEDERAL UNIVERSITY', "Bachelor's in Mathematics (Incomplete)"),
         ],
         'skills': [
             'Languages (TypeScript, JavaScript, Python, Java, SQL, Bash)',
