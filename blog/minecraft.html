@@ -33,6 +33,20 @@
         .post-link { color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; transition: color 0.2s ease; }
         .post-link:hover { color: var(--accent); }
         .post-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+        /* o anagrama do nickname: só o nome, cada letra correndo até a sua casa, em loop (o script fica no fim da página) */
+        .anagram { margin: 4px 0 18px; overflow-x: clip; container-type: inline-size; }
+        .anagram-stage { position: relative; height: 3.4em; font-family: var(--font-mono); font-weight: 500; font-size: min(34px, 6.4cqi); color: var(--text-primary); }
+        .anagram-fallback { display: block; line-height: 3.4em; text-align: center; }
+        .ag-l { position: absolute; left: 50%; top: 50%; width: 1ch; height: 1.4em; margin-top: -0.7em; line-height: 1.4em; text-align: center; transition: color 0.35s ease; }
+        .ag-l.is-hot, .ag-under { color: var(--accent); }
+        .ag-caret { position: absolute; left: 50%; top: 50%; width: 2px; height: 1.05em; margin-top: -0.55em; background-color: var(--accent); animation: ag-blink 1.06s step-end infinite; }
+        .ag-caret.is-typing { animation: none; }
+        @keyframes ag-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        /* subtítulo de um momento dentro de uma seção (ex.: o nickname, dentro da Lykos) */
+        .post-moment { margin: 28px 0 8px; font-size: 15px; font-weight: 600; color: var(--text-primary); }
+        /* as etapas só para leitor de tela (a animação é aria-hidden) */
+        .anagram-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+        @media (prefers-reduced-motion: reduce) { .ag-caret { animation: none; } }
         /* celular: título, depois a imagem, depois o texto */
         @media (max-width: 700px) {
             .wiki-row, .wiki-row.reverse, .wiki-row.wide { display: flex; flex-direction: column; gap: 0; }
@@ -168,6 +182,17 @@
                                 <p lang="en">I got to live the dream of having my own community, and from it I reaped the best fruits: the friendships and the career that this inner child, full of dreams, built.</p>
                             </div>
                         </div>
+                        <!-- um momento da Lykos: subtítulo pequeno, dentro da mesma seção -->
+                        <h3 class="post-moment">
+                            <span lang="pt">Nasce o B_Attomic</span>
+                            <span lang="en">The birth of B_Attomic</span>
+                        </h3>
+                        <p lang="pt">Junto com a Lykos nasceu também o meu nickname, o mesmo que eu uso até hoje. Ele é um anagrama do meu próprio nome:</p>
+                        <p lang="en">Along with Lykos came my nickname, the same one I still use today. It's an anagram of my own name:</p>
+                        <figure class="anagram" data-anagram>
+                            <div class="anagram-stage" aria-hidden="true"><span class="anagram-fallback">B_Attomic</span></div>
+                            <figcaption class="anagram-sr">Bernardo Cordeiro Motta, B Ci Motta, B Attom iC, B_Attomic</figcaption>
+                        </figure>
                     </section>
 
                     <section class="content-section">
@@ -244,5 +269,176 @@
     <script>window.goatcounter = { path: function (p) { return p.replace(/\?.*$/, "").replace(/\/index\.html$/, "/"); } };</script>
     <script data-goatcounter="https://battomic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <script src="../assets/js/main.js?v=20261125-21"></script>
+    <script>
+    // Anagrama do nickname: cada letra do nome é uma peça com uma casa em cada etapa.
+    // Entre duas etapas, quem sai volta por onde veio, quem fica desliza até a nova casa (ou dá
+    // meia-volta, como num toca-discos, quando a ordem se inverte) e quem entra sobe no lugar.
+    // Só transform e opacity, em loop enquanto está na tela; com prefers-reduced-motion fica parado em B_Attomic.
+    (function () {
+        const fig = document.querySelector('[data-anagram]');
+        if (!fig || !fig.animate) return;
+        const stage = fig.querySelector('.anagram-stage');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const NAME = 'Bernardo Cordeiro Motta';
+        const LEN = [23, 10, 10, 9];
+        const LAST = LEN.length - 1;
+
+        // peça = a letra em cada etapa (null = fora de cena) e a casa dela
+        const pieces = [];
+        Array.from(NAME).forEach((c, i) => { if (c !== ' ') pieces.push({ id: i, g: [c, null, null, null], s: [i, i, i, i] }); });
+        function stepOf(st, list) {
+            list.forEach(([id, slot, g]) => { const p = pieces.find(q => q.id === id); p.s[st] = slot; p.g[st] = g; });
+        }
+        const ATTOM = [[0, 0, 'B'], [22, 2, 'A'], [21, 3, 't'], [20, 4, 't'], [19, 5, 'o'], [18, 6, 'm']];
+        // o i do Cordeiro fica junto do C desde o começo
+        stepOf(1, [[0, 0, 'B'], [9, 2, 'C'], [14, 3, 'i'], [18, 5, 'M'], [19, 6, 'o'], [20, 7, 't'], [21, 8, 't'], [22, 9, 'a']]); // B Ci Motta
+        stepOf(2, ATTOM.concat([[14, 8, 'i'], [9, 9, 'C']]));  // B Attom iC: o "Ci Motta" dá meia-volta e o i passa para antes do C
+        stepOf(3, ATTOM.concat([[14, 7, 'i'], [9, 8, 'c']]));  // B_Attomic
+        pieces.push({ id: 8, g: [null, null, null, '_'], s: [8, 1, 1, 1], under: true }); // o espaço vira _
+
+        const X = (p, st) => p.s[st] - LEN[st] / 2; // em ch, a partir do centro
+        const tf = (x, y, k) => 'translate(' + x.toFixed(3) + 'ch, ' + y.toFixed(3) + 'em) scale(' + k.toFixed(3) + ')';
+        const caretAt = st => 'translateX(' + (LEN[st] / 2 + 0.12) + 'ch)';
+        const EASE = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+        stage.textContent = '';
+        pieces.forEach(p => {
+            p.el = document.createElement('span');
+            p.el.className = 'ag-l' + (p.under ? ' ag-under' : '');
+            stage.appendChild(p.el);
+        });
+        const caret = document.createElement('span');
+        caret.className = 'ag-caret';
+        stage.appendChild(caret);
+
+        let cur = 0, timers = [], anims = [], auto = [];
+        const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+
+        function place(p, st) {
+            const on = p.g[st] != null;
+            if (on) p.el.textContent = p.g[st];
+            p.el.style.transform = tf(X(p, st), on ? 0 : (p.under ? -0.6 : 0.6), on ? 1 : 0.6);
+            p.el.style.opacity = on ? '1' : '0';
+        }
+        function run(el, frames, opts, done) {
+            const a = el.animate(frames, Object.assign({ fill: 'forwards' }, opts));
+            anims.push(a);
+            a.onfinish = () => { done(); a.cancel(); };
+        }
+        // interrompido no meio: cada peça fica onde está e o próximo movimento parte dali
+        function clear() {
+            timers.forEach(clearTimeout);
+            timers = [];
+            anims.forEach(a => { if (a.playState === 'running') { try { a.commitStyles(); } catch (e) {} } a.cancel(); });
+            anims = [];
+            pieces.forEach(p => p.el.classList.remove('is-hot'));
+        }
+        function reset(st) {
+            clear();
+            cur = st;
+            pieces.forEach(p => place(p, st));
+            caret.style.transform = caretAt(st);
+        }
+
+        // vai de uma etapa para a vizinha; devolve quanto tempo leva (ms)
+        function go(to, sp) {
+            sp = sp || 1;
+            const D = ms => ms * sp;
+            clear();
+            const from = cur;
+            cur = to;
+            if (reduce) { reset(to); return 0; }
+            const vis = p => parseFloat(p.el.style.opacity) > 0;
+            const exits = pieces.filter(p => vis(p) && p.g[to] == null);
+            const enters = pieces.filter(p => !vis(p) && p.g[to] != null);
+            const stays = pieces.filter(p => vis(p) && p.g[to] != null);
+            let end = 0;
+
+            // 1. quem não fica volta por onde veio, acelerando
+            exits.sort((p, q) => p.s[from] - q.s[from]).forEach((p, i) => {
+                run(p.el, [{ transform: tf(X(p, from), p.under ? -0.6 : 0.6, 0.6), opacity: 0 }],
+                    { duration: D(260), delay: D(i * 14), easing: 'cubic-bezier(0.3, 0, 1, 1)' }, () => place(p, to));
+                end = Math.max(end, D(i * 14 + 260));
+            });
+
+            // 2. quem fica vai para a nova casa: desliza ou, se a ordem inverte, gira em volta do centro
+            const t0 = exits.length ? D(140 + exits.length * 14) : 0;
+            const moved = stays.filter(p => X(p, from) !== X(p, to) || p.el.textContent !== p.g[to]);
+            const slides = moved.some(p => X(p, from) !== X(p, to));
+            const turns = moved.some(p => stays.some(q => q !== p && (X(p, from) - X(q, from)) * (X(p, to) - X(q, to)) < 0));
+            const far = Math.max(0, ...moved.map(p => Math.abs(X(p, to) - X(p, from))));
+            const dur = D(turns ? 900 : slides ? (far <= 1 ? 420 : 650) : 320);
+            if (exits.length) { // as letras que ficam se acendem enquanto as outras saem
+                stays.forEach(p => p.el.classList.add('is-hot'));
+                later(() => stays.forEach(p => { if (!moved.includes(p)) p.el.classList.remove('is-hot'); }), t0 + dur);
+            }
+            let lagMax = 0;
+            moved.forEach(p => {
+                const x0 = X(p, from), x1 = X(p, to), c = (x0 + x1) / 2, r = x0 - c, frames = [];
+                // no giro, as letras de fora puxam e as de dentro vão logo atrás: embaralha sem embolar
+                const lag = turns ? D(Math.max(0, 3.5 - Math.abs(r)) * 60) : 0;
+                const swap = p.el.textContent !== p.g[to];
+                lagMax = Math.max(lagMax, lag);
+                if (x0 === x1) { // mesma casa, outra letra: vira no lugar
+                    frames.push({ offset: 0.5, transform: 'translate(' + x1 + 'ch, 0em) scale(1, 0.05)' }, { offset: 1, transform: tf(x1, 0, 1), opacity: 1 });
+                } else {
+                    for (let k = 1; k <= 12; k++) {
+                        const e = k / 12, th = Math.PI * e;
+                        if (turns) { // o lado de trás passa por cima, menor; o da frente passa por baixo, maior
+                            const lift = Math.sign(r) * Math.min(1.2, Math.max(0.45, 0.4 * Math.abs(r))); // perto do centro ainda pula, para não embolar
+                            frames.push({ offset: e, transform: tf(c + r * Math.cos(th), -lift * Math.sin(th), 1 - 0.06 * r * Math.sin(th)), opacity: 1 - 0.1 * Math.max(0, r) * Math.sin(th) });
+                        } else // deslizando e trocando de letra: encolhe no meio do caminho e volta já trocada
+                            frames.push({ offset: e, transform: tf(x0 + (x1 - x0) * e, 0, swap ? 1 - 0.7 * Math.sin(th) : 1), opacity: 1 });
+                    }
+                }
+                if (swap) later(() => { p.el.textContent = p.g[to]; }, t0 + lag + dur / 2);
+                p.el.classList.add('is-hot');
+                run(p.el, frames, { duration: dur, delay: t0 + lag, easing: EASE }, () => { place(p, to); p.el.classList.remove('is-hot'); });
+            });
+            if (moved.length || exits.length) end = Math.max(end, t0 + lagMax + dur);
+
+            // 3. quem entra sobe no lugar, com um leve passo além
+            const t1 = moved.length ? t0 + dur * 0.55 : t0;
+            const gap = D(enters.length > 2 ? Math.min(90, 220 / enters.length) : 110);
+            enters.sort((p, q) => p.s[to] - q.s[to]).forEach((p, i) => {
+                const x = X(p, to);
+                p.el.textContent = p.g[to];
+                p.el.style.transform = tf(x, p.under ? -0.6 : 0.6, 0.4);
+                p.el.style.opacity = '0';
+                run(p.el, [{ transform: tf(x, 0, 1), opacity: 1 }],
+                    { duration: D(480), delay: t1 + i * gap, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }, () => place(p, to));
+                end = Math.max(end, t1 + i * gap + D(480));
+            });
+
+            // o cursor acompanha o fim da palavra e fica firme enquanto as letras mexem
+            caret.classList.add('is-typing');
+            run(caret, [{ transform: caretAt(to) }], { duration: slides ? dur : D(300), delay: t0, easing: EASE }, () => { caret.style.transform = caretAt(to); });
+            later(() => caret.classList.remove('is-typing'), end + 150);
+            return end;
+        }
+
+        // em loop: monta o nickname etapa por etapa, segura, rebobina mais rápido até o nome e recomeça
+        let dir = 1, running = false;
+        function tick() {
+            if (cur === LAST) dir = -1;
+            else if (cur === 0) dir = 1;
+            const back = dir < 0;
+            const d = go(cur + dir, back ? 0.6 : 1);
+            const hold = cur === LAST ? 2600 : cur === 0 ? 1400 : back ? 150 : 1300;
+            auto.push(setTimeout(tick, d + hold));
+        }
+        function start(wait) { if (running) return; running = true; auto.push(setTimeout(tick, wait)); }
+        function pause() { running = false; auto.forEach(clearTimeout); auto = []; }
+
+        if (reduce) { reset(LAST); return; }
+        reset(0);
+        if (!('IntersectionObserver' in window)) { start(1000); return; }
+        // só roda enquanto está na tela
+        new IntersectionObserver(es => es.forEach(e => {
+            if (e.intersectionRatio >= 0.55) start(900);
+            else if (!e.isIntersecting) pause();
+        }), { threshold: [0, 0.6] }).observe(fig);
+    })();
+    </script>
 </body>
 </html>
