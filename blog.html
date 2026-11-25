@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Bernardo Motta</title>
+    <meta name="description" content="Blog de Bernardo C. Motta: histórias de quem começou programando plugins de Minecraft.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/favicon/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <meta name="theme-color" content="#181818">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261125-19">
+    
+    <style>
+        .blog-list { grid-template-columns: minmax(0, 820px); }
+        .projects-grid > .post-card { display: grid; grid-template-columns: 240px minmax(0, 1fr); }
+        .post-card-img { position: relative; overflow: hidden; background-color: var(--bg-primary); border-right: 1px solid var(--border); }
+        .post-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); transition: filter 0.4s ease; }
+        .post-card:hover .post-card-img img { filter: grayscale(0%); }
+        .post-card-body { display: flex; flex-direction: column; min-width: 0; }
+        .post-card-body .project-description { margin-top: 14px; }
+        @media (max-width: 600px) {
+            .projects-grid > .post-card { grid-template-columns: minmax(0, 1fr); }
+            .post-card-img { aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--border); }
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
+			</div>
+			
+			<nav class="nav-menu">
+				<a href="index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="work.html" class="nav-link" data-i18n="nav_work">work.done</a>
+				<a href="blog.html" class="nav-link active" data-i18n="nav_blog">blog.share</a>
+			</nav>
+			
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+				
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+				
+				<div class="location-time">
+					<span data-i18n="location">Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span data-i18n="time_label">Meu horário:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1200px; margin: 0 auto;">
+            <section class="hero-section" style="grid-template-columns: 1fr;">
+                <div class="hero-content">
+                    <h1 class="hero-title" style="font-size: 56px;">
+                        <span>Blog</span><br>
+                        <span class="highlight"><span lang="pt">&amp; histórias</span><span lang="en">&amp; stories</span></span>
+                    </h1>
+                    <p class="hero-description">
+                        <span lang="pt">Histórias de quem começou programando plugins de Minecraft e hoje trabalha com infraestrutura, dados e automação.</span>
+                        <span lang="en">Stories from someone who started out writing Minecraft plugins and now works with infrastructure, data and automation.</span>
+                    </p>
+                </div>
+            </section>
+
+            <section class="work-section">
+                <div class="projects-grid blog-list">
+                    <a href="blog/minecraft.html" class="project-card post-card">
+                        <div class="post-card-img">
+                            <img src="assets/img/blog/infancia-pc.webp" alt="Eu com uns 4 anos, sorrindo ao lado de um PC branco com monitor de tubo">
+                        </div>
+                        <div class="post-card-body">
+                            <div class="project-header">
+                                <h3>
+                                    <span lang="pt">Minecraft foi a minha escola de programação</span>
+                                    <span lang="en">Minecraft was my programming school</span>
+                                </h3>
+                                <i class="fas fa-arrow-right project-arrow"></i>
+                            </div>
+                            <div class="project-description">
+                                <p>
+                                    <span lang="pt">Como um jogo "de criança" me ensinou Java, inglês, redes e a resolver problemas: dos plugins aos 14, 15 anos até a Lykos Province, a comunidade que me deu amizades e uma carreira.</span>
+                                    <span lang="en">How a "kids' game" taught me Java, English, networking and problem solving: from writing plugins at 14 or 15 to Lykos Province, the community that gave me friendships and a career.</span>
+                                </p>
+                            </div>
+                            <div class="project-meta">
+                                <span lang="pt">25 nov 2026 · 6 min de leitura</span>
+                                <span lang="en">Nov 25, 2026 · 6 min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer_rights">&copy; 2026 Bernardo Cordeiro Motta.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Visitas (GoatCounter: sem cookies, sem IP). "/index.html" conta como "/" -->
+    <script>window.goatcounter = { path: function (p) { return p.replace(/\?.*$/, "").replace(/\/index\.html$/, "/"); } };</script>
+    <script data-goatcounter="https://battomic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script src="assets/js/main.js?v=20261125-19"></script>
+</body>
+</html>

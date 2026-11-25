@@ -1459,6 +1459,9 @@ img {
     color: inherit;
 }
 
+/* rótulo bilíngue no botão do meio (o "display: inline" acima mostrava os dois idiomas) */
+.three-column-nav .nav-center span[lang="en"] { display: none; }
+
 .three-column-nav .nav-center i {
     display: inline-flex;
     align-items: center;

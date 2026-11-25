@@ -5,6 +5,7 @@ const translations = {
         welcome: "Bem-vindo ao meu mundo!",
         nav_home: "bernardo.dev",
         nav_work: "work.done", 
+        nav_blog: "blog.share",
         status: "Disponível",
         time_label: "Meu horário:",
         role: "Back-End & Analista de Dados",
@@ -29,7 +30,7 @@ const translations = {
         journey_next: "Futuro em construção",
         section_contact: "Contato",
         about_p1: "Sou Bernardo Cordeiro Motta, desenvolvedor back-end com mais de 9 anos de experiência transformando complexidade em automação. Fiz <strong>3 anos de Bacharelado em Matemática na UFV</strong> (Universidade Federal de Viçosa) e saí para aproveitar oportunidades de trabalho. Depois me <strong>formei em Análise e Desenvolvimento de Sistemas pela UniViçosa</strong> e voltei à Matemática para dar continuidade a esse estudo: hoje curso <strong>Licenciatura em Matemática pela FAVENI</strong> (EAD). Essa base em lógica e pensamento analítico é o que aplico todo dia para resolver problemas técnicos complexos.",
-        about_p2: "Minha jornada prática começou em agosto de 2017, quando fundei a <strong>Lykos Province</strong> e passei a desenvolver sistemas para redes de Minecraft com milhares de usuários registrados. Ali aprendi na prática sobre <strong>performance</strong>, <strong>escalabilidade</strong> e <strong>infraestrutura resiliente</strong>, e essa experiência com alto tráfego me ensinou a pensar em arquiteturas robustas desde o início.",
+        about_p2: "A paixão por programar começou cedo: com uns 14, 15 anos eu já escrevia meus primeiros plugins de Minecraft. Em agosto de 2017 fundei a <strong>Lykos Province</strong> e passei a desenvolver sistemas para redes de Minecraft com milhares de usuários registrados. Ali aprendi na prática sobre <strong>performance</strong>, <strong>escalabilidade</strong> e <strong>infraestrutura resiliente</strong>, e essa experiência com alto tráfego me ensinou a pensar em arquiteturas robustas desde o início.",
         about_p3: "Hoje sou <strong>desenvolvedor e analista de dados na Eficaz</strong>, uma rede de clínicas, e assumo também o que vai além desse escopo: infraestrutura, segurança, banco, integrações de dados e as 22 apps internas. Em paralelo, construo meu próprio <strong>SaaS de CRM com agentes de IA</strong>, fluxos no estilo n8n e cobrança, e sigo fazendo <strong>automação de processos</strong> para empresas. Meu foco é eliminar gargalos operacionais e transformar processos manuais em fluxos automatizados e confiáveis.",
         service_automation_title: "Automação de Processos",
         service_automation_desc: "Fluxos e agentes de IA que conectam WhatsApp, CRMs, e-mail, Meta, Google e sistemas internos, no <strong>n8n</strong> ou em código. Tiram tarefas repetitivas da equipe e encurtam o tempo de resposta ao cliente.",
@@ -45,7 +46,7 @@ const translations = {
         exp_lykos_title: "Lykos Province",
         exp_lykos_date: "Ago/2017 - 2023",
         exp_lykos_role: "Fundador & Desenvolvedor",
-        exp_lykos_desc: "Onde comecei a programar: a comunidade de jogos que fundei, com uma rede de Minecraft de <strong>8 servidores</strong>, lobby e proxy em VPS próprias (Pterodactyl), site com contas e loja e um bot no Discord com os dados dos servidores em tempo real. Mais de 1000 membros ativos. <a href=\"work/lykos-province.html\" style=\"color: var(--accent); white-space: nowrap;\">Ver o case <i class=\"fas fa-arrow-right\"></i></a>",
+        exp_lykos_desc: "A comunidade de jogos que fundei, onde o hobby de programar, que vinha dos plugins desde os 14, 15 anos, virou trabalho de verdade: uma rede de Minecraft de <strong>8 servidores</strong>, lobby e proxy em VPS próprias (Pterodactyl), site com contas e loja e um bot no Discord com os dados dos servidores em tempo real. Mais de 1000 membros ativos. <a href=\"work/lykos-province.html\" style=\"color: var(--accent); white-space: nowrap;\">Ver o case <i class=\"fas fa-arrow-right\"></i></a>",
         exp_freelancer_title: "Desenvolvedor Autônomo",
         exp_freelancer_date: "2018 - Presente", 
         exp_freelancer_role: "Back-end, DevOps & Automação",
@@ -96,6 +97,7 @@ const translations = {
         welcome: "Welcome to my world!",
         nav_home: "bernardo.dev",
         nav_work: "work.done",
+        nav_blog: "blog.share",
         status: "Open to work",
         time_label: "My time:",
         role: "Back-End Dev & Data Analyst",
@@ -120,7 +122,7 @@ const translations = {
         journey_next: "Future under construction",
         section_contact: "Contact me",
         about_p1: "I'm Bernardo Cordeiro Motta, a back-end developer with over 9 years of experience turning complexity into automation. I spent <strong>3 years in the Mathematics bachelor's program at UFV</strong> (Federal University of Viçosa) and left to take on work opportunities. I then <strong>graduated in Systems Analysis and Development from UniViçosa</strong> and went back to mathematics to continue those studies: I'm now taking a <strong>teaching degree in Mathematics at FAVENI</strong> (online). That grounding in logic and analytical thinking is what I apply every day to solve complex technical problems.",
-        about_p2: "My hands-on journey began in August 2017, when I founded <strong>Lykos Province</strong> and started building systems for Minecraft networks with thousands of registered users. That's where I learned <strong>performance</strong>, <strong>scalability</strong> and <strong>resilient infrastructure</strong> in practice, and that high-traffic experience taught me to think about robust architectures from the start.",
+        about_p2: "My passion for programming started early: at around 14 or 15 I was already writing my first Minecraft plugins. In August 2017 I founded <strong>Lykos Province</strong> and started building systems for Minecraft networks with thousands of registered users. That's where I learned <strong>performance</strong>, <strong>scalability</strong> and <strong>resilient infrastructure</strong> in practice, and that high-traffic experience taught me to think about robust architectures from the start.",
         about_p3: "Today I'm a <strong>developer and data analyst at Eficaz</strong>, a clinic network, and I also take on what goes beyond that scope: infrastructure, security, database, data integrations and its 22 internal apps. Alongside that, I'm building my own <strong>CRM SaaS with AI agents</strong>, n8n-style flows and billing, and I still do <strong>process automation</strong> for companies. My focus is eliminating operational bottlenecks and turning manual processes into automated, reliable workflows.",
         service_automation_title: "Process Automation",
         service_automation_desc: "Workflows and AI agents connecting WhatsApp, CRMs, email, Meta, Google and internal systems, in <strong>n8n</strong> or in code. They take repetitive work off the team and cut customer response times.",
@@ -136,7 +138,7 @@ const translations = {
         exp_lykos_title: "Lykos Province",
         exp_lykos_date: "Aug/2017 - 2023",
         exp_lykos_role: "Founder & Developer",
-        exp_lykos_desc: "Where I started programming: the gaming community I founded, with a Minecraft network of <strong>8 servers</strong>, a lobby and a proxy on my own VPSs (Pterodactyl), a website with accounts and a store, and a Discord bot reporting server data in real time. Over 1000 active members. <a href=\"work/lykos-province.html\" style=\"color: var(--accent); white-space: nowrap;\">See the case <i class=\"fas fa-arrow-right\"></i></a>",
+        exp_lykos_desc: "The gaming community I founded, where my programming hobby, which started with plugins around age 14 or 15, became real work: a Minecraft network of <strong>8 servers</strong>, a lobby and a proxy on my own VPSs (Pterodactyl), a website with accounts and a store, and a Discord bot reporting server data in real time. Over 1000 active members. <a href=\"work/lykos-province.html\" style=\"color: var(--accent); white-space: nowrap;\">See the case <i class=\"fas fa-arrow-right\"></i></a>",
         exp_freelancer_title: "Freelance Developer",
         exp_freelancer_date: "2018 - Present",
         exp_freelancer_role: "Backend, DevOps & Automation", 
@@ -314,13 +316,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const slow = !!document.getElementById('home-main');
         if (slow) document.documentElement.classList.add('motion-slow');
         const KINDS = [
-            ['type', '.section-title, .content-section > h2'],
+            ['type', '.section-title, .content-section > h2, .wiki-text > h2'],
             ['skel', '.sidebar .profile-avatar, .sidebar .profile-name, .sidebar .profile-role, .sidebar > :not(.profile-section)'],
             ['skel', '.hero-title, .hero-description, .about-content p, .works-carousel'],
             ['skel', '.project-card, .service-card, .stack-group, .contact-card'],
             ['skel', '.project-header-content > *, .case-meta > div, .figure, .cmp-head, .cmp-row, .shot, .incident > div'],
             ['skel', '.ba-card, .skin-card, .arch-item, .result-item, .kpi, .plan, .diagram-node, .rd-row, .tech-tag, .project-navigation > *'],
             // o resto dos cases: cada bloco de conteúdo entra sozinho (sem animar o que já tem animação dentro)
+            ['skel', '.wiki-fig, .wiki-text > :not(h2)'],
             ['skel', '.content-section > :not(h2), .deliverable > :not(.shot):not(.shots)'],
         ];
         const STEP = slow ? 120 : 70, MAX_STEPS = slow ? 10 : 8;
@@ -950,7 +953,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const GC = 'https://battomic.goatcounter.com/counter/';
         const norm = p => p.replace(/\?.*$/, '').replace(/\/index\.html$/, '/');
         const PAGES = ['/', '/work.html', '/work/eficaz.html', '/work/battomic.html', '/work/relatorios-sao-romao.html',
-            '/work/ticketflow.html', '/work/lykos-province.html', '/work/bot-wynn-brasil.html'];
+            '/work/ticketflow.html', '/work/lykos-province.html', '/work/bot-wynn-brasil.html', '/blog.html', '/blog/minecraft.html'];
         const cache = {};
         // O cache do GoatCounter guarda a resposta por horas e ignora parâmetros inventados, mas
         // respeita o "start". Uma data de início bem antiga (antes do site existir) conta tudo, e
@@ -1020,6 +1023,9 @@ document.addEventListener('DOMContentLoaded', function() {
             path = path.replace(/\?.*$/, '').replace(/\/index\.html$/, '/');
             if (path === '/') return 'home';
             if (path === '/work.html') return 'work.done';
+            if (path === '/blog.html') return 'blog';
+            const b = path.match(/\/blog\/([^/]+)\.html$/);
+            if (b) return 'post ' + b[1];
             const m = path.match(/\/work\/([^/]+)\.html$/);
             return m ? 'case ' + m[1] : path;
         };
