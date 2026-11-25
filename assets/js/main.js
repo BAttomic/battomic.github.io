@@ -872,4 +872,15 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); });
         if (!document.hidden) start();
     })();
+    // Destaque que segue o mouse ("O que eu faço" e Tech stack): passa a posição do cursor para o CSS
+    (function () {
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        document.querySelectorAll('.service-card, .stack-panel').forEach(el => {
+            el.addEventListener('pointermove', e => {
+                const r = el.getBoundingClientRect();
+                el.style.setProperty('--mx', (e.clientX - r.left).toFixed(1) + 'px');
+                el.style.setProperty('--my', (e.clientY - r.top).toFixed(1) + 'px');
+            });
+        });
+    })();
 });

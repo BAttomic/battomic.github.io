@@ -489,17 +489,25 @@ img {
 }
 
 .project-card {
+    position: relative;
     background-color: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     overflow: hidden;
-    transition: var(--transition);
     display: block;
+    /* volta um pouco mais rápida que a ida */
+    transition: scale 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
+/* Hover: o card inteiro chega mais perto da tela (5% maior, sombra mais funda); a imagem aparece
+   inteira, sem zoom nem corte. Usa a propriedade `scale`, separada do `transform`, para somar com
+   o giro do carrossel sem atrapalhar. */
 .project-card:hover {
+    z-index: 2;
+    scale: 1.05;
     border-color: var(--border-light);
-    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5), 0 6px 14px rgba(0, 0, 0, 0.35);
+    transition: scale 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s cubic-bezier(0.2, 0, 0, 1), border-color 0.25s ease;
 }
 
 .project-header {
@@ -539,12 +547,11 @@ img {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-    transition: filter 0.4s ease, transform 0.3s ease;
+    transition: filter 0.4s ease;
 }
 
 .project-card:hover .project-image img {
     filter: grayscale(0%);
-    transform: scale(1.05);
 }
 
 
@@ -632,8 +639,15 @@ img {
     top: 0;
     left: 21%;
     width: 58%;
-    transition: transform 0.9s cubic-bezier(0.2, 0, 0, 1), filter 0.6s ease, opacity 0.6s ease;
+    transition: transform 0.9s cubic-bezier(0.2, 0, 0, 1), filter 0.6s ease, opacity 0.6s ease,
+                scale 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
+.works-stage > .project-card:hover {
+    transition: transform 0.9s cubic-bezier(0.2, 0, 0, 1), filter 0.6s ease, opacity 0.6s ease,
+                scale 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s cubic-bezier(0.2, 0, 0, 1), border-color 0.25s ease;
+}
+/* os de lado crescem menos: só um aviso de que dá para clicar */
+.works-stage > .project-card:not(.is-active):hover { scale: 1.03; }
 .works-stage > .project-card:not(.is-active) { cursor: pointer; }
 .works-stage > .project-card:not(.is-active) .project-arrow { opacity: 0; }
 @container works (max-width: 640px) {
@@ -736,6 +750,11 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .project-card:hover,
+    .works-stage > .project-card:not(.is-active):hover { scale: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
     .works-stage > .project-card,
     .works-pill { transition: none; }
 }
@@ -795,6 +814,37 @@ img {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 18px;
+}
+
+/* Destaque amarelo que segue o mouse ("O que eu faço" e Tech stack): um brilho suave no fundo e
+   a borda acendendo perto do cursor. O main.js passa a posição em --mx/--my; --spot liga e
+   desliga com transição (registrado com @property para poder animar). */
+@property --spot { syntax: '<number>'; inherits: true; initial-value: 0; }
+.service-card,
+.stack-panel {
+    --mx: 50%;
+    --my: 50%;
+    position: relative;
+    background-image: radial-gradient(260px circle at var(--mx) var(--my), rgb(247 244 190 / calc(0.1 * var(--spot))), transparent 65%);
+}
+.service-card { transition: --spot 0.35s ease; }
+.service-card::before,
+.stack-panel::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: 1;
+    padding: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(180px circle at var(--mx) var(--my), rgb(247 244 190 / calc(0.85 * var(--spot))), transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+@media (hover: hover) and (pointer: fine) {
+    .service-card:hover,
+    .stack-group:hover .stack-panel { --spot: 1; }
 }
 
 .service-icon {
@@ -920,7 +970,7 @@ img {
         height: var(--ch, 100%);
         overflow: hidden;
         transition: width 0.24s cubic-bezier(0.4, 0, 0.2, 1) 0.05s, height 0.24s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
-                    box-shadow 0.24s ease, border-color 0.24s ease;
+                    box-shadow 0.24s ease, border-color 0.24s ease, --spot 0.3s ease;
     }
     .stack-ready .stack-group.from-right .stack-panel { left: auto; right: 0; }
     .stack-ready .stack-group:hover .stack-panel,
@@ -930,7 +980,7 @@ img {
         border-color: var(--border-light);
         box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
         transition: width 0.36s cubic-bezier(0.2, 0, 0, 1), height 0.36s cubic-bezier(0.2, 0, 0, 1),
-                    box-shadow 0.3s ease, border-color 0.3s ease;
+                    box-shadow 0.3s ease, border-color 0.3s ease, --spot 0.35s ease;
     }
     .stack-ready .stack-group:focus-visible .stack-panel { border-color: var(--accent); }
 
