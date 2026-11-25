@@ -942,7 +942,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const GC = 'https://battomic.goatcounter.com/counter/';
         const norm = p => p.replace(/\/index\.html$/, '/');
         const cache = {};
-        const get = path => cache[path] || (cache[path] = fetch(GC + encodeURIComponent(path) + '.json')
+        // O cache do GoatCounter guarda a resposta por horas e ignora parâmetros inventados, mas
+        // respeita o "start". Uma data de início bem antiga (antes do site existir) conta tudo, e
+        // trocá-la a cada 10 minutos faz o cache buscar o número atualizado.
+        const win = Math.floor(Date.now() / 600000) % 3000;
+        const start = new Date(Date.UTC(2010, 0, 1) + win * 86400000).toISOString().slice(0, 10);
+        const get = path => cache[path] || (cache[path] = fetch(GC + encodeURIComponent(path) + '.json?start=' + start)
             .then(r => (r.ok ? r.json() : null))
             .then(j => (j ? parseInt(String(j.count).replace(/\D/g, ''), 10) || 0 : 0))
             .catch(() => 0));
