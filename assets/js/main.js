@@ -818,4 +818,58 @@ document.addEventListener('DOMContentLoaded', function() {
         if ('ResizeObserver' in window) new ResizeObserver(layout).observe(groups);
         else window.addEventListener('resize', layout);
     })();
+    // Favicon animado (B_Attomic: o "B" no núcleo e três elétrons girando nas órbitas). GIF só anima
+    // no Firefox; aqui cada quadro é desenhado num canvas e vira o ícone da aba ~15 vezes por segundo,
+    // o que funciona em todos. Para com a aba escondida; com "reduzir movimento" fica o SVG parado.
+    (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const cv = document.createElement('canvas');
+        if (!cv.getContext || !window.Path2D) return;
+        cv.width = cv.height = 64;
+        const g = cv.getContext('2d');
+        g.setTransform(2, 0, 0, 2, 0, 0);
+        const B = new Path2D('M9.5 7H17C20 7 21.7 8.8 21.7 11.3C21.7 13 20.8 14.4 19.4 15.1C21.3 15.7 22.5 17.3 22.5 19.4C22.5 22.6 20.4 25 16.9 25H9.5ZM13.1 10V14H16.5C17.7 14 18.4 13.2 18.4 12C18.4 10.8 17.7 10 16.5 10ZM13.1 17V22H16.8C18.3 22 19.1 21.1 19.1 19.5C19.1 17.9 18.3 17 16.8 17Z');
+        const ORBITS = [Math.PI / 6, -Math.PI / 6, Math.PI / 2];   // ±30° e a vertical
+        const PHASES = [0, Math.PI * 2 / 3, Math.PI * 4 / 3];
+        const RX = 12.5, RY = 4.6, PERIOD = 2400;
+        const START = 206 * Math.PI / 180; // mesmo quadro do SVG parado
+        const draw = function (g, now, round) {
+            const th = START + (now / PERIOD) * Math.PI * 2;
+            g.clearRect(0, 0, 32, 32);
+            g.beginPath();
+            if (round && g.roundRect) g.roundRect(0, 0, 32, 32, 7); else g.rect(0, 0, 32, 32);
+            g.fillStyle = '#181818';
+            g.fill();
+            g.lineWidth = 1.3;
+            g.strokeStyle = 'rgba(247, 244, 190, 0.5)';
+            ORBITS.forEach(r => { g.beginPath(); g.ellipse(16, 16, RX, RY, r, 0, Math.PI * 2); g.stroke(); });
+            // cada elétron passa por trás do "B" na metade de trás da órbita
+            const es = ORBITS.map((r, k) => {
+                const a = th + PHASES[k], x = RX * Math.cos(a), y = RY * Math.sin(a);
+                return { x: 16 + x * Math.cos(r) - y * Math.sin(r), y: 16 + x * Math.sin(r) + y * Math.cos(r), front: Math.sin(a) > 0 };
+            });
+            const dot = e => { g.beginPath(); g.arc(e.x, e.y, 2.2, 0, Math.PI * 2); g.fillStyle = '#f7f4be'; g.fill(); };
+            es.filter(e => !e.front).forEach(dot);
+            g.lineWidth = 1.2;
+            g.strokeStyle = '#181818';
+            g.stroke(B);
+            g.fillStyle = '#f2f2f2';
+            g.fill(B, 'evenodd');
+            es.filter(e => e.front).forEach(dot);
+        };
+        // um ícone só, em PNG, trocado a cada quadro (o SVG e o PNG fixos saem de cena)
+        document.querySelectorAll('link[rel="icon"]').forEach(l => l.remove());
+        const link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/png';
+        document.head.appendChild(link);
+        const frame = now => { draw(g, now, true); link.href = cv.toDataURL('image/png'); };
+        let timer = null;
+        const t0 = performance.now();
+        const start = () => { if (!timer) timer = setInterval(() => frame(performance.now() - t0), 66); };
+        const stop = () => { clearInterval(timer); timer = null; };
+        frame(0);
+        document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); });
+        if (!document.hidden) start();
+    })();
 });

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- B_Attomic: o "B" no núcleo e três elétrons nas órbitas (quadro parado; o main.js anima) -->
+  <rect width="32" height="32" rx="7" fill="#181818"/>
+  <g fill="none" stroke="#f7f4be" stroke-opacity="0.5" stroke-width="1.3">
+    <ellipse cx="16" cy="16" rx="12.5" ry="4.6" transform="rotate(30 16 16)"/>
+    <ellipse cx="16" cy="16" rx="12.5" ry="4.6" transform="rotate(-30 16 16)"/>
+    <ellipse cx="16" cy="16" rx="12.5" ry="4.6" transform="rotate(90 16 16)"/>
+  </g>
+  <circle cx="7.28" cy="8.64" r="2.2" fill="#f7f4be"/>
+  <circle cx="23.69" cy="8.59" r="2.2" fill="#f7f4be"/>
+  <path fill="#f2f2f2" fill-rule="evenodd" stroke="#181818" stroke-width="1.2" paint-order="stroke" d="M9.5 7H17C20 7 21.7 8.8 21.7 11.3C21.7 13 20.8 14.4 19.4 15.1C21.3 15.7 22.5 17.3 22.5 19.4C22.5 22.6 20.4 25 16.9 25H9.5ZM13.1 10V14H16.5C17.7 14 18.4 13.2 18.4 12C18.4 10.8 17.7 10 16.5 10ZM13.1 17V22H16.8C18.3 22 19.1 21.1 19.1 19.5C19.1 17.9 18.3 17 16.8 17Z"/>
+  <circle cx="11.41" cy="16.87" r="2.2" fill="#f7f4be"/>
+</svg>
