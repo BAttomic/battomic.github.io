@@ -1144,6 +1144,22 @@ img {
     color: var(--text-muted);
 }
 
+/* Visitas (GoatCounter): discretas, na mesma letra pequena e acinzentada do rodapé */
+.view-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.view-count i { font-size: 10px; opacity: 0.8; }
+.project-header .view-count { margin-left: auto; margin-right: 10px; }
+.view-count.case { display: flex; margin-top: 14px; }
+.footer-content .view-count.foot { margin-right: auto; margin-left: 14px; }
+
 .footer-links {
     display: flex;
     gap: 12px;

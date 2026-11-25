@@ -933,4 +933,39 @@ document.addEventListener('DOMContentLoaded', function() {
         ov.addEventListener('click', e => { if (e.target === ov || e.target.classList.contains('lb-stage')) close(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('open')) close(); });
     })();
+    // Visitas (GoatCounter): total do site no rodapé e de cada projeto nos cards e no topo do case.
+    // Busca depois que a página carregou; se o serviço não responder (ou um bloqueador barrar),
+    // simplesmente não aparece nada.
+    (function () {
+        const GC = 'https://battomic.goatcounter.com/counter/';
+        const norm = p => p.replace(/\/index\.html$/, '/');
+        const cache = {};
+        const get = path => cache[path] || (cache[path] = fetch(GC + encodeURIComponent(path) + '.json')
+            .then(r => (r.ok ? r.json() : null))
+            .then(j => (j ? parseInt(String(j.count).replace(/\D/g, ''), 10) || 0 : 0))
+            .catch(() => 0));
+        const fmt = n => n.toLocaleString(document.body.classList.contains('lang-en') ? 'en-US' : 'pt-BR');
+        function badge(n, cls, pt, en) {
+            const s = document.createElement('span');
+            s.className = 'view-count ' + cls;
+            s.title = document.body.classList.contains('lang-en') ? en : pt;
+            s.innerHTML = '<i class="fas fa-eye" aria-hidden="true"></i><span class="view-n">' + fmt(n) + '</span>' +
+                (cls === 'card' ? '' : ' <span lang="pt">' + pt + '</span><span lang="en">' + en + '</span>');
+            return s;
+        }
+        function run() {
+            const foot = document.querySelector('.footer-content > p');
+            if (foot) get('TOTAL').then(n => { if (n) foot.after(badge(n, 'foot', 'visitas', 'visits')); });
+            document.querySelectorAll('a.project-card[href]').forEach(card => {
+                const arrow = card.querySelector('.project-header .project-arrow');
+                if (!arrow) return;
+                const path = norm(new URL(card.getAttribute('href'), location.href).pathname);
+                get(path).then(n => { if (n) arrow.before(badge(n, 'card', 'visualizações', 'views')); });
+            });
+            const head = document.querySelector('.project-header-content');
+            if (head) get(norm(location.pathname)).then(n => { if (n) head.appendChild(badge(n, 'case', 'visualizações', 'views')); });
+        }
+        if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 2500 });
+        else setTimeout(run, 800);
+    })();
 });
