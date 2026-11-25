@@ -2140,6 +2140,34 @@ img {
     }
 }
 
+/* Nada de rolagem horizontal no celular (cases e work.done):
+   - menos margem lateral no conteúdo dos cases (o padding vem inline no HTML)
+   - blocos de arquitetura e números de resultado em uma coluna quando a tela é estreita
+   - e, por garantia, o que ainda passar da tela é cortado em vez de criar rolagem lateral */
+@media (max-width: 600px) {
+    .main-layout > main.main-content[style] { padding-left: 16px !important; padding-right: 16px !important; }
+}
+@media (max-width: 480px) {
+    .tech-architecture,
+    .results-grid { grid-template-columns: minmax(0, 1fr); }
+}
+body { overflow-x: clip; }
+
+/* Navegação entre projetos no celular: anterior e próximo lado a lado (dividindo a largura, com os
+   nomes quebrando linha) e "Voltar aos Projetos" na largura toda embaixo. Em três colunas ela não
+   cabia e empurrava a página para o lado. */
+@media (max-width: 600px) {
+    .project-navigation.three-column-nav {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas: "prev next" "back back";
+        gap: 10px;
+    }
+    .three-column-nav .nav-prev { grid-area: prev; justify-self: stretch; min-width: 0; }
+    .three-column-nav .nav-next { grid-area: next; justify-self: stretch; min-width: 0; }
+    .three-column-nav .nav-center { grid-area: back; justify-self: stretch; justify-content: center; white-space: normal; }
+    .three-column-nav .nav-item strong { overflow-wrap: anywhere; }
+}
+
 @media (max-width: 550px) {
     .header-content {
         flex-wrap: nowrap;

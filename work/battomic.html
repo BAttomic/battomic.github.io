@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
     <meta name="theme-color" content="#181818">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261125-9">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20261125-10">
 
     <style>
         .name-note {
@@ -103,12 +103,12 @@
             color: var(--text-muted);
             text-align: center;
         }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 20px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; margin-top: 20px; }
         .gallery .shot { margin: 0; display: flex; flex-direction: column; }
         .gallery .shot-cap { margin-top: auto; }
 
         /* Faixa de planos (resumo de pricing) */
-        .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 18px; }
+        .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 12px; margin-top: 18px; }
         .plan {
             border: 1px solid var(--border); border-radius: var(--radius-md);
             background: var(--bg-card); padding: 16px;
@@ -120,7 +120,7 @@
         .plan .plan-note { font-size: 12px; color: var(--text-secondary); }
 
         /* KPIs de performance */
-        .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-top: 18px; }
+        .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); gap: 14px; margin-top: 18px; }
         .kpi { text-align: center; padding: 18px 10px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); }
         .kpi b { display: block; font-size: 28px; font-weight: 800; color: var(--accent); line-height: 1; }
         .kpi span { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
@@ -500,6 +500,6 @@
     <!-- Visitas (GoatCounter: sem cookies, sem IP). "/index.html" conta como "/" -->
     <script>window.goatcounter = { path: function (p) { return p.replace(/\/index\.html$/, "/"); } };</script>
     <script data-goatcounter="https://battomic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <script src="../assets/js/main.js?v=20261125-9"></script>
+    <script src="../assets/js/main.js?v=20261125-10"></script>
 </body>
 </html>

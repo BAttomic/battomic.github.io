@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
     <meta name="theme-color" content="#181818">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261125-9">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20261125-10">
 
     <style>
         /* Banner estilo Discord */
@@ -55,7 +55,7 @@
         .discord-banner-btn.ghost:hover { background: rgba(255,255,255,0.12); }
 
         /* Showcase das skins oficiais (assets baixáveis via /uniforme) */
-        .skins { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-top: 20px; }
+        .skins { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 18px; margin-top: 20px; }
         .skin-card {
             border: 1px solid var(--border); border-radius: var(--radius-lg);
             background: var(--bg-card); padding: 20px; text-align: center;
@@ -92,6 +92,9 @@
             .discord-banner { flex-direction: column; text-align: center; gap: 20px; padding: 24px; }
             .discord-banner-content { padding-right: 0; }
             .discord-banner-btn { width: 100%; justify-content: center; }
+            .discord-banner-btns { flex-direction: column; width: 100%; }
+            .cmd-table { table-layout: fixed; width: 100%; }
+            .cmd-table td { overflow-wrap: anywhere; }
             .cmd-table td:first-child { white-space: normal; }
         }
     </style>
@@ -363,6 +366,6 @@
     <!-- Visitas (GoatCounter: sem cookies, sem IP). "/index.html" conta como "/" -->
     <script>window.goatcounter = { path: function (p) { return p.replace(/\/index\.html$/, "/"); } };</script>
     <script data-goatcounter="https://battomic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <script src="../assets/js/main.js?v=20261125-9"></script>
+    <script src="../assets/js/main.js?v=20261125-10"></script>
 </body>
 </html>
