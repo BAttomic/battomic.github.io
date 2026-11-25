@@ -1157,7 +1157,12 @@ img {
 }
 .view-count i { font-size: 10px; opacity: 0.8; }
 .project-header .view-count { margin-left: auto; margin-right: 10px; }
-.view-count.case { display: flex; margin-top: 14px; }
+/* case: olho com o número ao lado do nome do projeto, na direita */
+.project-header-with-logo { position: relative; }
+.view-count.case { position: absolute; top: 13px; right: 0; }
+@media (min-width: 801px) {
+    .project-header-with-logo.has-views .project-header-content > h1 { padding-right: 76px; }
+}
 /* home: no pé da coluna do índice (a coluna já empurra o último item para baixo) */
 .right-sidebar .view-count.index { padding: 0 2px; }
 /* rodapé só quando a coluna do índice não aparece */

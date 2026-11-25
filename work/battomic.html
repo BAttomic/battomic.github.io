@@ -14,18 +14,9 @@
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
     <meta name="theme-color" content="#181818">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261125-13">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20261125-15">
 
     <style>
-        .name-note {
-            margin-top: 12px;
-            padding: 10px 16px;
-            border: 1px dashed var(--border-light);
-            border-radius: 10px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-muted);
-        }
         .ai-logo-placeholder {
             width: 110px;
             height: 110px;
@@ -41,6 +32,42 @@
             color: var(--accent);
             flex-shrink: 0;
         }
+
+        /* Card do app no começo da página: mesmo formato do card do WhatsApp do fim, em verde da marca
+           escurecido para o texto branco ficar legível (contraste ~4,5:1 já no lado mais claro) */
+        .app-banner {
+            background: linear-gradient(135deg, #00875a 0%, #005c40 100%);
+            border-radius: 12px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 0 32px;
+            box-shadow: 0 8px 32px rgba(0, 135, 90, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .app-banner-content { flex: 1; padding-right: 20px; }
+        .app-banner-content h3 { color: #ffffff; margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 700; }
+        .app-banner-content p { color: rgba(255, 255, 255, 0.92); margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .app-banner-content strong { color: #ffffff; }
+        .app-banner-btn {
+            background-color: #ffffff;
+            color: #00875a;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .app-banner-btn i { font-size: 0.8rem; }
+        .app-banner-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); background-color: #f8f9fa; color: #006b47; }
+        .app-banner-btn:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 
         /* Banner estilo Discord para WhatsApp */
         .whatsapp-banner {
@@ -80,6 +107,9 @@
             .whatsapp-banner { flex-direction: column; text-align: center; gap: 20px; padding: 24px; }
             .whatsapp-banner-content { padding-right: 0; }
             .whatsapp-banner-btn { width: 100%; justify-content: center; }
+            .app-banner { flex-direction: column; text-align: center; gap: 20px; padding: 24px; }
+            .app-banner-content { padding-right: 0; }
+            .app-banner-btn { width: 100%; justify-content: center; }
         }
 
         /* Showcase de print (imagem + legenda) */
@@ -186,15 +216,29 @@
                                 <span lang="pt">A evolução natural dos meus agentes de IA em um produto: uma plataforma SaaS multi-tenant que reúne CRM, automações com agentes e billing numa única aplicação — cada cliente sobre seu próprio banco de dados isolado.</span>
                                 <span lang="en">The natural evolution of my AI agents into a product: a multi-tenant SaaS platform bringing together CRM, agent automations and billing in a single application — each client on its own isolated database.</span>
                             </p>
-                            <p class="name-note">
-                                <span lang="pt"><strong>BAttomic</strong> é um nome provisório: o produto ainda não tem nome definitivo.</span>
-                                <span lang="en"><strong>BAttomic</strong> is a placeholder name: the product doesn't have a final name yet.</span>
-                            </p>
                         </div>
                     </div>
                 </header>
 
                 <div class="project-content">
+                    <div class="app-banner">
+                        <div class="app-banner-content">
+                            <h3>
+                                <span lang="pt">O BAttomic já está no ar</span>
+                                <span lang="en">BAttomic is live</span>
+                            </h3>
+                            <p>
+                                <span lang="pt">Crie uma conta grátis e explore o CRM, os agentes de IA e os fluxos em <strong>app.battomic.com</strong>.</span>
+                                <span lang="en">Create a free account and explore the CRM, AI agents and flows at <strong>app.battomic.com</strong>.</span>
+                            </p>
+                        </div>
+                        <a href="https://app.battomic.com" class="app-banner-btn" target="_blank" rel="noopener">
+                            <span lang="pt">Acessar a plataforma</span>
+                            <span lang="en">Open the platform</span>
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
                     <div class="shot">
                         <img src="../assets/img/battomic-cover.png" alt="Landing page da plataforma BAttomic">
                         <div class="shot-cap">
@@ -500,6 +544,6 @@
     <!-- Visitas (GoatCounter: sem cookies, sem IP). "/index.html" conta como "/" -->
     <script>window.goatcounter = { path: function (p) { return p.replace(/\?.*$/, "").replace(/\/index\.html$/, "/"); } };</script>
     <script data-goatcounter="https://battomic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <script src="../assets/js/main.js?v=20261125-13"></script>
+    <script src="../assets/js/main.js?v=20261125-15"></script>
 </body>
 </html>

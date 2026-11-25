@@ -990,8 +990,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     else if (arrow) arrow.before(badge(n, 'card'));
                 });
             });
-            const head = document.querySelector('.project-header-content');
-            if (head) get(norm(location.pathname)).then(n => { if (n) head.appendChild(badge(n, 'case')); });
+            // case: ao lado do nome, na direita
+            const hdr = document.querySelector('.project-header-with-logo');
+            if (hdr) get(norm(location.pathname)).then(n => {
+                if (!n) return;
+                hdr.appendChild(badge(n, 'case'));
+                hdr.classList.add('has-views');
+            });
             // quantas vezes o PDF do currículo foi baixado, no próprio botão
             const dlBtn = document.querySelector('.cv-preview-dl');
             if (dlBtn) get('/curriculo.pdf').then(n => {
@@ -1018,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const m = path.match(/\/work\/([^/]+)\.html$/);
             return m ? 'case ' + m[1] : path;
         };
-        const REGIONS = [['.header', 'menu'], ['.works-carousel', 'carrossel'], ['.journey', 'trajetória'],
+        const REGIONS = [['.header', 'menu'], ['.app-banner', 'card do topo'], ['.whatsapp-banner', 'card do fim'], ['.project-detail-header', 'cabeçalho'], ['.works-carousel', 'carrossel'], ['.journey', 'trajetória'],
             ['.projects-grid', 'lista'], ['.project-navigation', 'navegação'], ['.sidebar', 'lateral'],
             ['#contact', 'contato'], ['.footer', 'rodapé'], ['.right-sidebar', 'índice']];
         const region = el => { for (const [sel, n] of REGIONS) if (el.closest(sel)) return n; return 'página'; };
