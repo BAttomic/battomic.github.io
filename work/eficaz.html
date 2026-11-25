@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eficaz — Plataforma de dados de uma rede de clínicas - Bernardo Motta</title>
+    <meta name="description" content="Migração de um servidor herdado, com vulnerabilidades e problemas de LGPD, para uma plataforma isolada e versionada: 22 apps, PostgreSQL com um papel por app, integração de dados, painéis, CRM de WhatsApp, backup testado e ambiente de teste — em 8 semanas.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20261124-9">
+
+    <style>
+        .project-detail-header h1 { text-wrap: balance; }
+
+        .case-note {
+            margin-top: 12px;
+            padding: 10px 16px;
+            border: 1px dashed var(--border-light);
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Ficha do case: período, papel, escopo */
+        .case-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 0 0 18px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+        }
+        .case-meta div { padding: 14px 18px; }
+        .case-meta div + div { border-left: 1px solid var(--border); }
+        .case-meta dt {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+        }
+        .case-meta dd { font-size: 13px; color: var(--text-primary); line-height: 1.5; }
+
+        /* Números: uma grade só, separada por linhas finas */
+        .figures {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 0 0 36px;
+        }
+        .figure { background: var(--bg-card); padding: 18px 20px; }
+        .figure strong {
+            display: block;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--accent);
+            font-variant-numeric: tabular-nums;
+            line-height: 1.1;
+        }
+        .figure span { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+        /* Screenshot com moldura + legenda */
+        .shot {
+            margin: 18px 0 6px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: var(--bg-card);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        }
+        .shot img { width: 100%; height: auto; display: block; }
+        .shot + .feature-list { margin-top: 18px; }
+        .shot-frame { position: relative; }
+        .shot.cropped .shot-frame::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 28%; background: linear-gradient(rgba(11, 14, 20, 0), rgba(11, 14, 20, 0.82)); pointer-events: none; }
+        .shot-more { position: absolute; right: 12px; bottom: 12px; z-index: 1; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1px solid var(--border-light); border-radius: 999px; background: rgba(24, 24, 24, 0.85); font-family: var(--font-mono); font-size: 11px; color: var(--text-primary); pointer-events: none; }
+        .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+        .shots.three { grid-template-columns: repeat(3, 1fr); }
+        .shots .shot { margin: 0; display: flex; flex-direction: column; }
+        .shots .shot-cap { margin-top: auto; text-align: left; }
+        @media (max-width: 900px) { .shots.three { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 760px) { .shots, .shots.three { grid-template-columns: 1fr; } }
+        .shot-cap {
+            padding: 12px 16px;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Cada entrega */
+        .deliverable { padding-top: 26px; margin-top: 26px; border-top: 1px solid var(--border); }
+        .deliverable:first-of-type { border-top: 0; margin-top: 8px; padding-top: 0; }
+        .deliverable h3 {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .deliverable h3 small {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* Um problema difícil: sintoma → medição → correção → resultado */
+        .incident {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            overflow: hidden;
+        }
+        .incident > div {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 16px;
+            padding: 14px 18px;
+        }
+        .incident > div + div { border-top: 1px solid var(--border); }
+        .incident dt {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding-top: 2px;
+        }
+        .incident dd { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+        .incident dd strong { color: var(--text-primary); }
+
+        /* Antes × depois: tabela nativa (tema escuro, bilíngue) */
+        .cmp { margin-top: 18px; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); }
+        .cmp-row { display: grid; grid-template-columns: 150px 1fr 1fr; }
+        .cmp-row + .cmp-row { border-top: 1px solid var(--border); }
+        .cmp-row > div { padding: 12px 16px; font-size: 13px; line-height: 1.55; color: var(--text-secondary); }
+        .cmp-head > div { padding-top: 11px; padding-bottom: 11px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); background: var(--bg-primary); }
+        .cmp-head .cmp-before { color: #f87171; }
+        .cmp-head .cmp-after { color: #34d399; }
+        .cmp-row .cmp-topic { color: var(--text-primary); font-weight: 600; }
+        .cmp-row .cmp-before { background: rgba(248, 113, 113, 0.04); }
+        .cmp-row .cmp-after { background: rgba(52, 211, 153, 0.05); color: var(--text-primary); }
+        .cmp strong { color: var(--text-primary); }
+
+        @media (max-width: 760px) {
+            .cmp-head { display: none; }
+            .cmp-row { grid-template-columns: 1fr; }
+            .cmp-row > div { padding: 8px 16px; }
+            .cmp-row .cmp-topic { padding-top: 14px; }
+            .cmp-row .cmp-after { padding-bottom: 14px; }
+            .cmp-row .cmp-before::before,
+            .cmp-row .cmp-after::before { display: block; margin-bottom: 2px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+            .cmp-row .cmp-before::before { content: "Antes"; color: #f87171; }
+            .cmp-row .cmp-after::before { content: "Depois"; color: #34d399; }
+            body.lang-en .cmp-row .cmp-before::before { content: "Before"; }
+            body.lang-en .cmp-row .cmp-after::before { content: "After"; }
+        }
+
+        @media (max-width: 760px) {
+            .case-meta { grid-template-columns: 1fr; }
+            .case-meta div + div { border-left: 0; border-top: 1px solid var(--border); }
+            .figures { grid-template-columns: repeat(2, 1fr); }
+            .figure strong { font-size: 24px; }
+            .incident > div { grid-template-columns: 1fr; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-content">
+			<div class="header-left">
+				<span class="welcome-text" data-i18n="welcome">Welcome to my world!</span>
+			</div>
+
+			<nav class="nav-menu">
+				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
+				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
+			</nav>
+
+			<div class="header-right">
+				<button id="lang-toggle" class="lang-btn">EN</button>
+
+				<div class="status-badge">
+					<span class="status-dot"></span>
+					<span lang="pt">Disponível</span>
+					<span lang="en">Open to work</span>
+				</div>
+
+				<div class="location-time">
+					<span data-i18n="location">Viçosa, MG</span>
+					<span class="separator">•</span>
+					<span>
+						<span data-i18n="time_label">Meu horário:</span>
+						<span id="current-time">00:00</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    <div class="main-layout" style="grid-template-columns: 1fr;">
+        <main class="main-content" style="max-width: 1040px; margin: 0 auto; padding: 48px 24px;">
+
+            <article class="project-detail">
+                <header class="project-detail-header">
+                    <div class="project-header-with-logo">
+                        <div class="ai-logo-placeholder">E</div>
+                        <div class="project-header-content">
+                            <h1>
+                                <span lang="pt">Eficaz — Plataforma de dados de uma rede de clínicas</span>
+                                <span lang="en">Eficaz — Data platform for a clinic network</span>
+                            </h1>
+                            <p class="project-subtitle">
+                                <span lang="pt">Entrei como desenvolvedor e analista de dados e assumi também a infraestrutura: um servidor herdado, sem versionamento, com quase tudo rodando como root e cheio de vulnerabilidades e problemas de LGPD. Em 8 semanas entreguei uma plataforma isolada, versionada, com backup testado e ambiente de teste. Hoje ela roda as 22 apps internas de uma rede com 5 unidades de medicina e odontologia e 3 franquias de cartão de benefícios.</span>
+                                <span lang="en">I joined as a developer and data analyst and also took on the infrastructure: an inherited server with no version control, nearly everything running as root and riddled with security and LGPD (data protection) issues. In 8 weeks I delivered an isolated, versioned platform with tested backups and a staging environment. It now runs the 22 internal apps of a network with 5 medical and dental units and 3 benefit-card franchises.</span>
+                            </p>
+                            <div class="case-note">
+                                <span lang="pt">As telas são <strong>capturas das aplicações reais</strong>, rodando num ambiente de teste isolado com uma base inventada. Nenhum paciente, profissional ou valor é real; nomes de unidades e de sistemas foram trocados.</span>
+                                <span lang="en">The screens are <strong>captures of the real applications</strong>, running in an isolated test environment on a made-up dataset. No patient, professional or figure is real; unit and system names were changed.</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="project-content">
+                    <dl class="case-meta">
+                        <div>
+                            <dt><span lang="pt">Período</span><span lang="en">Period</span></dt>
+                            <dd><span lang="pt">As 8 primeiras semanas; o trabalho continua</span><span lang="en">The first 8 weeks; the work goes on</span></dd>
+                        </div>
+                        <div>
+                            <dt><span lang="pt">Papel</span><span lang="en">Role</span></dt>
+                            <dd><span lang="pt">Desenvolvedor e analista de dados. Além do escopo formal, assumi infraestrutura, segurança e a migração do servidor</span><span lang="en">Developer and data analyst. Beyond the formal scope, I took on infrastructure, security and the server migration</span></dd>
+                        </div>
+                        <div>
+                            <dt><span lang="pt">Escopo</span><span lang="en">Scope</span></dt>
+                            <dd><span lang="pt">5 unidades de medicina e odontologia · 3 franquias de cartão de benefícios</span><span lang="en">5 medical and dental units · 3 benefit-card franchises</span></dd>
+                        </div>
+                    </dl>
+
+                    <div class="figures">
+                        <div class="figure"><strong>22</strong><span lang="pt">apps migradas ou criadas</span><span lang="en">apps migrated or built</span></div>
+                        <div class="figure"><strong>26</strong><span lang="pt">repositórios privados</span><span lang="en">private repositories</span></div>
+                        <div class="figure"><strong>630+</strong><span lang="pt">commits em 8 semanas</span><span lang="en">commits in 8 weeks</span></div>
+                        <div class="figure"><strong>40+</strong><span lang="pt">domínios com HTTPS</span><span lang="en">domains on HTTPS</span></div>
+                        <div class="figure"><strong>13 GB</strong><span lang="pt">em 30 schemas, 1 papel por app</span><span lang="en">across 30 schemas, 1 role per app</span></div>
+                        <div class="figure"><strong>0</strong><span lang="pt">portas de app expostas</span><span lang="en">exposed app ports</span></div>
+                    </div>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Ponto de partida</span>
+                            <span lang="en">Starting point</span>
+                        </h2>
+                        <p lang="pt">O servidor herdado tinha <strong>41 serviços soltos no systemd</strong>, 27 crons e <strong>22 de 23 apps rodando como root</strong>. O código vivia em pastas, sem Git (uma mesma pasta servia 15 projetos). Dez apps usavam a chave de administrador do banco, inclusive uma página pública, e boa parte do conhecimento tinha saído junto com quem cuidava do servidor. Na prática, um servidor cheio de <strong>vulnerabilidades e de problemas de LGPD</strong>.</p>
+                        <p lang="en">The inherited server had <strong>41 loose systemd services</strong>, 27 cron jobs and <strong>22 of 23 apps running as root</strong>. Code lived in folders with no Git (a single folder served 15 projects). Ten apps used the database admin key, including a public page, and much of the know-how had left with whoever ran the server. In practice, a server riddled with <strong>security vulnerabilities and LGPD (data protection) issues</strong>.</p>
+                        <p lang="pt">Antes de mexer em qualquer coisa, medi tudo com um script que nunca imprime segredo: serviços, apps, crons, dependências entre pastas e uso de banco. O levantamento virou um <strong>plano de migração em 17 capítulos</strong>, mantido até hoje como registro de decisões.</p>
+                        <p lang="en">Before touching anything, I measured everything with a script that never prints a secret: services, apps, crons, cross-folder dependencies and database usage. The survey became a <strong>17-chapter migration plan</strong>, still kept as the decision log.</p>
+
+                        <div class="cmp" role="table" aria-label="Antes e depois / Before and after">
+                            <div class="cmp-row cmp-head" role="row">
+                                <div role="columnheader"><span lang="pt">Tema</span><span lang="en">Topic</span></div>
+                                <div class="cmp-before" role="columnheader"><span lang="pt">Antes · servidor herdado</span><span lang="en">Before · inherited server</span></div>
+                                <div class="cmp-after" role="columnheader"><span lang="pt">Depois · plataforma nova</span><span lang="en">After · new platform</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Execução</span><span lang="en">Runtime</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt"><strong>41 serviços</strong> soltos no systemd; <strong>22 de 23 apps</strong> rodando como root</span><span lang="en"><strong>41 services</strong> loose in systemd; <strong>22 of 23 apps</strong> running as root</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">1 container por app, com rede e limite de memória próprios, publicado por uma plataforma de deploy</span><span lang="en">1 container per app, with its own network and memory limit, shipped by a deploy platform</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Banco de dados</span><span lang="en">Database</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">10 apps com a chave de administrador do banco, inclusive uma página pública; SQLite em 3 apps</span><span lang="en">10 apps holding the database admin key, including a public page; SQLite in 3 apps</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">PostgreSQL 18 único, <strong>1 papel por app</strong> com o mínimo de permissão, JWT por app, RLS e timeout por papel</span><span lang="en">A single PostgreSQL 18, <strong>1 role per app</strong> with least privilege, per-app JWT, RLS and per-role timeouts</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Código</span><span lang="en">Code</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Pastas no servidor, sem Git; uma pasta usada por 15 projetos</span><span lang="en">Folders on the server, no Git; one folder shared by 15 projects</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt"><strong>26 repositórios</strong> privados, branch de teste → PR → main, espelho num segundo Git a cada 2 h</span><span lang="en"><strong>26 private repositories</strong>, test branch → PR → main, mirrored to a second Git every 2 h</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Rede</span><span lang="en">Network</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Cada app numa porta própria do servidor, atrás de um proxy configurado à mão</span><span lang="en">Each app on its own server port, behind a hand-configured proxy</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">Só 22, 80 e 443; web só do proxy; banco e apps em redes internas sem porta publicada</span><span lang="en">Only 22, 80 and 443; web only from the proxy; database and apps on internal networks with no published port</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Segurança e LGPD</span><span lang="en">Security &amp; LGPD</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Vulnerabilidades e problemas de LGPD espalhados pelo servidor</span><span lang="en">Vulnerabilities and LGPD (data protection) issues across the server</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">Tudo corrigido: menor privilégio, dados pessoais protegidos e <strong>melhoria contínua</strong></span><span lang="en">All fixed: least privilege, protected personal data and <strong>continuous improvement</strong></span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader">Login</div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Contas compartilhadas e um padrão de login diferente em cada painel</span><span lang="en">Shared accounts and a different login pattern in each dashboard</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">Conta por pessoa com e-mail, "esqueci a senha", papéis por unidade e monitor de uso, igual em todas as apps</span><span lang="en">One account per person with email, password reset, per-unit roles and usage monitoring, the same in every app</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Integração de dados</span><span lang="en">Data integration</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">27 crons e pollers misturados aos painéis, sessões em disco compartilhado</span><span lang="en">27 crons and pollers mixed into the dashboards, sessions on a shared disk</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">3 serviços de integração isolados, com painel próprio, atualização por prioridade e avisos</span><span lang="en">3 isolated integration services with their own dashboard, priority-based updates and alerts</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader">Backup</div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Sem rotina de backup com restauração testada</span><span lang="en">No backup routine with tested restores</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">Backup cifrado diário em outro provedor e <strong>restauração testada todo domingo</strong></span><span lang="en">Daily encrypted backup to another provider and <strong>restores tested every Sunday</strong></span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Teste</span><span lang="en">Staging</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Mudança feita direto no que estava no ar</span><span lang="en">Changes made straight on what was live</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">Servidor de teste separado, sem dado real, com deploy automático da branch de teste</span><span lang="en">A separate staging server, no real data, auto-deploying the test branch</span></div>
+                            </div>
+                            <div class="cmp-row" role="row">
+                                <div class="cmp-topic" role="rowheader"><span lang="pt">Documentação</span><span lang="en">Docs</span></div>
+                                <div class="cmp-before" role="cell"><span lang="pt">Espalhada e desatualizada; o conhecimento estava com quem saiu</span><span lang="en">Scattered and outdated; the know-how had left with people</span></div>
+                                <div class="cmp-after" role="cell"><span lang="pt">Plano em 17 capítulos, README por repositório, diagramas e roteiro para refazer o servidor do zero</span><span lang="en">A 17-chapter plan, a README per repository, diagrams and a runbook to rebuild the server from scratch</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Arquitetura</span>
+                            <span lang="en">Architecture</span>
+                        </h2>
+                        <p lang="pt">A regra central foi <strong>separar a integração de dados dos painéis</strong>. Cada app ganhou container próprio, rede interna própria até o banco e limite de memória. O Traefik é a única entrada, atrás do proxy, e produção e teste rodam em servidores distintos, de provedores diferentes.</p>
+                        <p lang="en">The core rule was to <strong>separate data integration from the dashboards</strong>. Each app got its own container, its own internal network to the database and a memory limit. Traefik is the single entry point, behind the proxy, and production and staging run on separate servers from different providers.</p>
+
+                        <figure class="shot">
+                            <div class="shot-frame">
+                                <img src="../assets/img/eficaz/arquitetura-prev.webp" data-full="../assets/img/eficaz/arquitetura.webp" data-lb="wide" alt="Diagrama da arquitetura: usuários, CDN e Git na entrada; no servidor de produção, firewall, Traefik e Dokploy, a zona das apps com 22 apps em 8 áreas, a zona de dados com PostgREST e PostgreSQL 18 e, no host, backup cifrado, espelho do código e monitoramento; servidor de teste separado; WhatsApp oficial, consulta cadastral, backup externo, segundo Git e painel de monitoramento por fora." width="1800" height="1210" loading="lazy">
+                                <span class="shot-more" aria-hidden="true"><i class="fas fa-magnifying-glass-plus"></i><span lang="pt">ampliar</span><span lang="en">zoom in</span></span>
+                            </div>
+                            <figcaption class="shot-cap"><span lang="pt">Produção e teste em servidores distintos: 22 apps em containers, um banco com um papel por app, e backup, espelho e monitoramento no host.</span><span lang="en">Production and staging on separate servers: 22 containerized apps, one database with one role per app, and backup, mirror and monitoring on the host. Diagram labels in Portuguese.</span></figcaption>
+                        </figure>
+
+                        <ul class="feature-list">
+                            <li lang="pt"><strong>Migração em ondas, sem queda:</strong> cada app subiu primeiro num domínio de teste, foi conferida com os dados e só então recebeu o domínio final. Os endereços antigos respondem com 308. No caminho, Next 14 → 16 e Node 24, e três apps saíram do SQLite para o Postgres com o histórico importado.</li>
+                            <li lang="en"><strong>Wave migration, no downtime:</strong> each app first went up on a test domain, was checked against the data and only then got its final domain. Old addresses answer with a 308. Along the way, Next 14 → 16 and Node 24, and three apps moved from SQLite to Postgres with their history imported.</li>
+                            <li lang="pt"><strong>Banco:</strong> um PostgreSQL 18 no lugar dos bancos espalhados, com um papel por app e só as permissões que ela usa. PostgREST com JWT por app, RLS, <code>statement_timeout</code> por papel e log de consultas lentas.</li>
+                            <li lang="en"><strong>Database:</strong> one PostgreSQL 18 instead of scattered databases, with one role per app holding only the permissions it uses. PostgREST with per-app JWT, RLS, per-role <code>statement_timeout</code> and a slow-query log.</li>
+                            <li lang="pt"><strong>Isolamento:</strong> redes overlay internas, sem saída para a internet, entre cada app e o banco. Uma app não enxerga a outra, e nenhuma porta de app fica exposta.</li>
+                            <li lang="en"><strong>Isolation:</strong> internal overlay networks, with no internet egress, between each app and the database. No app can see another, and no app port is exposed.</li>
+                            <li lang="pt"><strong>Fluxo de produção:</strong> branch de teste → pull request → <code>main</code> → deploy. 26 serviços passaram a sair da <code>main</code>, e o servidor de teste recebe deploy automático da branch de teste, sem dado real.</li>
+                            <li lang="en"><strong>Release flow:</strong> test branch → pull request → <code>main</code> → deploy. 26 services now ship from <code>main</code>, and the staging server auto-deploys the test branch, with no real data.</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Segurança e LGPD</span>
+                            <span lang="en">Security and LGPD</span>
+                        </h2>
+                        <p lang="pt">As vulnerabilidades e os problemas de LGPD do servidor herdado foram todos corrigidos, e a plataforma segue em <strong>melhoria contínua</strong>.</p>
+                        <p lang="en">Every vulnerability and LGPD (Brazil's data protection law) issue on the inherited server was fixed, and the platform keeps under <strong>continuous improvement</strong>.</p>
+                        <ul class="feature-list">
+                            <li lang="pt"><strong>Menor privilégio:</strong> nenhuma app roda como root nem usa a chave de administrador do banco. Cada uma tem só as permissões que usa, e uma app não enxerga a outra.</li>
+                            <li lang="en"><strong>Least privilege:</strong> no app runs as root or uses the database admin key. Each has only the permissions it uses, and no app can see another.</li>
+                            <li lang="pt"><strong>Acesso por pessoa:</strong> contas compartilhadas viraram uma conta por pessoa, com papéis por unidade. No servidor, SSH só por chave, um usuário por pessoa, root restrito e fail2ban.</li>
+                            <li lang="en"><strong>Per-person access:</strong> shared accounts became one account per person, with per-unit roles. On the server, key-only SSH, one user per person, restricted root and fail2ban.</li>
+                            <li lang="pt"><strong>Superfície mínima:</strong> firewall próprio (só 22, 80 e 443, com a web aceitando só as faixas do proxy), nenhuma porta de app exposta e nada publicado fora da plataforma de deploy, sempre com HTTPS.</li>
+                            <li lang="en"><strong>Minimal surface:</strong> a custom firewall (only 22, 80 and 443, with web traffic accepted only from the proxy ranges), no exposed app port and nothing published outside the deploy platform, always on HTTPS.</li>
+                            <li lang="pt"><strong>Dados pessoais:</strong> segredos e dados sensíveis tirados do código, dados clínicos sensíveis fora da integração, API com visões sem dados pessoais por padrão, registro de cada consulta cadastral, monitor de uso que não guarda IP, e teste e treinamento só com dados fictícios.</li>
+                            <li lang="en"><strong>Personal data:</strong> secrets and sensitive data removed from code, sensitive clinical data kept out of the integration, an API with personal-data-free views by default, every registry lookup logged, usage monitoring that stores no IP, and testing and training on fictitious data only.</li>
+                            <li lang="pt"><strong>Recuperação:</strong> backup cifrado diário (borg) em outro provedor, com <strong>restauração testada todo domingo</strong>, espelho do código a cada 2 h e roteiro para refazer o servidor do zero.</li>
+                            <li lang="en"><strong>Recovery:</strong> daily encrypted backups (borg) to another provider, with <strong>restores tested every Sunday</strong>, a code mirror every 2 h and a runbook to rebuild the server from scratch.</li>
+                            <li lang="pt"><strong>Melhoria contínua:</strong> atualizações de segurança de dependências aplicadas em todas as apps no mesmo dia, e monitoramento de CPU, memória, disco e containers com avisos.</li>
+                            <li lang="en"><strong>Continuous improvement:</strong> dependency security updates rolled out to every app on the same day, and CPU, memory, disk and container monitoring with alerts.</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">O que construí</span>
+                            <span lang="en">What I built</span>
+                        </h2>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">Integração de dados</span><span lang="en">Data integration</span>
+                                <small>200+ commits</small>
+                            </h3>
+                            <p lang="pt">Os painéis dependem dos dados das próprias unidades, que ficam em três sistemas de gestão. Refiz a integração do zero: <strong>um serviço isolado por sistema</strong>, cada um em container próprio e com papel próprio no banco.</p>
+                            <p lang="en">The dashboards depend on the units' own data, which lives in three management systems. I rebuilt the integration from scratch: <strong>one isolated service per system</strong>, each in its own container and with its own database role.</p>
+                            <ul class="feature-list">
+                                <li lang="pt"><strong>Atualização por prioridade:</strong> hoje a cada 5 min, próximos 7 dias a cada 15 min, o resto de hora em hora e o histórico só no fim de semana. As frequências são medidas e mostradas num painel próprio.</li>
+                                <li lang="en"><strong>Priority-based updates:</strong> today every 5 min, the next 7 days every 15 min, the rest hourly and history only at weekends. Frequencies are measured and shown on a dedicated dashboard.</li>
+                                <li lang="pt"><strong>Sem buracos:</strong> uma rotina completa sozinha os dias em que a integração ficou parada e relê o histórico desde 2025.</li>
+                                <li lang="en"><strong>No gaps:</strong> a routine backfills any day the integration was down and re-reads history back to 2025.</li>
+                                <li lang="pt"><strong>Exclusão lógica:</strong> a integração marca a linha como removida em vez de apagar, e 26 visões foram ajustadas para filtrar a marca.</li>
+                                <li lang="en"><strong>Soft delete:</strong> the integration flags rows as removed instead of deleting them, and 26 views were adjusted to filter the flag.</li>
+                                <li lang="pt"><strong>Avisos padronizados</strong> por e-mail nos serviços e relatório técnico em PDF.</li>
+                                <li lang="en"><strong>Standardized email alerts</strong> across the services and a technical report in PDF.</li>
+                            </ul>
+                        </div>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">Painel de produção médica</span><span lang="en">Medical production dashboard</span>
+                                <small>55+ commits</small>
+                            </h3>
+                            <p lang="pt">Fusão de dois painéis antigos num só, com Médicos, Colaboradores, Conversão, Pós-Consulta e Produção, em layout para TV, desktop e tablet, com temas claro e escuro.</p>
+                            <p lang="en">Two old dashboards merged into one, with Doctors, Staff, Conversion, Follow-up and Production, laid out for TV, desktop and tablet, in light and dark themes.</p>
+                            <ul class="feature-list">
+                                <li lang="pt"><strong>Dado ao vivo junto do fechado:</strong> visões que juntam os dias fechados com o dia de hoje, e aviso na tela quando a integração ainda não chegou no período, para ninguém ler atraso como queda de produção.</li>
+                                <li lang="en"><strong>Live data next to closed data:</strong> views that join closed days with today, and an on-screen notice when the integration hasn't reached the period yet, so nobody reads a delay as a drop in production.</li>
+                                <li lang="pt"><strong>Análise:</strong> média móvel, previsão de 30 dias com faixa provável e curva do caixa por hora com previsão de fechamento.</li>
+                                <li lang="en"><strong>Analysis:</strong> moving average, a 30-day forecast with a likely range and an hourly cash curve with a closing forecast.</li>
+                                <li lang="pt"><strong>Metas:</strong> lançadas por unidade a partir de .xlsx, .csv ou link de planilha do Google, com conferência antes de gravar.</li>
+                                <li lang="en"><strong>Targets:</strong> entered per unit from .xlsx, .csv or a Google Sheets link, with a review step before saving.</li>
+                                <li lang="pt"><strong>Regras de negócio em código,</strong> com data de vigência e teste.</li>
+                                <li lang="en"><strong>Business rules in code,</strong> with effective dates and tests.</li>
+                            </ul>
+                            <figure class="shot cropped">
+                                <div class="shot-frame">
+                                    <img src="../assets/img/eficaz/medcolab-medicos-prev.webp" data-full="../assets/img/eficaz/medcolab-medicos.webp" alt="Painel médico, tela Médicos: faturamento do dia com previsão de fechamento, mix por categoria e pódio" width="1600" height="1000" loading="lazy">
+                                    <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                </div>
+                                <figcaption class="shot-cap"><span lang="pt">Médicos: faturamento do dia com previsão de fechamento, mix por categoria e pódio.</span><span lang="en">Doctors: today's revenue with a closing forecast, category mix and podium.</span></figcaption>
+                            </figure>
+                            <div class="shots three">
+                                <figure class="shot cropped">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/medcolab-producao-analise-prev.webp" data-full="../assets/img/eficaz/medcolab-producao-analise.webp" alt="Painel médico, Produção e Análise: média móvel, previsão de 30 dias, dias e horas quentes" width="1600" height="1000" loading="lazy">
+                                        <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Produção › Análise: média móvel, previsão de 30 dias, dias e horas quentes e previsões conferidas.</span><span lang="en">Production › Analysis: moving average, 30-day forecast, hot days and hours, and forecast accuracy checks.</span></figcaption>
+                                </figure>
+                                <figure class="shot cropped">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/medcolab-conversao-mes-prev.webp" data-full="../assets/img/eficaz/medcolab-conversao-mes.webp" alt="Painel médico, Conversão: da consulta ao pedido de exame, médico a médico" width="1600" height="1000" loading="lazy">
+                                        <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Conversão: da consulta ao pedido de exame, médico a médico.</span><span lang="en">Conversion: from consultation to exam order, doctor by doctor.</span></figcaption>
+                                </figure>
+                                <figure class="shot cropped">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/medcolab-pos-consulta-mes-prev.webp" data-full="../assets/img/eficaz/medcolab-pos-consulta-mes.webp" alt="Painel médico, Pós-consulta: exames vendidos por colaboradora e metas por tipo de exame" width="1600" height="1000" loading="lazy">
+                                        <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Pós-consulta: exames vendidos por colaboradora, metas por tipo de exame e comissão estimada.</span><span lang="en">Follow-up: exams sold per staff member, targets per exam type and estimated commission.</span></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">Agendas e TVs das unidades</span><span lang="en">Unit schedules and TVs</span>
+                            </h3>
+                            <p lang="pt">As agendas das clínicas ganharam banco próprio e papéis por clínica, com hoje e amanhã ao vivo, a carga de cada médico e um relógio que diz quando vem a próxima atualização. Nas recepções e no call center, as TVs mostram o placar da equipe e o caixa da unidade em ciclo.</p>
+                            <p lang="en">The clinics' schedules got their own database and per-clinic roles, with today and tomorrow live, each doctor's load and a clock showing when the next update comes. At the front desks and the call center, the TVs cycle through the team scoreboard and the unit's cash.</p>
+                            <ul class="feature-list">
+                                <li lang="pt"><strong>Todas as agendas</strong> das 5 unidades numa visão só, com meta por dia.</li>
+                                <li lang="en"><strong>Every schedule</strong> across the 5 units in a single view, with a daily target.</li>
+                                <li lang="pt"><strong>Quadro 16:9 que não corta</strong> em outros formatos e uma conta por recepcionista no lugar da conta compartilhada.</li>
+                                <li lang="en"><strong>A 16:9 board that never crops</strong> on other screen shapes, and one account per receptionist instead of a shared one.</li>
+                            </ul>
+                            <figure class="shot">
+                                <div class="shot-frame">
+                                    <img src="../assets/img/eficaz/agendas-agenda-prev.webp" data-full="../assets/img/eficaz/agendas-agenda.webp" alt="Agenda ao vivo: hoje e amanhã, com a carga de cada médico" width="1600" height="866" loading="lazy">
+                                </div>
+                                <figcaption class="shot-cap"><span lang="pt">Agenda ao vivo: hoje e amanhã, com a carga de cada médico.</span><span lang="en">Live schedule: today and tomorrow, with each doctor's load.</span></figcaption>
+                            </figure>
+                            <div class="shots">
+                                <figure class="shot">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/callcenter-tv-placar-prev.webp" data-full="../assets/img/eficaz/callcenter-tv-placar.webp" alt="Placar do call center na TV, com agendamentos e exames por pessoa" width="1600" height="862" loading="lazy">
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Placar do call center na TV: agendamentos e exames por pessoa, no ritmo da meta.</span><span lang="en">Call center TV scoreboard: bookings and exams per person, against the target pace.</span></figcaption>
+                                </figure>
+                                <figure class="shot">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/callcenter-tv-caixa-prev.webp" data-full="../assets/img/eficaz/callcenter-tv-caixa.webp" alt="Caixa da unidade na TV, com receita do dia, receita por hora e ranking" width="1600" height="900" loading="lazy">
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Caixa da unidade na TV: receita do dia, receita por hora e ranking por ticket médio.</span><span lang="en">Unit cash on the TV: today's revenue, revenue by hour and ranking by average ticket.</span></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">Painel de odontologia</span><span lang="en">Dental dashboard</span>
+                                <small lang="pt">app nova</small><small lang="en">new app</small>
+                            </h3>
+                            <p lang="pt">Substitui dois painéis antigos: agenda ao vivo por dentista, receita, caixas e avaliadores, com schema e identidade visual próprios e os mesmos padrões de conta e período das outras apps.</p>
+                            <p lang="en">Replaces two old dashboards: live schedule per dentist, revenue, cash registers and evaluators, with its own schema and visual identity and the same account and period patterns as the other apps.</p>
+                            <figure class="shot cropped">
+                                <div class="shot-frame">
+                                    <img src="../assets/img/eficaz/odonto-agenda-prev.webp" data-full="../assets/img/eficaz/odonto-agenda.webp" alt="Painel de odontologia, agenda ao vivo por dentista e próximos horários" width="1600" height="1000" loading="lazy">
+                                    <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                </div>
+                                <figcaption class="shot-cap"><span lang="pt">Agenda ao vivo por dentista, com os próximos horários.</span><span lang="en">Live schedule per dentist, with the next appointments.</span></figcaption>
+                            </figure>
+                            <div class="shots">
+                                <figure class="shot cropped">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/odonto-receita-prev.webp" data-full="../assets/img/eficaz/odonto-receita.webp" alt="Painel de odontologia, receita do dia com conversão, ticket, tratamentos e pódio" width="1600" height="1000" loading="lazy">
+                                        <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Receita do dia: conversão, ticket, tratamentos e pódio.</span><span lang="en">Today's revenue: conversion, ticket, treatments and podium.</span></figcaption>
+                                </figure>
+                                <figure class="shot cropped">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/odonto-producao-analise-prev.webp" data-full="../assets/img/eficaz/odonto-producao-analise.webp" alt="Painel de odontologia, Produção e Análise: tendência, previsão e dias e horas quentes" width="1600" height="1000" loading="lazy">
+                                        <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Produção › Análise: tendência, previsão e dias e horas quentes.</span><span lang="en">Production › Analysis: trend, forecast and hot days and hours.</span></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">CRM de atendimento por WhatsApp</span><span lang="en">WhatsApp support CRM</span>
+                                <small>100+ commits</small>
+                            </h3>
+                            <p lang="pt">CRM sobre a API oficial do WhatsApp, com unidades, canais e papéis (agente, supervisor, admin), e distribuição das conversas entre quem está com login ativo.</p>
+                            <p lang="en">A CRM on the official WhatsApp API, with units, channels and roles (agent, supervisor, admin), routing conversations to whoever is logged in.</p>
+                            <ul class="feature-list">
+                                <li lang="pt"><strong>Webchat próprio</strong> com foto, vídeo, áudio, documento, localização, citar e reagir nos dois lados.</li>
+                                <li lang="en"><strong>Custom webchat</strong> with photo, video, audio, documents, location, quoting and reactions on both sides.</li>
+                                <li lang="pt"><strong>Menu e respostas automáticas por canal,</strong> respeitando a janela de 24 horas, com modo teste por número.</li>
+                                <li lang="en"><strong>Per-channel menus and auto-replies,</strong> respecting the 24-hour window, with a per-number test mode.</li>
+                                <li lang="pt"><strong>"Uma pessoa, um dono":</strong> cada contato tem um chat só e uma responsável, com transferência e motivo de finalização.</li>
+                                <li lang="en"><strong>"One person, one owner":</strong> each contact has a single chat and a single owner, with transfers and closing reasons.</li>
+                                <li lang="pt"><strong>Disparos</strong> com rampa diária, limite por número impossível de furar e 12 modelos aprovados; relatórios com comparação entre períodos, placar por pessoa e funil.</li>
+                                <li lang="en"><strong>Broadcasts</strong> with a daily ramp, a per-number limit that can't be bypassed and 12 approved templates; reports with period comparison, per-person scoreboard and funnel.</li>
+                            </ul>
+                            <figure class="shot">
+                                <div class="shot-frame">
+                                    <img src="../assets/img/eficaz/crm-conversa-prev.webp" data-full="../assets/img/eficaz/crm-conversa.webp" alt="CRM: conversa com menu automático e ficha do pedido ao lado" width="1600" height="900" loading="lazy">
+                                </div>
+                                <figcaption class="shot-cap"><span lang="pt">Conversa: menu automático e equipe no mesmo chat, com a ficha do pedido ao lado.</span><span lang="en">Conversation: automatic menu and team in the same chat, with the request card alongside.</span></figcaption>
+                            </figure>
+                            <div class="shots three">
+                                <figure class="shot">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/crm-nao-atendidas-prev.webp" data-full="../assets/img/eficaz/crm-nao-atendidas.webp" alt="CRM: fila de conversas não atendidas" width="1600" height="900" loading="lazy">
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Fila de não atendidas: quem espera há mais tempo vem primeiro.</span><span lang="en">Unanswered queue: whoever has waited longest comes first.</span></figcaption>
+                                </figure>
+                                <figure class="shot">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/crm-placar-7-dias-prev.webp" data-full="../assets/img/eficaz/crm-placar-7-dias.webp" alt="CRM: placar por pessoa nos últimos 7 dias" width="1600" height="900" loading="lazy">
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Placar por pessoa: respostas, primeira resposta e motivos de finalização, contra o período anterior.</span><span lang="en">Per-person scoreboard: replies, first response and closing reasons, against the previous period.</span></figcaption>
+                                </figure>
+                                <figure class="shot cropped">
+                                    <div class="shot-frame">
+                                        <img src="../assets/img/eficaz/crm-relatorios-comparativo-prev.webp" data-full="../assets/img/eficaz/crm-relatorios-comparativo.webp" alt="CRM: relatório comparativo entre dois períodos" width="1600" height="1000" loading="lazy">
+                                        <span class="shot-more" aria-hidden="true"><i class="fas fa-expand"></i><span lang="pt">tela inteira</span><span lang="en">full screen</span></span>
+                                    </div>
+                                    <figcaption class="shot-cap"><span lang="pt">Relatório comparativo entre dois períodos, com satisfação, menu automático e mapa de mensagens por hora.</span><span lang="en">Comparative report between two periods, with satisfaction, automatic menu and a messages-by-hour map.</span></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">Cartão de benefícios e retenção</span><span lang="en">Benefit card and retention</span>
+                            </h3>
+                            <p lang="pt">Painel de retenção refeito no padrão das apps, com login por pessoa e leitura direta do banco, e as ferramentas da operação do cartão em volta dele.</p>
+                            <p lang="en">The retention dashboard rebuilt to the apps' standard, with per-person login and direct database reads, plus the tools the card operation runs on.</p>
+                            <ul class="feature-list">
+                                <li lang="pt"><strong>Consulta cadastral</strong> individual e em lote: base interna primeiro e API paga só quando precisa, com registro de cada consulta.</li>
+                                <li lang="en"><strong>Registry lookup</strong>, single and in bulk: internal data first and the paid API only when needed, with every lookup logged.</li>
+                                <li lang="pt"><strong>Página pública de adesão</strong> com o cartão cifrado no navegador e aberto só pela gestão.</li>
+                                <li lang="en"><strong>Public sign-up page</strong> with the card encrypted in the browser and opened only by management.</li>
+                                <li lang="pt"><strong>Gerador de vouchers,</strong> painel de território e livro-caixa das franquias.</li>
+                                <li lang="en"><strong>Voucher generator,</strong> territory dashboard and franchise cash book.</li>
+                                <li lang="pt"><strong>Análises sob demanda:</strong> públicos para campanhas cruzando bases e mapa de calor de desfiliações por bairro.</li>
+                                <li lang="en"><strong>On-demand analysis:</strong> campaign audiences built across datasets and a heat map of cancellations by neighbourhood.</li>
+                            </ul>
+                        </div>
+
+                        <div class="deliverable">
+                            <h3>
+                                <span lang="pt">E o que fica por baixo de tudo</span><span lang="en">And what sits underneath it all</span>
+                            </h3>
+                            <ul class="feature-list">
+                                <li lang="pt"><strong>Contas por e-mail iguais nas 22 apps:</strong> login, "esqueci a senha", minha conta e administração de usuários, com papéis por unidade.</li>
+                                <li lang="en"><strong>The same email accounts across all 22 apps:</strong> login, password reset, my account and user admin, with per-unit roles.</li>
+                                <li lang="pt"><strong>API interna de leitura</strong> para outras equipes e parceiros: chave por empresa, limite por IP, visões sem dados pessoais por padrão e documentação OpenAPI 3.1 gerada do catálogo do banco.</li>
+                                <li lang="en"><strong>Internal read API</strong> for other teams and partners: a key per company, per-IP limits, views without personal data by default and OpenAPI 3.1 docs generated from the database catalog.</li>
+                                <li lang="pt"><strong>Chat interno das unidades</strong> (Mattermost) publicado sem nenhuma porta aberta, e agendas dos gestores unificadas com importação conferida tabela a tabela.</li>
+                                <li lang="en"><strong>Internal chat for the units</strong> (Mattermost) published with no open port, and the managers' calendars merged with a table-by-table checked import.</li>
+                                <li lang="pt"><strong>Conferência de interface por captura de tela</strong> em três larguras e dois temas antes de publicar, e README detalhado por repositório.</li>
+                                <li lang="en"><strong>Screenshot-based UI checks</strong> at three widths and two themes before publishing, and a detailed README per repository.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>
+                            <span lang="pt">Um problema difícil</span>
+                            <span lang="en">A hard problem</span>
+                        </h2>
+                        <dl class="incident">
+                            <div>
+                                <dt><span lang="pt">Sintoma</span><span lang="en">Symptom</span></dt>
+                                <dd><span lang="pt">Uma tela mensal do painel médico passava do tempo limite e, quando travava, derrubava as outras telas junto.</span><span lang="en">A monthly view on the medical dashboard timed out and, when it hung, took the other views down with it.</span></dd>
+                            </div>
+                            <div>
+                                <dt><span lang="pt">Medição</span><span lang="en">Measurement</span></dt>
+                                <dd><span lang="pt">Antes de mexer, medi: a <strong>compilação JIT do PostgreSQL</strong> custava cerca de <strong>1,6 s por consulta</strong>, e as consultas pesadas disputavam o mesmo banco com o resto da plataforma.</span><span lang="en">Before changing anything, I measured it: <strong>PostgreSQL's JIT compilation</strong> cost about <strong>1.6 s per query</strong>, and the heavy queries competed for the same database as the rest of the platform.</span></dd>
+                            </div>
+                            <div>
+                                <dt><span lang="pt">Correção</span><span lang="en">Fix</span></dt>
+                                <dd><span lang="pt">Desliguei o JIT <strong>só para o papel do painel</strong> e limitei a 4 pedidos simultâneos por app.</span><span lang="en">Disabled JIT <strong>only for the dashboard's role</strong> and capped each app at 4 concurrent requests.</span></dd>
+                            </div>
+                            <div>
+                                <dt><span lang="pt">Resultado</span><span lang="en">Result</span></dt>
+                                <dd><span lang="pt">A tela voltou a abrir e parou de derrubar as outras, sem mudar nada no resto do banco.</span><span lang="en">The view loads again and no longer takes the others down, with nothing changed for the rest of the database.</span></dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Stack</h2>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Ubuntu 24.04</span>
+                            <span class="tech-tag">Docker Swarm</span>
+                            <span class="tech-tag">Dokploy</span>
+                            <span class="tech-tag">Traefik</span>
+                            <span class="tech-tag">Cloudflare</span>
+                            <span class="tech-tag">PostgreSQL 18</span>
+                            <span class="tech-tag">PostgREST</span>
+                            <span class="tech-tag">Next.js 16</span>
+                            <span class="tech-tag">Node 24</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Tailwind</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Playwright</span>
+                            <span class="tech-tag">WhatsApp Cloud API</span>
+                            <span class="tech-tag">Mattermost</span>
+                            <span class="tech-tag">borg</span>
+                            <span class="tech-tag">iptables · fail2ban</span>
+                            <span class="tech-tag">GitHub · GitLab</span>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <nav class="project-navigation three-column-nav">
+                <a class="nav-item nav-prev" style="opacity: 0.3; pointer-events: none;">
+                    <span data-i18n="nav_prev">Projeto Anterior</span>
+                    <strong>—</strong>
+                </a>
+
+                <a href="../work.html" class="nav-item nav-center">
+                    <i class="fas fa-th-large"></i>
+                    <span data-i18n="nav_back">Voltar aos Projetos</span>
+                </a>
+
+                <a href="battomic.html" class="nav-item nav-next">
+                    <span data-i18n="nav_next">Próximo Projeto</span>
+                    <strong>BAttomic <i class="fas fa-arrow-right"></i></strong>
+                </a>
+            </nav>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-i18n="footer_rights">&copy; 2026 Bernardo Cordeiro Motta.</p>
+            <div class="footer-links">
+                <a href="https://github.com/BAttomic" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://br.linkedin.com/in/bernardo-cordeiro-motta-277010298" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/5531933008486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=20261124-9"></script>
+</body>
+</html>

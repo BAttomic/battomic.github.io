@@ -10,9 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20261124-9">
 
     <style>
+        .name-note {
+            margin-top: 12px;
+            padding: 10px 16px;
+            border: 1px dashed var(--border-light);
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
         .ai-logo-placeholder {
             width: 110px;
             height: 110px;
@@ -134,7 +143,6 @@
 			<nav class="nav-menu">
 				<a href="../index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
 				<a href="../work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
-				<a href="../blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
 			</nav>
 
 			<div class="header-right">
@@ -174,6 +182,10 @@
                                 <span lang="pt">A evolução natural dos meus agentes de IA em um produto: uma plataforma SaaS multi-tenant que reúne CRM, automações com agentes e billing numa única aplicação — cada cliente sobre seu próprio banco de dados isolado.</span>
                                 <span lang="en">The natural evolution of my AI agents into a product: a multi-tenant SaaS platform bringing together CRM, agent automations and billing in a single application — each client on its own isolated database.</span>
                             </p>
+                            <p class="name-note">
+                                <span lang="pt"><strong>BAttomic</strong> é um nome provisório: o produto ainda não tem nome definitivo.</span>
+                                <span lang="en"><strong>BAttomic</strong> is a placeholder name: the product doesn't have a final name yet.</span>
+                            </p>
                         </div>
                     </div>
                 </header>
@@ -192,16 +204,16 @@
                             <span lang="pt">De Serviço a Produto</span>
                             <span lang="en">From Service to Product</span>
                         </h2>
-                        <p lang="pt">Depois de desenvolver e validar <strong>agentes de IA sob medida</strong> para diversas empresas — principalmente clínicas e PMEs da área da saúde — o próximo passo natural foi <strong>transformar essa experiência em produto</strong>. Nasceu o <strong>BAttomic</strong>: em vez de montar cada automação do zero para cada cliente, a plataforma entrega CRM, agentes de IA e cobrança de forma padronizada, escalável e self-service.</p>
-                        <p lang="en">After building and validating <strong>custom AI agents</strong> for several companies — mainly clinics and healthcare SMEs — the natural next step was to <strong>turn that experience into a product</strong>. That's how <strong>BAttomic</strong> was born: instead of assembling each automation from scratch per client, the platform delivers CRM, AI agents and billing in a standardized, scalable, self-service way.</p>
-                        <p lang="pt">O produto está sendo lançado sob o <strong>domínio que já uso hoje</strong>, dando o primeiro passo para monetizar a plataforma com a marca <strong>BAttomic</strong>.</p>
-                        <p lang="en">The product is launching under the <strong>domain I already use today</strong>, taking the first step to monetize the platform under the <strong>BAttomic</strong> brand.</p>
+                        <p lang="pt">A ideia surgiu na <strong>PromovAds</strong>, onde eu criava automações integradas à Meta e ao Google e agentes de IA no <strong>n8n</strong>. Depois de desenvolver e validar <strong>agentes de IA sob medida</strong> para diversas empresas — principalmente clínicas e PMEs da área da saúde — o próximo passo natural foi <strong>transformar essa experiência em produto</strong>. Nasceu a plataforma: em vez de montar cada automação do zero para cada cliente, a plataforma entrega CRM, agentes de IA e cobrança de forma padronizada, escalável e self-service.</p>
+                        <p lang="en">The idea was born at <strong>PromovAds</strong>, where I built automations integrated with Meta and Google and AI agents in <strong>n8n</strong>. After building and validating <strong>custom AI agents</strong> for several companies — mainly clinics and healthcare SMEs — the natural next step was to <strong>turn that experience into a product</strong>. That's how the platform was born: instead of assembling each automation from scratch per client, the platform delivers CRM, AI agents and billing in a standardized, scalable, self-service way.</p>
+                        <p lang="pt">O que antes eu montava em workflows do n8n hoje roda <strong>dentro da própria plataforma</strong>: o runtime dos agentes, o editor de fluxos e a prospecção foram reescritos em código, sem depender de ferramenta externa. Por enquanto o produto usa o nome provisório <strong>BAttomic</strong>, o mesmo do domínio que já uso hoje.</p>
+                        <p lang="en">What I used to assemble in n8n workflows now runs <strong>inside the platform itself</strong>: the agent runtime, the flow editor and prospecting were rewritten in code, with no external tool. For now the product uses the placeholder name <strong>BAttomic</strong>, the same as the domain I already use.</p>
                     </section>
 
                     <section class="content-section">
                         <h2>
-                            <span lang="pt">Três Pilares numa Só Aplicação</span>
-                            <span lang="en">Three Pillars in a Single App</span>
+                            <span lang="pt">Quatro Pilares numa Só Aplicação</span>
+                            <span lang="en">Four Pillars in a Single App</span>
                         </h2>
                         <div class="tech-architecture">
                             <div class="arch-item">
@@ -214,19 +226,27 @@
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fas fa-robot"></i>
-                                    <span lang="pt">Automações com Agentes de IA</span>
-                                    <span lang="en">AI Agent Automations</span>
+                                    <span lang="pt">Agentes de IA</span>
+                                    <span lang="en">AI Agents</span>
                                 </h4>
-                                <p lang="pt">Runtime de agentes com <strong>adapters por provedor</strong> (Anthropic, OpenAI, Google Gemini, DeepSeek), fluxos, campanhas e prospecção rodando como jobs em background.</p>
-                                <p lang="en">Agent runtime with <strong>per-provider adapters</strong> (Anthropic, OpenAI, Google Gemini, DeepSeek), flows, campaigns and prospecting running as background jobs.</p>
+                                <p lang="pt">Runtime próprio com <strong>adapters por provedor</strong> (Anthropic, OpenAI, Google Gemini, DeepSeek), memória da conversa, ferramentas, passagem para humano e controle de custo por conversa. Campanhas e prospecção rodam como jobs em background.</p>
+                                <p lang="en">An in-house runtime with <strong>per-provider adapters</strong> (Anthropic, OpenAI, Google Gemini, DeepSeek), conversation memory, tools, human handoff and per-conversation cost control. Campaigns and prospecting run as background jobs.</p>
+                            </div>
+                            <div class="arch-item">
+                                <h4><i class="fas fa-diagram-project"></i>
+                                    <span lang="pt">Fluxos no Estilo n8n</span>
+                                    <span lang="en">n8n-Style Flows</span>
+                                </h4>
+                                <p lang="pt">Editor visual de automação: gatilhos por mensagem, cron, webhook ou evento; mensagens e perguntas em WhatsApp, Telegram, Instagram e Messenger; condições, variáveis, delays, requisições HTTP, nodes de IA, sub-fluxos e transferência para humano.</p>
+                                <p lang="en">A visual automation editor: triggers by message, cron, webhook or event; messages and questions on WhatsApp, Telegram, Instagram and Messenger; conditions, variables, delays, HTTP requests, AI nodes, sub-flows and human handoff.</p>
                             </div>
                             <div class="arch-item">
                                 <h4><i class="fas fa-file-invoice-dollar"></i>
                                     <span lang="pt">Billing & Cobrança</span>
                                     <span lang="en">Billing & Payments</span>
                                 </h4>
-                                <p lang="pt">Licenças, faturas e propostas integradas ao <strong>Mercado Pago</strong>, com páginas públicas de proposta e checkout. Monetização embutida na própria plataforma.</p>
-                                <p lang="en">Licenses, invoices and proposals integrated with <strong>Mercado Pago</strong>, with public proposal and checkout pages. Monetization built into the platform itself.</p>
+                                <p lang="pt">Licenças, faturas e propostas, com páginas públicas de proposta e checkout. A cobrança nasceu no <strong>Mercado Pago</strong> e está em migração para o <strong>Asaas</strong>. Monetização embutida na própria plataforma.</p>
+                                <p lang="en">Licenses, invoices and proposals, with public proposal and checkout pages. Billing started on <strong>Mercado Pago</strong> and is being migrated to <strong>Asaas</strong>. Monetization built into the platform itself.</p>
                             </div>
                         </div>
                     </section>
@@ -236,14 +256,14 @@
                             <span lang="pt">Por Dentro do Produto</span>
                             <span lang="en">Inside the Product</span>
                         </h2>
-                        <p lang="pt">Não é um protótipo: são telas reais da plataforma em funcionamento. Do funil de vendas aos agentes de IA, cada módulo foi desenhado para uma operação de PME rodar o dia inteiro ali dentro.</p>
-                        <p lang="en">Not a prototype: these are real screens of the working platform. From the sales funnel to the AI agents, every module was built for an SMB to run its whole day inside it.</p>
+                        <p lang="pt">Não é um protótipo: são telas reais da plataforma em funcionamento. Do CRM aos agentes de IA, cada módulo foi desenhado para uma operação de PME rodar o dia inteiro ali dentro.</p>
+                        <p lang="en">Not a prototype: these are real screens of the working platform. From the CRM to the AI agents, every module was built for an SMB to run its whole day inside it.</p>
 
                         <div class="shot">
-                            <img src="../assets/img/battomic-kanban.png" alt="Funil de vendas em Kanban" loading="lazy">
+                            <img src="../assets/img/battomic-kanban.png" alt="CRM com leads por etapa de negociação" loading="lazy">
                             <div class="shot-cap">
-                                <span lang="pt">CRM · Funil Kanban — leads por etapa (Novo → Contatado → Agendado → Cliente), busca e filtros por vendedor.</span>
-                                <span lang="en">CRM · Kanban funnel — leads by stage (New → Contacted → Scheduled → Client), search and per-seller filters.</span>
+                                <span lang="pt">CRM — leads por etapa de negociação, com busca e filtros por vendedor.</span>
+                                <span lang="en">CRM — leads by deal stage, with search and per-seller filters.</span>
                             </div>
                         </div>
 
@@ -258,19 +278,19 @@
                             </div>
                             <div class="shot">
                                 <img src="../assets/img/battomic-campaigns.png" alt="Campanhas" loading="lazy">
-                                <div class="shot-cap"><span lang="pt">Campanhas — disparos segmentados e acompanhamento de resultados.</span><span lang="en">Campaigns — segmented broadcasts and results tracking.</span></div>
+                                <div class="shot-cap"><span lang="pt">Campanhas — disparos segmentados por WhatsApp, Telegram, Instagram, Messenger e e-mail, com agendamento, recorrência, descadastro e métricas de abertura e clique.</span><span lang="en">Campaigns — segmented broadcasts over WhatsApp, Telegram, Instagram, Messenger and email, with scheduling, recurrence, unsubscribe and open/click metrics.</span></div>
                             </div>
                             <div class="shot">
                                 <img src="../assets/img/battomic-prospecting.png" alt="Prospecção" loading="lazy">
-                                <div class="shot-cap"><span lang="pt">Prospecção — geração de listas qualificadas para alimentar o funil.</span><span lang="en">Prospecting — qualified list generation to feed the funnel.</span></div>
+                                <div class="shot-cap"><span lang="pt">Prospecção — busca empresas no Google Places, confere o WhatsApp, enriquece com o CNPJ da base da Receita e gera contatos prontos para o CRM.</span><span lang="en">Prospecting — finds companies on Google Places, checks WhatsApp, enriches them with tax-registry (CNPJ) data and creates ready-to-use CRM contacts.</span></div>
                             </div>
                             <div class="shot">
                                 <img src="../assets/img/battomic-integrations.png" alt="Integrações" loading="lazy">
-                                <div class="shot-cap"><span lang="pt">Integrações — WhatsApp (Evolution), Google, Meta e Telegram.</span><span lang="en">Integrations — WhatsApp (Evolution), Google, Meta and Telegram.</span></div>
+                                <div class="shot-cap"><span lang="pt">Integrações — WhatsApp, Google, Meta e Telegram.</span><span lang="en">Integrations — WhatsApp, Google, Meta and Telegram.</span></div>
                             </div>
                             <div class="shot">
                                 <img src="../assets/img/battomic-billing.png" alt="Billing e cobrança" loading="lazy">
-                                <div class="shot-cap"><span lang="pt">Billing — licenças, faturas e cobrança via Mercado Pago.</span><span lang="en">Billing — licenses, invoices and payments via Mercado Pago.</span></div>
+                                <div class="shot-cap"><span lang="pt">Billing — licenças, faturas e cobrança, em migração do Mercado Pago para o Asaas.</span><span lang="en">Billing — licenses, invoices and payments, migrating from Mercado Pago to Asaas.</span></div>
                             </div>
                         </div>
                     </section>
@@ -287,7 +307,7 @@
                             <div class="kpi"><b>93</b><span>Lighthouse</span></div>
                             <div class="kpi"><b>94</b><span>PageSpeed</span></div>
                             <div class="kpi"><b>99%</b><span>GTmetrix</span></div>
-                            <div class="kpi"><b>1ms</b><span><span lang="pt">Blocking</span><span lang="en">Blocking</span></span></div>
+                            <div class="kpi"><b>1ms</b><span>Blocking</span></div>
                         </div>
 
                         <p lang="pt" style="margin-top:16px;">E não é só teoria: a plataforma já aparece com <strong>parceiros reais</strong> — <strong>OrangeStore</strong>, <strong>ClipCut</strong> e <strong>Synk Creative</strong> —, operações que ajudei a estruturar.</p>
@@ -299,8 +319,8 @@
                             <span lang="pt">Planos & Monetização</span>
                             <span lang="en">Plans & Monetization</span>
                         </h2>
-                        <p lang="pt">A cobrança é parte do produto, não um anexo. Quatro faixas cobrem do autônomo à operação que precisa de agentes de IA sob medida — tudo com self-service via Mercado Pago.</p>
-                        <p lang="en">Billing is part of the product, not a bolt-on. Four tiers cover everyone from solo operators to teams needing custom AI agents — all self-service via Mercado Pago.</p>
+                        <p lang="pt">A cobrança é parte do produto, não um anexo. Quatro faixas cobrem do autônomo à operação que precisa de agentes de IA sob medida — tudo self-service.</p>
+                        <p lang="en">Billing is part of the product, not a bolt-on. Four tiers cover everyone from solo operators to teams needing custom AI agents — all self-service.</p>
 
                         <div class="plans">
                             <div class="plan">
@@ -325,8 +345,8 @@
                             </div>
                         </div>
 
-                        <p lang="pt" style="font-size:13px; color:var(--text-muted); margin-top:14px;">Comece grátis, escale conforme cresce, cancele quando quiser. Cobrança self-service via Mercado Pago.</p>
-                        <p lang="en" style="font-size:13px; color:var(--text-muted); margin-top:14px;">Start free, scale as you grow, cancel anytime. Self-service billing via Mercado Pago.</p>
+                        <p lang="pt" style="font-size:13px; color:var(--text-muted); margin-top:14px;">Comece grátis, escale conforme cresce, cancele quando quiser. Cobrança self-service.</p>
+                        <p lang="en" style="font-size:13px; color:var(--text-muted); margin-top:14px;">Start free, scale as you grow, cancel anytime. Self-service billing.</p>
                     </section>
 
                     <section class="content-section">
@@ -334,8 +354,8 @@
                             <span lang="pt">Arquitetura Multi-Tenant</span>
                             <span lang="en">Multi-Tenant Architecture</span>
                         </h2>
-                        <p lang="pt">O coração técnico do BAttomic é a <strong>isolação por cliente</strong>: um banco de controle global (control plane) para clientes, usuários, licenças e faturas, e um <strong>banco dedicado por tenant</strong> para os dados operacionais (contatos, agentes, fluxos, campanhas). Toda rota que toca dados de cliente passa por uma resolução em runtime — coleções de tenant nunca são consultadas na conexão global.</p>
-                        <p lang="en">The technical heart of BAttomic is <strong>per-client isolation</strong>: a global control-plane database for clients, users, licenses and invoices, and a <strong>dedicated database per tenant</strong> for operational data (contacts, agents, flows, campaigns). Every route touching client data goes through a runtime resolution — tenant collections are never queried on the global connection.</p>
+                        <p lang="pt">O coração técnico da plataforma é a <strong>isolação por cliente</strong>: um banco de controle global (control plane) para clientes, usuários, licenças e faturas, e um <strong>banco dedicado por tenant</strong> para os dados operacionais (contatos, agentes, fluxos, campanhas). Toda rota que toca dados de cliente passa por uma resolução em runtime — coleções de tenant nunca são consultadas na conexão global.</p>
+                        <p lang="en">The technical heart of the platform is <strong>per-client isolation</strong>: a global control-plane database for clients, users, licenses and invoices, and a <strong>dedicated database per tenant</strong> for operational data (contacts, agents, flows, campaigns). Every route touching client data goes through a runtime resolution — tenant collections are never queried on the global connection.</p>
 
                         <ul class="feature-list">
                             <li>
@@ -367,8 +387,24 @@
                                     <span lang="pt">Integrações nativas:</span>
                                     <span lang="en">Native integrations:</span>
                                 </strong>
-                                <span lang="pt">WhatsApp (via Evolution API), Google, Meta e Telegram, conectando os agentes aos canais reais dos clientes.</span>
-                                <span lang="en">WhatsApp (via Evolution API), Google, Meta and Telegram, connecting the agents to clients' real channels.</span>
+                                <span lang="pt">WhatsApp, Google, Meta (Instagram e Messenger) e Telegram, conectando os agentes aos canais reais dos clientes.</span>
+                                <span lang="en">WhatsApp, Google, Meta (Instagram and Messenger) and Telegram, connecting the agents to clients' real channels.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Dados sem risco de perda:</span>
+                                    <span lang="en">No-loss data:</span>
+                                </strong>
+                                <span lang="pt">Apagar nunca remove o dado: vira uma marca de exclusão (soft delete). Mensagens recebidas são deduplicadas pelo ID do canal, então nada se duplica nem se perde, mesmo quando o webhook chega de novo.</span>
+                                <span lang="en">Deleting never removes data: it becomes a deletion marker (soft delete). Incoming messages are deduplicated by channel ID, so nothing is duplicated or lost, even when a webhook is redelivered.</span>
+                            </li>
+                            <li>
+                                <strong>
+                                    <span lang="pt">Tracking de origem:</span>
+                                    <span lang="en">Source tracking:</span>
+                                </strong>
+                                <span lang="pt">O primeiro contato é atribuído ao anúncio ou link de origem (Click-to-WhatsApp, UTM, links de Instagram, Messenger e Telegram), e uma falha de atribuição nunca derruba o webhook.</span>
+                                <span lang="en">The first contact is attributed to the source ad or link (Click-to-WhatsApp, UTM, Instagram, Messenger and Telegram links), and an attribution failure never takes the webhook down.</span>
                             </li>
                         </ul>
                     </section>
@@ -394,8 +430,8 @@
                             <span class="tech-tag">MongoDB / Mongoose 9</span>
                             <span class="tech-tag">NextAuth 4</span>
                             <span class="tech-tag">Tailwind CSS 4</span>
-                            <span class="tech-tag">Mercado Pago</span>
-                            <span class="tech-tag">Evolution API</span>
+                            <span class="tech-tag">React Flow</span>
+                            <span class="tech-tag">Asaas (migrando do Mercado Pago)</span>
                             <span class="tech-tag">Anthropic / OpenAI / Gemini / DeepSeek</span>
                         </div>
                     </section>
@@ -423,9 +459,9 @@
             </article>
 
             <nav class="project-navigation three-column-nav">
-                <a class="nav-item nav-prev" style="opacity: 0.3; pointer-events: none;">
+                <a href="eficaz.html" class="nav-item nav-prev">
                     <span data-i18n="nav_prev">Projeto Anterior</span>
-                    <strong>—</strong>
+                    <strong><i class="fas fa-arrow-left"></i> Eficaz</strong>
                 </a>
 
                 <a href="../work.html" class="nav-item nav-center">
@@ -457,6 +493,6 @@
         </div>
     </footer>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/main.js?v=20261124-9"></script>
 </body>
 </html>

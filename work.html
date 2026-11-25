@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261124-9">
 </head>
 <body>
 	<header class="header">
@@ -22,7 +22,6 @@
 			<nav class="nav-menu">
 				<a href="index.html" class="nav-link" data-i18n="nav_home">bernardo.dev</a>
 				<a href="work.html" class="nav-link active" data-i18n="nav_work">work.done</a>
-				<a href="blog.html" class="nav-link" data-i18n="nav_blog">blog.share</a>
 			</nav>
 			
 			<div class="header-right">
@@ -62,6 +61,41 @@
 
             <section class="work-section">
                 <div class="projects-grid">
+                    <!-- Project 0: Eficaz (rede de clínicas) -->
+                    <a href="work/eficaz.html" class="project-card">
+                        <div class="project-header">
+                            <h3>
+                                <span lang="pt">Eficaz — Plataforma de dados</span>
+                                <span lang="en">Eficaz — Data platform</span>
+                            </h3>
+                            <i class="fas fa-arrow-right project-arrow"></i>
+                        </div>
+                        <div class="project-image">
+                            <img src="assets/img/eficaz/cover.webp" alt="Eficaz — painel médico real com dados fictícios" onerror="this.onerror=null; this.parentElement.classList.add('no-image');">
+                        </div>
+                        <div class="project-tags">
+                            <span class="tag">Docker Swarm</span>
+                            <span class="tag">Dokploy · Traefik</span>
+                            <span class="tag">PostgreSQL 18</span>
+                            <span class="tag">PostgREST</span>
+                            <span class="tag">Next.js 16</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Playwright</span>
+                            <span class="tag">WhatsApp API</span>
+                            <span class="tag">Cliente Real</span>
+                        </div>
+                        <div class="project-description">
+                            <p>
+                                <span lang="pt">Desenvolvedor e analista de dados numa rede de clínicas, assumindo também a infraestrutura: migrei um servidor herdado para uma plataforma isolada e versionada e construí integrações de dados, painéis, CRM de WhatsApp e API interna — 22 apps em 8 semanas.</span>
+                                <span lang="en">Developer and data analyst at a clinic network, also taking on the infrastructure: moved an inherited server to an isolated, versioned platform and built data integrations, dashboards, a WhatsApp CRM and an internal API — 22 apps in 8 weeks.</span>
+                            </p>
+                        </div>
+						<div class="project-meta">
+							<span lang="pt">Out/2026 - Presente</span>
+							<span lang="en">Oct 2026 - Present</span>
+						</div>
+                    </a>
+
                     <!-- Project 1: BAttomic (SaaS) -->
                     <a href="work/battomic.html" class="project-card">
                         <div class="project-header">
@@ -82,13 +116,13 @@
                             <span class="tag">Multi-tenant</span>
                             <span class="tag">NextAuth</span>
                             <span class="tag">Agentes IA</span>
-                            <span class="tag">Mercado Pago</span>
-                            <span class="tag">Evolution API</span>
+                            <span class="tag">Fluxos estilo n8n</span>
+                            <span class="tag">Asaas</span>
                         </div>
                         <div class="project-description">
                             <p>
-                                <span lang="pt">Evolução dos meus agentes de IA em produto: plataforma SaaS multi-tenant que une CRM, automações com agentes e billing numa só aplicação, com banco isolado por cliente.</span>
-                                <span lang="en">The evolution of my AI agents into a product: a multi-tenant SaaS platform uniting CRM, agent automations and billing in a single app, with an isolated database per client.</span>
+                                <span lang="pt">Evolução dos meus agentes de IA em produto (nome provisório): plataforma SaaS multi-tenant que une CRM, agentes de IA, fluxos no estilo n8n, prospecção, campanhas e cobrança, com banco isolado por cliente.</span>
+                                <span lang="en">The evolution of my AI agents into a product (placeholder name): a multi-tenant SaaS platform uniting CRM, AI agents, n8n-style flows, prospecting, campaigns and billing, with an isolated database per client.</span>
                             </p>
                         </div>
 						<div class="project-meta">
@@ -237,6 +271,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=20261124-9"></script>
 </body>
 </html>
