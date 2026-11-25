@@ -14,20 +14,11 @@
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
     <meta name="theme-color" content="#181818">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261125-19">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261125-21">
     
     <style>
-        .blog-list { grid-template-columns: minmax(0, 820px); }
-        .projects-grid > .post-card { display: grid; grid-template-columns: 240px minmax(0, 1fr); }
-        .post-card-img { position: relative; overflow: hidden; background-color: var(--bg-primary); border-right: 1px solid var(--border); }
-        .post-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); transition: filter 0.4s ease; }
-        .post-card:hover .post-card-img img { filter: grayscale(0%); }
-        .post-card-body { display: flex; flex-direction: column; min-width: 0; }
-        .post-card-body .project-description { margin-top: 14px; }
-        @media (max-width: 600px) {
-            .projects-grid > .post-card { grid-template-columns: minmax(0, 1fr); }
-            .post-card-img { aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--border); }
-        }
+        /* posts na horizontal, na largura toda (o mesmo espaço da grade do work.done) */
+        @container posts (min-width: 541px) { .blog-list > .post-card { grid-template-columns: 300px minmax(0, 1fr); } }
     </style>
 </head>
 <body>
@@ -64,13 +55,13 @@
 		</div>
 	</header>
 
-    <div class="main-layout" style="grid-template-columns: 1fr;">
-        <main class="main-content" style="max-width: 1200px; margin: 0 auto;">
+    <div class="main-layout page-single page-list">
+        <main class="main-content">
             <section class="hero-section" style="grid-template-columns: 1fr;">
                 <div class="hero-content">
                     <h1 class="hero-title" style="font-size: 56px;">
                         <span>Blog</span><br>
-                        <span class="highlight"><span lang="pt">&amp; histórias</span><span lang="en">&amp; stories</span></span>
+                        <span class="highlight"><span lang="pt">&amp; Histórias</span><span lang="en">&amp; Stories</span></span>
                     </h1>
                     <p class="hero-description">
                         <span lang="pt">Histórias de quem começou programando plugins de Minecraft e hoje trabalha com infraestrutura, dados e automação.</span>
@@ -80,10 +71,10 @@
             </section>
 
             <section class="work-section">
-                <div class="projects-grid blog-list">
+                <div class="projects-grid blog-list post-list">
                     <a href="blog/minecraft.html" class="project-card post-card">
                         <div class="post-card-img">
-                            <img src="assets/img/blog/infancia-pc.webp" alt="Eu com uns 4 anos, sorrindo ao lado de um PC branco com monitor de tubo">
+                            <img src="assets/img/blog/infancia-pc.webp" alt="Eu com uns 4 anos, sorrindo ao lado de um PC branco com monitor de tubo" width="288" height="288">
                         </div>
                         <div class="post-card-body">
                             <div class="project-header">
@@ -124,6 +115,6 @@
     <!-- Visitas (GoatCounter: sem cookies, sem IP). "/index.html" conta como "/" -->
     <script>window.goatcounter = { path: function (p) { return p.replace(/\?.*$/, "").replace(/\/index\.html$/, "/"); } };</script>
     <script data-goatcounter="https://battomic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <script src="assets/js/main.js?v=20261125-19"></script>
+    <script src="assets/js/main.js?v=20261125-21"></script>
 </body>
 </html>

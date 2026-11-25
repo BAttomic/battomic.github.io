@@ -80,7 +80,11 @@ const translations = {
         index_about: "Sobre mim",
         index_whatido: "O que faço",
         index_stack: "Tech stack", 
+        index_blog: "Blog",
         index_contact: "Contato",
+        section_blog: "Blog",
+        blog_lead: "Onde eu compartilho o lado pessoal: jogos, comunidades e o caminho até aqui.",
+        view_blog: "Ir para o blog",
         nav_prev: "Projeto Anterior",
         nav_back: "Voltar aos Projetos", 
         nav_next: "Próximo Projeto",
@@ -172,7 +176,11 @@ const translations = {
         index_about: "About me",
         index_whatido: "What I do",
         index_stack: "Tech stack",
+        index_blog: "Blog",
         index_contact: "Contact",
+        section_blog: "Blog",
+        blog_lead: "Where I share the personal side: games, communities and the road so far.",
+        view_blog: "Go to the blog",
         nav_prev: "Previous Project",
         nav_back: "Back to Projects",
         nav_next: "Next Project",
@@ -318,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const KINDS = [
             ['type', '.section-title, .content-section > h2, .wiki-text > h2'],
             ['skel', '.sidebar .profile-avatar, .sidebar .profile-name, .sidebar .profile-role, .sidebar > :not(.profile-section)'],
-            ['skel', '.hero-title, .hero-description, .about-content p, .works-carousel'],
+            ['skel', '.hero-title, .hero-description, .about-content p, .works-carousel, .blog-lead, .blog-bar'],
             ['skel', '.project-card, .service-card, .stack-group, .contact-card'],
             ['skel', '.project-header-content > *, .case-meta > div, .figure, .cmp-head, .cmp-row, .shot, .incident > div'],
             ['skel', '.ba-card, .skin-card, .arch-item, .result-item, .kpi, .plan, .diagram-node, .rd-row, .tech-tag, .project-navigation > *'],
@@ -1031,7 +1039,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         const REGIONS = [['.header', 'menu'], ['.app-banner', 'card do topo'], ['.whatsapp-banner', 'card do fim'], ['.project-detail-header', 'cabeçalho'], ['.works-carousel', 'carrossel'], ['.journey', 'trajetória'],
             ['.projects-grid', 'lista'], ['.project-navigation', 'navegação'], ['.sidebar', 'lateral'],
-            ['#contact', 'contato'], ['.footer', 'rodapé'], ['.right-sidebar', 'índice']];
+            ['.blog-section', 'blog da home'], ['#contact', 'contato'], ['.footer', 'rodapé'], ['.right-sidebar', 'índice']];
         const region = el => { for (const [sel, n] of REGIONS) if (el.closest(sel)) return n; return 'página'; };
         function eventName(el) {
             if (el.id === 'lang-toggle') return 'idioma → ' + (document.body.classList.contains('lang-en') ? 'PT' : 'EN');
