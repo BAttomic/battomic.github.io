@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Resume — Bernardo C. Motta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=block">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 210mm; background: #fff; }
+body { font-family: 'Montserrat', sans-serif; color: #444; font-size: 8pt; line-height: 1.42;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; padding: 9mm 16mm 8mm; display: flex; flex-direction: column; }
+header { text-align: center; }
+.photo { width: 21mm; height: 21mm; margin: 0 auto 3mm; border-radius: 50%; border: 1.1mm solid #e6e6e6; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transform: scale(1.15); }
+h1 { font-weight: 500; font-size: 22pt; letter-spacing: 0.12em; color: #222; line-height: 1.1; }
+.role { margin-top: 2mm; font-size: 7.6pt; letter-spacing: 0.36em; text-transform: uppercase; color: #666; }
+.rule { height: 0; border-top: 0.35mm solid #d2d2d2; margin: 4.5mm 0 0; }
+.cols { flex: 1; display: grid; grid-template-columns: 61mm 1fr; min-height: 0; }
+.left { padding: 0 6mm 0 0; border-right: 0.35mm solid #d2d2d2; }
+.right { padding: 0 0 0 6.5mm; }
+h2 { margin: 5mm 0 2.4mm; font-size: 8.6pt; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #222; }
+.contact li { list-style: none; display: grid; grid-template-columns: 6mm 1fr; align-items: center; margin-bottom: 1.4mm; color: #333; font-size: 7.6pt; }
+.contact i { font-size: 7.6pt; color: #222; }
+.edu { margin-bottom: 2.2mm; }
+.edu .d { font-weight: 700; color: #222; font-size: 7.8pt; }
+.edu .s { font-weight: 700; color: #222; letter-spacing: 0.06em; font-size: 7.8pt; }
+.edu .c { color: #555; }
+.skills li { list-style: none; position: relative; padding-left: 3.2mm; margin-bottom: 1.2mm; color: #444; }
+.skills li::before { content: "•"; position: absolute; left: 0; color: #444; }
+.langs p { margin-bottom: 1.2mm; color: #444; }
+.profile { text-align: justify; color: #555; line-height: 1.55; }
+.profile strong { color: #222; }
+.item { margin-bottom: 2.4mm; }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+.top b { font-weight: 600; font-size: 8.8pt; color: #222; }
+.top span { font-size: 7.4pt; color: #555; white-space: nowrap; letter-spacing: 0.02em; }
+.sub { font-style: italic; color: #666; margin: 0.2mm 0 0.9mm; }
+.item ul { padding-left: 4mm; }
+.item li { margin-bottom: 0.6mm; color: #444; }
+.proj p { color: #444; margin-top: 0.6mm; }
+.right > h2:first-child, .left > h2:first-child { margin-top: 4.5mm; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="photo"><img src="foto.jpg" alt=""></div>
+    <h1>BERNARDO C. MOTTA</h1>
+    <div class="role">Back-End Developer &amp; Data Analyst</div>
+  </header>
+  <div class="rule"></div>
+  <div class="cols">
+    <aside class="left">
+      <h2>Contact</h2><ul class="contact"><li><i class="fa-solid fa-phone" aria-hidden="true"></i><span>+55 31 93300-8486</span></li><li><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>bernardocordeiromotta@gmail.com</span></li><li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Viçosa, MG - Brazil</span></li><li><i class="fa-solid fa-globe" aria-hidden="true"></i><span>www.battomic.com</span></li><li><i class="fa-brands fa-github" aria-hidden="true"></i><span>github.com/BAttomic</span></li><li><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span>/bernardo-cordeiro-motta</span></li></ul>
+      <h2>Education</h2><div class="edu"><div class="d">2026 - IN PROGRESS</div><div class="s">FAVENI</div><div class="c">Mathematics (Teaching Degree) · Online</div></div><div class="edu"><div class="d">2024 - 2026</div><div class="s">UNIVIÇOSA</div><div class="c">Systems Analysis &amp; Development</div></div><div class="edu"><div class="d">2020 - 2023</div><div class="s">UFV - FEDERAL UNIVERSITY</div><div class="c">Bachelor's in Mathematics (3 years completed)</div></div>
+      <h2>Skills</h2><ul class="skills"><li>Languages (TypeScript, JavaScript, Python, Java, SQL, Bash)</li><li>Frameworks (Node.js, Next.js, React, Tailwind, Django, Flask, Playwright)</li><li>Data (PostgreSQL, MySQL, MariaDB, MongoDB, Power BI)</li><li>Infra &amp; DevOps (Linux, Docker, Traefik, Git, CI/CD, Cloudflare, AWS)</li><li>AI (Claude, OpenAI, Gemini, Grok, Ollama)</li><li>Automation (n8n, WhatsApp API, Meta Ads, Google Ads, Google Workspace)</li><li>Analytical thinking</li></ul>
+      <h2>Languages</h2><div class="langs"><p>Portuguese: Native</p><p>English: Advanced</p></div>
+    </aside>
+    <main class="right">
+      <h2>Profile summary</h2><p class="profile">Back-end developer and data analyst with over 9 years of experience. I automate processes and build web apps, data integrations, dashboards and AI agents, and run the infrastructure that keeps it all up, with security and LGPD (data protection) in mind. Graduated in Systems Analysis and Development and currently taking a teaching degree in Mathematics. Full portfolio at <strong>www.battomic.com</strong>.</p>
+      <h2>Work experience</h2><div class="item"><div class="top"><b>Eficaz</b><span>OCT 2026 - PRESENT</span></div><div class="sub">Developer &amp; Data Analyst</div><ul><li>Development and data analysis for a network of 5 healthcare units and 3 franchises; beyond that scope, infrastructure and security.</li><li>Moved an inherited server with security vulnerabilities and LGPD issues to an isolated, versioned platform (Docker Swarm, Traefik, PostgreSQL 18), with encrypted, tested backups.</li><li>In 8 weeks: 22 apps, 26 repositories and 630+ commits, spanning data integrations, forecasting dashboards and a WhatsApp CRM.</li></ul></div><div class="item"><div class="top"><b>Freelance Developer</b><span>2018 - PRESENT</span></div><div class="sub">Back-end, DevOps &amp; Automation</div><ul><li>Freelance work in the gaming market: clients' server infrastructure, CI/CD pipelines and backup routines, plus original plugins.</li><li>Process automation for companies with n8n, AI agents and integrations (WhatsApp, Google, Meta).</li></ul></div><div class="item"><div class="top"><b>PromovAds</b><span>MAR 2025 - SEP 2025</span></div><div class="sub">Developer</div><ul><li>Automations integrated with Meta and Google and AI agents in n8n, including a WhatsApp support agent.</li><li>VPS infrastructure restructuring with CI/CD pipelines.</li></ul></div><div class="item"><div class="top"><b>OrangeStore</b><span>AUG 2024 - JAN 2025</span></div><div class="sub">Specialized Technician</div><ul><li>Microsoldering and repair of complex electronic components, with advanced hardware diagnostics.</li></ul></div>
+      <h2>Projects</h2><div class="item proj"><div class="top"><b>BAttomic — SaaS Platform</b><span>2025 - PRESENT</span></div><p>Multi-tenant SaaS (placeholder name) for CRM with AI agents, n8n-style flows, prospecting, campaigns and billing with Asaas.</p></div><div class="item proj"><div class="top"><b>Production Reports — São Romão</b><span>2026</span></div><p>Real client: turns production reports in PDF into analytics by supervisor, product and period, 100% offline on a local Node server.</p></div><div class="item proj"><div class="top"><b>TicketFlow (Capstone)</b><span>2026</span></div><p>Full-stack ticketing platform with dynamic QR Code (rotating HMAC), offline check-in and a pre-sale waiting list.</p></div><div class="item proj"><div class="top"><b>Lykos Province</b><span>AUG 2017 - 2023</span></div><p>The gaming community I founded and where I started programming: a Minecraft network of 8 VPS servers, a website with a store, a Discord bot and 1000+ members.</p></div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

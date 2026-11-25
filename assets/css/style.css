@@ -2277,6 +2277,20 @@ img.lb-zoomable { cursor: zoom-in; }
 .lb-overlay.lb-tall { align-items: flex-start; overflow-y: auto; }
 .lb-overlay.lb-tall .lb-stage { max-height: none; padding: 56px 0 32px; }
 .lb-overlay.lb-tall .lb-img { max-height: none; width: min(1280px, 94vw); }
+
+/* Prévia do currículo ("Ver currículo"): a página inteira cabendo na tela, sem rolagem, e o
+   "Baixar PDF" logo abaixo dela (fora da página, nunca por cima do texto) */
+.cv-preview .lb-stage { max-height: none; gap: 18px; }
+.cv-preview .lb-img {
+    width: auto;
+    height: auto;
+    max-width: 94vw;
+    max-height: calc(100vh - 130px);
+    background-color: #fff;
+}
+.cv-preview-dl { padding: 11px 22px; font-size: 12px; }
+.cv-preview .lb-close i { font-size: 16px; }
+
 /* Diagramas: abrem grandes; no celular ficam com 1200 px e arrastam para os lados */
 .lb-overlay.lb-wide { align-items: flex-start; justify-content: flex-start; overflow: auto; }
 .lb-overlay.lb-wide .lb-stage { margin: 0 auto; max-width: none; max-height: none; padding: 56px 0 32px; }

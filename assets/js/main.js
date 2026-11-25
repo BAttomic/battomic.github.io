@@ -21,7 +21,7 @@ const translations = {
         section_about: "Sobre mim", 
         section_whatido: "O que eu faço",
         section_stack: "Tech stack",
-        stack_cat_lang: "Linguagens", stack_cat_fw: "Frameworks", stack_cat_infra: "Infra &amp; cloud", stack_cat_data: "Dados", stack_cat_ai: "IA", stack_cat_auto: "Automação",
+        stack_cat_lang: "Linguagens", stack_cat_fw: "Frameworks", stack_cat_infra: "Infra &amp; Cloud", stack_cat_data: "Dados", stack_cat_ai: "IA", stack_cat_auto: "Automação",
         service_data_title: "Dados &amp; painéis",
         service_data_desc: "Dados de sistemas diferentes reunidos num banco só, com permissões por papel, e painéis com metas, previsão e comparativos, sob medida ou no <strong>Power BI</strong>.",
         section_journey: "Trajetória",
@@ -88,7 +88,7 @@ const translations = {
         ia_subtitle: "Desenvolvimento personalizado de agentes para venda consultiva, suporte e gestão, integrados exatamente aos processos e ferramentas que sua empresa já utiliza. Especialização em clínicas e PMEs da área da saúde.",
         lykos_title: "Lykos Province",
         lykos_subtitle: "Uma comunidade gaming que passou por diversas fases e jogos, tendo seu maior destaque no Minecraft com uma rede completa de servidores, economia própria e mais de 1000 membros ativos.",
-        cta_cv: "Baixar currículo",
+        cta_cv: "Ver currículo",
         view_all_works: "Ver todos os projetos"
     },
     
@@ -112,7 +112,7 @@ const translations = {
         section_about: "About me",
         section_whatido: "What I do", 
         section_stack: "Tech stack",
-        stack_cat_lang: "Languages", stack_cat_fw: "Frameworks", stack_cat_infra: "Infra &amp; cloud", stack_cat_data: "Data", stack_cat_ai: "AI", stack_cat_auto: "Automation", 
+        stack_cat_lang: "Languages", stack_cat_fw: "Frameworks", stack_cat_infra: "Infra &amp; Cloud", stack_cat_data: "Data", stack_cat_ai: "AI", stack_cat_auto: "Automation", 
         service_data_title: "Data &amp; dashboards",
         service_data_desc: "Data from different systems brought into one database with per-role permissions, and dashboards with targets, forecasts and comparisons, custom-built or in <strong>Power BI</strong>.",
         section_journey: "Journey",
@@ -179,7 +179,7 @@ const translations = {
         ia_subtitle: "Custom development of agents for consultative sales, support and management, integrated exactly to the processes and tools your company already uses. Specialization in clinics and healthcare SMEs.",
         lykos_title: "Lykos Province", 
         lykos_subtitle: "A gaming community that went through several phases and games, having its highlight in Minecraft with a complete server network, own economy and over 1000 active members.",
-        cta_cv: "Download resume", 
+        cta_cv: "View resume", 
         view_all_works: "View all works"
     }
 };
@@ -882,5 +882,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.style.setProperty('--my', (e.clientY - r.top).toFixed(1) + 'px');
             });
         });
+    })();
+
+    // Currículo: o botão abre uma prévia da página inteira, cabendo na tela (sem rolagem), com o
+    // "Baixar PDF" logo abaixo dela. Sem JavaScript, o link continua baixando o PDF direto.
+    (function () {
+        const btn = document.getElementById('cv-download-btn');
+        if (!btn) return;
+        const ov = document.createElement('div');
+        ov.className = 'lb-overlay cv-preview';
+        ov.setAttribute('role', 'dialog');
+        ov.setAttribute('aria-modal', 'true');
+        ov.innerHTML =
+            '<button class="lb-close" type="button"><i class="fas fa-xmark" aria-hidden="true"></i></button>' +
+            '<div class="lb-stage"><img class="lb-img" alt="">' +
+            '<a class="btn-download-cv cv-preview-dl"><i class="fas fa-download" aria-hidden="true"></i><span></span></a></div>';
+        document.body.appendChild(ov);
+        const img = ov.querySelector('.lb-img');
+        const dl = ov.querySelector('.cv-preview-dl');
+        const closeBtn = ov.querySelector('.lb-close');
+        function open(e) {
+            e.preventDefault();
+            const en = document.body.classList.contains('lang-en');
+            img.src = (en ? 'assets/cv/resume-preview.webp' : 'assets/cv/curriculo-preview.webp') + '?v=20261125-6';
+            img.alt = en ? 'Resume of Bernardo C. Motta' : 'Currículo de Bernardo C. Motta';
+            dl.href = btn.getAttribute('href');
+            dl.setAttribute('download', btn.getAttribute('download'));
+            dl.querySelector('span').textContent = en ? 'Download PDF' : 'Baixar PDF';
+            closeBtn.setAttribute('aria-label', en ? 'Close' : 'Fechar');
+            ov.scrollTop = 0;
+            ov.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus({ preventScroll: true });
+        }
+        function close() {
+            ov.classList.remove('open');
+            document.body.style.overflow = '';
+            btn.focus({ preventScroll: true });
+        }
+        btn.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        ov.addEventListener('click', e => { if (e.target === ov || e.target.classList.contains('lb-stage')) close(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('open')) close(); });
     })();
 });

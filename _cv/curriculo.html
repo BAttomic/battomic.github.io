@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Currículo — Bernardo C. Motta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=block">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 210mm; background: #fff; }
+body { font-family: 'Montserrat', sans-serif; color: #444; font-size: 8pt; line-height: 1.42;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; padding: 9mm 16mm 8mm; display: flex; flex-direction: column; }
+header { text-align: center; }
+.photo { width: 21mm; height: 21mm; margin: 0 auto 3mm; border-radius: 50%; border: 1.1mm solid #e6e6e6; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transform: scale(1.15); }
+h1 { font-weight: 500; font-size: 22pt; letter-spacing: 0.12em; color: #222; line-height: 1.1; }
+.role { margin-top: 2mm; font-size: 7.6pt; letter-spacing: 0.36em; text-transform: uppercase; color: #666; }
+.rule { height: 0; border-top: 0.35mm solid #d2d2d2; margin: 4.5mm 0 0; }
+.cols { flex: 1; display: grid; grid-template-columns: 61mm 1fr; min-height: 0; }
+.left { padding: 0 6mm 0 0; border-right: 0.35mm solid #d2d2d2; }
+.right { padding: 0 0 0 6.5mm; }
+h2 { margin: 5mm 0 2.4mm; font-size: 8.6pt; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #222; }
+.contact li { list-style: none; display: grid; grid-template-columns: 6mm 1fr; align-items: center; margin-bottom: 1.4mm; color: #333; font-size: 7.6pt; }
+.contact i { font-size: 7.6pt; color: #222; }
+.edu { margin-bottom: 2.2mm; }
+.edu .d { font-weight: 700; color: #222; font-size: 7.8pt; }
+.edu .s { font-weight: 700; color: #222; letter-spacing: 0.06em; font-size: 7.8pt; }
+.edu .c { color: #555; }
+.skills li { list-style: none; position: relative; padding-left: 3.2mm; margin-bottom: 1.2mm; color: #444; }
+.skills li::before { content: "•"; position: absolute; left: 0; color: #444; }
+.langs p { margin-bottom: 1.2mm; color: #444; }
+.profile { text-align: justify; color: #555; line-height: 1.55; }
+.profile strong { color: #222; }
+.item { margin-bottom: 2.4mm; }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+.top b { font-weight: 600; font-size: 8.8pt; color: #222; }
+.top span { font-size: 7.4pt; color: #555; white-space: nowrap; letter-spacing: 0.02em; }
+.sub { font-style: italic; color: #666; margin: 0.2mm 0 0.9mm; }
+.item ul { padding-left: 4mm; }
+.item li { margin-bottom: 0.6mm; color: #444; }
+.proj p { color: #444; margin-top: 0.6mm; }
+.right > h2:first-child, .left > h2:first-child { margin-top: 4.5mm; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="photo"><img src="foto.jpg" alt=""></div>
+    <h1>BERNARDO C. MOTTA</h1>
+    <div class="role">Desenvolvedor Back-End &amp; Analista de Dados</div>
+  </header>
+  <div class="rule"></div>
+  <div class="cols">
+    <aside class="left">
+      <h2>Contato</h2><ul class="contact"><li><i class="fa-solid fa-phone" aria-hidden="true"></i><span>+55 31 93300-8486</span></li><li><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>bernardocordeiromotta@gmail.com</span></li><li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Viçosa, MG</span></li><li><i class="fa-solid fa-globe" aria-hidden="true"></i><span>www.battomic.com</span></li><li><i class="fa-brands fa-github" aria-hidden="true"></i><span>github.com/BAttomic</span></li><li><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span>/bernardo-cordeiro-motta</span></li></ul>
+      <h2>Educação</h2><div class="edu"><div class="d">2026 - EM ANDAMENTO</div><div class="s">FAVENI</div><div class="c">Licenciatura em Matemática · EAD</div></div><div class="edu"><div class="d">2024 - 2026</div><div class="s">UNIVIÇOSA</div><div class="c">Análise e Desenvolvimento de Sistemas</div></div><div class="edu"><div class="d">2020 - 2023</div><div class="s">UFV - UNIVERSIDADE FEDERAL</div><div class="c">Bacharelado em Matemática (3 anos cursados)</div></div>
+      <h2>Habilidades</h2><ul class="skills"><li>Linguagens (TypeScript, JavaScript, Python, Java, SQL, Bash)</li><li>Frameworks (Node.js, Next.js, React, Tailwind, Django, Flask, Playwright)</li><li>Dados (PostgreSQL, MySQL, MariaDB, MongoDB, Power BI)</li><li>Infra &amp; DevOps (Linux, Docker, Traefik, Git, CI/CD, Cloudflare, AWS)</li><li>IA (Claude, OpenAI, Gemini, Grok, Ollama)</li><li>Automação (n8n, WhatsApp API, Meta Ads, Google Ads, Google Workspace)</li><li>Pensamento analítico</li></ul>
+      <h2>Idiomas</h2><div class="langs"><p>Português: Nativo</p><p>Inglês: Avançado</p></div>
+    </aside>
+    <main class="right">
+      <h2>Perfil profissional</h2><p class="profile">Desenvolvedor back-end e analista de dados com mais de 9 anos de experiência. Automatizo processos e construo aplicações web, integrações de dados, painéis e agentes de IA, e cuido da infraestrutura que mantém tudo no ar, com segurança e atenção à LGPD. Formado em Análise e Desenvolvimento de Sistemas e cursando Licenciatura em Matemática. Portfólio completo em <strong>www.battomic.com</strong>.</p>
+      <h2>Experiência</h2><div class="item"><div class="top"><b>Eficaz</b><span>OUT 2026 - PRESENTE</span></div><div class="sub">Desenvolvedor &amp; Analista de Dados</div><ul><li>Desenvolvimento e análise de dados numa rede de 5 unidades de saúde e 3 franquias; além do escopo, infraestrutura e segurança.</li><li>Migrei um servidor herdado, com vulnerabilidades e problemas de LGPD, para uma plataforma isolada e versionada (Docker Swarm, Traefik, PostgreSQL 18), com backup cifrado e testado.</li><li>Em 8 semanas: 22 apps, 26 repositórios e 630+ commits, entre integrações de dados, painéis com previsão e um CRM de WhatsApp.</li></ul></div><div class="item"><div class="top"><b>Desenvolvedor Autônomo</b><span>2018 - PRESENTE</span></div><div class="sub">Back-end, DevOps &amp; Automação</div><ul><li>Freelas no mercado de jogos: infraestrutura de servidores, pipelines de CI/CD e rotinas de backup dos clientes, e plugins autorais.</li><li>Automação de processos para empresas com n8n, agentes de IA e integrações (WhatsApp, Google, Meta).</li></ul></div><div class="item"><div class="top"><b>PromovAds</b><span>MAR 2025 - SET 2025</span></div><div class="sub">Desenvolvedor</div><ul><li>Automações integradas à Meta e ao Google e agentes de IA no n8n, incluindo um agente de atendimento no WhatsApp.</li><li>Reestruturação da infraestrutura VPS com pipelines CI/CD.</li></ul></div><div class="item"><div class="top"><b>OrangeStore</b><span>AGO 2024 - JAN 2025</span></div><div class="sub">Técnico Especializado</div><ul><li>Microsoldagem e reparo de componentes eletrônicos complexos, com diagnóstico avançado de hardware.</li></ul></div>
+      <h2>Projetos</h2><div class="item proj"><div class="top"><b>BAttomic — Plataforma SaaS</b><span>2025 - PRESENTE</span></div><p>SaaS multi-tenant (nome provisório) de CRM com agentes de IA, fluxos no estilo n8n, prospecção, campanhas e cobrança com Asaas.</p></div><div class="item proj"><div class="top"><b>Relatórios de Produção — São Romão</b><span>2026</span></div><p>Cliente real: transforma relatórios de produção em PDF em análises por supervisor, produto e período, 100% offline em servidor Node local.</p></div><div class="item proj"><div class="top"><b>TicketFlow (TCC)</b><span>2026</span></div><p>Plataforma full-stack de venda de ingressos com QR Code dinâmico (HMAC rotativo), check-in offline e pré-venda com fila de espera.</p></div><div class="item proj"><div class="top"><b>Lykos Province</b><span>AGO 2017 - 2023</span></div><p>Comunidade de jogos que fundei e onde comecei a programar: rede Minecraft com 8 servidores em VPS, site com loja, bot no Discord e 1000+ membros.</p></div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
