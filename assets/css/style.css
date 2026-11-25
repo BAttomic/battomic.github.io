@@ -36,6 +36,9 @@
 
 html {
     scroll-behavior: smooth;
+    /* o iPhone não aumenta sozinho os textos pequenos (como os números da coluna de linhas) */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -1949,16 +1952,21 @@ img {
        o sidebar passa a ocupar a linha inteira no topo. Páginas sem line-numbers
        usam grid-template-columns:1fr inline, então não são afetadas. */
     .main-layout {
-        grid-template-columns: 20px 1fr;
+        grid-template-columns: 28px 1fr;
     }
     .main-layout > .sidebar {
         grid-column: 1 / -1;
     }
+    /* 28px: cabem 3 dígitos (até 999) com folga dos dois lados */
     .main-layout > .line-numbers {
         display: flex;
         padding: 0 4px;
         font-size: 9px;
         line-height: 1.7;
+    }
+    .main-layout > .line-numbers span {
+        margin: 0 -4px;
+        padding: 0 4px;
     }
 
     .header-content {

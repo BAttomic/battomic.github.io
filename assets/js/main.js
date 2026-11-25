@@ -480,9 +480,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!last) return;
         const grid = last.querySelector('.contact-grid');
         const gap = grid ? (parseFloat(getComputedStyle(grid).rowGap) || 12) : 12;
-        const count = Math.min(3000, Math.max(1, Math.ceil((bottom + gap - ln.getBoundingClientRect().top) / lineH)));
-        if (ln.childElementCount === count) return;
-        ln.innerHTML = Array.from({ length: count }, (_, i) => `<span>${i + 1}</span>`).join('');
+        const target = bottom + gap - ln.getBoundingClientRect().top;
+        const render = n => {
+            n = Math.min(3000, Math.max(1, n));
+            if (ln.childElementCount === n) return;
+            ln.innerHTML = Array.from({ length: n }, (_, i) => `<span>${i + 1}</span>`).join('');
+        };
+        // primeiro pela altura de linha do CSS; depois corrige pela altura REAL de cada número na tela
+        // (o Safari do iPhone arredonda a linha e o erro acumula em centenas de linhas)
+        render(Math.ceil(target / lineH));
+        const real = (ln.lastElementChild.getBoundingClientRect().bottom - ln.getBoundingClientRect().top) / ln.childElementCount;
+        if (real > 0) render(Math.ceil(target / real));
         lnCurrent = null;
         markCurrentLine();
     }
