@@ -933,9 +933,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ov.addEventListener('click', e => { if (e.target === ov || e.target.classList.contains('lb-stage')) close(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('open')) close(); });
     })();
-    // Visitas (GoatCounter): total do site no rodapé e de cada projeto nos cards e no topo do case.
-    // Busca depois que a página carregou; se o serviço não responder (ou um bloqueador barrar),
-    // simplesmente não aparece nada.
+    // Visitas (GoatCounter): só um olho cinza com o número, sem palavras.
+    // - home: total do site no pé da coluna do índice (e no rodapé quando essa coluna some)
+    // - work.done: em cada projeto, embaixo à direita (a data fica embaixo à esquerda)
+    // - carrossel da home: ao lado da setinha do card; case: no topo
+    // Busca depois que a página carregou; se o serviço não responder, nada aparece.
     (function () {
         const GC = 'https://battomic.goatcounter.com/counter/';
         const norm = p => p.replace(/\/index\.html$/, '/');
@@ -944,26 +946,36 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(r => (r.ok ? r.json() : null))
             .then(j => (j ? parseInt(String(j.count).replace(/\D/g, ''), 10) || 0 : 0))
             .catch(() => 0));
-        const fmt = n => n.toLocaleString(document.body.classList.contains('lang-en') ? 'en-US' : 'pt-BR');
-        function badge(n, cls, pt, en) {
+        function badge(n, cls) {
+            const en = document.body.classList.contains('lang-en');
             const s = document.createElement('span');
             s.className = 'view-count ' + cls;
-            s.title = document.body.classList.contains('lang-en') ? en : pt;
-            s.innerHTML = '<i class="fas fa-eye" aria-hidden="true"></i><span class="view-n">' + fmt(n) + '</span>' +
-                (cls === 'card' ? '' : ' <span lang="pt">' + pt + '</span><span lang="en">' + en + '</span>');
+            s.title = en ? 'views' : 'visualizações';
+            s.innerHTML = '<i class="fas fa-eye" aria-hidden="true"></i><span>' + n.toLocaleString(en ? 'en-US' : 'pt-BR') + '</span>';
             return s;
         }
         function run() {
-            const foot = document.querySelector('.footer-content > p');
-            if (foot) get('TOTAL').then(n => { if (n) foot.after(badge(n, 'foot', 'visitas', 'visits')); });
+            const side = document.querySelector('.right-sidebar');
+            if (side) {
+                get('TOTAL').then(n => {
+                    if (!n) return;
+                    side.appendChild(badge(n, 'index'));
+                    const foot = document.querySelector('.footer-content > p');
+                    if (foot) foot.after(badge(n, 'foot'));
+                });
+            }
             document.querySelectorAll('a.project-card[href]').forEach(card => {
-                const arrow = card.querySelector('.project-header .project-arrow');
-                if (!arrow) return;
                 const path = norm(new URL(card.getAttribute('href'), location.href).pathname);
-                get(path).then(n => { if (n) arrow.before(badge(n, 'card', 'visualizações', 'views')); });
+                const meta = card.querySelector('.project-meta');
+                const arrow = card.querySelector('.project-header .project-arrow');
+                get(path).then(n => {
+                    if (!n) return;
+                    if (meta) meta.appendChild(badge(n, 'meta'));
+                    else if (arrow) arrow.before(badge(n, 'card'));
+                });
             });
             const head = document.querySelector('.project-header-content');
-            if (head) get(norm(location.pathname)).then(n => { if (n) head.appendChild(badge(n, 'case', 'visualizações', 'views')); });
+            if (head) get(norm(location.pathname)).then(n => { if (n) head.appendChild(badge(n, 'case')); });
         }
         if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 2500 });
         else setTimeout(run, 800);

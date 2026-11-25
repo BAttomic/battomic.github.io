@@ -1144,7 +1144,7 @@ img {
     color: var(--text-muted);
 }
 
-/* Visitas (GoatCounter): discretas, na mesma letra pequena e acinzentada do rodapé */
+/* Visitas (GoatCounter): só um olho cinza com o número, discreto */
 .view-count {
     display: inline-flex;
     align-items: center;
@@ -1158,7 +1158,22 @@ img {
 .view-count i { font-size: 10px; opacity: 0.8; }
 .project-header .view-count { margin-left: auto; margin-right: 10px; }
 .view-count.case { display: flex; margin-top: 14px; }
-.footer-content .view-count.foot { margin-right: auto; margin-left: 14px; }
+/* home: no pé da coluna do índice (a coluna já empurra o último item para baixo) */
+.right-sidebar .view-count.index { padding: 0 2px; }
+/* rodapé só quando a coluna do índice não aparece */
+.footer-content .view-count.foot { display: none; margin-right: auto; margin-left: 14px; }
+@media (max-width: 1150px) {
+    .footer-content .view-count.foot { display: inline-flex; }
+}
+/* work.done: data embaixo à esquerda, olho embaixo à direita, no pé de cada projeto */
+.projects-grid > .project-card { display: flex; flex-direction: column; }
+.projects-grid > .project-card .project-meta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
 
 .footer-links {
     display: flex;
